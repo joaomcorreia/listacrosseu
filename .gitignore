@@ -1,0 +1,77 @@
+# Git ignore for Django ListAcrossEU project
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+django.log
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# Media files (uploaded content)
+/media/
+!/media/.gitkeep
+
+# Static files (collected)
+/staticfiles/
+!/static/.gitkeep
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Backup files
+*.bak
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+
+# CSV templates (generated files)
+cities_template.csv
+categories_template.csv
+businesses_template.csv
+
+# Temporary files
+*.tmp
+*.temp
+
+# Node modules (if any)
+node_modules/
+
+# Windows specific
+desktop.ini
+
+# Django migrations (optional - uncomment if you want to ignore)
+# */migrations/*.py
+# !*/migrations/__init__.py
+
+# Local development files
+debug_template.html
+
+# Collected static files
+/static_collected/

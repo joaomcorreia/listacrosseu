@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{city_name}}, {{country_name}} - Business Directory | ListAcross EU</title>
+  <meta name="description" content="Find businesses in {{city_name}}, {{country_name}}. Local restaurants, shops, services and more in {{city_name}}." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/city.css" />
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="nav-left">
+      <div class="brand">ListAcross<span style="color:var(--blue)">EU</span></div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="all-listings.html">All Listings</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+    <div class="nav-right">
+      <a href="login.html">Login</a>
+      <a href="register.html" class="btn-primary">Add Business</a>
+    </div>
+  </header>
+
+  <div class="breadcrumb">
+    <div class="container">
+      <a href="index.html">Home</a> > 
+      <a href="#" id="country-link">{{country_name}}</a> > 
+      <span id="city-name">{{city_name}}</span>
+    </div>
+  </div>
+
+  <main class="container">
+    <div class="city-header">
+      <div class="city-info">
+        <h1 id="city-title">Businesses in {{city_name}}, {{country_name}}</h1>
+        <div class="city-meta">
+          <span class="city-stat">🏢 <span id="total-businesses">0</span> Local Businesses</span>
+          <span class="city-stat">⭐ <span id="avg-rating">4.5</span> Average Rating</span>
+          <span class="city-stat">📍 <span id="city-population">0</span> Population</span>
+        </div>
+        <p class="city-description" id="city-description">{{city_description}}</p>
+      </div>
+      <div class="city-actions">
+        <button class="btn-secondary" onclick="showMap()">📍 View on Map</button>
+        <button class="btn-primary" onclick="scrollToSearch()">🔍 Find Business</button>
+      </div>
+    </div>
+
+    <div class="search-section">
+      <div class="city-search">
+        <h2>Find Local Businesses</h2>
+        <div class="search-form">
+          <input type="text" placeholder="What are you looking for?" id="local-search-input">
+          <select id="category-filter">
+            <option value="">All Categories</option>
+            <option value="restaurant">Restaurants & Cafés</option>
+            <option value="retail">Shopping & Retail</option>
+            <option value="services">Professional Services</option>
+            <option value="healthcare">Healthcare</option>
+            <option value="automotive">Automotive</option>
+            <option value="tourism">Tourism & Hotels</option>
+          </select>
+          <select id="distance-filter">
+            <option value="2">Within 2 km</option>
+            <option value="5" selected>Within 5 km</option>
+            <option value="10">Within 10 km</option>
+            <option value="25">Within 25 km</option>
+          </select>
+          <button id="local-search-btn">Search</button>
+        </div>
+      </div>
+    </div>
+
+    <section class="quick-categories">
+      <h2>Popular in <span id="city-name-categories">{{city_name}}</span></h2>
+      <div class="categories-scroll" id="categories-container">
+        <!-- Categories will be loaded by JavaScript -->
+      </div>
+    </section>
+
+    <section class="businesses-section">
+      <div class="section-header">
+        <h2>All Businesses</h2>
+        <div class="sort-options">
+          <label for="sort-select">Sort by:</label>
+          <select id="sort-select">
+            <option value="relevance">Relevance</option>
+            <option value="rating">Highest Rated</option>
+            <option value="newest">Newest First</option>
+            <option value="name">Name A-Z</option>
+            <option value="distance">Distance</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="businesses-container">
+        <div class="businesses-list" id="businesses-list">
+          <!-- Businesses will be loaded by JavaScript -->
+        </div>
+        
+        <div class="map-sidebar">
+          <div id="city-map" class="interactive-map">
+            <div class="map-placeholder">
+              🗺️ Interactive Map
+              <p>Business locations in <span id="map-city-name">{{city_name}}</span></p>
+            </div>
+          </div>
+          
+          <div class="nearby-cities">
+            <h3>Nearby Cities</h3>
+            <div id="nearby-cities-list">
+              <!-- Nearby cities will be loaded -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="city-highlights">
+      <h2>Why Choose <span id="city-name-highlights">{{city_name}}</span>?</h2>
+      <div class="highlights-grid" id="highlights-container">
+        <!-- City highlights will be loaded -->
+      </div>
+    </section>
+
+    <section class="upgrade-local">
+      <div class="local-upgrade-banner">
+        <h3>Business Owner in <span id="upgrade-city-name">{{city_name}}</span>?</h3>
+        <p>Get featured in local search results and reach more customers in your area</p>
+        <div class="local-benefits">
+          <div class="benefit">
+            <span class="benefit-icon">🎯</span>
+            <div>
+              <h4>Local Targeting</h4>
+              <p>Appear first for customers searching in <span id="benefit-city-name">{{city_name}}</span></p>
+            </div>
+          </div>
+          <div class="benefit">
+            <span class="benefit-icon">📈</span>
+            <div>
+              <h4>Increased Visibility</h4>
+              <p>25km radius coverage around your business</p>
+            </div>
+          </div>
+          <div class="benefit">
+            <span class="benefit-icon">⭐</span>
+            <div>
+              <h4>Priority Listing</h4>
+              <p>Featured placement in search results</p>
+            </div>
+          </div>
+        </div>
+        <a href="register.html" class="btn-primary large">Upgrade to Local Plan - €29/month</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 ListAcross Europe. All rights reserved. • <a href="#">About Us</a> • <a href="#">Privacy</a> • <a href="#">Terms</a> • <a href="#">Contact</a>
+  </footer>
+
+  <script src="js/city-fixed.js"></script>
+</body>
+</html>

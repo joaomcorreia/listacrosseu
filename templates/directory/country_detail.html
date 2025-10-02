@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ country.name }} Business Directory | ListAcross EU</title>
+  <meta name="description" content="Discover businesses in {{ country.name }}. Browse local companies, restaurants, services and more across all major cities in {{ country.name }}." />
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/country.css' %}" />
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="nav-left">
+      <div class="brand">ListAcross<span style="color:var(--blue)">EU</span></div>
+      <nav>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'admin:index' %}">Admin</a>
+        <a href="#">Contact</a>
+      </nav>
+    </div>
+    <div class="nav-right">
+      <a href="{% url 'admin:login' %}">Login</a>
+    </div>
+  </header>
+
+  <div class="breadcrumb">
+    <div class="container">
+      <a href="{% url 'home' %}">Home</a> > 
+      <span>{{ country.name }}</span>
+    </div>
+  </div>
+
+  <main class="container">
+    <div class="country-header">
+      <div class="country-info">
+        <div class="country-flag">
+          <img src="{% static 'assets/flags/' %}{{ country.code|lower }}.png" alt="{{ country.name }} flag">
+        </div>
+        <div class="country-details">
+          <h1>Business Directory - {{ country.name }}</h1>
+          <div class="country-meta">
+            <span class="stat">📍 {{ cities_count }} Cities</span>
+            <span class="stat">🏢 {{ businesses_count }} Businesses</span>
+            <span class="stat">🌍 EU Member</span>
+          </div>
+          <p class="country-description">Explore businesses across {{ country.name }}. Find local companies, services, restaurants and more in major cities.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Two-column layout: Main content + Sidebar -->
+    <div class="country-content">
+      <div class="main-content">
+
+    <div class="search-section">
+      <div class="search-box country-search">
+        <input type="text" id="business-search" placeholder="Search businesses in {{ country.name }}...">
+        <select id="category-filter">
+          <option value="">All Categories</option>
+          {% for category in categories %}
+          <option value="{{ category.slug }}">{{ category.name }}</option>
+          {% endfor %}
+        </select>
+        <button onclick="searchBusinesses()">Search</button>
+      </div>
+    </div>
+
+    {% if cities %}
+    <section class="cities-section">
+      <h2>Major Cities in {{ country.name }}</h2>
+      <div class="cities-grid">
+        {% for city in cities %}
+        <div class="city-card" onclick="window.location.href='{% url 'city_detail' city.name %}'">
+          <h3>{{ city.name }}</h3>
+          <p>{{ city.businesses.count }} businesses</p>
+          <span class="city-arrow">→</span>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+    {% endif %}
+
+    {% if businesses %}
+    <section class="businesses-section">
+      <h2>Featured Businesses in {{ country.name }}</h2>
+      <div class="businesses-grid">
+        {% for business in businesses %}
+        <div class="business-card">
+          <div class="business-header">
+            <h3>{{ business.name }}</h3>
+            <span class="business-category">{{ business.category.name }}</span>
+          </div>
+          <div class="business-location">
+            📍 {{ business.city.name }}, {{ business.country.name }}
+          </div>
+          <div class="business-contact">
+            {% if business.phone %}
+            <span>📞 {{ business.phone }}</span>
+            {% endif %}
+            {% if business.website %}
+            <a href="{{ business.website }}" target="_blank">🌐 Website</a>
+            {% endif %}
+          </div>
+          <div class="business-actions">
+            <button class="btn-secondary" onclick="window.location.href='{% url 'business_detail' business.slug %}'">View Details</button>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+    {% endif %}
+
+      </div> <!-- End main-content -->
+
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="sidebar-section">
+          <h3>🏙️ Major Cities</h3>
+          {% if cities %}
+          <div class="cities-list">
+            {% for city in cities %}
+            <div class="city-item" onclick="window.location.href='{% url 'city_detail' city.name %}'">
+              <div class="city-name">{{ city.name }}</div>
+              <div class="city-stats">
+                <span class="business-count">{{ city.businesses.count }} businesses</span>
+                {% if city.is_capital %}
+                <span class="capital-badge">👑 Capital</span>
+                {% endif %}
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+          {% else %}
+          <p class="no-cities">No cities added yet.</p>
+          {% endif %}
+        </div>
+
+        <div class="sidebar-section">
+          <h3>📊 Quick Stats</h3>
+          <div class="stats-list">
+            <div class="stat-item">
+              <span class="stat-label">Total Cities</span>
+              <span class="stat-value">{{ cities_count }}</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Total Businesses</span>
+              <span class="stat-value">{{ businesses_count }}</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Categories Available</span>
+              <span class="stat-value">{{ categories.count }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-section">
+          <h3>🚀 Quick Actions</h3>
+          <div class="quick-actions">
+            <a href="{% url 'admin:businesses_business_add' %}" class="action-btn">➕ Add Business</a>
+            <a href="{% url 'admin:businesses_city_add' %}" class="action-btn">🏙️ Add City</a>
+            <a href="{% url 'search' %}?country={{ country.code }}" class="action-btn">🔍 Search Here</a>
+          </div>
+        </div>
+      </div>
+
+    </div> <!-- End country-content -->
+
+  </main>
+
+  <script src="{% static 'js/app.js' %}"></script>
+</body>
+</html>

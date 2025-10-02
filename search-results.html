@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Search Results | ListAcross EU</title>
+  <meta name="description" content="Search results for businesses across the European Union." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/search-results.css" />
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="nav-left">
+      <div class="brand">ListAcross<span style="color:var(--blue)">EU</span></div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="all-listings.html">All Listings</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+    <div class="nav-right">
+      <a href="login.html">Login</a>
+      <a href="register.html" class="btn-primary">Add Business</a>
+    </div>
+  </header>
+
+  <div class="breadcrumb">
+    <div class="container">
+      <a href="index.html">Home</a> > 
+      <span>Search Results</span>
+    </div>
+  </div>
+
+  <main class="container">
+    <div class="search-header">
+      <h1 id="search-title">Search Results</h1>
+      <div class="search-meta">
+        <span id="results-count">0 results found</span>
+        <span id="search-time">in 0.05 seconds</span>
+      </div>
+    </div>
+
+    <div class="search-refinement">
+      <div class="current-search">
+        <h3>Current Search:</h3>
+        <div class="search-tags" id="search-tags">
+          <!-- Active filters will be shown here -->
+        </div>
+      </div>
+      
+      <div class="refine-search">
+        <button class="btn-secondary" onclick="showFilters()">🔧 Refine Search</button>
+        <button class="btn-secondary" onclick="clearFilters()">✖ Clear All</button>
+      </div>
+    </div>
+
+    <div class="search-content">
+      <aside class="search-filters" id="search-filters">
+        <h3>Filter Results</h3>
+        
+        <div class="filter-group">
+          <h4>Location</h4>
+          <select id="country-filter">
+            <option value="">Any Country</option>
+            <!-- Countries will be populated -->
+          </select>
+          <input type="text" placeholder="City name..." id="city-filter">
+        </div>
+
+        <div class="filter-group">
+          <h4>Category</h4>
+          <div class="checkbox-group" id="category-checkboxes">
+            <!-- Category checkboxes will be populated -->
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <h4>Rating</h4>
+          <div class="rating-filter">
+            <label><input type="radio" name="rating" value=""> Any Rating</label>
+            <label><input type="radio" name="rating" value="4"> 4+ Stars</label>
+            <label><input type="radio" name="rating" value="4.5"> 4.5+ Stars</label>
+            <label><input type="radio" name="rating" value="5"> 5 Stars Only</label>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <h4>Distance</h4>
+          <select id="distance-filter">
+            <option value="">Any Distance</option>
+            <option value="5">Within 5 km</option>
+            <option value="10">Within 10 km</option>
+            <option value="25">Within 25 km</option>
+            <option value="50">Within 50 km</option>
+          </select>
+        </div>
+
+        <button class="btn-primary" onclick="applyFilters()">Apply Filters</button>
+      </aside>
+
+      <div class="search-results-main">
+        <div class="results-header">
+          <div class="view-options">
+            <button class="view-btn active" data-view="list">📋 List</button>
+            <button class="view-btn" data-view="grid">⊞ Grid</button>
+            <button class="view-btn" data-view="map">🗺️ Map</button>
+          </div>
+          
+          <div class="sort-options">
+            <label for="results-sort">Sort by:</label>
+            <select id="results-sort">
+              <option value="relevance">Relevance</option>
+              <option value="rating">Highest Rated</option>
+              <option value="distance">Distance</option>
+              <option value="name">Name A-Z</option>
+              <option value="newest">Newest First</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="results-container" id="results-container">
+          <!-- Search results will be loaded here -->
+        </div>
+
+        <div class="pagination" id="pagination">
+          <!-- Pagination will be loaded here -->
+        </div>
+      </div>
+    </div>
+
+    <section class="search-suggestions">
+      <h2>Related Searches</h2>
+      <div class="suggestions-list" id="suggestions-list">
+        <!-- Related search suggestions -->
+      </div>
+    </section>
+
+    <section class="no-results" id="no-results" style="display: none;">
+      <div class="no-results-content">
+        <h2>No Results Found</h2>
+        <p>We couldn't find any businesses matching your search criteria.</p>
+        
+        <div class="suggestions">
+          <h3>Try these suggestions:</h3>
+          <ul>
+            <li>Check your spelling and try again</li>
+            <li>Use more general keywords</li>
+            <li>Remove some filters to broaden your search</li>
+            <li>Try searching in a nearby city or country</li>
+          </ul>
+        </div>
+        
+        <div class="alternative-actions">
+          <a href="index.html" class="btn-secondary">Back to Homepage</a>
+          <button class="btn-primary" onclick="clearFilters()">Clear All Filters</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 ListAcross Europe. All rights reserved. • <a href="#">About Us</a> • <a href="#">Privacy</a> • <a href="#">Terms</a> • <a href="#">Contact</a>
+  </footer>
+
+  <script src="js/search-results.js"></script>
+</body>
+</html>

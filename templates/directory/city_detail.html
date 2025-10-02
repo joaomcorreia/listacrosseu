@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ city.name }}, {{ city.country.name }} - Business Directory | ListAcross EU</title>
+  <meta name="description" content="Find businesses in {{ city.name }}, {{ city.country.name }}. Local restaurants, shops, services and more in {{ city.name }}." />
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/city.css' %}" />
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="nav-left">
+      <div class="brand">ListAcross<span style="color:var(--blue)">EU</span></div>
+      <nav>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'admin:index' %}">Admin</a>
+        <a href="#">Contact</a>
+      </nav>
+    </div>
+    <div class="nav-right">
+      <a href="{% url 'admin:login' %}">Login</a>
+    </div>
+  </header>
+
+  <div class="breadcrumb">
+    <div class="container">
+      <a href="{% url 'home' %}">Home</a> > 
+      <a href="{% url 'country_detail' city.country.code %}">{{ city.country.name }}</a> > 
+      <span>{{ city.name }}</span>
+    </div>
+  </div>
+
+  <main class="container">
+    <div class="city-header">
+      <div class="city-info">
+        <h1>Businesses in {{ city.name }}, {{ city.country.name }}</h1>
+        <div class="city-meta">
+          <span class="city-stat">🏢 {{ businesses_count }} Local Businesses</span>
+          <span class="city-stat">⭐ 4.5 Average Rating</span>
+          <span class="city-stat">📍 {{ city.population|default:"N/A" }} Population</span>
+        </div>
+        <p class="city-description">Discover local businesses and services in {{ city.name }}. From restaurants and shops to professional services - find everything you need in this vibrant {{ city.country.name }} city.</p>
+      </div>
+      <div class="city-actions">
+        <button class="btn-secondary" onclick="showMap()">📍 View on Map</button>
+        <button class="btn-primary" onclick="scrollToSearch()">🔍 Find Business</button>
+      </div>
+    </div>
+
+    <div class="search-section">
+      <div class="search-box city-search">
+        <input type="text" id="business-search" placeholder="Search businesses in {{ city.name }}...">
+        <select id="category-filter">
+          <option value="">All Categories</option>
+          {% for category in categories %}
+          <option value="{{ category.slug }}">{{ category.name }}</option>
+          {% endfor %}
+        </select>
+        <button onclick="searchBusinesses()">Search</button>
+      </div>
+    </div>
+
+    {% if businesses %}
+    <section class="businesses-section">
+      <h2>Local Businesses in {{ city.name }}</h2>
+      <div class="category-tabs">
+        <button class="tab-btn active" data-category="all">All ({{ businesses.count }})</button>
+        {% for category in categories_with_count %}
+        <button class="tab-btn" data-category="{{ category.slug }}">{{ category.name }} ({{ category.business_count }})</button>
+        {% endfor %}
+      </div>
+
+      <div class="businesses-grid">
+        {% for business in businesses %}
+        <div class="business-card" data-category="{{ business.category.slug }}">
+          <div class="business-header">
+            <h3>{{ business.name }}</h3>
+            <span class="business-category">{{ business.category.name }}</span>
+          </div>
+          <div class="business-details">
+            <div class="business-address">
+              📍 {{ business.address|default:"Address not available" }}
+            </div>
+            {% if business.phone %}
+            <div class="business-phone">
+              📞 {{ business.phone }}
+            </div>
+            {% endif %}
+            {% if business.website %}
+            <div class="business-website">
+              <a href="{{ business.website }}" target="_blank">🌐 Visit Website</a>
+            </div>
+            {% endif %}
+          </div>
+          <div class="business-description">
+            <p>{{ business.description|truncatewords:20|default:"Professional business services in "|add:city.name }}</p>
+          </div>
+          <div class="business-actions">
+            <button class="btn-primary" onclick="window.location.href='{% url 'business_detail' business.slug %}'">View Details</button>
+            {% if business.phone %}
+            <button class="btn-secondary" onclick="window.open('tel:{{ business.phone }}')">Call Now</button>
+            {% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+    {% else %}
+    <section class="no-businesses">
+      <div class="empty-state">
+        <h3>No businesses found in {{ city.name }}</h3>
+        <p>Be the first to add your business to our directory!</p>
+        <a href="{% url 'admin:index' %}" class="btn-primary">Add Your Business</a>
+      </div>
+    </section>
+    {% endif %}
+
+  </main>
+
+  <script src="{% static 'js/app.js' %}"></script>
+  <script src="{% static 'js/city.js' %}"></script>
+</body>
+</html>

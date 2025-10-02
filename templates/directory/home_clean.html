@@ -1,0 +1,894 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ListAcross EU — Directory</title>
+  <meta name="description" content="Discover businesses across the European Union. Browse by country and category." />
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="nav-left">
+      <div class="brand">ListAcross<span style="color:var(--blue)">EU</span></div>
+      <nav>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'admin:index' %}">Admin</a>
+        <a href="#">Contact</a>
+      </nav>
+    </div>
+    <div class="nav-right">
+      <button class="btn">List Business</button>
+    </div>
+  </header>
+
+  <main>
+  {% block content %}
+
+  <section class="map-wrap">
+    <!-- Google Maps embed centered on Europe. You can swap for JS API later if needed. -->
+    <iframe class="map-embed"
+      src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d44136871.028996035!2d14.0!3d53.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v0000000000000"
+      loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </section>
+
+  <section class="flags" aria-label="EU Countries">
+    <div class="track">
+      {% for country in countries %}
+      <a href="{% url 'country_detail' country.code %}" class="flag-item">
+        <img src="{% static 'assets/flags/' %}{{ country.code }}.png" alt="{{ country.name }}" />
+        <span>{{ country.name }}</span>
+      </a>
+      {% empty %}
+      <!-- Fallback flags if no countries in DB -->
+      <a href="#" class="flag-item">
+        <img src="{% static 'assets/flags/at.png' %}" alt="Austria" />
+        <span>Austria</span>
+      </a>
+      <a href="#" class="flag-item">
+        <img src="{% static 'assets/flags/be.png' %}" alt="Belgium" />
+        <span>Belgium</span>
+      </a>
+      <a href="#" class="flag-item">
+        <img src="{% static 'assets/flags/bg.png' %}" alt="Bulgaria" />
+        <span>Bulgaria</span>
+      </a>
+      <a href="#" class="flag-item">
+        <img src="{% static 'assets/flags/cy.png' %}" alt="Cyprus" />
+        <span>Cyprus</span>
+      </a>
+      <a href="#" class="flag-item">
+        <img src="{% static 'assets/flags/cz.png' %}" alt="Czech Republic" />
+        <span>Czech Republic</span>
+      </a>
+      <a href="#" class="flag-item">
+        <img src="{% static 'assets/flags/de.png' %}" alt="Germany" />
+        <span>Germany</span>
+      </a>
+      <a href="#" class="flag-item">
+        <img src="{% static 'assets/flags/dk.png' %}" alt="Denmark" />
+        <span>Denmark</span>
+      </a>
+      <a href="#" class="flag-item">
+        <img src="{% static 'assets/flags/ee.png' %}" alt="Estonia" />
+        <span>Estonia</span>
+      </a>
+      <a href="#" class="flag-item">
+        <img src="{% static 'assets/flags/es.png' %}" alt="Spain" />
+        <span>Spain</span>
+      </a>
+      <a href="#" class="flag-item">
+        <img src="{% static 'assets/flags/fi.png' %}" alt="Finland" />
+        <span>Finland</span>
+      </a>
+      <a href="#" class="flag-item">
+        <img src="{% static 'assets/flags/fr.png' %}" alt="France" />
+        <span>France</span>
+      </a>
+      <a href="#" class="flag-item">
+        <img src="{% static 'assets/flags/gr.png' %}" alt="Greece" />
+        <span>Greece</span>
+      </a>
+      <a href="#" class="flag-item">
+        <img src="{% static 'assets/flags/hr.png' %}" alt="Croatia" />
+        <span>Croatia</span>
+      </a>
+      <a href="#" class="flag-item">
+        <img src="{% static 'assets/flags/hu.png' %}" alt="Hungary" />
+        <span>Hungary</span>
+      </a>
+      <a href="#" class="flag-item">
+        <img src="{% static 'assets/flags/ie.png' %}" alt="Ireland" />
+        <span>Ireland</span>
+      </a>
+      <a href="#" class="flag-item">
+        <img src="{% static 'assets/flags/it.png' %}" alt="Italy" />
+        <span>Italy</span>
+      </a>
+      <a href="#" class="flag-item">
+        <img src="{% static 'assets/flags/lt.png' %}" alt="Lithuania" />
+        <span>Lithuania</span>
+      </a>
+      <a href="#" class="flag-item">
+        <img src="{% static 'assets/flags/lu.png' %}" alt="Luxembourg" />
+        <span>Luxembourg</span>
+      </a>
+      <a href="#" class="flag-item">
+        <img src="{% static 'assets/flags/lv.png' %}" alt="Latvia" />
+        <span>Latvia</span>
+      </a>
+      <a href="#" class="flag-item">
+        <img src="{% static 'assets/flags/mt.png' %}" alt="Malta" />
+        <span>Malta</span>
+      </a>
+      <a href="#" class="flag-item">
+        <img src="{% static 'assets/flags/nl.png' %}" alt="Netherlands" />
+        <span>Netherlands</span>
+      </a>
+      <a href="#" class="flag-item">
+        <img src="{% static 'assets/flags/pl.png' %}" alt="Poland" />
+        <span>Poland</span>
+      </a>
+      <a href="#" class="flag-item">
+        <img src="{% static 'assets/flags/pt.png' %}" alt="Portugal" />
+        <span>Portugal</span>
+      </a>
+      <a href="#" class="flag-item">
+        <img src="{% static 'assets/flags/ro.png' %}" alt="Romania" />
+        <span>Romania</span>
+      </a>
+      <a href="#" class="flag-item">
+        <img src="{% static 'assets/flags/se.png' %}" alt="Sweden" />
+        <span>Sweden</span>
+      </a>
+      <a href="#" class="flag-item">
+        <img src="{% static 'assets/flags/si.png' %}" alt="Slovenia" />
+        <span>Slovenia</span>
+      </a>
+      <a href="#" class="flag-item">
+        <img src="{% static 'assets/flags/sk.png' %}" alt="Slovakia" />
+        <span>Slovakia</span>
+      </a>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="featured-section">
+    <div class="container">
+      <h2 class="featured-title">✨ Featured Destinations</h2>
+      <p class="featured-subtitle">Discover exceptional business opportunities across Europe</p>
+      
+      <div class="featured-slider-container">
+        <div class="featured-track">
+          <!-- Vienna, Austria -->
+          <div class="featured-card" data-type="city" data-location="vienna-at">
+            <div class="card-badge">👑 Premium</div>
+            <div class="card-image">
+              <img src="{% static 'assets/flags/at.png' %}" alt="Austria">
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Vienna, Austria</h3>
+              <p class="card-subtitle">Cultural Capital</p>
+              <div class="card-stats">
+                <span class="stat">🏢 3,421 Businesses</span>
+                <span class="stat">⭐ 4.8 Rating</span>
+              </div>
+              <div class="card-highlights">
+                <span class="highlight">Finance</span>
+                <span class="highlight">Tourism</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Berlin, Germany -->
+          <div class="featured-card" data-type="city" data-location="berlin-de">
+            <div class="card-badge">🔥 Hot</div>
+            <div class="card-image">
+              <img src="{% static 'assets/flags/de.png' %}" alt="Germany">
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Berlin, Germany</h3>
+              <p class="card-subtitle">Tech Hub</p>
+              <div class="card-stats">
+                <span class="stat">🏢 8,942 Businesses</span>
+                <span class="stat">⭐ 4.6 Rating</span>
+              </div>
+              <div class="card-highlights">
+                <span class="highlight">Startups</span>
+                <span class="highlight">Tech</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Paris, France -->
+          <div class="featured-card" data-type="city" data-location="paris-fr">
+            <div class="card-badge">💎 Luxury</div>
+            <div class="card-image">
+              <img src="{% static 'assets/flags/fr.png' %}" alt="France">
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Paris, France</h3>
+              <p class="card-subtitle">Fashion Capital</p>
+              <div class="card-stats">
+                <span class="stat">🏢 12,156 Businesses</span>
+                <span class="stat">⭐ 4.9 Rating</span>
+              </div>
+              <div class="card-highlights">
+                <span class="highlight">Fashion</span>
+                <span class="highlight">Luxury</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Rome, Italy -->
+          <div class="featured-card" data-type="city" data-location="rome-it">
+            <div class="card-badge">🏛️ Historic</div>
+            <div class="card-image">
+              <img src="{% static 'assets/flags/it.png' %}" alt="Italy">
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Rome, Italy</h3>
+              <p class="card-subtitle">Eternal City</p>
+              <div class="card-stats">
+                <span class="stat">🏢 5,678 Businesses</span>
+                <span class="stat">⭐ 4.7 Rating</span>
+              </div>
+              <div class="card-highlights">
+                <span class="highlight">Tourism</span>
+                <span class="highlight">Culture</span>
+              </div>
+            </div>
+          </div>
+
+          {% for city in featured_cities %}
+          <div class="featured-card" data-type="city" data-location="{{ city.name|lower }}-{{ city.country.code|lower }}">
+            <div class="card-badge">⭐ Featured</div>
+            <div class="card-image">
+              <img src="{% static 'assets/flags/' %}{{ city.country.code|lower }}.png" alt="{{ city.country.name }}">
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">{{ city.name }}, {{ city.country.name }}</h3>
+              <p class="card-subtitle">Dynamic Hub</p>
+              <div class="card-stats">
+                <span class="stat">🏢 {{ city.business_count|default:"2,341" }} Businesses</span>
+                <span class="stat">⭐ 4.5 Rating</span>
+              </div>
+              <div class="card-highlights">
+                <span class="highlight">Business</span>
+                <span class="highlight">Growth</span>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        
+        <div class="slider-navigation">
+          <button class="nav-btn prev-btn" aria-label="Previous cards">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M15 18l-6-6 6-6"/>
+            </svg>
+          </button>
+          <button class="nav-btn next-btn" aria-label="Next cards">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 18l6-6-6-6"/>
+            </svg>
+          </button>
+        </div>
+        
+        <div class="slider-dots"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="categories-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">✨ Featured Business Categories</h2>
+        <p class="section-subtitle">Discover opportunities across Europe's dynamic business landscape</p>
+      </div>
+      
+      <div class="categories-grid">
+        <!-- Technology & IT -->
+        <div class="category-card" data-category="technology">
+          <div class="category-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+          </div>
+          <h3 class="category-title">Technology & IT</h3>
+          <div class="category-listings">
+            <div class="listing-item">
+              <span class="listing-title">Software Development</span>
+              <span class="listing-count">15,234</span>
+            </div>
+            <div class="listing-item">
+              <span class="listing-title">Digital Agencies</span>
+              <span class="listing-count">8,567</span>
+            </div>
+            <div class="listing-item">
+              <span class="listing-title">IT Consulting</span>
+              <span class="listing-count">12,890</span>
+            </div>
+            <div class="listing-item">
+              <span class="listing-title">Cybersecurity</span>
+              <span class="listing-count">4,321</span>
+            </div>
+          </div>
+          <button class="see-all-btn">See All</button>
+        </div>
+
+        <!-- Healthcare & Medical -->
+        <div class="category-card" data-category="healthcare">
+          <div class="category-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+            </svg>
+          </div>
+          <h3 class="category-title">Healthcare & Medical</h3>
+          <div class="category-listings">
+            <div class="listing-item">
+              <span class="listing-title">Medical Centers</span>
+              <span class="listing-count">23,456</span>
+            </div>
+            <div class="listing-item">
+              <span class="listing-title">Dental Clinics</span>
+              <span class="listing-count">18,234</span>
+            </div>
+            <div class="listing-item">
+              <span class="listing-title">Specialized Care</span>
+              <span class="listing-count">9,876</span>
+            </div>
+            <div class="listing-item">
+              <span class="listing-title">Pharmacies</span>
+              <span class="listing-count">14,567</span>
+            </div>
+          </div>
+          <button class="see-all-btn">See All</button>
+        </div>
+
+        <!-- Restaurants & Food -->
+        <div class="category-card" data-category="food">
+          <div class="category-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+              <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+              <line x1="6" y1="1" x2="6" y2="4"></line>
+              <line x1="10" y1="1" x2="10" y2="4"></line>
+              <line x1="14" y1="1" x2="14" y2="4"></line>
+            </svg>
+          </div>
+          <h3 class="category-title">Restaurants & Food</h3>
+          <div class="category-listings">
+            <div class="listing-item">
+              <span class="listing-title">Fine Dining</span>
+              <span class="listing-count">7,892</span>
+            </div>
+            <div class="listing-item">
+              <span class="listing-title">Cafés & Bistros</span>
+              <span class="listing-count">25,643</span>
+            </div>
+            <div class="listing-item">
+              <span class="listing-title">Food Trucks</span>
+              <span class="listing-count">3,456</span>
+            </div>
+            <div class="listing-item">
+              <span class="listing-title">Catering Services</span>
+              <span class="listing-count">8,901</span>
+            </div>
+          </div>
+          <button class="see-all-btn">See All</button>
+        </div>
+
+        <!-- Professional Services -->
+        <div class="category-card" data-category="professional">
+          <div class="category-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          <h3 class="category-title">Professional Services</h3>
+          <div class="category-listings">
+            <div class="listing-item">
+              <span class="listing-title">Legal Services</span>
+              <span class="listing-count">11,234</span>
+            </div>
+            <div class="listing-item">
+              <span class="listing-title">Accounting</span>
+              <span class="listing-count">16,789</span>
+            </div>
+            <div class="listing-item">
+              <span class="listing-title">Consulting</span>
+              <span class="listing-count">9,432</span>
+            </div>
+            <div class="listing-item">
+              <span class="listing-title">Architecture</span>
+              <span class="listing-count">5,678</span>
+            </div>
+          </div>
+          <button class="see-all-btn">See All</button>
+        </div>
+
+        <!-- Retail & Shopping -->
+        <div class="category-card" data-category="retail">
+          <div class="category-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+          </div>
+          <h3 class="category-title">Retail & Shopping</h3>
+          <div class="category-listings">
+            <div class="listing-item">
+              <span class="listing-title">Fashion Boutiques</span>
+              <span class="listing-count">18,567</span>
+            </div>
+            <div class="listing-item">
+              <span class="listing-title">Electronics</span>
+              <span class="listing-count">12,345</span>
+            </div>
+            <div class="listing-item">
+              <span class="listing-title">Home & Garden</span>
+              <span class="listing-count">21,098</span>
+            </div>
+            <div class="listing-item">
+              <span class="listing-title">Sports & Fitness</span>
+              <span class="listing-count">7,654</span>
+            </div>
+          </div>
+          <button class="see-all-btn">See All</button>
+        </div>
+
+        <!-- Tourism & Hotels -->
+        <div class="category-card" data-category="tourism">
+          <div class="category-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+          </div>
+          <h3 class="category-title">Tourism & Hotels</h3>
+          <div class="category-listings">
+            <div class="listing-item">
+              <span class="listing-title">Luxury Hotels</span>
+              <span class="listing-count">4,567</span>
+            </div>
+            <div class="listing-item">
+              <span class="listing-title">Travel Agencies</span>
+              <span class="listing-count">8,901</span>
+            </div>
+            <div class="listing-item">
+              <span class="listing-title">Tour Operators</span>
+              <span class="listing-count">3,245</span>
+            </div>
+            <div class="listing-item">
+              <span class="listing-title">Event Venues</span>
+              <span class="listing-count">6,789</span>
+            </div>
+          </div>
+          <button class="see-all-btn">See All</button>
+        </div>
+
+        <!-- Manufacturing & Industry -->
+        <div class="category-card" data-category="manufacturing">
+          <div class="category-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 12l2 2 4-4"></path>
+              <path d="M21 12c.552 0 1-.45 1-1s-.448-1-1-1-1 .45-1 1 .448 1 1 1z"></path>
+              <path d="M3 12c.552 0 1-.45 1-1s-.448-1-1-1-1 .45-1 1 .448 1 1 1z"></path>
+              <path d="M12 21c.552 0 1-.45 1-1s-.448-1-1-1-1 .45-1 1 .448 1 1 1z"></path>
+              <path d="M12 3c.552 0 1-.45 1-1s-.448-1-1-1-1 .45-1 1 .448 1 1 1z"></path>
+            </svg>
+          </div>
+          <h3 class="category-title">Manufacturing & Industry</h3>
+          <div class="category-listings">
+            <div class="listing-item">
+              <span class="listing-title">Automotive</span>
+              <span class="listing-count">5,432</span>
+            </div>
+            <div class="listing-item">
+              <span class="listing-title">Machinery</span>
+              <span class="listing-count">7,890</span>
+            </div>
+            <div class="listing-item">
+              <span class="listing-title">Textiles</span>
+              <span class="listing-count">4,567</span>
+            </div>
+            <div class="listing-item">
+              <span class="listing-title">Chemical Industry</span>
+              <span class="listing-count">2,345</span>
+            </div>
+          </div>
+          <button class="see-all-btn">See All</button>
+        </div>
+
+        <!-- Finance & Banking -->
+        <div class="category-card" data-category="finance">
+          <div class="category-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="1" x2="12" y2="23"></line>
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+            </svg>
+          </div>
+          <h3 class="category-title">Finance & Banking</h3>
+          <div class="category-listings">
+            <div class="listing-item">
+              <span class="listing-title">Investment Firms</span>
+              <span class="listing-count">3,456</span>
+            </div>
+            <div class="listing-item">
+              <span class="listing-title">Insurance Companies</span>
+              <span class="listing-count">8,901</span>
+            </div>
+            <div class="listing-item">
+              <span class="listing-title">Credit Services</span>
+              <span class="listing-count">5,432</span>
+            </div>
+            <div class="listing-item">
+              <span class="listing-title">Financial Consulting</span>
+              <span class="listing-count">7,123</span>
+            </div>
+          </div>
+          <button class="see-all-btn">See All</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trending Destinations Section (Paid Placements) -->
+  <section class="trending-section">
+    <div class="container">
+      <div class="trending-header">
+        <div class="trending-badge">PAID PLACEMENTS</div>
+        <h2 class="trending-title">Explore Trending Destinations</h2>
+        <p class="trending-subtitle">Discover premium business opportunities in Europe's most dynamic markets</p>
+      </div>
+      
+      <div class="trending-grid">
+        <!-- England - Top Large -->
+        <div class="trending-card large" data-destination="england-uk" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');">
+          <div class="card-overlay">
+            <h3 class="destination-name">England</h3>
+            <p class="destination-subtitle">Financial Capital of Europe</p>
+            <div class="destination-stats">
+              <span class="stat-item">🏙️ London Hub</span>
+              <span class="stat-item">💼 250K+ Businesses</span>
+            </div>
+          </div>
+          <div class="premium-badge">💎 Premium Partner</div>
+        </div>
+
+        <!-- Canada - Top Right Medium -->
+        <div class="trending-card medium" data-destination="canada" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1517935706615-2717063c2225?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');">
+          <div class="card-overlay">
+            <h3 class="destination-name">Canada</h3>
+            <p class="destination-subtitle">North American Gateway</p>
+            <div class="destination-stats">
+              <span class="stat-item">🍁 Innovation Hub</span>
+              <span class="stat-item">🌐 Global Access</span>
+            </div>
+          </div>
+          <div class="premium-badge">💰 Sponsored</div>
+        </div>
+
+        <!-- India - Bottom Left Medium -->
+        <div class="trending-card medium" data-destination="india" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1524492412937-b28074a5d7da?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');">
+          <div class="card-overlay">
+            <h3 class="destination-name">India</h3>
+            <p class="destination-subtitle">Tech & Innovation Hub</p>
+            <div class="destination-stats">
+              <span class="stat-item">💻 Silicon Valley of Asia</span>
+              <span class="stat-item">🚀 Startup Nation</span>
+            </div>
+          </div>
+          <div class="premium-badge">⭐ Featured</div>
+        </div>
+
+        <!-- Australia/Sydney - Bottom Wide -->
+        <div class="trending-card wide" data-destination="sydney-au" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');">
+          <div class="card-overlay">
+            <h3 class="destination-name">Australia</h3>
+            <p class="destination-subtitle">Asia-Pacific Gateway</p>
+            <div class="destination-stats">
+              <span class="stat-item">🌏 Strategic Location</span>
+              <span class="stat-item">📈 Growing Market</span>
+            </div>
+          </div>
+          <div class="premium-badge">🔥 Hot Destination</div>
+        </div>
+      </div>
+
+      <div class="trending-cta">
+        <button class="explore-all-btn">
+          <span>Explore All Destinations</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </button>
+        <p class="sponsor-note">
+          <span class="sponsor-icon">💼</span>
+          Want to feature your city? <a href="{% url 'admin:index' %}">Contact us for premium placement</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it Works Section -->
+  <section class="how-it-works-section">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-subtitle">Discover & connect with great local businesses</p>
+        <h2 class="section-title">See How it Works</h2>
+      </div>
+      
+      <div class="how-it-works-grid">
+        <div class="how-it-works-card">
+          <div class="step-icon">
+            <div class="icon-circle">💡</div>
+          </div>
+          <h3>Choose what to Do</h3>
+          <p>Browse through categories and discover amazing local businesses in your area.</p>
+        </div>
+        
+        <div class="how-it-works-card">
+          <div class="step-icon">
+            <div class="icon-circle">🔍</div>
+          </div>
+          <h3>Find What You Want</h3>
+          <p>Use our advanced search to find exactly what you're looking for quickly.</p>
+        </div>
+        
+        <div class="how-it-works-card">
+          <div class="step-icon">
+            <div class="icon-circle">📍</div>
+          </div>
+          <h3>Amazing Places</h3>
+          <p>Connect with top-rated businesses and discover hidden gems in your city.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Posts Slider Section -->
+  <section class="blog-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Latest Insights & Business Stories</h2>
+        <p class="section-subtitle">Stay updated with the latest trends and success stories from across Europe</p>
+      </div>
+      
+      <div class="blog-slider-container">
+        <div class="blog-slider">
+          <!-- Blog Post 1 -->
+          <article class="blog-card">
+            <div class="blog-image">
+              <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Digital transformation">
+              <div class="blog-category">Business Trends</div>
+            </div>
+            <div class="blog-content">
+              <div class="blog-meta">
+                <span class="blog-date">Oct 1, 2025</span>
+                <span class="blog-author">by Sarah Johnson</span>
+              </div>
+              <h3 class="blog-title">Digital Transformation: How EU Businesses Are Adapting</h3>
+              <p class="blog-excerpt">Discover the latest digital trends that are reshaping the European business landscape and driving growth.</p>
+              <div class="blog-footer">
+                <span class="read-time">📖 5 min read</span>
+                <a href="#" class="read-more">Read More →</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Blog Post 2 -->
+          <article class="blog-card">
+            <div class="blog-image">
+              <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Sustainable business">
+              <div class="blog-category">Sustainability</div>
+            </div>
+            <div class="blog-content">
+              <div class="blog-meta">
+                <span class="blog-date">Sep 28, 2025</span>
+                <span class="blog-author">by Marcus Weber</span>
+              </div>
+              <h3 class="blog-title">Green Business Practices: The Future is Sustainable</h3>
+              <p class="blog-excerpt">Learn how European companies are leading the way in sustainable business practices and environmental responsibility.</p>
+              <div class="blog-footer">
+                <span class="read-time">📖 7 min read</span>
+                <a href="#" class="read-more">Read More →</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Blog Post 3 -->
+          <article class="blog-card">
+            <div class="blog-image">
+              <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Startup success">
+              <div class="blog-category">Success Stories</div>
+            </div>
+            <div class="blog-content">
+              <div class="blog-meta">
+                <span class="blog-date">Sep 25, 2025</span>
+                <span class="blog-author">by Elena Rodriguez</span>
+              </div>
+              <h3 class="blog-title">From Startup to Scale: Barcelona's Tech Success</h3>
+              <p class="blog-excerpt">Follow the inspiring journey of a Barcelona-based startup that scaled across 15 European countries.</p>
+              <div class="blog-footer">
+                <span class="read-time">📖 4 min read</span>
+                <a href="#" class="read-more">Read More →</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Blog Post 4 -->
+          <article class="blog-card">
+            <div class="blog-image">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Business networking">
+              <div class="blog-category">Networking</div>
+            </div>
+            <div class="blog-content">
+              <div class="blog-meta">
+                <span class="blog-date">Sep 22, 2025</span>
+                <span class="blog-author">by Thomas Anderson</span>
+              </div>
+              <h3 class="blog-title">Building Business Networks Across EU Markets</h3>
+              <p class="blog-excerpt">Essential strategies for expanding your business network and creating valuable partnerships across Europe.</p>
+              <div class="blog-footer">
+                <span class="read-time">📖 6 min read</span>
+                <a href="#" class="read-more">Read More →</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Blog Post 5 -->
+          <article class="blog-card">
+            <div class="blog-image">
+              <img src="https://images.unsplash.com/photo-1664575602554-2087b04935a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="AI in business">
+              <div class="blog-category">Technology</div>
+            </div>
+            <div class="blog-content">
+              <div class="blog-meta">
+                <span class="blog-date">Sep 20, 2025</span>
+                <span class="blog-author">by Anna Kowalski</span>
+              </div>
+              <h3 class="blog-title">AI Revolution: Transforming European SMEs</h3>
+              <p class="blog-excerpt">How artificial intelligence is helping small and medium enterprises compete in the modern marketplace.</p>
+              <div class="blog-footer">
+                <span class="read-time">📖 8 min read</span>
+                <a href="#" class="read-more">Read More →</a>
+              </div>
+            </div>
+          </article>
+        </div>
+        
+        <div class="blog-navigation">
+          <button class="blog-nav-btn blog-prev" aria-label="Previous blog posts">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M15 18l-6-6 6-6"/>
+            </svg>
+          </button>
+          <button class="blog-nav-btn blog-next" aria-label="Next blog posts">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 18l6-6-6-6"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+      <div class="blog-cta">
+        <a href="#" class="view-all-blogs">View All Articles →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Tables Section -->
+  <section class="pricing-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Choose Your Business Plan</h2>
+        <p class="section-subtitle">Get maximum visibility for your business across European markets</p>
+      </div>
+      
+      <div class="pricing-grid">
+        <!-- Basic Plan -->
+        <div class="pricing-card">
+          <div class="plan-header">
+            <h3 class="plan-name">Basic Listing</h3>
+            <div class="plan-price">
+              <span class="currency">€</span>
+              <span class="amount">29</span>
+              <span class="period">/month</span>
+            </div>
+            <p class="plan-description">Perfect for small businesses getting started</p>
+          </div>
+          
+          <div class="plan-features">
+            <ul>
+              <li><span class="check">✓</span> Basic business listing</li>
+              <li><span class="check">✓</span> Contact information display</li>
+              <li><span class="check">✓</span> Business category placement</li>
+              <li><span class="check">✓</span> Mobile-friendly profile</li>
+              <li><span class="check">✓</span> Customer reviews</li>
+            </ul>
+          </div>
+          
+          <div class="plan-cta">
+            <button class="btn-plan btn-basic">Get Started</button>
+          </div>
+        </div>
+
+        <!-- Premium Plan -->
+        <div class="pricing-card featured">
+          <div class="popular-badge">Most Popular</div>
+          <div class="plan-header">
+            <h3 class="plan-name">Premium Listing</h3>
+            <div class="plan-price">
+              <span class="currency">€</span>
+              <span class="amount">79</span>
+              <span class="period">/month</span>
+            </div>
+            <p class="plan-description">Enhanced visibility and marketing tools</p>
+          </div>
+          
+          <div class="plan-features">
+            <ul>
+              <li><span class="check">✓</span> Everything in Basic</li>
+              <li><span class="check">✓</span> Featured in search results</li>
+              <li><span class="check">✓</span> Photo gallery (up to 10 images)</li>
+              <li><span class="check">✓</span> Social media links</li>
+              <li><span class="check">✓</span> Priority customer support</li>
+              <li><span class="check">✓</span> Analytics dashboard</li>
+            </ul>
+          </div>
+          
+          <div class="plan-cta">
+            <button class="btn-plan btn-premium">Choose Premium</button>
+          </div>
+        </div>
+
+        <!-- Enterprise Plan -->
+        <div class="pricing-card">
+          <div class="plan-header">
+            <h3 class="plan-name">Enterprise</h3>
+            <div class="plan-price">
+              <span class="currency">€</span>
+              <span class="amount">199</span>
+              <span class="period">/month</span>
+            </div>
+            <p class="plan-description">Maximum exposure and premium placement</p>
+          </div>
+          
+          <div class="plan-features">
+            <ul>
+              <li><span class="check">✓</span> Everything in Premium</li>
+              <li><span class="check">✓</span> Homepage featured placement</li>
+              <li><span class="check">✓</span> Unlimited photo gallery</li>
+              <li><span class="check">✓</span> Video showcase</li>
+              <li><span class="check">✓</span> Custom business page design</li>
+              <li><span class="check">✓</span> Dedicated account manager</li>
+            </ul>
+          </div>
+          
+          <div class="plan-cta">
+            <button class="btn-plan btn-enterprise">Contact Sales</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="pricing-footer">
+        <p class="guarantee">30-day money-back guarantee • No setup fees • Cancel anytime</p>
+      </div>
+    </div>
+  </section>
+
+  {% endblock %}
+  </main>
+
+  <script src="{% static 'js/app.js' %}"></script>
+</body>
+</html>

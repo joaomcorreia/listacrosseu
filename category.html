@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{category_name}} Businesses in Europe | ListAcross EU</title>
+  <meta name="description" content="Find {{category_name}} businesses across Europe. Browse {{category_name}} companies, services, and providers in all EU countries." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/category.css" />
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="nav-left">
+      <div class="brand">ListAcross<span style="color:var(--blue)">EU</span></div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="all-listings.html">All Listings</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+    <div class="nav-right">
+      <a href="login.html">Login</a>
+      <a href="register.html" class="btn-primary">Add Business</a>
+    </div>
+  </header>
+
+  <div class="breadcrumb">
+    <div class="container">
+      <a href="index.html">Home</a> > 
+      <a href="#" id="categories-link">Categories</a> > 
+      <span id="current-category">{{category_name}}</span>
+    </div>
+  </div>
+
+  <main class="container">
+    <div class="category-header">
+      <div class="category-info">
+        <div class="category-icon-large" id="category-icon">
+          {{category_icon}}
+        </div>
+        <div class="category-details">
+          <h1 id="category-title">{{category_name}} Businesses in Europe</h1>
+          <div class="category-meta">
+            <span class="meta-stat">🏢 <span id="total-businesses">0</span> Businesses</span>
+            <span class="meta-stat">🌍 <span id="countries-count">27</span> EU Countries</span>
+            <span class="meta-stat">🏙️ <span id="cities-count">0</span> Cities</span>
+            <span class="meta-stat">⭐ <span id="avg-rating">4.5</span> Avg Rating</span>
+          </div>
+          <p class="category-description" id="category-description">{{category_description}}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="search-section">
+      <div class="category-search">
+        <h2>Find <span id="search-category-name">{{category_name}}</span> Businesses</h2>
+        <div class="search-form">
+          <input type="text" placeholder="Search for specific services..." id="category-search-input">
+          <select id="country-filter">
+            <option value="">All Countries</option>
+            <!-- Countries will be populated -->
+          </select>
+          <select id="city-filter">
+            <option value="">All Cities</option>
+            <!-- Cities will be populated -->
+          </select>
+          <select id="rating-filter">
+            <option value="">Any Rating</option>
+            <option value="4">4+ Stars</option>
+            <option value="4.5">4.5+ Stars</option>
+            <option value="5">5 Stars</option>
+          </select>
+          <button id="category-search-btn">Search</button>
+        </div>
+      </div>
+    </div>
+
+    <section class="subcategories-section">
+      <h2>Browse by Specialization</h2>
+      <div class="subcategories-grid" id="subcategories-container">
+        <!-- Subcategories will be loaded by JavaScript -->
+      </div>
+    </section>
+
+    <section class="countries-breakdown">
+      <h2><span id="category-countries-title">{{category_name}}</span> by Country</h2>
+      <div class="countries-grid" id="countries-container">
+        <!-- Countries breakdown will be loaded -->
+      </div>
+    </section>
+
+    <section class="top-businesses">
+      <h2>Top Rated <span id="top-category-name">{{category_name}}</span> Businesses</h2>
+      <div class="top-businesses-grid" id="top-businesses-container">
+        <!-- Top businesses will be loaded -->
+      </div>
+    </section>
+
+    <section class="featured-cities">
+      <h2>Major Cities for <span id="cities-category-name">{{category_name}}</span></h2>
+      <div class="cities-carousel" id="cities-container">
+        <!-- Cities will be loaded -->
+      </div>
+    </section>
+
+    <section class="category-insights">
+      <h2>Industry Insights</h2>
+      <div class="insights-grid">
+        <div class="insight-card">
+          <div class="insight-icon">📊</div>
+          <div class="insight-content">
+            <h3>Market Overview</h3>
+            <p id="market-overview">Market analysis and trends for this category across Europe.</p>
+          </div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-icon">💰</div>
+          <div class="insight-content">
+            <h3>Average Pricing</h3>
+            <p id="pricing-info">Typical pricing ranges and cost considerations.</p>
+          </div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-icon">📈</div>
+          <div class="insight-content">
+            <h3>Growth Trends</h3>
+            <p id="growth-trends">Industry growth patterns and future projections.</p>
+          </div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-icon">🎯</div>
+          <div class="insight-content">
+            <h3>Popular Locations</h3>
+            <p id="popular-locations">Most active regions and business hubs.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="related-categories">
+      <h2>Related Categories</h2>
+      <div class="related-grid" id="related-categories-container">
+        <!-- Related categories will be loaded -->
+      </div>
+    </section>
+
+    <section class="category-upgrade">
+      <div class="upgrade-banner">
+        <h3>Own a <span id="upgrade-category-name">{{category_name}}</span> Business?</h3>
+        <p>Get featured at the top of category searches and reach more customers across Europe</p>
+        <div class="upgrade-benefits">
+          <div class="benefit-item">
+            <span class="benefit-icon">🔝</span>
+            <div>
+              <h4>Category Leadership</h4>
+              <p>Appear first in <span id="benefit-category-name">{{category_name}}</span> searches</p>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <span class="benefit-icon">🎯</span>
+            <div>
+              <h4>Targeted Visibility</h4>
+              <p>Reach customers actively searching for your services</p>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <span class="benefit-icon">📊</span>
+            <div>
+              <h4>Industry Analytics</h4>
+              <p>Access detailed insights and competitor analysis</p>
+            </div>
+          </div>
+        </div>
+        <div class="upgrade-plans">
+          <div class="plan-option">
+            <h4>Local Category Leader</h4>
+            <p>Dominate your local category</p>
+            <span class="price">€49/month</span>
+          </div>
+          <div class="plan-option featured">
+            <h4>Country Category Leader</h4>
+            <p>Lead your category nationwide</p>
+            <span class="price">€129/month</span>
+            <span class="badge">Popular</span>
+          </div>
+          <div class="plan-option">
+            <h4>EU Category Leader</h4>
+            <p>Dominate across all of Europe</p>
+            <span class="price">€299/month</span>
+          </div>
+        </div>
+        <a href="register.html" class="btn-primary large">Become Category Leader</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 ListAcross Europe. All rights reserved. • <a href="#">About Us</a> • <a href="#">Privacy</a> • <a href="#">Terms</a> • <a href="#">Contact</a>
+  </footer>
+
+  <script src="js/category.js"></script>
+</body>
+</html>
