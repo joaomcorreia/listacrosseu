@@ -11,8 +11,8 @@ class SubdomainMiddleware(MiddlewareMixin):
         
         host = request.get_host().lower()
         
-        # Skip if not a listacrosseu.com domain
-        if not host.endswith('.listacrosseu.com') or host == 'listacrosseu.com':
+        # Skip if not a listacross.eu domain
+        if not host.endswith('.listacross.eu') or host == 'listacross.eu':
             return None
         
         # Extract subdomain

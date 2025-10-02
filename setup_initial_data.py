@@ -167,7 +167,7 @@ def create_initial_data():
     print("Creating admin user...")
     
     # Create admin user
-    admin_email = "admin@listacrosseu.com"
+    admin_email = "admin@listacross.eu"
     if not CustomUser.objects.filter(email=admin_email).exists():
         admin_user = CustomUser.objects.create_superuser(
             email=admin_email,

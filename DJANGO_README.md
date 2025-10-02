@@ -18,7 +18,7 @@ A comprehensive Django-based business directory platform for European businesses
 - **EU Plan (€199/month)**: Full EU visibility + custom website
 
 ### 🌐 Website Builder (EU Plan)
-- **Custom subdomain** (yourname.listacrosseu.com)
+- **Custom subdomain** (yourname.listacross.eu)
 - **Logo upload and branding** customization
 - **Multiple themes** (Modern, Classic, Minimal, Creative, Corporate)
 - **Contact forms** and social media integration
@@ -132,7 +132,7 @@ Users can subscribe to different plans with varying features:
 ### Website Builder (EU Plan Only)
 
 EU plan subscribers get:
-- **Custom subdomain** (mycompany.listacrosseu.com)
+- **Custom subdomain** (mycompany.listacross.eu)
 - **Domain management** with SSL certificates
 - **Theme selection** and customization
 - **Logo upload** and branding options
@@ -151,8 +151,8 @@ Administrators can import business data from:
 ### Multi-tenant Architecture
 
 The platform supports:
-- **Main directory** at listacrosseu.com
-- **User websites** at subdomain.listacrosseu.com
+- **Main directory** at listacross.eu
+- **User websites** at subdomain.listacross.eu
 - **Middleware routing** for subdomain handling
 - **Shared business listings** across all sites
 
@@ -241,4 +241,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Support
 
-For support, email support@listacrosseu.com or create an issue on GitHub.
+For support, email support@listacross.eu or create an issue on GitHub.

@@ -3,7 +3,7 @@ Management command to import businesses from CSV file.
 
 Expected CSV format:
 owner_email,name,slug,description,email,phone,website,address,city_name,country_code,postal_code,category_slug,plan,status,featured,verified
-admin@listacrosseu.com,Restaurant Le Bernardin,le-bernardin,Fine French dining,contact@lebernardine.com,+33123456789,https://lebernardine.com,123 Rue de la Paix,Paris,FR,75001,restaurants,free,active,false,true
+admin@listacross.eu,Restaurant Le Bernardin,le-bernardin,Fine French dining,contact@lebernardine.com,+33123456789,https://lebernardine.com,123 Rue de la Paix,Paris,FR,75001,restaurants,free,active,false,true
 """
 
 import csv
@@ -29,7 +29,7 @@ class Command(BaseCommand):
         parser.add_argument(
             '--default-owner',
             type=str,
-            default='admin@listacrosseu.com',
+            default='admin@listacross.eu',
             help='Default owner email if not specified in CSV',
         )
 

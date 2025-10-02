@@ -29,7 +29,7 @@ A comprehensive Django-based business directory platform for EU countries with m
 - **EU Plan**: Continental reach with website builder included
 
 ### 🌐 Website Builder (EU Plan)
-- **Subdomain websites** (business.listacrosseu.com)
+- **Subdomain websites** (business.listacross.eu)
 - **Multiple themes**: Modern, Classic, Minimal, Creative, Corporate
 - **Custom branding**: Logo, colors, and content management
 - **Contact forms** with submission management
@@ -179,7 +179,7 @@ Berlin,DE,52.5200,13.4050,3669491,True
 **Businesses CSV:**
 ```csv
 owner_email,name,slug,description,email,phone,website,address,city_name,country_code,postal_code,category_slug,plan,status,featured,verified
-admin@listacrosseu.com,Restaurant Le Bernardin,le-bernardin,Fine French dining,contact@lebernardine.com,+33123456789,https://lebernardine.com,123 Rue de la Paix,Paris,FR,75001,restaurants,free,active,true,true
+admin@listacross.eu,Restaurant Le Bernardin,le-bernardin,Fine French dining,contact@lebernardine.com,+33123456789,https://lebernardine.com,123 Rue de la Paix,Paris,FR,75001,restaurants,free,active,true,true
 ```
 
 ## 🔗 API Documentation
@@ -252,7 +252,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 - **Issues**: GitHub Issues
 - **Documentation**: Project Wiki
-- **Email**: admin@listacrosseu.com
+- **Email**: admin@listacross.eu
 
 ---
 

@@ -310,7 +310,7 @@ class DataImportService:
     
     def _get_import_user(self):
         """Get or create a user for imported businesses"""
-        email = "imports@listacrosseu.com"
+        email = "imports@listacross.eu"
         user, created = CustomUser.objects.get_or_create(
             email=email,
             defaults={

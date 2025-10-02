@@ -23,8 +23,8 @@ class Domain(models.Model):
         unique=True,
         validators=[
             RegexValidator(
-                regex=r'^[a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.listacrosseu\.com$',
-                message=_('Domain must be in format: yourname.listacrosseu.com')
+                regex=r'^[a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.listacross\.eu$',
+                message=_('Domain must be in format: yourname.listacross.eu')
             )
         ]
     )

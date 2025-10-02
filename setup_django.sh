@@ -72,7 +72,7 @@ echo "  source venv/bin/activate"
 echo "  python manage.py runserver"
 echo
 echo "Admin user created:"
-echo "  Email: admin@listacrosseu.com"
+echo "  Email: admin@listacross.eu"
 echo "  Password: admin123"
 echo
 echo "Visit http://localhost:8000/admin/ to access the admin panel."

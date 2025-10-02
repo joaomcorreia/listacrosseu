@@ -67,7 +67,7 @@ class Command(BaseCommand):
                 'meta_description', 'keywords'
             ])
             writer.writerow([
-                'admin@listacrosseu.com', 'Restaurant Le Bernardin', 'le-bernardin', 
+                'admin@listacross.eu', 'Restaurant Le Bernardin', 'le-bernardin', 
                 'Exquisite French cuisine in the heart of Paris with Michelin-starred chef and elegant atmosphere.',
                 'Michelin-starred French restaurant in Paris',
                 'contact@lebernardine.com', '+33123456789', 'https://lebernardine.com',
@@ -79,7 +79,7 @@ class Command(BaseCommand):
                 'french restaurant, fine dining, paris, michelin star'
             ])
             writer.writerow([
-                'admin@listacrosseu.com', 'Hotel Sacher', 'hotel-sacher',
+                'admin@listacross.eu', 'Hotel Sacher', 'hotel-sacher',
                 'Luxury 5-star hotel in Vienna with traditional Austrian hospitality and world-famous Sacher-Torte.',
                 'Luxury 5-star hotel in Vienna',
                 'info@sacher.com', '+4315145600', 'https://sacher.com',
@@ -107,5 +107,5 @@ class Command(BaseCommand):
         self.stdout.write('- Countries (already created)')
         self.stdout.write('- Cities (import first)')
         self.stdout.write('- Categories (import first)')
-        self.stdout.write('- At least one user (admin@listacrosseu.com already exists)')
+        self.stdout.write('- At least one user (admin@listacross.eu already exists)')
         

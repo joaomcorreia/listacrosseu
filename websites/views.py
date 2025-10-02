@@ -183,7 +183,7 @@ def display_website(request, subdomain=None):
     """Public view to display user websites"""
     if subdomain:
         # Display specific website by subdomain
-        domain_name = f"{subdomain}.listacrosseu.com"
+        domain_name = f"{subdomain}.listacross.eu"
         website = get_object_or_404(Website, domain__domain_name=domain_name, status='published')
     else:
         # For development, show any published website
