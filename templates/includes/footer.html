@@ -1,0 +1,148 @@
+<!-- Footer with Data Sources -->
+<footer class="bg-dark text-light py-5 mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <h5><i class="fas fa-globe me-2"></i>ListAcross.eu</h5>
+                <p class="text-muted">Your trusted European business directory. Connecting businesses with customers across all 27 EU countries.</p>
+                <div class="d-flex">
+                    <a href="#" class="text-light me-3"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-light me-3"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-light me-3"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="text-light"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-4">
+                <h5><i class="fas fa-link me-2"></i>Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="{% url 'homepage' %}" class="text-muted">Home</a></li>
+                    <li><a href="{% url 'register_business' %}" class="text-muted">List Your Business</a></li>
+                    <li><a href="{% url 'pricing_plans' %}" class="text-muted">Pricing Plans</a></li>
+                    <li><a href="{% url 'success_stories' %}" class="text-muted">Success Stories</a></li>
+                    <li><a href="#" class="text-muted">Contact Us</a></li>
+                </ul>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-4">
+                <h5><i class="fas fa-shield-alt me-2"></i>Legal & Compliance</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-muted">Terms of Service</a></li>
+                    <li><a href="#" class="text-muted">Privacy Policy</a></li>
+                    <li><a href="#" class="text-muted">Cookie Policy</a></li>
+                    <li><a href="#" class="text-muted">GDPR Compliance</a></li>
+                    <li><a href="#" class="text-muted">Business Guidelines</a></li>
+                </ul>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-4">
+                <h5><i class="fas fa-database me-2"></i>Data Sources</h5>
+                <ul class="list-unstyled small">
+                    <li>
+                        <a href="https://openstreetmap.org" target="_blank" rel="noopener" class="text-muted">
+                            <i class="fas fa-external-link-alt me-1"></i>OpenStreetMap
+                        </a>
+                        <div class="text-muted ms-3">Business locations & geographic data</div>
+                    </li>
+                    <li class="mt-2">
+                        <a href="https://ec.europa.eu/eurostat" target="_blank" rel="noopener" class="text-muted">
+                            <i class="fas fa-external-link-alt me-1"></i>Eurostat
+                        </a>
+                        <div class="text-muted ms-3">City population statistics</div>
+                    </li>
+                    <li class="mt-2">
+                        <a href="https://www.geonames.org" target="_blank" rel="noopener" class="text-muted">
+                            <i class="fas fa-external-link-alt me-1"></i>GeoNames
+                        </a>
+                        <div class="text-muted ms-3">Geographic coordinates</div>
+                    </li>
+                    <li class="mt-2">
+                        <a href="https://publications.europa.eu" target="_blank" rel="noopener" class="text-muted">
+                            <i class="fas fa-external-link-alt me-1"></i>EU Publications Office
+                        </a>
+                        <div class="text-muted ms-3">Official EU business data</div>
+                    </li>
+                    <li class="mt-2 text-muted">
+                        <i class="fas fa-user-plus me-1"></i>Business Owner Submissions
+                        <div class="text-muted ms-3">Self-registered business information</div>
+                    </li>
+                    <li class="mt-2 text-muted">
+                        <i class="fas fa-building me-1"></i>Government Business Registries
+                        <div class="text-muted ms-3">Official company registers (27 EU countries)</div>
+                    </li>
+                    <li class="mt-2 text-muted">
+                        <i class="fas fa-handshake me-1"></i>Chamber of Commerce
+                        <div class="text-muted ms-3">Partnership data & member listings</div>
+                    </li>
+                </ul>
+                
+                <div class="mt-3 p-3 bg-secondary bg-opacity-25 rounded">
+                    <small class="text-light">
+                        <i class="fas fa-info-circle me-2 text-info"></i>
+                        <strong>Data Transparency:</strong><br>
+                        All data sources are publicly available, legally obtained, or provided with explicit business owner consent. We comply with GDPR and respect intellectual property rights.
+                    </small>
+                    <div class="mt-2">
+                        <a href="{% url 'data_sources' %}" class="btn btn-outline-info btn-sm">
+                            <i class="fas fa-external-link-alt me-1"></i>
+                            Full Data Sources Documentation
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <hr class="my-4">
+        
+        <!-- Attribution Section -->
+        <div class="row">
+            <div class="col-12">
+                <div class="bg-secondary bg-opacity-25 p-3 rounded mb-3">
+                    <h6 class="text-light mb-2"><i class="fas fa-copyright me-2"></i>Attribution & Licensing</h6>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <small class="text-muted">
+                                <strong>OpenStreetMap:</strong><br>
+                                © OpenStreetMap contributors<br>
+                                <a href="https://www.openstreetmap.org/copyright" target="_blank" class="text-info">ODbL License</a>
+                            </small>
+                        </div>
+                        <div class="col-md-4">
+                            <small class="text-muted">
+                                <strong>Geographic Data:</strong><br>
+                                © GeoNames Project<br>
+                                <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" class="text-info">CC BY 4.0 License</a>
+                            </small>
+                        </div>
+                        <div class="col-md-4">
+                            <small class="text-muted">
+                                <strong>EU Statistics:</strong><br>
+                                © European Union, Eurostat<br>
+                                <a href="https://ec.europa.eu/eurostat/web/main/about-us/policies/copyright" target="_blank" class="text-info">EU Copyright Notice</a>
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <small class="text-muted">
+                    © 2025 ListAcross.eu. All rights reserved. 
+                    <span class="mx-2">|</span>
+                    Made with <i class="fas fa-heart text-danger"></i> for European businesses
+                </small>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <small class="text-muted">
+                    <i class="fas fa-map-marker-alt me-1"></i>Serving all 27 EU countries
+                    <span class="mx-2">|</span>
+                    <i class="fas fa-users me-1"></i>139 cities listed
+                    <span class="mx-2">|</span>
+                    <i class="fas fa-shield-check me-1"></i>GDPR Compliant
+                </small>
+            </div>
+        </div>
+    </div>
+</footer>

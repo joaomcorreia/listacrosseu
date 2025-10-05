@@ -1,0 +1,373 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if query %}Search Results{% else %}ListAcross.eu - European Business Directory{% endif %}</title>
+    <meta name="description" content="Find businesses across Europe. ListAcross.eu connects customers with verified businesses in all 27 EU countries. Search restaurants, hotels, shops, and services.">
+    
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 0;
+        }
+        .search-box {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .category-card {
+            border: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        .stats-section {
+            background: #f8f9fa;
+            padding: 80px 0;
+        }
+        .business-card {
+            border: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        .business-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+        .cta-section {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+            padding: 80px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="{% url 'homepage' %}">
+                <i class="fas fa-globe me-2"></i>ListAcross.eu
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'homepage' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'business_list' %}">Browse Businesses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'city_list' %}">Cities</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'success_stories' %}">Success Stories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'pricing_plans' %}">Pricing</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-outline-light ms-2 px-3" href="{% url 'register_business' %}">
+                            <i class="fas fa-plus me-1"></i>List Your Business
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {% if not query %}
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="display-4 fw-bold mb-4">
+                        Find Businesses Across Europe
+                    </h1>
+                    <p class="lead mb-5">
+                        Discover restaurants, hotels, shops, and services in all 27 EU countries. 
+                        Connect with verified businesses and explore what Europe has to offer.
+                    </p>
+                    
+                    <!-- Search Box -->
+                    <div class="search-box">
+                        <form method="get" action="{% url 'homepage' %}">
+                            <div class="row g-3">
+                                <div class="col-md-5">
+                                    {{ search_form.query }}
+                                </div>
+                                <div class="col-md-4">
+                                    {{ search_form.city }}
+                                </div>
+                                <div class="col-md-3">
+                                    <button type="submit" class="btn btn-primary btn-lg w-100">
+                                        <i class="fas fa-search me-2"></i>Search
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-12">
+                                    {{ search_form.category }}
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="h2 text-primary fw-bold">{{ stats.total_businesses }}+</div>
+                    <div class="text-muted">Verified Businesses</div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="h2 text-success fw-bold">{{ stats.total_cities }}</div>
+                    <div class="text-muted">European Cities</div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="h2 text-info fw-bold">27</div>
+                    <div class="text-muted">EU Countries</div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="h2 text-warning fw-bold">{{ stats.total_categories }}</div>
+                    <div class="text-muted">Business Categories</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Categories -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Popular Categories</h2>
+                <p class="text-muted">Discover the most popular business types across Europe</p>
+            </div>
+            <div class="row">
+                {% for category in featured_categories %}
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card category-card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-store fa-3x text-primary mb-3"></i>
+                            <h5 class="card-title">{{ category.name }}</h5>
+                            <p class="text-muted">{{ category.business_count }} businesses</p>
+                            <a href="{% url 'homepage' %}?category={{ category.id }}" class="btn btn-outline-primary">
+                                Explore <i class="fas fa-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- Business Listings -->
+    {% if businesses %}
+    <section class="py-5 {% if not query %}bg-light{% endif %}">
+        <div class="container">
+            {% if query %}
+            <div class="mb-4">
+                <h2>Search Results</h2>
+                <p class="text-muted">
+                    Found {{ businesses.paginator.count }} businesses
+                    {% if query %}for "{{ query }}"{% endif %}
+                    {% if selected_city_id %}in {{ businesses.0.city.name }}{% endif %}
+                </p>
+            </div>
+            {% else %}
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Recently Added Businesses</h2>
+                <p class="text-muted">Discover new businesses that joined our community</p>
+            </div>
+            {% endif %}
+            
+            <div class="row">
+                {% for business in businesses %}
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card business-card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h5 class="card-title mb-0">{{ business.name }}</h5>
+                                {% if business.verified %}
+                                <span class="badge bg-success">
+                                    <i class="fas fa-check me-1"></i>Verified
+                                </span>
+                                {% endif %}
+                            </div>
+                            <p class="text-muted small mb-2">
+                                <i class="fas fa-map-marker-alt me-1"></i>
+                                {{ business.city.name }}, {{ business.city.country.name }}
+                            </p>
+                            <p class="text-muted small mb-2">
+                                <i class="fas fa-tag me-1"></i>
+                                {{ business.category.name }}
+                            </p>
+                            <p class="card-text">{{ business.description|truncatewords:15 }}</p>
+                            {% if business.price_range %}
+                            <div class="mb-2">
+                                <span class="text-warning">{{ business.price_range }}</span>
+                            </div>
+                            {% endif %}
+                            <div class="d-flex justify-content-between align-items-center">
+                                <a href="#" class="btn btn-primary btn-sm">
+                                    View Details <i class="fas fa-arrow-right ms-1"></i>
+                                </a>
+                                <small class="text-muted">
+                                    {% if business.phone_number %}
+                                    <i class="fas fa-phone me-1"></i>
+                                    {% endif %}
+                                    {% if business.website %}
+                                    <i class="fas fa-globe me-1"></i>
+                                    {% endif %}
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-12 text-center py-5">
+                    <i class="fas fa-search fa-3x text-muted mb-3"></i>
+                    <h3 class="text-muted">No businesses found</h3>
+                    <p class="text-muted">Try adjusting your search criteria or browse by category</p>
+                    <a href="{% url 'register_business' %}" class="btn btn-primary">
+                        <i class="fas fa-plus me-2"></i>Add Your Business
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Pagination -->
+            {% if businesses.has_other_pages %}
+            <nav aria-label="Business listings pagination">
+                <ul class="pagination justify-content-center">
+                    {% if businesses.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?{% if query %}query={{ query }}&{% endif %}{% if selected_city_id %}city={{ selected_city_id }}&{% endif %}{% if selected_category_id %}category={{ selected_category_id }}&{% endif %}page={{ businesses.previous_page_number }}">Previous</a>
+                    </li>
+                    {% endif %}
+                    
+                    {% for num in businesses.paginator.page_range %}
+                    {% if businesses.number == num %}
+                    <li class="page-item active">
+                        <span class="page-link">{{ num }}</span>
+                    </li>
+                    {% else %}
+                    <li class="page-item">
+                        <a class="page-link" href="?{% if query %}query={{ query }}&{% endif %}{% if selected_city_id %}city={{ selected_city_id }}&{% endif %}{% if selected_category_id %}category={{ selected_category_id }}&{% endif %}page={{ num }}">{{ num }}</a>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                    
+                    {% if businesses.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?{% if query %}query={{ query }}&{% endif %}{% if selected_city_id %}city={{ selected_city_id }}&{% endif %}{% if selected_category_id %}category={{ selected_category_id }}&{% endif %}page={{ businesses.next_page_number }}">Next</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+            {% endif %}
+        </div>
+    </section>
+    {% endif %}
+
+    {% if not query %}
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="fw-bold mb-4">Ready to Grow Your Business?</h2>
+                    <p class="lead mb-4">
+                        Join thousands of European businesses reaching new customers every day. 
+                        Start with a free listing and upgrade as you grow.
+                    </p>
+                    <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+                        <a href="{% url 'register_business' %}" class="btn btn-light btn-lg px-4">
+                            <i class="fas fa-store me-2"></i>List Your Business Free
+                        </a>
+                        <a href="{% url 'pricing_plans' %}" class="btn btn-outline-light btn-lg px-4">
+                            <i class="fas fa-star me-2"></i>View Premium Plans
+                        </a>
+                    </div>
+                    <div class="mt-4">
+                        <small class="opacity-75">
+                            <i class="fas fa-shield-check me-2"></i>
+                            100% Legal • GDPR Compliant • Free to Start
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Cities -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Popular Cities</h2>
+                <p class="text-muted">Explore businesses in Europe's most vibrant cities</p>
+            </div>
+            <div class="row">
+                {% for city in popular_cities %}
+                <div class="col-lg-3 col-md-4 col-6 mb-3">
+                    <a href="{% url 'homepage' %}?city={{ city.id }}" class="text-decoration-none">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-body text-center">
+                                <h6 class="card-title">{{ city.name }}</h6>
+                                <small class="text-muted">{{ city.country.name }}</small>
+                                <div class="mt-2">
+                                    <span class="badge bg-primary">{{ city.business_count }} businesses</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- Footer with Data Sources -->
+    {% include 'includes/footer.html' %}
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Auto-complete functionality could be added here
+        document.addEventListener('DOMContentLoaded', function() {
+            // Focus on search input
+            const searchInput = document.querySelector('input[name="query"]');
+            if (searchInput) {
+                searchInput.focus();
+            }
+        });
+    </script>
+</body>
+</html>

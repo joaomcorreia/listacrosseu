@@ -1,0 +1,58 @@
+name,slug,description,icon,parent_slug,sort_order
+Restaurants,restaurants,Full-service restaurants,🍽️,food-dining,1
+Fast Food,fast-food,Quick service restaurants,🍔,food-dining,2
+Cafés & Coffee,cafes-coffee,Coffee shops and cafés,☕,food-dining,3
+Bars & Pubs,bars-pubs,Bars and public houses,🍺,food-dining,4
+Bakeries,bakeries,Bakeries and patisseries,🥖,food-dining,5
+Pizza Places,pizza,Pizza restaurants,🍕,food-dining,6
+Fine Dining,fine-dining,Upscale dining establishments,🥂,food-dining,7
+Hotels,hotels,Full-service hotels,🏨,hotels-accommodation,1
+Hostels,hostels,Budget accommodation,🛏️,hotels-accommodation,2
+Bed & Breakfast,bed-breakfast,B&B establishments,🏠,hotels-accommodation,3
+Apartments,apartments,Vacation rentals,🏢,hotels-accommodation,4
+Guesthouses,guesthouses,Small accommodation providers,🏡,hotels-accommodation,5
+Clothing & Fashion,clothing-fashion,Fashion and apparel stores,👔,shopping,1
+Electronics,electronics,Electronics and technology stores,📱,shopping,2
+Supermarkets,supermarkets,Grocery and food stores,🛒,shopping,3
+Bookstores,bookstores,Books and stationery,📚,shopping,4
+Jewelry,jewelry,Jewelry and accessories,💍,shopping,5
+Sports & Outdoor,sports-outdoor,Sports equipment and outdoor gear,⚽,shopping,6
+Home & Garden,home-garden,Furniture and home improvement,🏠,shopping,7
+Pharmacies,pharmacies,Pharmacies and drugstores,💊,health-beauty,1
+Hair Salons,hair-salons,Hair styling and beauty salons,✂️,health-beauty,2
+Spas & Wellness,spas-wellness,Spas and wellness centers,🧘,health-beauty,3
+Dental Clinics,dental-clinics,Dental care services,🦷,health-beauty,4
+Medical Centers,medical-centers,Healthcare facilities,🏥,health-beauty,5
+Fitness Centers,fitness-centers,Gyms and fitness clubs,🏋️,health-beauty,6
+Banks,banks,Banking and financial services,🏦,services,1
+Legal Services,legal-services,Law firms and legal advice,⚖️,services,2
+Real Estate,real-estate,Property and real estate services,🏠,services,3
+Insurance,insurance,Insurance companies,🛡️,services,4
+Accounting,accounting,Accounting and tax services,📊,services,5
+Consulting,consulting,Business consulting services,💼,services,6
+Translation,translation,Translation and language services,🗣️,services,7
+IT Services,it-services,Information technology services,💻,services,8
+Cinemas,cinemas,Movie theaters,🎬,entertainment-nightlife,1
+Theaters,theaters,Live performance venues,🎭,entertainment-nightlife,2
+Nightclubs,nightclubs,Dance clubs and nightlife,🕺,entertainment-nightlife,3
+Music Venues,music-venues,Live music and concert halls,🎵,entertainment-nightlife,4
+Casinos,casinos,Gaming and casinos,🎰,entertainment-nightlife,5
+Art Galleries,art-galleries,Art galleries and museums,🖼️,entertainment-nightlife,6
+Car Rental,car-rental,Vehicle rental services,🚗,transportation,1
+Taxi Services,taxi-services,Taxi and ride services,🚕,transportation,2
+Public Transport,public-transport,Bus and train services,🚌,transportation,3
+Airport Services,airport-services,Airport-related services,✈️,transportation,4
+Parking,parking,Parking facilities,🅿️,transportation,5
+Car Dealers,car-dealers,New and used car sales,🚗,automotive,1
+Auto Repair,auto-repair,Vehicle maintenance and repair,🔧,automotive,2
+Gas Stations,gas-stations,Fuel and service stations,⛽,automotive,3
+Car Wash,car-wash,Vehicle cleaning services,🧽,automotive,4
+Universities,universities,Higher education institutions,🏛️,education,1
+Schools,schools,Primary and secondary schools,🏫,education,2
+Language Schools,language-schools,Language learning centers,🗣️,education,3
+Training Centers,training-centers,Professional training,📚,education,4
+Libraries,libraries,Public and private libraries,📖,education,5
+Travel Agencies,travel-agencies,Travel booking and planning,✈️,tourism-travel,1
+Tour Operators,tour-operators,Guided tours and excursions,🎯,tourism-travel,2
+Tourist Attractions,tourist-attractions,Museums and landmarks,🏛️,tourism-travel,3
+Information Centers,information-centers,Tourist information services,ℹ️,tourism-travel,4

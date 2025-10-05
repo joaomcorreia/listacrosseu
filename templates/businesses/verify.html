@@ -1,0 +1,169 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Your Email - ListAcross.eu</title>
+    
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        .verification-container {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .verification-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 40px;
+            max-width: 500px;
+            text-align: center;
+        }
+        .verification-code {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #007bff;
+            letter-spacing: 0.3rem;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="verification-container">
+        <div class="verification-card">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <div class="mb-4">
+                <i class="fas fa-envelope fa-4x text-primary mb-3"></i>
+                <h2 class="fw-bold">Verify Your Email</h2>
+                <p class="text-muted">
+                    We've sent a verification code to<br>
+                    <strong>{{ registration.owner_email }}</strong>
+                </p>
+            </div>
+
+            {% if not registration.email_verified %}
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-4">
+                        <label class="form-label">Enter Verification Code:</label>
+                        <input type="text" name="verification_code" class="form-control form-control-lg text-center" 
+                               placeholder="123456" maxlength="6" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg w-100 mb-3">
+                        <i class="fas fa-check me-2"></i>Verify Email
+                    </button>
+                </form>
+
+                <div class="text-center">
+                    <small class="text-muted">Didn't receive the code?</small><br>
+                    <button class="btn btn-link btn-sm" onclick="resendCode()">
+                        <i class="fas fa-redo me-1"></i>Resend Code
+                    </button>
+                </div>
+            {% else %}
+                <div class="alert alert-success">
+                    <i class="fas fa-check-circle me-2"></i>
+                    Email verified successfully!
+                </div>
+                <a href="{% url 'registration_status' registration.registration_id %}" class="btn btn-primary">
+                    Check Registration Status
+                </a>
+            {% endif %}
+
+            <hr class="my-4">
+            
+            <div class="row text-center">
+                <div class="col-4">
+                    <div class="text-primary">
+                        <i class="fas fa-shield-alt fa-2x mb-2"></i>
+                        <small class="d-block">Secure</small>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="text-success">
+                        <i class="fas fa-clock fa-2x mb-2"></i>
+                        <small class="d-block">24-48h Review</small>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="text-info">
+                        <i class="fas fa-globe fa-2x mb-2"></i>
+                        <small class="d-block">EU-Wide</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <small class="text-muted">
+                    <strong>{{ registration.business_name }}</strong><br>
+                    {{ registration.city.name }}, {{ registration.city.country.name }}<br>
+                    Registration ID: {{ registration.registration_id|slice:":8" }}...
+                </small>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function resendCode() {
+            fetch("{% url 'resend_verification' registration.registration_id %}", {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+                    'Content-Type': 'application/json',
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Verification code sent successfully!');
+                } else {
+                    alert('Error: ' + data.message);
+                }
+            })
+            .catch(error => {
+                alert('Error sending code. Please try again.');
+            });
+        }
+
+        // Auto-focus on verification code input
+        document.addEventListener('DOMContentLoaded', function() {
+            const codeInput = document.querySelector('input[name="verification_code"]');
+            if (codeInput) {
+                codeInput.focus();
+                
+                // Auto-format verification code (add spaces)
+                codeInput.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\s/g, '');
+                    if (value.length > 6) {
+                        value = value.slice(0, 6);
+                    }
+                    e.target.value = value;
+                });
+            }
+        });
+    </script>
+
+    <!-- Footer with Data Sources -->
+    {% include 'includes/footer.html' %}
+</body>
+</html>

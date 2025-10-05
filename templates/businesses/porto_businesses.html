@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Porto Businesses - {{ total_count }} Business Listings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .stats {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .business-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+        }
+        .business-card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-left: 4px solid #667eea;
+            transition: transform 0.2s, shadow 0.2s;
+        }
+        .business-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+        .business-name {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        .business-category {
+            background: #667eea;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+        .business-info {
+            font-size: 14px;
+            color: #666;
+            margin: 4px 0;
+        }
+        .business-contact {
+            font-size: 14px;
+            margin: 4px 0;
+        }
+        .business-contact a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        .business-contact a:hover {
+            text-decoration: underline;
+        }
+        .search-box {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .search-input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+        .search-input:focus {
+            border-color: #667eea;
+            outline: none;
+        }
+        .no-results {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            margin: 40px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🇵🇹 Porto, Portugal Business Directory</h1>
+        <p>Complete listing of businesses in Porto</p>
+    </div>
+
+    <div class="stats">
+        <strong>📊 Statistics:</strong> {{ total_count }} businesses in {{ city.name }}, {{ city.country.name }}
+        {% if city.population %}| Population: {{ city.population|floatformat:0 }}{% endif %}
+    </div>
+
+    <div class="search-box">
+        <input type="text" id="searchInput" class="search-input" placeholder="🔍 Search businesses by name or category...">
+    </div>
+
+    <div class="business-list" id="businessList">
+        {% for business in businesses %}
+        <div class="business-card" data-name="{{ business.name|lower }}" data-category="{{ business.category.name|lower }}">
+            <div class="business-name">{{ business.name }}</div>
+            <div class="business-category">{{ business.category.name }}</div>
+            
+            {% if business.address %}
+            <div class="business-info">📍 {{ business.address }}</div>
+            {% endif %}
+            
+            {% if business.phone %}
+            <div class="business-contact">📞 {{ business.phone }}</div>
+            {% endif %}
+            
+            {% if business.email %}
+            <div class="business-contact">📧 <a href="mailto:{{ business.email }}">{{ business.email }}</a></div>
+            {% endif %}
+            
+            {% if business.website %}
+            <div class="business-contact">🌐 <a href="{{ business.website }}" target="_blank">Visit Website</a></div>
+            {% endif %}
+            
+            <div class="business-info">
+                <small>🆔 ID: {{ business.id|slice:":8" }}... | Added: {{ business.created_at|date:"M d, Y" }}</small>
+            </div>
+        </div>
+        {% empty %}
+        <div class="no-results">
+            No businesses found in Porto yet.
+        </div>
+        {% endfor %}
+    </div>
+
+    <script>
+        // Simple search functionality
+        document.getElementById('searchInput').addEventListener('keyup', function() {
+            const searchTerm = this.value.toLowerCase();
+            const businessCards = document.querySelectorAll('.business-card');
+            let visibleCount = 0;
+            
+            businessCards.forEach(function(card) {
+                const name = card.getAttribute('data-name');
+                const category = card.getAttribute('data-category');
+                
+                if (name.includes(searchTerm) || category.includes(searchTerm)) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            // Update the count (simple approach)
+            console.log('Showing ' + visibleCount + ' of {{ total_count }} businesses');
+        });
+        
+        // Add some basic stats
+        console.log('Porto Business Directory loaded');
+        console.log('Total businesses: {{ total_count }}');
+    </script>
+</body>
+</html>

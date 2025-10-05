@@ -68,6 +68,7 @@ class City(models.Model):
     """Cities within countries"""
     
     name = models.CharField(_('name'), max_length=100)
+    slug = models.SlugField(_('slug'), blank=True)
     country = models.ForeignKey(Country, on_delete=models.CASCADE, related_name='cities')
     latitude = models.DecimalField(_('latitude'), max_digits=9, decimal_places=6, null=True, blank=True)
     longitude = models.DecimalField(_('longitude'), max_digits=9, decimal_places=6, null=True, blank=True)
@@ -82,6 +83,20 @@ class City(models.Model):
     
     def __str__(self):
         return f"{self.name}, {self.country.name}"
+    
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            from django.utils.text import slugify
+            base_slug = slugify(f"{self.name}-{self.country.code}")
+            self.slug = base_slug
+            
+            # Ensure uniqueness
+            counter = 1
+            while City.objects.filter(slug=self.slug).exists():
+                self.slug = f"{base_slug}-{counter}"
+                counter += 1
+        
+        super().save(*args, **kwargs)
 
 
 class Business(models.Model):
@@ -253,3 +268,7 @@ class Review(models.Model):
     
     def __str__(self):
         return f"{self.business.name} - {self.rating} stars by {self.reviewer.full_name}"
+
+
+# Import registration models
+from .models_registration import BusinessRegistration, BusinessPhoto, BusinessClaim

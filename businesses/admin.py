@@ -1,5 +1,9 @@
 from django.contrib import admin
 from .models import Business, Category, Country, City, Review, BusinessImage
+from .models_registration import BusinessRegistration, BusinessPhoto, BusinessClaim
+from django.utils.html import format_html
+from django.urls import reverse
+from django.utils import timezone
 
 
 @admin.register(Category)
@@ -115,3 +119,160 @@ class ReviewAdmin(admin.ModelAdmin):
             'fields': ['created_at', 'updated_at']
         })
     ]
+
+
+# Registration System Admin
+
+@admin.register(BusinessRegistration)
+class BusinessRegistrationAdmin(admin.ModelAdmin):
+    list_display = [
+        'business_name', 'city', 'category', 'owner_name', 
+        'verification_status', 'email_verified', 'premium_plan', 'created_at'
+    ]
+    list_filter = [
+        'verification_status', 'email_verified', 'phone_verified', 
+        'premium_plan', 'category', 'city__country', 'created_at'
+    ]
+    search_fields = ['business_name', 'owner_name', 'owner_email', 'email']
+    readonly_fields = [
+        'registration_id', 'email_verification_code', 'phone_verification_code',
+        'created_at', 'updated_at'
+    ]
+    
+    fieldsets = [
+        ('Registration Status', {
+            'fields': [
+                'registration_id', 'verification_status', 'verification_notes',
+                'email_verified', 'phone_verified', 'reviewed_by', 'reviewed_at'
+            ]
+        }),
+        ('Business Information', {
+            'fields': [
+                'business_name', 'description', 'category', 'price_range'
+            ]
+        }),
+        ('Location', {
+            'fields': [
+                'address', 'city', 'postal_code', 'latitude', 'longitude'
+            ]
+        }),
+        ('Contact Information', {
+            'fields': [
+                'phone_number', 'email', 'website'
+            ]
+        }),
+        ('Owner Information', {
+            'fields': [
+                'owner_name', 'owner_email', 'owner_phone'
+            ]
+        }),
+        ('Premium Features', {
+            'fields': [
+                'wants_premium', 'premium_plan'
+            ]
+        }),
+        ('Verification Codes', {
+            'fields': [
+                'email_verification_code', 'phone_verification_code'
+            ],
+            'classes': ['collapse']
+        }),
+        ('Timestamps', {
+            'fields': [
+                'created_at', 'updated_at'
+            ]
+        })
+    ]
+    
+    actions = ['approve_registrations', 'reject_registrations']
+    
+    def approve_registrations(self, request, queryset):
+        approved_count = 0
+        for registration in queryset.filter(verification_status='pending'):
+            try:
+                business = registration.approve_registration(request.user)
+                approved_count += 1
+                self.message_user(
+                    request,
+                    f'Successfully approved {registration.business_name} and created business listing.'
+                )
+            except Exception as e:
+                self.message_user(
+                    request,
+                    f'Error approving {registration.business_name}: {str(e)}',
+                    level='ERROR'
+                )
+        
+        if approved_count > 0:
+            self.message_user(
+                request,
+                f'Successfully approved {approved_count} business registrations.'
+            )
+    
+    approve_registrations.short_description = "Approve selected registrations"
+    
+    def reject_registrations(self, request, queryset):
+        updated = queryset.filter(verification_status='pending').update(
+            verification_status='rejected',
+            reviewed_by=request.user,
+            reviewed_at=timezone.now()
+        )
+        self.message_user(request, f'Rejected {updated} registrations.')
+    
+    reject_registrations.short_description = "Reject selected registrations"
+
+
+@admin.register(BusinessClaim)
+class BusinessClaimAdmin(admin.ModelAdmin):
+    list_display = [
+        'business', 'claimant_name', 'claimant_email',
+        'verification_method', 'status', 'created_at'
+    ]
+    list_filter = ['status', 'verification_method', 'created_at']
+    search_fields = [
+        'business__name', 'claimant_name', 'claimant_email'
+    ]
+    readonly_fields = ['created_at']
+    
+    fieldsets = [
+        ('Claim Information', {
+            'fields': [
+                'business', 'claimant_name', 'claimant_email', 'claimant_phone'
+            ]
+        }),
+        ('Verification', {
+            'fields': [
+                'ownership_proof', 'verification_method', 'status', 'notes'
+            ]
+        }),
+        ('Review', {
+            'fields': [
+                'reviewed_by', 'reviewed_at'
+            ]
+        }),
+        ('Timestamps', {
+            'fields': ['created_at']
+        })
+    ]
+    
+    actions = ['approve_claims', 'reject_claims']
+    
+    def approve_claims(self, request, queryset):
+        updated = queryset.filter(status='pending').update(
+            status='approved',
+            reviewed_by=request.user,
+            reviewed_at=timezone.now()
+        )
+        self.message_user(request, f'Approved {updated} business claims.')
+    
+    approve_claims.short_description = "Approve selected claims"
+    
+    def reject_claims(self, request, queryset):
+        updated = queryset.filter(status='pending').update(
+            status='rejected',
+            reviewed_by=request.user,
+            reviewed_at=timezone.now()
+        )
+        self.message_user(request, f'Rejected {updated} business claims.')
+    
+    reject_claims.short_description = "Reject selected claims"

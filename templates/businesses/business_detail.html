@@ -1,0 +1,223 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ business.name }} - {{ business.city.name }}, {{ business.city.country.name }}{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <!-- Breadcrumb -->
+    <nav class="mb-6">
+        <ol class="flex items-center space-x-2 text-sm text-gray-600">
+            <li><a href="{% url 'homepage' %}" class="hover:text-blue-600">Home</a></li>
+            <li>›</li>
+            <li><a href="{% url 'business_list' %}" class="hover:text-blue-600">Businesses</a></li>
+            <li>›</li>
+            <li><a href="{% url 'businesses_by_city' business.city.slug %}" class="hover:text-blue-600">{{ business.city.name }}</a></li>
+            <li>›</li>
+            <li class="text-gray-900">{{ business.name }}</li>
+        </ol>
+    </nav>
+
+    <!-- Business Header -->
+    <div class="bg-white rounded-lg shadow-md overflow-hidden mb-8">
+        {% if business.cover_image %}
+        <img src="{{ business.cover_image.url }}" alt="{{ business.name }}" class="w-full h-64 object-cover">
+        {% else %}
+        <div class="w-full h-64 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+            <span class="text-white text-6xl font-bold">{{ business.name|first|upper }}</span>
+        </div>
+        {% endif %}
+        
+        <div class="p-8">
+            <div class="flex items-start justify-between mb-6">
+                <div class="flex-1">
+                    <h1 class="text-3xl font-bold text-gray-900 mb-2">{{ business.name }}</h1>
+                    <p class="text-lg text-blue-600 font-medium mb-2">{{ business.category.name }}</p>
+                    <p class="text-gray-600 flex items-center text-lg">
+                        📍 {{ business.address }}{% if business.postal_code %}, {{ business.postal_code }}{% endif %}
+                    </p>
+                    <p class="text-gray-600 flex items-center text-lg mt-1">
+                        🌍 {{ business.city.name }}, {{ business.city.country.name }}
+                    </p>
+                </div>
+                
+                {% if business.logo %}
+                <div class="ml-6">
+                    <img src="{{ business.logo.url }}" alt="{{ business.name }} logo" class="w-24 h-24 object-cover rounded-lg shadow-md">
+                </div>
+                {% endif %}
+            </div>
+            
+            <!-- Contact Information -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                {% if business.phone %}
+                <div class="flex items-center space-x-3">
+                    <span class="text-2xl">📞</span>
+                    <div>
+                        <p class="text-sm text-gray-600">Phone</p>
+                        <p class="font-medium">{{ business.phone }}</p>
+                    </div>
+                </div>
+                {% endif %}
+                
+                {% if business.email %}
+                <div class="flex items-center space-x-3">
+                    <span class="text-2xl">📧</span>
+                    <div>
+                        <p class="text-sm text-gray-600">Email</p>
+                        <p class="font-medium">{{ business.email }}</p>
+                    </div>
+                </div>
+                {% endif %}
+                
+                {% if business.website %}
+                <div class="flex items-center space-x-3">
+                    <span class="text-2xl">🌐</span>
+                    <div>
+                        <p class="text-sm text-gray-600">Website</p>
+                        <a href="{{ business.website }}" target="_blank" class="font-medium text-blue-600 hover:text-blue-800">
+                            Visit Website
+                        </a>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Business Details -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+        <!-- Main Content -->
+        <div class="lg:col-span-2">
+            <!-- Description -->
+            <div class="bg-white rounded-lg shadow-md p-8 mb-6">
+                <h2 class="text-2xl font-semibold text-gray-900 mb-4">About {{ business.name }}</h2>
+                <div class="prose prose-lg text-gray-700">
+                    {{ business.description|linebreaks }}
+                </div>
+            </div>
+            
+            <!-- Business Hours -->
+            {% if business.monday_hours or business.tuesday_hours or business.wednesday_hours or business.thursday_hours or business.friday_hours or business.saturday_hours or business.sunday_hours %}
+            <div class="bg-white rounded-lg shadow-md p-8">
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">Opening Hours</h3>
+                <div class="space-y-2">
+                    {% if business.monday_hours %}
+                    <div class="flex justify-between">
+                        <span class="font-medium">Monday:</span>
+                        <span>{{ business.monday_hours }}</span>
+                    </div>
+                    {% endif %}
+                    {% if business.tuesday_hours %}
+                    <div class="flex justify-between">
+                        <span class="font-medium">Tuesday:</span>
+                        <span>{{ business.tuesday_hours }}</span>
+                    </div>
+                    {% endif %}
+                    {% if business.wednesday_hours %}
+                    <div class="flex justify-between">
+                        <span class="font-medium">Wednesday:</span>
+                        <span>{{ business.wednesday_hours }}</span>
+                    </div>
+                    {% endif %}
+                    {% if business.thursday_hours %}
+                    <div class="flex justify-between">
+                        <span class="font-medium">Thursday:</span>
+                        <span>{{ business.thursday_hours }}</span>
+                    </div>
+                    {% endif %}
+                    {% if business.friday_hours %}
+                    <div class="flex justify-between">
+                        <span class="font-medium">Friday:</span>
+                        <span>{{ business.friday_hours }}</span>
+                    </div>
+                    {% endif %}
+                    {% if business.saturday_hours %}
+                    <div class="flex justify-between">
+                        <span class="font-medium">Saturday:</span>
+                        <span>{{ business.saturday_hours }}</span>
+                    </div>
+                    {% endif %}
+                    {% if business.sunday_hours %}
+                    <div class="flex justify-between">
+                        <span class="font-medium">Sunday:</span>
+                        <span>{{ business.sunday_hours }}</span>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        
+        <!-- Sidebar -->
+        <div class="lg:col-span-1">
+            <!-- Quick Actions -->
+            <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
+                <div class="space-y-3">
+                    {% if business.phone %}
+                    <a href="tel:{{ business.phone }}" 
+                       class="w-full bg-green-600 text-white px-4 py-3 rounded-md hover:bg-green-700 transition duration-200 text-center block">
+                        📞 Call Now
+                    </a>
+                    {% endif %}
+                    
+                    {% if business.website %}
+                    <a href="{{ business.website }}" 
+                       target="_blank"
+                       class="w-full bg-blue-600 text-white px-4 py-3 rounded-md hover:bg-blue-700 transition duration-200 text-center block">
+                        🌐 Visit Website
+                    </a>
+                    {% endif %}
+                    
+                    {% if business.email %}
+                    <a href="mailto:{{ business.email }}" 
+                       class="w-full bg-gray-600 text-white px-4 py-3 rounded-md hover:bg-gray-700 transition duration-200 text-center block">
+                        📧 Send Email
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <!-- Location Info -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">Location</h3>
+                <div class="space-y-2">
+                    <p class="text-gray-700">{{ business.address }}</p>
+                    {% if business.postal_code %}
+                    <p class="text-gray-700">{{ business.postal_code }}</p>
+                    {% endif %}
+                    <p class="font-medium text-gray-900">{{ business.city.name }}, {{ business.city.country.name }}</p>
+                </div>
+                
+                <div class="mt-4">
+                    <a href="{% url 'businesses_by_city' business.city.slug %}" 
+                       class="text-blue-600 hover:text-blue-800 text-sm">
+                        → More businesses in {{ business.city.name }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Related Businesses -->
+    {% if related_businesses %}
+    <div class="bg-white rounded-lg shadow-md p-8">
+        <h3 class="text-2xl font-semibold text-gray-900 mb-6">Related Businesses</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for related in related_businesses %}
+            <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition duration-200">
+                <h4 class="font-semibold text-gray-900 mb-2">
+                    <a href="{% url 'business_detail' related.slug %}" class="hover:text-blue-600">
+                        {{ related.name }}
+                    </a>
+                </h4>
+                <p class="text-sm text-blue-600 mb-2">{{ related.category.name }}</p>
+                <p class="text-sm text-gray-600">{{ related.city.name }}, {{ related.city.country.name }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -20,14 +20,16 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    
+    # Main website (includes homepage and business registration)
+    path('', include('businesses.urls')),
+    
+    # API endpoints
     path('api/', include('directory.urls')),
-    path('api/businesses/', include('businesses.urls')),
     path('api/subscriptions/', include('subscriptions.urls')),
     path('api/payments/', include('payments.urls')),
     path('api/websites/', include('websites.urls')),
     path('api/data-import/', include('data_import.urls')),
-
-    path('', include('directory.urls')),
 ]
 
 # Serve media files during development
