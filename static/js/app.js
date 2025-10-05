@@ -1,33 +1,40 @@
 // Configuration
 const API_BASE_URL = 'http://localhost:3001/api';
 
-// Infinite flags slider (simple, no external libs)
-const track = document.querySelector('.flags .track');
-let speed = 0.8; // px per frame
-let pos = 0;
-let isPaused = false;
+// Enhanced flags slider with click navigation
+function initializeEnhancedFlagSlider() {
+  const track = document.querySelector('.flags .track, #flag-track');
+  if (!track || window.flagSliderInitialized) return;
 
-function setupClones() {
-  // duplicate items to enable infinite loop
-  const items = Array.from(track.children);
-  items.forEach(it => track.appendChild(it.cloneNode(true)));
-}
+  let speed = 0.8; // px per frame
+  let pos = 0;
+  let isPaused = false;
+  let animationId;
 
-function loop() {
-  if (window.flagSliderInitialized) return; // Prevent conflicts on other pages
-  if (!isPaused) {
-    pos -= speed;
-    if (Math.abs(pos) >= track.scrollWidth / 2) { pos = 0; }
-    track.style.transform = `translateX(${pos}px)`;
+  function setupClones() {
+    // duplicate items to enable infinite loop
+    const items = Array.from(track.children);
+    items.forEach(item => {
+      const clone = item.cloneNode(true);
+      // Preserve click handlers for clones
+      if (item.href) clone.href = item.href;
+      if (item.dataset.country) clone.dataset.country = item.dataset.country;
+      track.appendChild(clone);
+    });
   }
-  requestAnimationFrame(loop);
-}
 
-// Add hover pause functionality
-if (track && !window.flagSliderInitialized) {
-  setupClones();
-  
-  // Pause on hover
+  function loop() {
+    if (!isPaused) {
+      pos -= speed;
+      if (Math.abs(pos) >= track.scrollWidth / 2) { 
+        pos = 0; 
+      }
+      track.style.transform = `translateX(${pos}px)`;
+    }
+    animationId = requestAnimationFrame(loop);
+  }
+
+  // Setup hover pause functionality
   const flagsSection = document.querySelector('.flags');
   if (flagsSection) {
     flagsSection.addEventListener('mouseenter', () => {
@@ -37,9 +44,38 @@ if (track && !window.flagSliderInitialized) {
       isPaused = false;
     });
   }
-  
+
+  // Remove conflicting click handlers - let flag_slider.html handle navigation
+
+  // Initialize
+  setupClones();
   requestAnimationFrame(loop);
+  window.flagSliderInitialized = true;
+
+  return {
+    pause: () => isPaused = true,
+    resume: () => isPaused = false,
+    destroy: () => {
+      if (animationId) cancelAnimationFrame(animationId);
+      window.flagSliderInitialized = false;
+    }
+  };
 }
+
+// Auto-initialize on DOM ready
+document.addEventListener('DOMContentLoaded', function() {
+  // Check if we're using the new flag slider template
+  if (document.querySelector('#flag-track')) {
+    // New template will handle its own initialization
+    return;
+  }
+  
+  // Initialize legacy flag slider if present
+  const track = document.querySelector('.flags .track');
+  if (track && !window.flagSliderInitialized) {
+    window.flagSlider = initializeEnhancedFlagSlider();
+  }
+});
 
 // Featured Cards Slider
 const featuredTrack = document.querySelector('.featured-track');
@@ -370,21 +406,10 @@ async function updateStatistics() {
 }
 
 function initializeCountryFlags() {
-  const flags = document.querySelectorAll('.flag');
+  const flags = document.querySelectorAll('.flag-item');
 
   flags.forEach(flag => {
-    flag.addEventListener('click', async () => {
-      const countryName = flag.querySelector('span').textContent;
-      const countryCode = getCountryCode(countryName);
-
-      if (countryCode) {
-        // Navigate to country page or show businesses
-        window.location.href = `/country/${countryCode}/`;
-      }
-    });
-
-    // Add hover effect
-    flag.style.cursor = 'pointer';
+    // Only add hover effects, let the HTML href handle navigation
     flag.addEventListener('mouseenter', () => {
       flag.style.transform = 'scale(1.05)';
       flag.style.transition = 'transform 0.2s';
@@ -428,6 +453,40 @@ function getCountryCode(countryName) {
   };
 
   return countryMap[countryName];
+}
+
+function getCountrySlug(countryName) {
+  const slugMap = {
+    'Austria': 'austria',
+    'Belgium': 'belgium',
+    'Bulgaria': 'bulgaria',
+    'Croatia': 'croatia',
+    'Cyprus': 'cyprus',
+    'Czechia': 'czechia',
+    'Denmark': 'denmark',
+    'Estonia': 'estonia',
+    'Finland': 'finland',
+    'France': 'france',
+    'Germany': 'germany',
+    'Greece': 'greece',
+    'Hungary': 'hungary',
+    'Ireland': 'ireland',
+    'Italy': 'italy',
+    'Latvia': 'latvia',
+    'Lithuania': 'lithuania',
+    'Luxembourg': 'luxembourg',
+    'Malta': 'malta',
+    'Netherlands': 'netherlands',
+    'Poland': 'poland',
+    'Portugal': 'portugal',
+    'Romania': 'romania',
+    'Slovakia': 'slovakia',
+    'Slovenia': 'slovenia',
+    'Spain': 'spain',
+    'Sweden': 'sweden'
+  };
+
+  return slugMap[countryName] || countryName.toLowerCase();
 }
 
 // Blog Posts Slider

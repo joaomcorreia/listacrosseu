@@ -1,0 +1,121 @@
+<!-- templates/includes/flag_slider.html -->
+<section class="flags" aria-label="EU Countries">
+  <div class="track" id="flag-track">
+    {% for country in countries %}
+      <a href="{% if country.code == 'EU' %}/{% else %}/{{ country.slug }}/{% endif %}" 
+         class="flag-item" 
+         data-country="{{ country.code }}"
+         title="{{ country.name }}">
+        <img src="{% load static %}{% static country.flag_url %}" 
+             alt="{{ country.name }} flag" 
+             loading="lazy">
+        <span>{{ country.name }}</span>
+      </a>
+    {% empty %}
+      <!-- Fallback flags if no countries found - MAKE THESE CLICKABLE LINKS -->
+      <a href="/" class="flag-item" data-country="EU" title="European Union">
+        <img src="{% load static %}{% static 'assets/flags/eu.png' %}" alt="EU flag">
+        <span>EU</span>
+      </a>
+      <a href="/germany/" class="flag-item" data-country="DE" title="Germany">
+        <img src="{% load static %}{% static 'assets/flags/de.png' %}" alt="Germany flag">
+        <span>Germany</span>
+      </a>
+      <a href="/france/" class="flag-item" data-country="FR" title="France">
+        <img src="{% load static %}{% static 'assets/flags/fr.png' %}" alt="France flag">
+        <span>France</span>
+      </a>
+      <a href="/spain/" class="flag-item" data-country="ES" title="Spain">
+        <img src="{% load static %}{% static 'assets/flags/es.png' %}" alt="Spain flag">
+        <span>Spain</span>
+      </a>
+      <a href="/italy/" class="flag-item" data-country="IT" title="Italy">
+        <img src="{% load static %}{% static 'assets/flags/it.png' %}" alt="Italy flag">
+        <span>Italy</span>
+      </a>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- Flag slider JavaScript -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  initializeFlagSlider();
+});
+
+function initializeFlagSlider() {
+  const track = document.querySelector('#flag-track');
+  if (!track || window.flagSliderInitialized) return;
+  
+  let speed = 0.8; // px per frame
+  let pos = 0;
+  let isPaused = false;
+  let animationId;
+
+  // Clone items for infinite scroll
+  function setupClones() {
+    const items = Array.from(track.children);
+    items.forEach(item => {
+      const clone = item.cloneNode(true);
+      track.appendChild(clone);
+    });
+  }
+
+  // Animation loop
+  function loop() {
+    if (!isPaused) {
+      pos -= speed;
+      if (Math.abs(pos) >= track.scrollWidth / 2) {
+        pos = 0;
+      }
+      track.style.transform = `translateX(${pos}px)`;
+    }
+    animationId = requestAnimationFrame(loop);
+  }
+
+  // Setup hover pause
+  const flagsSection = document.querySelector('.flags');
+  if (flagsSection) {
+    flagsSection.addEventListener('mouseenter', () => {
+      isPaused = true;
+    });
+    flagsSection.addEventListener('mouseleave', () => {
+      isPaused = false;
+    });
+  }
+
+  // Simple click handler for flag navigation
+  track.addEventListener('click', function(e) {
+    console.log('Click detected on track');
+    
+    const flagItem = e.target.closest('.flag-item');
+    if (!flagItem) {
+      console.log('No flag item found, target was:', e.target);
+      return;
+    }
+    
+    console.log('Flag item found:', flagItem);
+    
+    const countryCode = flagItem.dataset.country;
+    const href = flagItem.getAttribute('href');
+    
+    console.log('Flag clicked:', countryCode, 'href:', href);
+    
+    // Pause animation briefly
+    isPaused = true;
+    setTimeout(() => {isPaused = false;}, 1000);
+    
+    // Add visual feedback
+    flagItem.style.opacity = '0.7';
+    setTimeout(() => {flagItem.style.opacity = '1';}, 200);
+    
+    console.log('About to navigate to:', href);
+    // Let browser handle the link naturally - no preventDefault
+  });
+
+  // Initialize
+  setupClones();
+  requestAnimationFrame(loop);
+  window.flagSliderInitialized = true;
+}
+</script>

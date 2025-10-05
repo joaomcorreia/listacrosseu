@@ -1,0 +1,555 @@
+{% extends 'base_with_map.html' %}
+{% load static %}
+{% load map_tags %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block description %}{{ meta_description }}{% endblock %}
+
+{% block map_section %}
+    {% dynamic_map location_type location_code %}
+{% endblock %}
+
+{% block flag_section %}
+    {% flag_slider %}
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .city-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 40px 0;
+        text-align: center;
+        margin-top: -20px;
+    }
+    
+    .breadcrumb-custom {
+        background: white;
+        border-radius: 8px;
+        padding: 15px 20px;
+        margin-bottom: 20px;
+        box-shadow: var(--shadow);
+    }
+    
+    .city-stats {
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: var(--shadow);
+        margin-bottom: 25px;
+    }
+    
+    .business-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+    }
+    
+    .business-card {
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: var(--shadow);
+        transition: all 0.3s ease;
+    }
+    
+    .business-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+    
+    .filter-tabs {
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: var(--shadow);
+        margin-bottom: 25px;
+    }
+    
+    .category-filter {
+        display: inline-block;
+        margin: 5px;
+        padding: 8px 15px;
+        background: #f8f9fa;
+        border: 2px solid #e9ecef;
+        border-radius: 25px;
+        text-decoration: none;
+        color: #495057;
+        transition: all 0.3s ease;
+        font-size: 0.9em;
+    }
+    
+    .category-filter:hover, .category-filter.active {
+        background: #007bff;
+        color: white;
+        border-color: #007bff;
+        text-decoration: none;
+    }
+    
+    .back-to-country {
+        color: #6c757d;
+        text-decoration: none;
+        font-size: 0.9em;
+    }
+    
+    .back-to-country:hover {
+        color: #007bff;
+        text-decoration: none;
+    }
+    
+    /* Main Categories Grid */
+    .main-categories-section {
+        background: white;
+        border-radius: 12px;
+        padding: 20px 15px;
+        box-shadow: var(--shadow);
+    }
+    
+    .category-card {
+        background: white;
+        border: 1px solid #e9ecef;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        cursor: default;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        min-height: 260px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    .category-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        border-color: #007bff;
+    }
+    
+    .card-header {
+        background: #f8f9fa;
+        border-bottom: 1px solid #e9ecef;
+        padding: 15px;
+    }
+    
+    .category-icon {
+        font-size: 1.2rem;
+        color: #007bff;
+        width: 52px;
+        text-align: center;
+    }
+    
+    .category-name {
+        font-weight: 600;
+        color: #2c3e50;
+        font-size: 1rem;
+    }
+    
+    .card-body {
+        padding: 15px;
+        flex: 1;
+    }
+    
+    .subcategories-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .subcategory-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 4px 0;
+    }
+    
+    .subcategory-name {
+        color: #007bff;
+        font-size: 0.85rem;
+        text-decoration: underline;
+        cursor: pointer;
+        transition: color 0.2s ease;
+    }
+    
+    .subcategory-name:hover {
+        color: #0056b3;
+        text-decoration: none;
+    }
+    
+    .subcategory-name-inactive {
+        color: #6c757d;
+        font-size: 0.85rem;
+        cursor: default;
+    }
+    
+    .business-count {
+        color: #6c757d;
+        font-size: 0.85rem;
+        font-weight: 500;
+    }
+    
+    .card-footer {
+        background: transparent;
+        border-top: 1px solid #e9ecef;
+        padding: 15px;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .category-card {
+            min-height: 250px;
+        }
+        
+        .card-header, .card-body, .card-footer {
+            padding: 10px;
+        }
+        
+        .category-icon {
+            font-size: 1rem;
+        }
+        
+        .category-name {
+            font-size: 0.9rem;
+        }
+        
+        .subcategory-name, .business-count {
+            font-size: 0.75rem;
+        }
+        
+        .main-categories-section {
+            padding: 15px;
+        }
+    }
+    
+    /* Ensure proper grid behavior and reduce spacing */
+    .main-categories-section .row {
+        display: flex;
+        flex-wrap: wrap;
+        margin-left: -8px;
+        margin-right: -8px;
+    }
+    
+    .main-categories-section .col-6,
+    .main-categories-section .col-lg-4 {
+        display: flex;
+        padding-left: 8px;
+        padding-right: 8px;
+        margin-bottom: 16px;
+        flex-direction: column-reverse;
+    }
+    
+    /* Custom spacing override for tighter layout */
+    .main-categories-section .g-2 {
+        --bs-gutter-x: 16px;
+        --bs-gutter-y: 16px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- Breadcrumb -->
+<div class="breadcrumb-custom">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item">
+                <a href="/{{ country.slug }}/">{{ country.name }}</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">{{ city.name }}</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="city-header">
+    <h1>🏙️ {{ city.name }}, {{ country.name }}</h1>
+    <p>Business directory for {{ city.name }}</p>
+    <a href="/{{ country.slug }}/" class="back-to-country">
+        <i class="fas fa-arrow-left me-1"></i>
+        Back to {{ country.name }}
+    </a>
+</div>
+
+<div class="row">
+    <div class="col-lg-9">
+        <!-- City Statistics -->
+        <div class="city-stats">
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <div class="h4 text-primary mb-0">{{ total_businesses }}</div>
+                    <small class="text-muted">Total Businesses</small>
+                </div>
+                <div class="col-md-4">
+                    <div class="h4 text-success mb-0">{{ categories|length }}</div>
+                    <small class="text-muted">Categories</small>
+                </div>
+                <div class="col-md-4">
+                    <div class="h4 text-info mb-0">{{ city.name }}</div>
+                    <small class="text-muted">City</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Categories Grid -->
+        <div class="main-categories-section mb-4">
+            <h3 class="mb-3">
+                <i class="fas fa-th-large me-2"></i>
+                Business Categories in {{ city.name }}
+            </h3>
+            <div class="row g-2">
+                {% for item in categories %}
+                <div class="col-6 col-lg-4">
+                    <div class="category-card h-100">
+                        <div class="card-header d-flex align-items-center">
+                            <div class="category-icon me-2">
+                                {% if item.category.name == "Restaurant" %}
+                                    <i class="fas fa-utensils"></i>
+                                {% elif item.category.name == "Technology" %}
+                                    <i class="fas fa-laptop-code"></i>
+                                {% elif item.category.name == "Tourism" %}
+                                    <i class="fas fa-map-marked-alt"></i>
+                                {% elif item.category.name == "Retail" %}
+                                    <i class="fas fa-shopping-bag"></i>
+                                {% elif item.category.name == "Health" %}
+                                    <i class="fas fa-heartbeat"></i>
+                                {% elif item.category.name == "Education" %}
+                                    <i class="fas fa-graduation-cap"></i>
+                                {% elif item.category.name == "Finance" %}
+                                    <i class="fas fa-coins"></i>
+                                {% elif item.category.name == "Real Estate" %}
+                                    <i class="fas fa-home"></i>
+                                {% elif item.category.name == "Services" %}
+                                    <i class="fas fa-cogs"></i>
+                                {% elif item.category.name == "Manufacturing" %}
+                                    <i class="fas fa-industry"></i>
+                                {% elif item.category.name == "Construction" %}
+                                    <i class="fas fa-hard-hat"></i>
+                                {% elif item.category.name == "Transportation" %}
+                                    <i class="fas fa-truck"></i>
+                                {% else %}
+                                    <i class="fas fa-briefcase"></i>
+                                {% endif %}
+                            </div>
+                            <h6 class="category-name mb-0">{{ item.category.name }}</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="subcategories-list">
+                                {% for subcategory in item.subcategories %}
+                                <div class="subcategory-item">
+                                    {% if subcategory.business_count > 0 %}
+                                        <a href="?category={{ subcategory.slug }}" class="subcategory-name">{{ subcategory.name }}</a>
+                                    {% else %}
+                                        <span class="subcategory-name-inactive">{{ subcategory.name }}</span>
+                                    {% endif %}
+                                    <span class="business-count">({{ subcategory.business_count }})</span>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            {% if item.business_count > 0 %}
+                                <a href="?category={{ item.category.slug }}" class="btn btn-primary btn-sm w-100">
+                                    View All ({{ item.business_count }})
+                                </a>
+                            {% else %}
+                                <button class="btn btn-outline-secondary btn-sm w-100" disabled>
+                                    No businesses yet
+                                </button>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Category Filter (Quick access) -->
+        <div class="filter-tabs mb-4">
+            <h6 class="mb-3">Quick Filter:</h6>
+            <a href="/{{ country.slug }}/{{ city.slug }}/" 
+               class="category-filter {% if not selected_category %}active{% endif %}">
+                All Categories ({{ total_businesses }})
+            </a>
+            {% for item in categories %}
+                {% if item.business_count > 0 %}
+                <a href="?category={{ item.category.slug }}" 
+                   class="category-filter {% if selected_category.slug == item.category.slug %}active{% endif %}">
+                    {{ item.category.name }} ({{ item.business_count }})
+                </a>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <!-- Businesses -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2>
+                {% if selected_category %}
+                    {{ selected_category.name }} in {{ city.name }}
+                {% else %}
+                    Businesses in {{ city.name }}
+                {% endif %}
+            </h2>
+            <span class="text-muted">{{ businesses.paginator.count }} results</span>
+        </div>
+        
+        {% if businesses %}
+        <div class="business-grid">
+            {% for business in businesses %}
+            <div class="business-card">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <h5 class="mb-0">{{ business.name }}</h5>
+                    <span class="badge bg-primary">{{ business.category.name }}</span>
+                </div>
+                <p class="text-muted mb-2">
+                    <i class="fas fa-map-marker-alt me-1"></i>
+                    {{ business.city.name }}, {{ business.country.name }}
+                </p>
+                {% if business.address %}
+                <p class="text-muted mb-2">
+                    <i class="fas fa-location-dot me-1"></i>
+                    {{ business.address }}
+                </p>
+                {% endif %}
+                {% if business.description %}
+                <p class="mb-2">{{ business.description|truncatewords:20 }}</p>
+                {% endif %}
+                <div class="d-flex gap-2 flex-wrap">
+                    <a href="{% url 'business_detail' business.slug %}" class="btn btn-sm btn-primary">
+                        View Details
+                    </a>
+                    {% if business.phone %}
+                    <a href="tel:{{ business.phone }}" class="btn btn-sm btn-outline-success">
+                        <i class="fas fa-phone me-1"></i>Call
+                    </a>
+                    {% endif %}
+                    {% if business.email %}
+                    <a href="mailto:{{ business.email }}" class="btn btn-sm btn-outline-info">
+                        <i class="fas fa-envelope me-1"></i>Email
+                    </a>
+                    {% endif %}
+                    {% if business.website %}
+                    <a href="{{ business.website }}" target="_blank" class="btn btn-sm btn-outline-secondary">
+                        <i class="fas fa-external-link-alt me-1"></i>Website
+                    </a>
+                    {% endif %}
+                </div>
+                {% if business.hours %}
+                <div class="mt-2">
+                    <small class="text-muted">
+                        <i class="fas fa-clock me-1"></i>
+                        {{ business.hours }}
+                    </small>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        {% if businesses.has_other_pages %}
+        <nav aria-label="Business pagination" class="mt-4">
+            <ul class="pagination justify-content-center">
+                {% if businesses.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ businesses.previous_page_number }}{% if selected_category %}&category={{ selected_category.slug }}{% endif %}">Previous</a>
+                </li>
+                {% endif %}
+                
+                {% for num in businesses.paginator.page_range %}
+                    {% if businesses.number == num %}
+                    <li class="page-item active">
+                        <span class="page-link">{{ num }}</span>
+                    </li>
+                    {% elif num > businesses.number|add:'-3' and num < businesses.number|add:'3' %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ num }}{% if selected_category %}&category={{ selected_category.slug }}{% endif %}">{{ num }}</a>
+                    </li>
+                    {% endif %}
+                {% endfor %}
+                
+                {% if businesses.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ businesses.next_page_number }}{% if selected_category %}&category={{ selected_category.slug }}{% endif %}">Next</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+
+        {% else %}
+        <div class="text-center py-5">
+            <i class="fas fa-building fa-4x text-muted mb-3"></i>
+            <h4>
+                {% if selected_category %}
+                    No {{ selected_category.name }} businesses found in {{ city.name }}
+                {% else %}
+                    No businesses found in {{ city.name }}
+                {% endif %}
+            </h4>
+            <p class="text-muted">Be the first to list your business here!</p>
+            <div class="d-flex gap-2 justify-content-center">
+                <a href="{% url 'register_business' %}" class="btn btn-primary">List Your Business</a>
+                {% if selected_category %}
+                <a href="/{{ country.slug }}/{{ city.slug }}/" class="btn btn-outline-secondary">
+                    View All Categories
+                </a>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Sidebar -->
+    <div class="col-lg-3">
+        <!-- Quick Stats -->
+        <div class="mb-4 p-3 bg-light rounded">
+            <h6>{{ city.name }} Overview</h6>
+            <div class="small">
+                <div class="d-flex justify-content-between py-1">
+                    <span>Country:</span>
+                    <strong>{{ country.name }}</strong>
+                </div>
+                <div class="d-flex justify-content-between py-1">
+                    <span>Total Businesses:</span>
+                    <strong>{{ total_businesses }}</strong>
+                </div>
+                <div class="d-flex justify-content-between py-1">
+                    <span>Categories:</span>
+                    <strong>{{ categories.count }}</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- Categories in this City -->
+        {% if categories %}
+        <div class="mb-4">
+            <h6>Business Categories</h6>
+            {% for category in categories %}
+            <div class="d-flex justify-content-between py-2 border-bottom">
+                <a href="?category={{ category.slug }}" class="text-decoration-none">
+                    {{ category.name }}
+                </a>
+                <span class="badge bg-light text-dark">{{ category.business_count }}</span>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- Other Cities -->
+        {% if other_cities %}
+        <div class="mb-4">
+            <h6>Other Cities in {{ country.name }}</h6>
+            {% for other_city in other_cities|slice:":8" %}
+            <div class="py-1">
+                <a href="/{{ country.slug }}/{{ other_city.slug }}/" class="text-decoration-none">
+                    {{ other_city.name }}
+                    <small class="text-muted">({{ other_city.business_count }})</small>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

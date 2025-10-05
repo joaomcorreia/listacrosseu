@@ -1,0 +1,121 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ListAcross.eu - European Business Directory</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+</head>
+<body>
+    <!-- Top nav -->
+    <header class="topbar">
+        <div class="nav-left">
+            <div class="brand">ListAcross<span style="color:var(--blue)">EU</span></div>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/businesses/">All Listings</a>
+                <a href="/cities/">Cities</a>
+                <a href="/contact/">Contact</a>
+            </nav>
+        </div>
+        <div class="nav-right">
+            <a href="/login/">Login</a>
+        </div>
+    </header>
+
+    <!-- Map area -->
+    <section class="map-wrap">
+        <iframe class="map-embed"
+            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d44136871.028996035!2d14.0!3d53.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v0000000000000"
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+        <div class="searchbar">
+            <input type="text" placeholder="Search for a business, city…" />
+            <select><option>Europe</option></select>
+            <select><option>Category</option></select>
+            <button>Search</button>
+        </div>
+    </section>
+
+    <!-- Flag Slider -->
+    <section class="flags" aria-label="EU Countries">
+        <div class="track">
+            {% load static %}
+            <div class="flag"><img src="{% static 'assets/flags/eu.png' %}" alt="EU flag"><span>EU</span></div>
+            <div class="flag"><img src="{% static 'assets/flags/de.png' %}" alt="Germany flag"><span>Germany</span></div>
+            <div class="flag"><img src="{% static 'assets/flags/fr.png' %}" alt="France flag"><span>France</span></div>
+            <div class="flag"><img src="{% static 'assets/flags/es.png' %}" alt="Spain flag"><span>Spain</span></div>
+            <div class="flag"><img src="{% static 'assets/flags/it.png' %}" alt="Italy flag"><span>Italy</span></div>
+            <div class="flag"><img src="{% static 'assets/flags/pt.png' %}" alt="Portugal flag"><span>Portugal</span></div>
+            <div class="flag"><img src="{% static 'assets/flags/nl.png' %}" alt="Netherlands flag"><span>Netherlands</span></div>
+            <div class="flag"><img src="{% static 'assets/flags/at.png' %}" alt="Austria flag"><span>Austria</span></div>
+            <div class="flag"><img src="{% static 'assets/flags/be.png' %}" alt="Belgium flag"><span>Belgium</span></div>
+            <div class="flag"><img src="{% static 'assets/flags/bg.png' %}" alt="Bulgaria flag"><span>Bulgaria</span></div>
+            <div class="flag"><img src="{% static 'assets/flags/hr.png' %}" alt="Croatia flag"><span>Croatia</span></div>
+            <div class="flag"><img src="{% static 'assets/flags/cy.png' %}" alt="Cyprus flag"><span>Cyprus</span></div>
+            <div class="flag"><img src="{% static 'assets/flags/cz.png' %}" alt="Czech Republic flag"><span>Czech Republic</span></div>
+            <div class="flag"><img src="{% static 'assets/flags/dk.png' %}" alt="Denmark flag"><span>Denmark</span></div>
+            <div class="flag"><img src="{% static 'assets/flags/ee.png' %}" alt="Estonia flag"><span>Estonia</span></div>
+            <div class="flag"><img src="{% static 'assets/flags/fi.png' %}" alt="Finland flag"><span>Finland</span></div>
+            <div class="flag"><img src="{% static 'assets/flags/gr.png' %}" alt="Greece flag"><span>Greece</span></div>
+            <div class="flag"><img src="{% static 'assets/flags/hu.png' %}" alt="Hungary flag"><span>Hungary</span></div>
+            <div class="flag"><img src="{% static 'assets/flags/ie.png' %}" alt="Ireland flag"><span>Ireland</span></div>
+            <div class="flag"><img src="{% static 'assets/flags/lv.png' %}" alt="Latvia flag"><span>Latvia</span></div>
+            <div class="flag"><img src="{% static 'assets/flags/lt.png' %}" alt="Lithuania flag"><span>Lithuania</span></div>
+            <div class="flag"><img src="{% static 'assets/flags/lu.png' %}" alt="Luxembourg flag"><span>Luxembourg</span></div>
+            <div class="flag"><img src="{% static 'assets/flags/mt.png' %}" alt="Malta flag"><span>Malta</span></div>
+            <div class="flag"><img src="{% static 'assets/flags/pl.png' %}" alt="Poland flag"><span>Poland</span></div>
+            <div class="flag"><img src="{% static 'assets/flags/ro.png' %}" alt="Romania flag"><span>Romania</span></div>
+            <div class="flag"><img src="{% static 'assets/flags/sk.png' %}" alt="Slovakia flag"><span>Slovakia</span></div>
+            <div class="flag"><img src="{% static 'assets/flags/si.png' %}" alt="Slovenia flag"><span>Slovenia</span></div>
+            <div class="flag"><img src="{% static 'assets/flags/se.png' %}" alt="Sweden flag"><span>Sweden</span></div>
+        </div>
+    </section>
+
+    <div class="container">
+        <h2 class="section-title">Popular Categories</h2>
+        <section class="grid">
+            <article class="card">
+                <h3>Technology Jobs</h3>
+                <ul>
+                    <li><span>Web Developers</span><strong>({{ stats.total_businesses }})</strong></li>
+                    <li><span>IT Consultants</span><strong>(211)</strong></li>
+                    <li><span>Software</span><strong>(338)</strong></li>
+                </ul>
+                <a href="/businesses/" class="btn">See All</a>
+            </article>
+
+            <article class="card">
+                <h3>Featured Cities</h3>
+                <ul>
+                    <li><span>Porto</span><strong>(46)</strong></li>
+                    <li><span>Berlin</span><strong>(82)</strong></li>
+                    <li><span>Paris</span><strong>(134)</strong></li>
+                </ul>
+                <a href="/cities/" class="btn">See All</a>
+            </article>
+
+            <article class="card">
+                <h3>Browse Businesses</h3>
+                <ul>
+                    <li><span>Total Businesses</span><strong>({{ stats.total_businesses }})</strong></li>
+                    <li><span>Cities</span><strong>({{ stats.total_cities }})</strong></li>
+                    <li><span>Categories</span><strong>({{ stats.total_categories }})</strong></li>
+                </ul>
+                <a href="/businesses/" class="btn">Browse All</a>
+            </article>
+        </section>
+    </div>
+
+    <footer>
+        © 2025 ListAcross Europe. All rights reserved. • 
+        <a href="/about/">About Us</a> • 
+        <a href="/privacy/">Privacy</a> • 
+        <a href="/terms/">Terms</a> • 
+        <a href="/contact/">Contact</a>
+    </footer>
+
+    <script src="{% static 'js/app.js' %}"></script>
+</body>
+</html>

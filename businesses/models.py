@@ -51,6 +51,7 @@ class Country(models.Model):
     
     name = models.CharField(_('name'), max_length=100, unique=True)
     code = models.CharField(_('code'), max_length=2, unique=True)  # ISO country code
+    slug = models.SlugField(_('slug'), unique=True, blank=True)  # SEO-friendly URL slug
     flag_image = models.ImageField(upload_to='flags/', blank=True)
     is_eu_member = models.BooleanField(_('is EU member'), default=True)
     is_active = models.BooleanField(_('is active'), default=True)
@@ -62,6 +63,12 @@ class Country(models.Model):
     
     def __str__(self):
         return self.name
+    
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            from django.utils.text import slugify
+            self.slug = slugify(self.name.lower())
+        super().save(*args, **kwargs)
 
 
 class City(models.Model):
@@ -79,7 +86,7 @@ class City(models.Model):
         verbose_name = _('City')
         verbose_name_plural = _('Cities')
         ordering = ['country__name', 'name']
-        unique_together = ['name', 'country']
+        unique_together = [['name', 'country'], ['slug', 'country']]
     
     def __str__(self):
         return f"{self.name}, {self.country.name}"
@@ -87,12 +94,12 @@ class City(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             from django.utils.text import slugify
-            base_slug = slugify(f"{self.name}-{self.country.code}")
+            base_slug = slugify(self.name.lower())
             self.slug = base_slug
             
-            # Ensure uniqueness
+            # Ensure uniqueness within the same country
             counter = 1
-            while City.objects.filter(slug=self.slug).exists():
+            while City.objects.filter(slug=self.slug, country=self.country).exclude(pk=self.pk).exists():
                 self.slug = f"{base_slug}-{counter}"
                 counter += 1
         

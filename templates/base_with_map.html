@@ -1,0 +1,329 @@
+{% load static %}
+{% load map_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}ListAcross Europe - European Business Directory{% endblock %}</title>
+  <meta name="description" content="{% block meta_description %}Find businesses and services across Europe. Comprehensive directory of European companies, restaurants, services and more.{% endblock %}">
+  
+  <!-- CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  
+  <style>
+    /* Additional header and search styles */
+    .main-header .header-actions {
+      display: flex !important;
+      align-items: center !important;
+      gap: 20px !important;
+    }
+    
+    .main-header .search-box {
+      display: flex !important;
+      border: 2px solid #e9ecef !important;
+      border-radius: 25px !important;
+      overflow: hidden !important;
+    }
+    
+    .main-header .search-input {
+      border: none !important;
+      padding: 10px 15px !important;
+      width: 300px !important;
+      outline: none !important;
+    }
+    
+    .main-header .search-btn {
+      background: var(--blue) !important;
+      color: white !important;
+      border: none !important;
+      padding: 10px 15px !important;
+      cursor: pointer !important;
+    }
+    
+    .main-header .user-actions {
+      display: flex !important;
+      gap: 10px !important;
+    }
+    
+    .main-header .btn {
+      padding: 8px 16px !important;
+      border-radius: 20px !important;
+      text-decoration: none !important;
+      font-size: 0.9rem !important;
+      transition: all 0.3s ease !important;
+      display: inline-block !important;
+    }
+    
+    .main-header .btn-primary {
+      background: var(--blue) !important;
+      color: white !important;
+      border: 2px solid var(--blue) !important;
+    }
+    
+    .main-header .btn-outline {
+      background: transparent !important;
+      color: var(--blue) !important;
+      border: 2px solid var(--blue) !important;
+    }
+    
+    .main-header .btn:hover {
+      transform: translateY(-2px) !important;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+      text-decoration: none !important;
+    }
+  </style>
+  
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+  <header class="main-header">
+    <div class="header-top">
+      <div class="container-fluid">
+        <div class="header-content">
+          <div class="brand">
+            <a href="/" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 15px;">
+              <img src="{% static 'assets/logo.png' %}" alt="ListAcross EU Logo" class="brand-logo">
+              <div class="brand-text">
+                <h1>ListAcross<span style="color:var(--blue)">EU</span></h1>
+                <small>European Business & Travel Directory</small>
+              </div>
+            </a>
+          </div>
+          <div class="header-actions">
+            <form class="search-form">
+              <div class="search-box">
+                <input type="text" placeholder="Search cities, businesses..." class="search-input">
+                <button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
+              </div>
+            </form>
+            <div class="user-actions">
+              <a href="/add-business/" class="btn btn-primary">Add Business</a>
+              <a href="/login/" class="btn btn-outline">Sign In</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <nav class="main-nav">
+      <div class="container-fluid">
+        <div class="nav-mobile-toggle">
+          <button class="mobile-menu-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="/" class="nav-link">
+              <i class="fas fa-home"></i> Home
+            </a>
+          </li>
+          
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle">
+              <i class="fas fa-flag"></i> Countries
+            </a>
+            <div class="dropdown-menu">
+              <a href="/countries/" class="dropdown-item">All Countries</a>
+              <a href="/countries/popular/" class="dropdown-item">Popular Destinations</a>
+              <div class="dropdown-divider"></div>
+              <a href="/france/" class="dropdown-item">🇫🇷 France</a>
+              <a href="/germany/" class="dropdown-item">🇩🇪 Germany</a>
+              <a href="/spain/" class="dropdown-item">🇪🇸 Spain</a>
+              <a href="/italy/" class="dropdown-item">🇮🇹 Italy</a>
+              <a href="/portugal/" class="dropdown-item">🇵🇹 Portugal</a>
+              <a href="/netherlands/" class="dropdown-item">🇳🇱 Netherlands</a>
+              <a href="/belgium/" class="dropdown-item">🇧🇪 Belgium</a>
+              <a href="/austria/" class="dropdown-item">🇦🇹 Austria</a>
+            </div>
+          </li>
+          
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle">
+              <i class="fas fa-city"></i> Cities
+            </a>
+            <div class="dropdown-menu">
+              <a href="/cities/" class="dropdown-item">All Cities</a>
+              <a href="/cities/popular/" class="dropdown-item">Popular Cities</a>
+              <div class="dropdown-divider"></div>
+              <a href="/portugal/lisbon/" class="dropdown-item">Lisbon</a>
+              <a href="/portugal/porto/" class="dropdown-item">Porto</a>
+              <a href="/france/paris/" class="dropdown-item">Paris</a>
+              <a href="/germany/berlin/" class="dropdown-item">Berlin</a>
+              <a href="/spain/madrid/" class="dropdown-item">Madrid</a>
+              <a href="/italy/rome/" class="dropdown-item">Rome</a>
+            </div>
+          </li>
+          
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle">
+              <i class="fas fa-th-large"></i> Business Categories
+            </a>
+            <div class="dropdown-menu mega-menu">
+              <div class="row">
+                <div class="col-md-4">
+                  <h6>Food & Dining</h6>
+                  <a href="/category/restaurant/" class="dropdown-item">Restaurants</a>
+                  <a href="/category/cafe/" class="dropdown-item">Cafés</a>
+                  <a href="/category/bars/" class="dropdown-item">Bars & Pubs</a>
+                  <a href="/category/fast-food/" class="dropdown-item">Fast Food</a>
+                </div>
+                <div class="col-md-4">
+                  <h6>Professional Services</h6>
+                  <a href="/category/technology/" class="dropdown-item">Technology</a>
+                  <a href="/category/finance/" class="dropdown-item">Finance</a>
+                  <a href="/category/health/" class="dropdown-item">Healthcare</a>
+                  <a href="/category/education/" class="dropdown-item">Education</a>
+                </div>
+                <div class="col-md-4">
+                  <h6>Travel & Tourism</h6>
+                  <a href="/category/tourism/" class="dropdown-item">Tourism</a>
+                  <a href="/category/hotels/" class="dropdown-item">Hotels</a>
+                  <a href="/category/transportation/" class="dropdown-item">Transportation</a>
+                  <a href="/category/retail/" class="dropdown-item">Shopping</a>
+                </div>
+              </div>
+            </div>
+          </li>
+          
+          <li class="nav-item">
+            <a href="/featured/" class="nav-link">
+              <i class="fas fa-star"></i> Featured
+            </a>
+          </li>
+          
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle">
+              <i class="fas fa-map-marked-alt"></i> Travel
+            </a>
+            <div class="dropdown-menu">
+              <a href="/travel/guides/" class="dropdown-item">Travel Guides</a>
+              <a href="/travel/tips/" class="dropdown-item">Travel Tips</a>
+              <a href="/travel/itineraries/" class="dropdown-item">Suggested Itineraries</a>
+              <a href="/travel/events/" class="dropdown-item">Local Events</a>
+            </div>
+          </li>
+          
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle">
+              <i class="fas fa-briefcase"></i> Business
+            </a>
+            <div class="dropdown-menu">
+              <a href="/business/add/" class="dropdown-item">Add Your Business</a>
+              <a href="/business/premium/" class="dropdown-item">Premium Listings</a>
+              <a href="/business/analytics/" class="dropdown-item">Business Analytics</a>
+              <a href="/business/support/" class="dropdown-item">Business Support</a>
+            </div>
+          </li>
+          
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle">
+              <i class="fas fa-ellipsis-h"></i> More
+            </a>
+            <div class="dropdown-menu">
+              <a href="/about/" class="dropdown-item">About Us</a>
+              <a href="/contact/" class="dropdown-item">Contact</a>
+              <a href="/blog/" class="dropdown-item">Blog</a>
+              <a href="/help/" class="dropdown-item">Help Center</a>
+              <a href="/api/" class="dropdown-item">API</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Flag Navigation Slider -->
+  {% include 'includes/flag_slider.html' %}
+
+  <!-- Main Content -->
+  <main class="main-content">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Footer -->
+  <footer class="text-center py-3 mt-5" style="background-color: #f8f9fa; border-top: 1px solid #dee2e6;">
+    © 2025 ListAcross Europe. All rights reserved. • 
+    <a href="/about/">About Us</a> • 
+    <a href="/privacy/">Privacy</a> • 
+    <a href="/terms/">Terms</a> • 
+    <a href="/contact/">Contact</a> •
+    <a href="/data-sources/">Data Sources</a>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{% static 'js/app.js' %}"></script>
+  <script src="{% static 'js/map-manager.js' %}"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Mobile menu toggle
+      const mobileToggle = document.querySelector('.mobile-menu-btn');
+      const navMenu = document.querySelector('.nav-menu');
+      
+      if (mobileToggle && navMenu) {
+        mobileToggle.addEventListener('click', function() {
+          navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+        });
+      }
+      
+      // Search functionality
+      const searchForm = document.querySelector('.search-form');
+      if (searchForm) {
+        searchForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          const query = document.querySelector('.search-input').value.trim();
+          if (query) {
+            // Implement search functionality here
+            console.log('Searching for:', query);
+            // You can redirect to search results page
+            // window.location.href = `/search/?q=${encodeURIComponent(query)}`;
+          }
+        });
+      }
+      
+      // Close mobile menu when clicking outside
+      document.addEventListener('click', function(e) {
+        if (!e.target.closest('.main-nav') && navMenu) {
+          if (window.innerWidth <= 768) {
+            navMenu.style.display = 'none';
+          }
+        }
+      });
+      
+      // Handle window resize
+      window.addEventListener('resize', function() {
+        if (window.innerWidth > 768 && navMenu) {
+          navMenu.style.display = '';
+        }
+      });
+      
+      // Force dropdown functionality
+      const dropdownItems = document.querySelectorAll('.nav-item.dropdown');
+      dropdownItems.forEach(item => {
+        const dropdownMenu = item.querySelector('.dropdown-menu');
+        if (dropdownMenu) {
+          item.addEventListener('mouseenter', function() {
+            dropdownMenu.style.display = 'block';
+          });
+          
+          item.addEventListener('mouseleave', function() {
+            dropdownMenu.style.display = 'none';
+          });
+        }
+      });
+      
+      // Add active class to navigation for better styling
+      document.body.classList.add('enhanced-nav-loaded');
+    });
+  </script>
+  
+  {% block extra_js %}{% endblock %}
+</body>
+</html>
