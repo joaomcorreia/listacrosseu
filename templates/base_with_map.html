@@ -17,8 +17,8 @@
   <link rel="canonical" href="{% block canonical %}{{ request.build_absolute_uri|slice:'-1' }}{% endblock %}">
   
   <!-- Open Graph Meta Tags -->
-  <meta property="og:title" content="{% block og_title %}{% block title %}ListAcross Europe - European Business Directory{% endblock %}{% endblock %}">
-  <meta property="og:description" content="{% block og_description %}{% block meta_description %}Find businesses and services across Europe. Comprehensive directory of European companies, restaurants, services and more.{% endblock %}{% endblock %}">
+  <meta property="og:title" content="{% block og_title %}ListAcross Europe - European Business Directory{% endblock %}">
+  <meta property="og:description" content="{% block og_description %}Find businesses and services across Europe. Comprehensive directory of European companies, restaurants, services and more.{% endblock %}">
   <meta property="og:type" content="{% block og_type %}website{% endblock %}">
   <meta property="og:url" content="{% block og_url %}{{ request.build_absolute_uri }}{% endblock %}">
   <meta property="og:image" content="{% block og_image %}{% static 'images/og-default.jpg' %}{% endblock %}">
@@ -27,8 +27,8 @@
   
   <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{% block twitter_title %}{% block title %}ListAcross Europe - European Business Directory{% endblock %}{% endblock %}">
-  <meta name="twitter:description" content="{% block twitter_description %}{% block meta_description %}Find businesses and services across Europe. Comprehensive directory of European companies, restaurants, services and more.{% endblock %}{% endblock %}">
+  <meta name="twitter:title" content="{% block twitter_title %}ListAcross Europe - European Business Directory{% endblock %}">
+  <meta name="twitter:description" content="{% block twitter_description %}Find businesses and services across Europe. Comprehensive directory of European companies, restaurants, services and more.{% endblock %}">
   <meta name="twitter:image" content="{% block twitter_image %}{% static 'images/twitter-card.jpg' %}{% endblock %}">
   
   <!-- Favicon -->
