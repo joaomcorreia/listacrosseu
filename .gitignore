@@ -88,3 +88,9 @@ seo_implementation_plan.md
 
 # Collected static files
 /static_collected/
+
+# CRITICAL SECURITY: API Keys and Secrets
+google_places_config.py
+*_api_key*
+*_secret*
+*.key

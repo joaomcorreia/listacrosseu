@@ -1,14 +1,15 @@
 # Google Places API Configuration
-# 
+import os
+
 # To get started:
 # 1. Go to Google Cloud Console: https://console.cloud.google.com/
 # 2. Create a new project or select existing
 # 3. Enable the Places API (New)
 # 4. Create an API key with Places API permissions
-# 5. Add your API key below
+# 5. Add your API key to .env file as GOOGLE_PLACES_API_KEY=your_key_here
 
-# Replace this with your actual API key from Google Cloud Console
-GOOGLE_PLACES_API_KEY = "AIzaSyDS6bzOsOkTKzmLWJgENDdqh2SDs8WDHsA"
+# SECURITY: Never commit real API keys! Use environment variables instead.
+GOOGLE_PLACES_API_KEY = os.getenv('GOOGLE_PLACES_API_KEY', 'your-api-key-here')
 
 # Example (DON'T use this fake key):
 # GOOGLE_PLACES_API_KEY = "AIzaSyC4YT8s-lxmKp9X2b1Fg7Hj8Kl3Mn5Qr9S"
