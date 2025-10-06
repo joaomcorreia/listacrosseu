@@ -5,16 +5,12 @@ Designed to compete with Europages.com and dominate local search
 """
 
 from django.urls import path
-from . import views_country_city, views_listings, views_seo, views_smart_routing
+from . import views_country_city, views_listings, views_seo, views_smart_routing, views_dynamic_routing
 
 # SEO-Optimized URL patterns
 seo_optimized_urlpatterns = [
-    # Global category pages (high authority)
-    path('restaurants/', views_seo.global_category_page, {'category': 'restaurants'}, name='global_restaurants'),
-    path('technology/', views_seo.global_category_page, {'category': 'technology'}, name='global_technology'),
-    path('retail/', views_seo.global_category_page, {'category': 'retail'}, name='global_retail'),
-    path('services/', views_seo.global_category_page, {'category': 'services'}, name='global_services'),
-    path('manufacturing/', views_seo.global_category_page, {'category': 'manufacturing'}, name='global_manufacturing'),
+    # Dynamic single-slug router (handles all categories and countries)
+    # This replaces the hardcoded category patterns above
     
     # SEO landing pages (money keywords)
     path('top-restaurants-europe/', views_seo.top_restaurants_europe, name='top_restaurants_europe'),
@@ -41,6 +37,6 @@ seo_optimized_urlpatterns = [
     # Smart router for two-slug patterns (handles both country/city and category/country)
     path('<slug:first_slug>/<slug:second_slug>/', views_smart_routing.smart_two_slug_router, name='smart_two_slug'),
     
-    # Country pages: /portugal/
-    path('<slug:country_slug>/', views_country_city.country_businesses, name='country_detail'),
+    # Dynamic single-slug router (categories vs countries)
+    path('<slug:slug>/', views_dynamic_routing.smart_single_slug_router, name='dynamic_single_slug'),
 ]
