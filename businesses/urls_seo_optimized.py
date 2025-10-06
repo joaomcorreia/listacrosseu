@@ -5,7 +5,7 @@ Designed to compete with Europages.com and dominate local search
 """
 
 from django.urls import path
-from . import views_country_city, views_listings, views_seo
+from . import views_country_city, views_listings, views_seo, views_smart_routing
 
 # SEO-Optimized URL patterns
 seo_optimized_urlpatterns = [
@@ -35,17 +35,11 @@ seo_optimized_urlpatterns = [
     path('<slug:category_slug>/<slug:country_slug>/<slug:city_slug>/page/<int:page>/', 
          views_seo.category_country_city_businesses, name='category_country_city_paginated'),
     
-    # Country category combinations (/restaurants/portugal/)
-    path('<slug:category_slug>/<slug:country_slug>/', views_seo.category_country_businesses, name='category_country'),
-    
-    # Enhanced country pages with categories (/portugal/restaurants/)
-    path('<slug:country_slug>/<slug:category_slug>/', views_seo.country_category_businesses, name='country_category'),
-    
     # Countries list (keep existing)
     path('countries/', views_country_city.country_list, name='country_list'),
     
-    # City pages: /portugal/porto/ (IMPORTANT: This handles ?category=xxx queries)
-    path('<slug:country_slug>/<slug:city_slug>/', views_country_city.city_businesses, name='city_detail'),
+    # Smart router for two-slug patterns (handles both country/city and category/country)
+    path('<slug:first_slug>/<slug:second_slug>/', views_smart_routing.smart_two_slug_router, name='smart_two_slug'),
     
     # Country pages: /portugal/
     path('<slug:country_slug>/', views_country_city.country_businesses, name='country_detail'),
