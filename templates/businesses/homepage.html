@@ -1,8 +1,27 @@
 {% extends 'base_with_map.html' %}
 {% load static %}
 
+{% load map_tags %}
+
+{% block title %}{% if query %}Search Results{% else %}ListAcross.eu - European Business Directory{% endif %}{% endblock %}
+
+{% block description %}Find businesses across Europe. ListAcross.eu connects customers with verified businesses in all 27 EU countries. Search restaurants, hotels, shops, and services.{% endblock %}
+
+{% block map_section %}
+    {% dynamic_map 'europe' '' %}
+{% endblock %}
+
+{% block flag_section %}
+    {% flag_slider %}
+{% endblock %}
+
 {% block extra_css %}
+<!-- Bootstrap 5 for homepage components -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
 <style>
+    /* Category card animations */
     .category-card:hover {
         transform: translateY(-5px);
         box-shadow: 0 10px 30px rgba(0,0,0,0.15);
@@ -59,27 +78,8 @@
             radial-gradient(circle at 80% 20%, rgba(40,167,69,0.1) 0%, transparent 50%),
             radial-gradient(circle at 40% 40%, rgba(23,162,184,0.1) 0%, transparent 50%);
         pointer-events: none;
-    }}
-{% load map_tags %}
-
-{% block title %}{% if query %}Search Results{% else %}ListAcross.eu - European Business Directory{% endif %}{% endblock %}
-
-{% block description %}Find businesses across Europe. ListAcross.eu connects customers with verified businesses in all 27 EU countries. Search restaurants, hotels, shops, and services.{% endblock %}
-
-{% block map_section %}
-    {% dynamic_map 'europe' '' %}
-{% endblock %}
-
-{% block flag_section %}
-    {% flag_slider %}
-{% endblock %}
-
-{% block extra_css %}
-<!-- Bootstrap 5 for homepage components -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-
-<style>
+    }
+    
     /* Enhanced homepage styles */
     .hero-section {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
