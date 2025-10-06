@@ -99,6 +99,17 @@ def city_businesses(request, country_slug, city_slug):
         verified=True
     ).select_related('category').order_by('name')
     
+    # Apply category filter if specified in query parameters
+    category_slug = request.GET.get('category')
+    filtered_category = None
+    if category_slug:
+        try:
+            filtered_category = Category.objects.get(slug=category_slug)
+            businesses = businesses.filter(category=filtered_category)
+        except Category.DoesNotExist:
+            # If category doesn't exist, raise 404
+            raise get_object_or_404(Category, slug=category_slug)
+    
     # Get all main categories with business counts for this city
     main_category_names = [
         'Restaurant', 'Technology', 'Tourism', 'Retail', 'Health', 'Education',
@@ -163,26 +174,25 @@ def city_businesses(request, country_slug, city_slug):
     page_number = request.GET.get('page')
     businesses_page = paginator.get_page(page_number)
     
-    # Apply category filter if specified
-    category_slug = request.GET.get('category')
-    if category_slug:
-        try:
-            category = Category.objects.get(slug=category_slug)
-            businesses = businesses.filter(category=category)
-            businesses_page = Paginator(businesses, 24).get_page(page_number)
-        except Category.DoesNotExist:
-            pass
+    # Update page title and description based on category filter
+    if filtered_category:
+        page_title = f'{filtered_category.name} in {city.name}, {country.name} - Business Directory'
+        meta_description = f'Find {filtered_category.name.lower()} businesses in {city.name}, {country.name}. Browse {businesses.count()} verified {filtered_category.name.lower()} companies.'
+    else:
+        page_title = f'{city.name}, {country.name} Business Directory'
+        meta_description = f'Discover businesses in {city.name}, {country.name}. Browse {businesses.count()} verified local companies.'
     
     context = {
         'country': country,
         'city': city,
         'businesses': businesses_page,
         'categories': categories_with_counts,
+        'filtered_category': filtered_category,
         'total_businesses': businesses.count(),
         'location_type': 'city',
         'location_code': city.name.lower(),
-        'page_title': f'{city.name}, {country.name} Business Directory',
-        'meta_description': f'Discover businesses in {city.name}, {country.name}. Browse {businesses.count()} verified local companies.',
+        'page_title': page_title,
+        'meta_description': meta_description,
     }
     
     return render(request, 'businesses/city_detail.html', context)
