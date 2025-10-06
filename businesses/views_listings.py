@@ -138,63 +138,12 @@ def businesses_by_city(request, city_slug):
 
 
 def businesses_by_category(request, category_slug):
-    """List all businesses in a specific category"""
-    category = get_object_or_404(Category, slug=category_slug)
+    """Redirect to SEO-optimized global category view"""
+    from django.shortcuts import redirect
+    from django.urls import reverse
     
-    businesses = Business.objects.filter(category=category).select_related('city', 'city__country')
-    
-    # Filter by country if specified
-    country_code = request.GET.get('country')
-    if country_code:
-        country = get_object_or_404(Country, code=country_code)
-        businesses = businesses.filter(city__country=country)
-    
-    # Filter by city if specified
-    city_id = request.GET.get('city')
-    if city_id:
-        city = get_object_or_404(City, id=city_id)
-        businesses = businesses.filter(city=city)
-    
-    # Search within category
-    search = request.GET.get('search')
-    if search:
-        businesses = businesses.filter(
-            Q(name__icontains=search) | 
-            Q(description__icontains=search)
-        )
-    
-    # Pagination
-    paginator = Paginator(businesses, 12)
-    page = request.GET.get('page')
-    businesses_page = paginator.get_page(page)
-    
-    # Get countries and cities with businesses in this category
-    countries = Country.objects.annotate(
-        business_count=Count('cities__businesses')
-    ).filter(
-        cities__businesses__category=category,
-        business_count__gt=0
-    ).order_by('name')
-    
-    cities = City.objects.annotate(
-        business_count=Count('businesses')
-    ).filter(
-        businesses__category=category,
-        business_count__gt=0
-    ).order_by('name')
-    
-    context = {
-        'category': category,
-        'businesses': businesses_page,
-        'countries': countries,
-        'cities': cities,
-        'current_country': country_code,
-        'current_city': city_id,
-        'current_search': search,
-        'total_businesses': businesses.count(),
-    }
-    
-    return render(request, 'businesses/businesses_by_category.html', context)
+    # Redirect to the SEO-optimized global category page
+    return redirect(f'/{category_slug}/')
 
 
 def city_list(request):
