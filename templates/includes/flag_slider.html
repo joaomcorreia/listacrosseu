@@ -39,83 +39,222 @@
 
 <!-- Flag slider JavaScript -->
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+// Initialize immediately when script loads
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeFlagSlider);
+} else {
   initializeFlagSlider();
-});
+}
 
 function initializeFlagSlider() {
   const track = document.querySelector('#flag-track');
   if (!track || window.flagSliderInitialized) return;
   
-  let speed = 0.8; // px per frame
+  let speed = 1.2; // px per frame - slightly faster
   let pos = 0;
   let isPaused = false;
   let animationId;
+  let originalWidth = 0;
+  
+  // Manual scroll variables
+  let isManualScrolling = false;
+  let isDragging = false;
+  let startX = 0;
+  let scrollLeft = 0;
+  let lastMouseX = 0;
+  let mouseVelocity = 0;
 
-  // Clone items for infinite scroll
+  // Clone items for seamless infinite scroll
   function setupClones() {
     const items = Array.from(track.children);
+    if (items.length === 0) {
+      // Force a re-check after DOM is ready
+      setTimeout(setupClones, 50);
+      return;
+    }
+    
+    // Force layout calculation
+    track.style.display = 'flex';
+    
+    // Calculate original width including gaps - use computed styles
+    originalWidth = 0;
     items.forEach(item => {
-      const clone = item.cloneNode(true);
-      track.appendChild(clone);
+      const rect = item.getBoundingClientRect();
+      originalWidth += rect.width + 18; // 18px is the gap
     });
+    
+    // If width is still 0, use fallback
+    if (originalWidth === 0) {
+      originalWidth = items.length * (84 + 18); // fallback: min-width + gap
+    }
+    
+    // Calculate how many sets we need to cover viewport + extra for seamless transition
+    const viewportWidth = window.innerWidth;
+    const setsNeeded = Math.ceil((viewportWidth * 2) / originalWidth) + 3;
+    
+    // Add multiple sets of clones
+    for (let i = 0; i < setsNeeded; i++) {
+      items.forEach(item => {
+        const clone = item.cloneNode(true);
+        track.appendChild(clone);
+      });
+    }
+    
+    // Start from the right edge of the viewport
+    pos = viewportWidth;
+    track.style.transform = `translateX(${pos}px)`;
+    
+    // Make sure track is visible
+    track.style.opacity = '1';
   }
 
   // Animation loop
   function loop() {
     if (!isPaused) {
       pos -= speed;
-      if (Math.abs(pos) >= track.scrollWidth / 2) {
-        pos = 0;
+      
+      // Reset position seamlessly - when one set has completely passed, reset to show next set
+      if (pos <= -originalWidth) {
+        pos += originalWidth; // Move forward by exactly one set
       }
+      
       track.style.transform = `translateX(${pos}px)`;
     }
     animationId = requestAnimationFrame(loop);
   }
 
-  // Setup hover pause
+  // Setup manual scrolling and interactions
   const flagsSection = document.querySelector('.flags');
   if (flagsSection) {
-    flagsSection.addEventListener('mouseenter', () => {
+    // Mouse wheel scrolling
+    flagsSection.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
       isPaused = true;
+      isManualScrolling = true;
+      
+      // Apply wheel delta to position (reverse direction for natural scrolling)
+      pos -= e.deltaY * 0.8;
+      
+      // Keep within bounds with smooth wrapping
+      if (pos <= -originalWidth) {
+        pos += originalWidth;
+      } else if (pos > window.innerWidth + originalWidth) {
+        pos -= originalWidth;
+      }
+      
+      track.style.transform = `translateX(${pos}px)`;
+      
+      // Resume auto-scroll after a delay
+      clearTimeout(flagsSection.scrollTimeout);
+      flagsSection.scrollTimeout = setTimeout(() => {
+        isPaused = false;
+        isManualScrolling = false;
+      }, 3000);
+    }, { passive: false });
+
+    // Mouse drag scrolling
+    flagsSection.addEventListener('mousedown', (e) => {
+      // Allow drag anywhere in the flags area
+      isDragging = true;
+      isPaused = true;
+      isManualScrolling = true;
+      startX = e.clientX;
+      lastMouseX = e.clientX;
+      scrollLeft = pos;
+      flagsSection.style.cursor = 'grabbing';
+      document.body.style.userSelect = 'none';
+      e.preventDefault();
     });
+
+    document.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      e.preventDefault();
+      
+      const deltaX = e.clientX - startX;
+      mouseVelocity = e.clientX - lastMouseX;
+      lastMouseX = e.clientX;
+      
+      pos = scrollLeft + deltaX;
+      
+      // Keep within bounds with smooth wrapping
+      if (pos <= -originalWidth) {
+        pos += originalWidth;
+        scrollLeft += originalWidth;
+        startX += originalWidth;
+      } else if (pos > window.innerWidth + originalWidth) {
+        pos -= originalWidth;
+        scrollLeft -= originalWidth;
+        startX -= originalWidth;
+      }
+      
+      track.style.transform = `translateX(${pos}px)`;
+    });
+
+    document.addEventListener('mouseup', () => {
+      if (isDragging) {
+        isDragging = false;
+        flagsSection.style.cursor = 'grab';
+        document.body.style.userSelect = '';
+        
+        // Apply momentum scrolling
+        if (Math.abs(mouseVelocity) > 2) {
+          const momentum = mouseVelocity * 8;
+          pos += momentum;
+          
+          if (pos <= -originalWidth) {
+            pos += originalWidth;
+          } else if (pos > window.innerWidth + originalWidth) {
+            pos -= originalWidth;
+          }
+          
+          track.style.transform = `translateX(${pos}px)`;
+        }
+        
+        // Resume auto-scroll after delay
+        clearTimeout(flagsSection.resumeTimeout);
+        flagsSection.resumeTimeout = setTimeout(() => {
+          isPaused = false;
+          isManualScrolling = false;
+        }, 2000);
+      }
+    });
+
+    // Hover pause (only if not manually scrolling)
+    flagsSection.addEventListener('mouseenter', () => {
+      if (!isManualScrolling) {
+        isPaused = true;
+      }
+    });
+    
     flagsSection.addEventListener('mouseleave', () => {
-      isPaused = false;
+      if (!isManualScrolling && !isDragging) {
+        isPaused = false;
+      }
     });
   }
 
   // Simple click handler for flag navigation
   track.addEventListener('click', function(e) {
-    console.log('Click detected on track');
-    
     const flagItem = e.target.closest('.flag-item');
-    if (!flagItem) {
-      console.log('No flag item found, target was:', e.target);
-      return;
-    }
-    
-    console.log('Flag item found:', flagItem);
+    if (!flagItem) return;
     
     const countryCode = flagItem.dataset.country;
     const href = flagItem.getAttribute('href');
     
-    console.log('Flag clicked:', countryCode, 'href:', href);
-    
-    // Pause animation briefly
+    // Pause animation briefly for visual feedback
     isPaused = true;
-    setTimeout(() => {isPaused = false;}, 1000);
+    setTimeout(() => {isPaused = false;}, 800);
     
     // Add visual feedback
     flagItem.style.opacity = '0.7';
     setTimeout(() => {flagItem.style.opacity = '1';}, 200);
-    
-    console.log('About to navigate to:', href);
-    // Let browser handle the link naturally - no preventDefault
   });
 
-  // Initialize
+  // Initialize immediately
   setupClones();
   requestAnimationFrame(loop);
+  
   window.flagSliderInitialized = true;
 }
 </script>

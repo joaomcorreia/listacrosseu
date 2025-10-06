@@ -90,6 +90,7 @@ nav.main-nav {
   padding: 0 !important;
   flex-wrap: nowrap !important;
   width: 100% !important;
+  justify-content: center !important;
 }
 
 .main-nav .nav-item {
@@ -348,17 +349,27 @@ a {
   font-style: italic;
 }
 
-/* Enhanced Flags slider */
+/* Enhanced Flags slider - Full viewport width */
 .flags {
   margin: 22px 0;
   overflow: hidden;
-  cursor: pointer;
+  cursor: grab;
   position: relative;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
   background: linear-gradient(90deg, 
     rgba(255,255,255,0.8) 0%, 
     transparent 10%, 
     transparent 90%, 
     rgba(255,255,255,0.8) 100%);
+  user-select: none;
+}
+
+.flags:active {
+  cursor: grabbing;
 }
 
 .flags:hover .flag,
@@ -372,7 +383,11 @@ a {
   gap: 18px;
   align-items: center;
   will-change: transform;
-  transition: transform 0.1s ease;
+  transition: none;
+  white-space: nowrap;
+  padding: 0 20px;
+  min-width: 100%;
+  opacity: 1;
 }
 
 .flag, .flag-item {

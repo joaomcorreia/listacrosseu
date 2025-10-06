@@ -8,81 +8,82 @@ def data_sources(request):
     
     sources = [
         {
-            'name': 'OpenStreetMap',
+            'name': 'Platform Development Data',
+            'url': None,
+            'license': 'Proprietary',
+            'license_url': None,
+            'usage': 'Sample business listings for platform demonstration and testing',
+            'attribution': 'ListAcross.eu Development Team',
+            'commercial_use': True,
+            'description': 'This is a development platform with sample business data created for demonstration purposes. The business listings are generated examples to showcase the platform\'s functionality and features.'
+        },
+        {
+            'name': 'OpenStreetMap (Future Integration)',
             'url': 'https://openstreetmap.org',
             'license': 'Open Database License (ODbL)',
             'license_url': 'https://www.openstreetmap.org/copyright',
-            'usage': 'Business locations, geographic coordinates, and point-of-interest data',
+            'usage': 'Geographic data and business locations (planned integration)',
             'attribution': '© OpenStreetMap contributors',
             'commercial_use': True,
-            'description': 'OpenStreetMap is a collaborative project to create a free editable map of the world. We use OSM data for business locations and geographic information with proper attribution.'
+            'description': 'OpenStreetMap provides free geographic data. Our platform is designed to integrate with OSM data for accurate business locations and mapping functionality.'
         },
         {
-            'name': 'Eurostat',
+            'name': 'EU Geographic References',
             'url': 'https://ec.europa.eu/eurostat',
-            'license': 'EU Copyright Notice',
-            'license_url': 'https://ec.europa.eu/eurostat/web/main/about-us/policies/copyright',
-            'usage': 'City population statistics and demographic data',
-            'attribution': '© European Union, Eurostat',
-            'commercial_use': True,
-            'description': 'Eurostat provides official statistics for the European Union. We use their publicly available data for city demographics and population figures.'
-        },
-        {
-            'name': 'GeoNames',
-            'url': 'https://www.geonames.org',
-            'license': 'Creative Commons Attribution 4.0',
-            'license_url': 'https://creativecommons.org/licenses/by/4.0/',
-            'usage': 'Geographic coordinates and place names',
-            'attribution': '© GeoNames Project',
-            'commercial_use': True,
-            'description': 'GeoNames is a geographical database that covers all countries and contains over eleven million place names. We use this data for accurate geographic positioning.'
-        },
-        {
-            'name': 'EU Publications Office',
-            'url': 'https://publications.europa.eu',
-            'license': 'EU Copyright Policy',
-            'license_url': 'https://publications.europa.eu/en/web/about-us/legal-notices',
-            'usage': 'Official EU business categories and regulatory information',
+            'license': 'EU Open Data Policy',
+            'license_url': 'https://ec.europa.eu/info/legal-notice_en',
+            'usage': 'EU country codes, city names, and geographic boundaries',
             'attribution': '© European Union',
             'commercial_use': True,
-            'description': 'The EU Publications Office provides access to EU law, publications and other public documents. We reference their business classification systems.'
+            'description': 'Official EU geographic data including country codes (ISO 3166-1) and major city names for accurate European coverage.'
         },
         {
-            'name': 'Business Owner Submissions',
+            'name': 'Business Categories Framework',
+            'url': 'https://ec.europa.eu/eurostat/web/nace',
+            'license': 'EU Statistical Classification',
+            'license_url': 'https://ec.europa.eu/eurostat/web/nace/methodology',
+            'usage': 'Business category structure based on NACE classification',
+            'attribution': '© European Union, Eurostat',
+            'commercial_use': True,
+            'description': 'Our business categories are structured following the NACE (Statistical Classification of Economic Activities) framework used across the European Union.'
+        },
+        {
+            'name': 'User-Generated Content',
             'url': None,
-            'license': 'User Consent & Terms of Service',
+            'license': 'Terms of Service Agreement',
             'license_url': '/terms/',
-            'usage': 'Self-submitted business information from verified owners',
-            'attribution': 'Business owners provide their own data',
+            'usage': 'Business registrations and owner-submitted information',
+            'attribution': 'Individual business owners',
             'commercial_use': True,
-            'description': 'Business owners register themselves and provide their own business information. All submissions require email verification and explicit consent.'
+            'description': 'Businesses can register on our platform and provide their own information. All user submissions are subject to verification and comply with our terms of service.'
         },
         {
-            'name': 'Government Business Registries',
-            'url': None,
-            'license': 'Public Registry Data',
-            'license_url': None,
-            'usage': 'Official company registration data from 27 EU countries',
-            'attribution': 'Various EU government agencies',
+            'name': 'Flag Icons',
+            'url': 'https://flagicons.lipis.dev/',
+            'license': 'MIT License',
+            'license_url': 'https://github.com/lipis/flag-icons/blob/main/LICENSE',
+            'usage': 'Country flag representations in navigation',
+            'attribution': '© Panayiotis Lipiridis',
             'commercial_use': True,
-            'description': 'We access publicly available business registry data from official government sources across EU member states, where legally permitted.'
-        },
-        {
-            'name': 'Chamber of Commerce Partnerships',
-            'url': None,
-            'license': 'Partnership Agreements',
-            'license_url': None,
-            'usage': 'Member business listings from partner chambers',
-            'attribution': 'Chamber of Commerce partnerships',
-            'commercial_use': True,
-            'description': 'We partner with local Chambers of Commerce to provide verified business listings of their members, with proper agreements in place.'
+            'description': 'High-quality SVG country flags used in our navigation and country selection interface, provided under MIT license.'
         }
     ]
+    
+    # Platform statistics
+    from businesses.models import Business, City, Country, Category
+    stats = {
+        'businesses': Business.objects.count(),
+        'cities': City.objects.count(),
+        'countries': Country.objects.filter(is_active=True).count(),
+        'categories': Category.objects.filter(parent__isnull=False).count(),
+    }
     
     context = {
         'sources': sources,
         'total_sources': len(sources),
-        'last_updated': '2025-10-05',
+        'last_updated': '2025-10-06',
+        'platform_stats': stats,
+        'transparency_note': 'This platform is currently in development with sample data for demonstration purposes. All data sources are clearly identified and legally compliant.'
     }
     
     return render(request, 'businesses/data_sources.html', context)

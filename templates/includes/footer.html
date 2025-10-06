@@ -39,42 +39,32 @@
                 <h5><i class="fas fa-database me-2"></i>Data Sources</h5>
                 <ul class="list-unstyled small">
                     <li>
-                        <a href="https://openstreetmap.org" target="_blank" rel="noopener" class="text-muted">
-                            <i class="fas fa-external-link-alt me-1"></i>OpenStreetMap
-                        </a>
-                        <div class="text-muted ms-3">Business locations & geographic data</div>
+                        <i class="fas fa-code me-1"></i>Platform Development Data
+                        <div class="text-muted ms-3">Sample businesses for demonstration</div>
                     </li>
                     <li class="mt-2">
                         <a href="https://ec.europa.eu/eurostat" target="_blank" rel="noopener" class="text-muted">
-                            <i class="fas fa-external-link-alt me-1"></i>Eurostat
+                            <i class="fas fa-external-link-alt me-1"></i>EU Geographic References
                         </a>
-                        <div class="text-muted ms-3">City population statistics</div>
+                        <div class="text-muted ms-3">Country codes and city names</div>
                     </li>
                     <li class="mt-2">
-                        <a href="https://www.geonames.org" target="_blank" rel="noopener" class="text-muted">
-                            <i class="fas fa-external-link-alt me-1"></i>GeoNames
+                        <a href="https://openstreetmap.org" target="_blank" rel="noopener" class="text-muted">
+                            <i class="fas fa-external-link-alt me-1"></i>OpenStreetMap (Future)
                         </a>
-                        <div class="text-muted ms-3">Geographic coordinates</div>
-                    </li>
-                    <li class="mt-2">
-                        <a href="https://publications.europa.eu" target="_blank" rel="noopener" class="text-muted">
-                            <i class="fas fa-external-link-alt me-1"></i>EU Publications Office
-                        </a>
-                        <div class="text-muted ms-3">Official EU business data</div>
+                        <div class="text-muted ms-3">Geographic data integration planned</div>
                     </li>
                     <li class="mt-2 text-muted">
-                        <i class="fas fa-user-plus me-1"></i>Business Owner Submissions
-                        <div class="text-muted ms-3">Self-registered business information</div>
-                    </li>
-                    <li class="mt-2 text-muted">
-                        <i class="fas fa-building me-1"></i>Government Business Registries
-                        <div class="text-muted ms-3">Official company registers (27 EU countries)</div>
-                    </li>
-                    <li class="mt-2 text-muted">
-                        <i class="fas fa-handshake me-1"></i>Chamber of Commerce
-                        <div class="text-muted ms-3">Partnership data & member listings</div>
+                        <i class="fas fa-user-plus me-1"></i>User-Generated Content
+                        <div class="text-muted ms-3">Business owner registrations</div>
                     </li>
                 </ul>
+                
+                <div class="mt-3">
+                    <a href="{% url 'data_sources' %}" class="btn btn-outline-light btn-sm">
+                        <i class="fas fa-info-circle me-2"></i>View All Sources
+                    </a>
+                </div>
                 
                 <div class="mt-3 p-3 bg-secondary bg-opacity-25 rounded">
                     <small class="text-light">
