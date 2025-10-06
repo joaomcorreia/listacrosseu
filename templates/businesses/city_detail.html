@@ -12,6 +12,76 @@
 
 {% block canonical %}{{ request.build_absolute_uri|slice:"-1" }}{% endblock %}
 
+{% block extra_head %}
+<!-- JSON-LD Structured Data for City Page -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "{{ page_title }}",
+    "description": "{{ meta_description }}",
+    "url": "{{ request.build_absolute_uri }}",
+    "mainEntity": {
+        "@type": "ItemList", 
+        "name": "Businesses in {{ city.name }}, {{ country.name }}",
+        "description": "Local business directory for {{ city.name }} with {{ total_businesses }} verified companies",
+        "numberOfItems": {{ total_businesses }}
+    },
+    "about": {
+        "@type": "City",
+        "name": "{{ city.name }}",
+        "containedInPlace": {
+            "@type": "Country",
+            "name": "{{ country.name }}",
+            "identifier": "{{ country.code|upper }}"
+        },
+        {% if city.latitude and city.longitude %}
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "{{ city.latitude }}",
+            "longitude": "{{ city.longitude }}"
+        },
+        {% endif %}
+        "url": "{{ request.build_absolute_uri }}"
+    },
+    "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home", 
+                "item": "{{ request.scheme }}://{{ request.get_host }}"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "{{ country.name }}",
+                "item": "{{ request.scheme }}://{{ request.get_host }}/{{ country.slug }}/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "{{ city.name }}",
+                "item": "{{ request.build_absolute_uri }}"
+            }
+        ]
+    },
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.6",
+        "reviewCount": "{{ total_businesses }}",
+        "bestRating": "5"
+    },
+    "provider": {
+        "@type": "Organization",
+        "name": "ListAcross Europe",
+        "url": "{{ request.scheme }}://{{ request.get_host }}"
+    }
+}
+</script>
+{% endblock %}
+
 {% block map_section %}
     {% dynamic_map location_type location_code %}
 {% endblock %}

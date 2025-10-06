@@ -11,6 +11,64 @@
 <meta property="og:description" content="{{ meta_description }}">
 <meta property="og:type" content="website">
 <meta property="og:url" content="{{ request.build_absolute_uri }}{{ canonical_url }}">
+
+<!-- JSON-LD Structured Data for Category Page -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "{{ page_title }}",
+    "description": "{{ meta_description }}",
+    "url": "{{ request.build_absolute_uri }}{{ canonical_url }}",
+    "mainEntity": {
+        "@type": "ItemList",
+        "name": "{{ category.name }} Businesses in Europe",
+        "description": "Directory of {{ total_businesses }} {{ category.name.lower }} businesses across European Union",
+        "numberOfItems": {{ total_businesses }},
+        "itemListOrder": "https://schema.org/ItemListOrderDescending"
+    },
+    "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "{{ request.build_absolute_uri }}"
+            },
+            {
+                "@type": "ListItem", 
+                "position": 2,
+                "name": "{{ category.name }}",
+                "item": "{{ request.build_absolute_uri }}{{ canonical_url }}"
+            }
+        ]
+    },
+    "about": {
+        "@type": "Thing",
+        "name": "{{ category.name }} in Europe",
+        "description": "European {{ category.name.lower }} business directory covering all 27 EU member states"
+    },
+    "audience": {
+        "@type": "Audience",
+        "audienceType": "Consumers looking for {{ category.name.lower }} services",
+        "geographicArea": [
+            {% for country in top_countries %}
+            {
+                "@type": "Country",
+                "name": "{{ country.city__country__name }}",
+                "identifier": "{{ country.city__country__slug }}"
+            }{% if not forloop.last %},{% endif %}
+            {% endfor %}
+        ]
+    },
+    "provider": {
+        "@type": "Organization",
+        "name": "ListAcross Europe",
+        "url": "{{ request.build_absolute_uri }}"
+    }
+}
+</script>
 {% endblock %}
 
 {% block content %}

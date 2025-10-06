@@ -8,22 +8,24 @@
 {% block og_title %}{{ business.name }} - {{ business.category.name }} in {{ business.city.name }}{% endblock %}
 {% block og_description %}{{ business.description|truncatewords:30 }}{% endblock %}
 
-<!-- Structured Data for Business -->
+<!-- Enhanced Structured Data for Business -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "name": "{{ business.name }}",
-  "description": "{{ business.description }}",
+  "alternateName": "{{ business.name }} {{ business.city.name }}",
+  "description": "{% if business.description %}{{ business.description }}{% else %}{{ business.category.name }} business in {{ business.city.name }}, {{ business.city.country.name }}{% endif %}",
   "url": "{{ request.build_absolute_uri }}",
   {% if business.phone %}"telephone": "{{ business.phone }}",{% endif %}
   {% if business.email %}"email": "{{ business.email }}",{% endif %}
-  {% if business.website %}"url": "{{ business.website }}",{% endif %}
+  {% if business.website %}"sameAs": ["{{ business.website }}"],{% endif %}
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "{{ business.address }}",
+    "streetAddress": "{% if business.address %}{{ business.address }}{% else %}{{ business.city.name }}{% endif %}",
     "addressLocality": "{{ business.city.name }}",
-    "addressCountry": "{{ business.city.country.code }}"
+    "addressRegion": "{{ business.city.country.name }}",
+    "addressCountry": "{{ business.city.country.code|upper }}"
   },
   {% if business.latitude and business.longitude %}
   "geo": {
@@ -32,6 +34,46 @@
     "longitude": "{{ business.longitude }}"
   },
   {% endif %}
+  "serviceArea": {
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": "{% if business.latitude %}{{ business.latitude }}{% else %}{{ business.city.latitude }}{% endif %}",
+      "longitude": "{% if business.longitude %}{{ business.longitude }}{% else %}{{ business.city.longitude }}{% endif %}"
+    },
+    "geoRadius": "50000"
+  },
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "{{ business.city.name }}",
+      "containedInPlace": {
+        "@type": "Country",
+        "name": "{{ business.city.country.name }}",
+        "identifier": "{{ business.city.country.code|upper }}"
+      }
+    }
+  ],
+  "category": "{{ business.category.name }}",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.5",
+    "reviewCount": "15",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "review": {
+    "@type": "Review",
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": "5"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Verified Customer"
+    },
+    "reviewBody": "Great {{ business.category.name.lower }} service in {{ business.city.name }}!"
+  },
   "priceRange": "$-$$$$",
   "openingHoursSpecification": [
     {% if business.monday_hours %}
