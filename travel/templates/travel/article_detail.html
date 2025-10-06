@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ article.title }} - ListAcross.eu</title>
+    <meta name="description" content="{{ article.meta_description|default:article.excerpt }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet">
+    <style>
+        .hero-image {
+            height: 300px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            margin-bottom: 2rem;
+        }
+        .article-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        .article-content h1, .article-content h2, .article-content h3 {
+            color: #333;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        .article-content h1 { font-size: 2.2rem; }
+        .article-content h2 { font-size: 1.8rem; }
+        .article-content h3 { font-size: 1.4rem; }
+        .article-meta {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+        .tag {
+            background: #007bff;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin: 2px;
+            display: inline-block;
+        }
+        .ai-badge {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .listy-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            cursor: pointer;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .back-link {
+            color: #6c757d;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 1rem;
+        }
+        .back-link:hover {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <!-- Back Navigation -->
+                <div class="mt-4">
+                    <a href="{% url 'travel:article_list' %}" class="back-link">
+                        <i class="fas fa-arrow-left"></i>
+                        Back to Travel Guides
+                    </a>
+                </div>
+
+                <!-- Hero Image -->
+                <div class="hero-image">
+                    <i class="fas fa-map-marked-alt"></i>
+                </div>
+
+                <!-- Article Header -->
+                <div class="article-meta">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <div class="ai-badge">
+                            <i class="fas fa-robot"></i>
+                            AI Generated Guide
+                        </div>
+                        {% if article.featured %}
+                        <span class="badge bg-warning text-dark">Featured</span>
+                        {% endif %}
+                    </div>
+
+                    <h1 class="display-5 fw-bold mb-3">{{ article.title }}</h1>
+                    
+                    {% if article.subtitle %}
+                    <p class="lead text-muted">{{ article.subtitle }}</p>
+                    {% endif %}
+
+                    <div class="row text-center">
+                        <div class="col-md-3">
+                            <small class="text-muted d-block">Published</small>
+                            <strong>{{ article.created_at|date:"M d, Y" }}</strong>
+                        </div>
+                        <div class="col-md-3">
+                            <small class="text-muted d-block">Views</small>
+                            <strong>{{ article.view_count }}</strong>
+                        </div>
+                        <div class="col-md-3">
+                            <small class="text-muted d-block">Category</small>
+                            <strong>{{ article.category.name }}</strong>
+                        </div>
+                        <div class="col-md-3">
+                            <small class="text-muted d-block">Type</small>
+                            <strong>{{ article.get_article_type_display }}</strong>
+                        </div>
+                    </div>
+
+                    {% if article.tags.all %}
+                    <div class="mt-3">
+                        {% for tag in article.tags.all %}
+                        <a href="#" class="tag">{{ tag.name }}</a>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+                <!-- Article Content -->
+                <div class="article-content">
+                    {{ article.content|linebreaks }}
+                </div>
+
+                <!-- Call to Action -->
+                <div class="card bg-primary text-white mt-5">
+                    <div class="card-body text-center">
+                        <h4>Need More Help Planning Your Trip? 🌟</h4>
+                        <p class="mb-3">Chat with Listy, your friendly AI travel assistant, for personalized recommendations!</p>
+                        <button class="btn btn-light" onclick="openListy()">
+                            <i class="fas fa-comments me-2"></i>
+                            Ask Listy About {{ article.title|cut:"Complete "|cut:" Travel Guide 2025" }}
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Related Articles -->
+                <div class="mt-5 mb-5">
+                    <h3>More European Destinations</h3>
+                    <div class="row">
+                        {% for related in related_articles %}
+                        <div class="col-md-6 mb-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h6 class="card-title">{{ related.title }}</h6>
+                                    <p class="card-text text-muted small">{{ related.excerpt|truncatewords:15 }}</p>
+                                    <a href="{% url 'travel:article_detail' related.slug %}" class="btn btn-sm btn-outline-primary">
+                                        Read More
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Listy Button -->
+    <button class="listy-float" onclick="openListy()" title="Chat with Listy, your travel assistant!">
+        <i class="fas fa-comments"></i>
+    </button>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container text-center">
+            <p>&copy; 2025 <strong>ListAcross.eu</strong> - Your AI-powered European travel guide</p>
+            <small class="text-muted">This content was generated by AI and reviewed for accuracy</small>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-core.min.js"></script>
+    
+    <!-- Listy AI Assistant -->
+    <script src="/static/js/listy.js"></script>
+    
+    <script>
+        // Track article view
+        fetch('{% url "travel:track_view" article.id %}', {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}',
+                'Content-Type': 'application/json',
+            }
+        });
+    </script>
+</body>
+</html>

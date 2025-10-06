@@ -3,6 +3,15 @@
 
 {% block title %}{{ page_title }}{% endblock %}
 
+{% block header_section %}
+<div class="header-placeholder header-category">
+    <div class="header-placeholder-content">
+        <h1>{{ category.name }} Across Europe</h1>
+        <p>Discover {{ total_businesses }} {{ category.name.lower }} business{% if total_businesses != 1 %}es{% endif %} in {{ top_countries|length }} European countries</p>
+    </div>
+</div>
+{% endblock %}
+
 {% block meta_description %}
 <meta name="description" content="{{ meta_description }}">
 <meta name="keywords" content="{{ category.name }}, European {{ category.name }}, EU business directory, {{ category.name }} Europe">

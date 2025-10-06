@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>European Travel Guides - ListAcross.eu</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 0;
+            margin-bottom: 60px;
+        }
+        .article-card {
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+        .article-card:hover {
+            transform: translateY(-5px);
+        }
+        .article-image {
+            height: 200px;
+            object-fit: cover;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+        .ai-badge {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .city-flags {
+            margin-top: 20px;
+        }
+        .flag {
+            width: 30px;
+            height: 20px;
+            margin: 0 5px;
+            border-radius: 3px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h1 class="display-4 fw-bold">🌍 European Travel Guides</h1>
+                    <p class="lead">AI-powered comprehensive guides to Europe's most beautiful destinations</p>
+                    <p class="mb-4">Discover amazing cities with our detailed, up-to-date travel guides created by artificial intelligence.</p>
+                    <div class="city-flags">
+                        <span class="flag" style="background: linear-gradient(to bottom, #000 33%, #dd0000 33%, #dd0000 66%, #ffce00 66%);"></span>
+                        <span class="flag" style="background: linear-gradient(to bottom, #aa151b 50%, #f1bf00 50%);"></span>
+                        <span class="flag" style="background: linear-gradient(to bottom, #21468b 33%, #fff 33%, #fff 66%, #ae1c28 66%);"></span>
+                        <span class="flag" style="background: linear-gradient(to bottom, #c8102e 50%, #fff 50%);"></span>
+                        <span class="flag" style="background: linear-gradient(to bottom, #11457e 33%, #fff 33%, #fff 66%, #ed2939 66%);"></span>
+                    </div>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <i class="fas fa-map-marked-alt" style="font-size: 8rem; opacity: 0.3;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Stats Section -->
+        <div class="row mb-5">
+            <div class="col-md-3 text-center">
+                <div class="card border-0">
+                    <div class="card-body">
+                        <i class="fas fa-city text-primary" style="font-size: 2rem;"></i>
+                        <h3 class="mt-2">{{ articles.count }}</h3>
+                        <p class="text-muted">Cities Covered</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 text-center">
+                <div class="card border-0">
+                    <div class="card-body">
+                        <i class="fas fa-robot text-success" style="font-size: 2rem;"></i>
+                        <h3 class="mt-2">AI</h3>
+                        <p class="text-muted">Generated Content</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 text-center">
+                <div class="card border-0">
+                    <div class="card-body">
+                        <i class="fas fa-clock text-info" style="font-size: 2rem;"></i>
+                        <h3 class="mt-2">24/7</h3>
+                        <p class="text-muted">Updated</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 text-center">
+                <div class="card border-0">
+                    <div class="card-body">
+                        <i class="fas fa-heart text-danger" style="font-size: 2rem;"></i>
+                        <h3 class="mt-2">Free</h3>
+                        <p class="text-muted">Always</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Travel Guides Grid -->
+        <div class="row">
+            <div class="col-12 mb-4">
+                <h2 class="fw-bold">
+                    <i class="fas fa-compass me-2 text-primary"></i>
+                    Latest Travel Guides
+                </h2>
+                <p class="text-muted">Explore Europe's most fascinating destinations with our AI-generated travel guides</p>
+            </div>
+        </div>
+
+        <div class="row">
+            {% for article in articles %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card article-card">
+                    <div class="article-image">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="card-body d-flex flex-column">
+                        <div class="mb-2">
+                            <span class="ai-badge">
+                                <i class="fas fa-robot"></i>
+                                AI Generated
+                            </span>
+                            {% if article.featured %}
+                            <span class="badge bg-warning text-dark ms-1">Featured</span>
+                            {% endif %}
+                        </div>
+                        <h5 class="card-title fw-bold">{{ article.title }}</h5>
+                        <p class="card-text text-muted">{{ article.excerpt|truncatewords:20 }}</p>
+                        <div class="mt-auto">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <small class="text-muted">
+                                    <i class="fas fa-calendar me-1"></i>
+                                    {{ article.created_at|date:"M d, Y" }}
+                                </small>
+                                <small class="text-muted">
+                                    <i class="fas fa-eye me-1"></i>
+                                    {{ article.view_count }} views
+                                </small>
+                            </div>
+                            <a href="{% url 'travel:article_detail' article.slug %}" class="btn btn-primary w-100">
+                                <i class="fas fa-book-open me-2"></i>
+                                Read Guide
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center py-5">
+                <i class="fas fa-map-signs" style="font-size: 4rem; color: #ddd;"></i>
+                <h3 class="mt-3 text-muted">No travel guides available yet</h3>
+                <p class="text-muted">Check back soon for amazing AI-generated travel content!</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Call to Action -->
+        <div class="row mt-5 mb-5">
+            <div class="col-12">
+                <div class="card bg-primary text-white">
+                    <div class="card-body text-center py-5">
+                        <h3 class="fw-bold">Ready to Explore Europe? 🌍</h3>
+                        <p class="lead mb-4">Get personalized travel recommendations from Listy, your AI travel assistant!</p>
+                        <button class="btn btn-light btn-lg" onclick="openListy()">
+                            <i class="fas fa-comments me-2"></i>
+                            Chat with Listy
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>ListAcross.eu</h5>
+                    <p>Your AI-powered European travel companion</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>&copy; 2025 ListAcross.eu. All rights reserved.</p>
+                    <small class="text-muted">Powered by AI & built with ❤️</small>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Listy AI Assistant -->
+    <script src="/static/js/listy.js"></script>
+</body>
+</html>

@@ -3,6 +3,17 @@
 {% load map_tags %}
 
 {% block title %}{{ page_title }}{% endblock %}
+
+{% block header_section %}
+<div class="header-placeholder header-city header-{{ country.slug }}" 
+     style="background-image: url('{% static 'assets/headers/' %}{{ country.slug }}_header-1920x600.jpg');">
+    <div class="header-placeholder-content">
+        <h1>{{ city.name }}, {{ country.name }}</h1>
+        <p>Explore {{ total_businesses }} businesses and discover what {{ city.name }} has to offer</p>
+    </div>
+</div>
+{% endblock %}
+
 {% block meta_description %}{{ meta_description }}{% endblock %}
 {% block meta_keywords %}{{ city.name }}, {{ country.name }}, business directory, companies, restaurants, services, {{ city.name }} businesses{% endblock %}
 

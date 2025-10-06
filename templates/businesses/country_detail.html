@@ -4,6 +4,16 @@
 
 {% block title %}{{ page_title }}{% endblock %}
 
+{% block header_section %}
+<div class="header-placeholder header-country header-{{ country.slug }}" 
+     style="background-image: url('{% static 'assets/headers/' %}{{ country.slug }}_header-1920x600.jpg');">
+    <div class="header-placeholder-content">
+        <h1>Businesses in {{ country.name }}</h1>
+        <p>Discover {{ total_businesses }} verified businesses across {{ total_cities }} cities in {{ country.name }}</p>
+    </div>
+</div>
+{% endblock %}
+
 {% block description %}{{ meta_description }}{% endblock %}
 
 {% block extra_head %}
@@ -335,17 +345,19 @@
                     
                     <!-- Fill empty slots if less than 3 categories -->
                     {% if city_data.categories|length < 3 %}
-                        {% for i in "123"|slice:city_data.categories|length %}
-                        <div class="col-4 mb-3">
-                            <div class="category-card">
-                                <div class="card border-0 bg-light h-100">
-                                    <div class="card-body text-center d-flex flex-column justify-content-center">
-                                        <i class="fas fa-plus fa-2x text-muted mb-2"></i>
-                                        <p class="text-muted mb-0">More categories<br>coming soon</p>
+                        {% for i in "123"|make_list|slice:"3" %}
+                            {% if forloop.counter > city_data.categories|length %}
+                            <div class="col-4 mb-3">
+                                <div class="category-card">
+                                    <div class="card border-0 bg-light h-100">
+                                        <div class="card-body text-center d-flex flex-column justify-content-center">
+                                            <i class="fas fa-plus fa-2x text-muted mb-2"></i>
+                                            <p class="text-muted mb-0">More categories<br>coming soon</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                            {% endif %}
                         {% endfor %}
                     {% endif %}
                 </div>

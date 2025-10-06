@@ -48,6 +48,276 @@
       gap: 20px !important;
     }
     
+    /* Fix navigation height and mobile button visibility */
+    .main-header {
+      padding-top: 0 !important;
+      margin-top: 0 !important;
+    }
+    
+    .header-top {
+      padding-top: 5px !important;
+      padding-bottom: 5px !important;
+    }
+    
+    /* Hide mobile menu button on desktop */
+    .nav-mobile-toggle {
+      display: none !important;
+    }
+    
+    @media (max-width: 768px) {
+      .nav-mobile-toggle {
+        display: block !important;
+      }
+    }
+    
+    /* Fix flags slider - ensure flags load and auto-scroll works */
+    .flags {
+      overflow-x: hidden !important;
+      overflow-y: hidden !important;
+    }
+    
+    /* Ensure flags are visible from start */
+    .flag-item, .flag {
+      opacity: 1 !important;
+      flex-shrink: 0 !important;
+      display: flex !important;
+    }
+    
+    /* Auto-scroll animation that starts after flags load */
+    .flags .track,
+    #flag-track {
+      animation: smoothSlide 30s linear infinite !important;
+      animation-delay: 0.2s !important;
+      will-change: transform !important;
+      transform: translate3d(0, 0, 0) !important;
+    }
+    
+    @keyframes smoothSlide {
+      0% {
+        transform: translate3d(0%, 0, 0);
+      }
+      100% {
+        transform: translate3d(-50%, 0, 0);
+      }
+    }
+    
+    /* Ensure smooth transitions */
+    .flag-item, .flag {
+      backface-visibility: hidden !important;
+      perspective: 1000px !important;
+    }
+    
+    /* Pause animation on hover */
+    .flags:hover .track,
+    .flags:hover #flag-track {
+      animation-play-state: paused !important;
+    }
+    
+    /* Hide any scrollbars */
+    .flags::-webkit-scrollbar {
+      display: none !important;
+    }
+    
+    .flags {
+      -ms-overflow-style: none !important;
+      scrollbar-width: none !important;
+    }
+    
+    /* Header Placeholder Styles */
+    .header-placeholder {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      overflow: hidden;
+      margin-bottom: 0;
+    }
+    
+    .header-placeholder::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.4) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    /* Country-specific overlay colors */
+    .header-austria::before {
+      background: linear-gradient(135deg, rgba(220,53,69,0.6) 0%, rgba(253,126,20,0.4) 50%, rgba(220,53,69,0.6) 100%);
+    }
+    
+    .header-belgium::before {
+      background: linear-gradient(135deg, rgba(40,40,40,0.7) 0%, rgba(255,215,0,0.3) 50%, rgba(220,20,60,0.7) 100%);
+    }
+    
+    .header-france::before {
+      background: linear-gradient(135deg, rgba(0,85,164,0.7) 0%, rgba(255,255,255,0.2) 50%, rgba(239,65,53,0.7) 100%);
+    }
+    
+    .header-germany::before {
+      background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(221,0,0,0.4) 50%, rgba(255,206,84,0.5) 100%);
+    }
+    
+    .header-spain::before {
+      background: linear-gradient(135deg, rgba(198,11,30,0.7) 0%, rgba(255,196,37,0.4) 50%, rgba(198,11,30,0.7) 100%);
+    }
+    
+    .header-italy::before {
+      background: linear-gradient(135deg, rgba(0,146,70,0.7) 0%, rgba(255,255,255,0.2) 50%, rgba(206,43,55,0.7) 100%);
+    }
+    
+    .header-portugal::before {
+      background: linear-gradient(135deg, rgba(0,102,0,0.7) 0%, rgba(255,0,0,0.4) 50%, rgba(0,102,0,0.7) 100%);
+    }
+    
+    .header-netherlands::before {
+      background: linear-gradient(135deg, rgba(174,28,40,0.7) 0%, rgba(255,255,255,0.2) 50%, rgba(33,70,139,0.7) 100%);
+    }
+    
+    .header-placeholder::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(255,255,255,0.1) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    .header-placeholder-content {
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      padding: 0 20px;
+    }
+    
+    .header-placeholder h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .header-placeholder p {
+      font-size: 1.25rem;
+      margin-bottom: 0;
+      opacity: 0.95;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    }
+    
+    /* Homepage Header - 1920x800 */
+    .header-homepage {
+      height: 800px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    
+    .header-homepage h1 {
+      font-size: 4rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .header-homepage p {
+      font-size: 1.5rem;
+    }
+    
+    /* Category Pages Header - 1920x600 */
+    .header-category {
+      height: 600px;
+      background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    }
+    
+    /* Country Pages Header - 1920x600 */
+    .header-country {
+      height: 600px;
+      background: linear-gradient(135deg, #dc3545 0%, #fd7e14 100%);
+    }
+    
+    /* City Pages Header - 1920x600 */
+    .header-city {
+      height: 600px;
+      background: linear-gradient(135deg, #6f42c1 0%, #e83e8c 100%);
+    }
+    
+    /* Business Pages Header - 1920x600 */
+    .header-business {
+      height: 600px;
+      background: linear-gradient(135deg, #17a2b8 0%, #6610f2 100%);
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .header-homepage {
+        height: 500px;
+      }
+      
+      .header-category,
+      .header-country,
+      .header-city,
+      .header-business {
+        height: 400px;
+      }
+      
+      .header-placeholder h1 {
+        font-size: 2.5rem;
+      }
+      
+      .header-homepage h1 {
+        font-size: 3rem;
+      }
+      
+      .header-placeholder p {
+        font-size: 1.1rem;
+      }
+      
+      .header-homepage p {
+        font-size: 1.3rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .header-homepage {
+        height: 400px;
+      }
+      
+      .header-category,
+      .header-country,
+      .header-city,
+      .header-business {
+        height: 300px;
+      }
+      
+      .header-placeholder h1 {
+        font-size: 2rem;
+      }
+      
+      .header-homepage h1 {
+        font-size: 2.5rem;
+      }
+      
+      .header-placeholder p {
+        font-size: 1rem;
+      }
+      
+      .header-homepage p {
+        font-size: 1.2rem;
+      }
+    }
+    
     .main-header .search-box {
       display: flex !important;
       border: 2px solid #e9ecef !important;
@@ -265,8 +535,12 @@
     </nav>
   </header>
 
+  <!-- Header Placeholder Section -->
+  {% block header_section %}{% endblock %}
+
   <!-- Flag Navigation Slider -->
-  {% include 'includes/flag_slider.html' %}
+  {% load map_tags %}
+  {% flag_slider %}
 
   <!-- Main Content -->
   <main class="main-content">

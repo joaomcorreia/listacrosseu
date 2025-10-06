@@ -1,0 +1,280 @@
+{% extends 'base_with_map.html' %}
+{% load static %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block header_section %}
+<div class="header-placeholder header-category header-{{ country.slug }}" 
+     style="background-image: url('{% static 'assets/headers/' %}{{ country.slug }}_header-1920x600.jpg');">
+    <div class="header-placeholder-content">
+        <h1>{{ category.name }} in {{ country.name }}</h1>
+        <p>Explore {{ total_businesses }} {{ category.name.lower }} business{% if total_businesses != 1 %}es{% endif %} across {{ country.name }}</p>
+    </div>
+</div>
+{% endblock %}
+
+{% block meta_description %}
+<meta name="description" content="{{ meta_description }}">
+<meta name="keywords" content="{{ category.name }}, {{ country.name }} {{ category.name }}, {{ category.name }} {{ country.name }}, EU business directory">
+<link rel="canonical" href="{{ request.build_absolute_uri }}{{ canonical_url }}">
+<meta property="og:title" content="{{ page_title }}">
+<meta property="og:description" content="{{ meta_description }}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ request.build_absolute_uri }}{{ canonical_url }}">
+
+<!-- JSON-LD Structured Data for Category Country Page -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "{{ page_title }}",
+    "description": "{{ meta_description }}",
+    "url": "{{ request.build_absolute_uri }}{{ canonical_url }}",
+    "mainEntity": {
+        "@type": "ItemList",
+        "name": "{{ category.name }} Businesses in {{ country.name }}",
+        "description": "Directory of {{ total_businesses }} {{ category.name.lower }} businesses in {{ country.name }}",
+        "numberOfItems": {{ total_businesses }},
+        "itemListOrder": "https://schema.org/ItemListOrderDescending"
+    },
+    "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "{{ request.build_absolute_uri }}"
+            },
+            {
+                "@type": "ListItem", 
+                "position": 2,
+                "name": "{{ category.name }}",
+                "item": "{{ request.build_absolute_uri }}/{{ category.slug }}/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "{{ country.name }}",
+                "item": "{{ request.build_absolute_uri }}{{ canonical_url }}"
+            }
+        ]
+    },
+    "about": {
+        "@type": "Thing",
+        "name": "{{ category.name }} in {{ country.name }}",
+        "description": "{{ category.name.lower }} business directory for {{ country.name }}"
+    }
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <!-- Breadcrumb Navigation -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item"><a href="/{{ category.slug }}/">{{ category.name }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ country.name }}</li>
+        </ol>
+    </nav>
+
+    <!-- Main Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex align-items-center mb-3">
+                <img src="{% static 'assets/flags/' %}{{ country.code|lower }}.png" 
+                     alt="{{ country.name }} flag" class="flag-icon me-3" 
+                     style="width: 32px; height: auto;">
+                <h1 class="h2 mb-0">{{ category.name }} in {{ country.name }}</h1>
+            </div>
+            <p class="lead text-muted">
+                Discover {{ total_businesses }} {{ category.name.lower }} business{% if total_businesses != 1 %}es{% endif %} 
+                across {{ country.name }}. Find contact details, reviews, and locations.
+            </p>
+        </div>
+    </div>
+
+    <!-- Statistics Row -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card border-primary">
+                <div class="card-body text-center">
+                    <h3 class="card-title text-primary">{{ total_businesses }}</h3>
+                    <p class="card-text">{{ category.name }} Business{% if total_businesses != 1 %}es{% endif %}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-success">
+                <div class="card-body text-center">
+                    <h3 class="card-title text-success">{{ top_cities|length }}</h3>
+                    <p class="card-text">Cities Covered</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-info">
+                <div class="card-body text-center">
+                    <h3 class="card-title text-info">100%</h3>
+                    <p class="card-text">Verified Listings</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Top Cities Section -->
+    {% if top_cities %}
+    <div class="row mb-4">
+        <div class="col-12">
+            <h2 class="h4 mb-3">Popular Cities for {{ category.name }} in {{ country.name }}</h2>
+            <div class="row">
+                {% for city in top_cities %}
+                <div class="col-md-4 col-sm-6 mb-3">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="/{{ country.slug }}/{{ city.city__slug }}/{{ category.slug }}/" 
+                                   class="text-decoration-none">
+                                    {{ city.city__name }}
+                                </a>
+                            </h5>
+                            <p class="card-text text-muted">
+                                {{ city.business_count }} {{ category.name.lower }} business{% if city.business_count != 1 %}es{% endif %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Business Listings -->
+    <div class="row">
+        <div class="col-12">
+            <h2 class="h4 mb-3">All {{ category.name }} Businesses in {{ country.name }}</h2>
+            
+            {% if businesses %}
+                <div class="row">
+                    {% for business in businesses %}
+                    <div class="col-lg-6 col-xl-4 mb-4">
+                        <div class="card h-100 shadow-sm business-card">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="/{{ business.city.country.slug }}/{{ business.city.slug }}/{{ business.category.slug }}/{{ business.slug }}/" 
+                                       class="text-decoration-none text-primary">
+                                        {{ business.name }}
+                                    </a>
+                                </h5>
+                                <p class="card-text">
+                                    <i class="fas fa-map-marker-alt text-danger me-1"></i>
+                                    {{ business.city.name }}, {{ business.city.country.name }}
+                                </p>
+                                {% if business.description %}
+                                <p class="card-text text-muted small">
+                                    {{ business.description|truncatewords:15 }}
+                                </p>
+                                {% endif %}
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <small class="text-muted">{{ business.category.name }}</small>
+                                    <a href="/{{ business.city.country.slug }}/{{ business.city.slug }}/{{ business.category.slug }}/{{ business.slug }}/" 
+                                       class="btn btn-outline-primary btn-sm">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Pagination -->
+                {% if businesses.has_other_pages %}
+                <nav aria-label="Page navigation" class="mt-4">
+                    <ul class="pagination justify-content-center">
+                        {% if businesses.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ businesses.previous_page_number }}">Previous</a>
+                            </li>
+                        {% endif %}
+                        
+                        {% for num in businesses.paginator.page_range %}
+                            {% if businesses.number == num %}
+                                <li class="page-item active">
+                                    <span class="page-link">{{ num }}</span>
+                                </li>
+                            {% else %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                        
+                        {% if businesses.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ businesses.next_page_number }}">Next</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+                {% endif %}
+            {% else %}
+                <div class="alert alert-info">
+                    <h4>No {{ category.name }} businesses found in {{ country.name }}</h4>
+                    <p>We're constantly adding new businesses to our directory. Check back soon or 
+                       <a href="/{{ category.slug }}/" class="alert-link">explore {{ category.name }} businesses in other countries</a>.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="bg-light p-4 rounded">
+                <h2 class="h4">{{ category.name }} Directory for {{ country.name }}</h2>
+                <p>
+                    Welcome to the most comprehensive {{ category.name.lower }} business directory for {{ country.name }}. 
+                    Our platform connects you with verified {{ category.name.lower }} businesses across all major cities in {{ country.name }}, 
+                    providing detailed contact information, reviews, and location data.
+                </p>
+                <p>
+                    Whether you're looking for local {{ category.name.lower }} services or planning to expand your business network in {{ country.name }}, 
+                    ListAcross.eu is your trusted partner for European business connections.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.flag-icon {
+    border: 1px solid #ddd;
+    border-radius: 2px;
+}
+
+.business-card {
+    transition: transform 0.2s ease-in-out;
+}
+
+.business-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1) !important;
+}
+
+.card-title a:hover {
+    text-decoration: underline !important;
+}
+
+@media (max-width: 768px) {
+    .flag-icon {
+        width: 24px;
+    }
+    
+    h1.h2 {
+        font-size: 1.5rem;
+    }
+}
+</style>
+{% endblock %}

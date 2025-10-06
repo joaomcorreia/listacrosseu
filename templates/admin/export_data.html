@@ -1,0 +1,163 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block title %}Export Business Data - {{ block.super }}{% endblock %}
+
+{% block extrahead %}
+<style>
+    .export-section {
+        background: white;
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .export-button {
+        display: inline-block;
+        background: #417690;
+        color: white;
+        padding: 12px 24px;
+        text-decoration: none;
+        border-radius: 4px;
+        margin: 8px 8px 8px 0;
+        font-weight: 500;
+        transition: background 0.3s;
+    }
+    .export-button:hover {
+        background: #2e5568;
+        color: white;
+        text-decoration: none;
+    }
+    .export-button.primary {
+        background: #0073aa;
+    }
+    .export-button.primary:hover {
+        background: #005177;
+    }
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 16px;
+        margin: 20px 0;
+    }
+    .stat-card {
+        background: #f8f9fa;
+        padding: 16px;
+        border-radius: 6px;
+        text-align: center;
+        border-left: 4px solid #0073aa;
+    }
+    .stat-number {
+        font-size: 2em;
+        font-weight: bold;
+        color: #0073aa;
+    }
+    .stat-label {
+        color: #666;
+        font-size: 0.9em;
+        margin-top: 4px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="export-section">
+    <h1>📊 Export Business Data</h1>
+    <p>Download comprehensive CSV files of your business directory data for analysis and review.</p>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">{{ total_businesses|floatformat:0 }}</div>
+            <div class="stat-label">Total Businesses</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">{{ countries.count }}</div>
+            <div class="stat-label">Countries</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">3</div>
+            <div class="stat-label">Export Formats</div>
+        </div>
+    </div>
+</div>
+
+<div class="export-section">
+    <h2>📋 Quick Export Options</h2>
+    <p>Choose from pre-configured export formats:</p>
+    
+    <a href="?type=summary" class="export-button primary">
+        📈 Summary Statistics
+    </a>
+    <span style="margin-left: 10px; color: #666;">Overview with breakdowns by country, city, and category</span>
+    
+    <br><br>
+    
+    <a href="?type=all" class="export-button">
+        📄 Complete Database
+    </a>
+    <span style="margin-left: 10px; color: #666;">All {{ total_businesses|floatformat:0 }} businesses in one file</span>
+</div>
+
+<div class="export-section">
+    <h2>🌍 Export by Country</h2>
+    <p>Download businesses for specific countries:</p>
+    
+    {% for country in countries %}
+    <a href="?type={{ country.slug }}" class="export-button">
+        🏢 {{ country.name }}
+    </a>
+    <span style="margin-left: 10px; color: #666;">{{ country.business_count|floatformat:0 }} businesses</span>
+    <br><br>
+    {% endfor %}
+</div>
+
+<div class="export-section">
+    <h2>💡 What's Included</h2>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 16px;">
+        <div>
+            <h3>📊 Summary Export Contains:</h3>
+            <ul>
+                <li>Total business counts</li>
+                <li>Breakdown by country</li>
+                <li>Top cities ranking</li>
+                <li>Category distribution</li>
+                <li>Percentage calculations</li>
+            </ul>
+        </div>
+        <div>
+            <h3>📄 Complete Export Contains:</h3>
+            <ul>
+                <li>Business names and categories</li>
+                <li>Complete contact information</li>
+                <li>Addresses and locations</li>
+                <li>Verification status</li>
+                <li>Creation dates</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="export-section">
+    <h2>🎯 Next Steps</h2>
+    <p>After downloading and reviewing your data:</p>
+    <ol>
+        <li><strong>Check Summary</strong> - Review the statistics for overview</li>
+        <li><strong>Verify Countries</strong> - Ensure businesses are in correct locations</li>
+        <li><strong>Spot Check</strong> - Sample some businesses for data quality</li>
+        <li><strong>Ready for Travel Content</strong> - Once satisfied, proceed with Option A implementation</li>
+    </ol>
+    
+    <p style="margin-top: 20px; padding: 12px; background: #e8f5e8; border-left: 4px solid #4caf50; border-radius: 4px;">
+        <strong>✅ Data Quality Note:</strong> After recent cleanup, all businesses should now be in their correct countries with Spanish businesses only in Spain, German businesses only in Germany, etc.
+    </p>
+</div>
+
+<div class="export-section">
+    <h2>🔄 Management Commands</h2>
+    <p>You can also export data via command line:</p>
+    <pre style="background: #f4f4f4; padding: 12px; border-radius: 4px; margin: 10px 0;">
+python manage.py export_business_data --format=summary
+python manage.py export_business_data --format=countries
+python manage.py export_business_data --country=germany</pre>
+</div>
+{% endblock %}

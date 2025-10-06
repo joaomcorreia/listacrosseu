@@ -17,19 +17,16 @@ seo_optimized_urlpatterns = [
     path('best-tech-companies-europe/', views_seo.best_tech_companies_europe, name='best_tech_companies_europe'),
     path('european-business-directory/', views_seo.european_business_directory, name='european_business_directory'),
     
-    # Individual business with full path (/portugal/porto/restaurants/business-name/) - MOST SPECIFIC FIRST
+    # Individual business with full path (/country/city/category/business/) - MOST SPECIFIC FIRST
     path('<slug:country_slug>/<slug:city_slug>/<slug:category_slug>/<slug:business_slug>/', 
          views_seo.business_detail_seo, name='business_detail_seo'),
     
-    # City category combinations (/restaurants/portugal/porto/)
-    path('<slug:category_slug>/<slug:country_slug>/<slug:city_slug>/', views_seo.category_country_city_businesses, name='category_country_city'),
-    
-    # Enhanced city pages with categories (/portugal/porto/restaurants/)
+    # City + category pages (/country/city/category/) - CONSISTENT STRUCTURE
     path('<slug:country_slug>/<slug:city_slug>/<slug:category_slug>/', views_seo.city_category_businesses, name='city_category'),
     
-    # Pagination for category pages
-    path('<slug:category_slug>/<slug:country_slug>/<slug:city_slug>/page/<int:page>/', 
-         views_seo.category_country_city_businesses, name='category_country_city_paginated'),
+    # Pagination for city category pages
+    path('<slug:country_slug>/<slug:city_slug>/<slug:category_slug>/page/<int:page>/', 
+         views_seo.city_category_businesses, name='city_category_paginated'),
     
     # Countries list (keep existing)
     path('countries/', views_country_city.country_list, name='country_list'),

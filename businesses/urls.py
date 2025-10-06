@@ -1,6 +1,7 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from . import views
+from .views_admin import data_overview
 from .urls_registration import registration_urlpatterns
 from .urls_listings import listing_urlpatterns
 from .urls_seo_optimized import seo_optimized_urlpatterns
@@ -17,6 +18,9 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('api/search/', views.BusinessSearchView.as_view(), name='business_search'),
     path('api/featured/', views.FeaturedBusinessesView.as_view(), name='featured_businesses'),
+    
+    # Admin/Debug routes
+    path('admin/data-overview/', data_overview, name='data_overview'),
     
     # Registration system routes (includes homepage) - MUST BE FIRST
     *registration_urlpatterns,

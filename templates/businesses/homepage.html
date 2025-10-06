@@ -5,6 +5,15 @@
 
 {% block title %}{% if query %}Search Results{% else %}ListAcross.eu - European Business Directory{% endif %}{% endblock %}
 
+{% block header_section %}
+<div class="header-placeholder header-homepage">
+    <div class="header-placeholder-content">
+        <h1>Discover Europe's Best Businesses</h1>
+        <p>Your comprehensive guide to 2,500+ verified businesses across all 27 EU countries</p>
+    </div>
+</div>
+{% endblock %}
+
 {% block description %}Find businesses across Europe. ListAcross.eu connects customers with verified businesses in all 27 EU countries. Search restaurants, hotels, shops, and services.{% endblock %}
 
 {% block map_section %}
@@ -222,7 +231,7 @@
         <div class="row">
             {% for category in featured_categories %}
             <div class="col-md-4 mb-4">
-                <a href="{% url 'homepage' %}?category={{ category.id }}" class="text-decoration-none">
+                <a href="/{{ category.slug }}/" class="text-decoration-none">
                     <div class="card category-card">
                         <div class="card-body text-center">
                             <i class="fas fa-briefcase fa-3x text-primary mb-3"></i>
@@ -244,7 +253,7 @@
         <div class="row">
             {% for city in popular_cities %}
             <div class="col-md-3 col-sm-6 mb-4">
-                <a href="{% url 'homepage' %}?city={{ city.id }}" class="text-decoration-none">
+                <a href="/{{ city.country.slug }}/{{ city.slug }}/" class="text-decoration-none">
                     <div class="card category-card">
                         <div class="card-body text-center">
                             <h6 class="card-title">{{ city.name }}</h6>

@@ -33,34 +33,32 @@ def get_available_flags():
 
 def get_countries_with_flags():
     """
-    Get all countries that have corresponding flag images
+    Get all active EU countries with their flag information
     """
-    available_flags = get_available_flags()
+    from .models import Country
+    
     countries_with_flags = []
     
-    for flag_code in available_flags:
-        try:
-            if flag_code == 'eu':
-                countries_with_flags.append({
-                    'code': 'EU',
-                    'name': 'European Union',
-                    'slug': '',
-                    'flag_url': f'assets/flags/{flag_code}.png'
-                })
-            else:
-                country = Country.objects.filter(code__iexact=flag_code).first()
-                if country:
-                    countries_with_flags.append({
-                        'code': country.code,
-                        'name': country.name,
-                        'slug': country.slug,
-                        'flag_url': f'assets/flags/{flag_code}.png'
-                    })
-                else:
-                    # Debug: print what we couldn't find
-                    print(f"Could not find country for flag code: {flag_code}")
-        except Country.DoesNotExist:
-            continue
+    # Add EU flag first
+    countries_with_flags.append({
+        'code': 'EU',
+        'name': 'European Union',
+        'slug': '',
+        'flag_url': 'assets/flags/eu.png'
+    })
+    
+    # Get all active countries in alphabetical order
+    countries = Country.objects.filter(is_active=True).order_by('name')
+    
+    for country in countries:
+        # Use country code in lowercase for flag filename
+        flag_code = country.code.lower()
+        countries_with_flags.append({
+            'code': country.code,
+            'name': country.name,
+            'slug': country.slug,
+            'flag_url': f'assets/flags/{flag_code}.png'
+        })
     
     return countries_with_flags
 

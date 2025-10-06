@@ -2,6 +2,17 @@
 {% load static %}
 
 {% block title %}{{ business.name }} in {{ business.city.name }} | Contact & Reviews{% endblock %}
+
+{% block header_section %}
+<div class="header-placeholder header-business header-{{ business.city.country.slug }}" 
+     style="background-image: url('{% static 'assets/headers/' %}{{ business.city.country.slug }}_header-1920x600.jpg');">
+    <div class="header-placeholder-content">
+        <h1>{{ business.name }}</h1>
+        <p>{{ business.category.name }} in {{ business.city.name }}, {{ business.city.country.name }}</p>
+    </div>
+</div>
+{% endblock %}
+
 {% block meta_description %}{{ business.name }} - {{ business.description|truncatewords:30 }} Located in {{ business.city.name }}, {{ business.city.country.name }}. Phone: {{ business.phone|default:"Contact via website" }}.{% endblock %}
 {% block meta_keywords %}{{ business.name }}, {{ business.city.name }}, {{ business.city.country.name }}, {{ business.category.name }}, business directory{% endblock %}
 

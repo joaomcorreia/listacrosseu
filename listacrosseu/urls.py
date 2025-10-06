@@ -20,19 +20,22 @@ from django.conf.urls.static import static
 from django.contrib.sitemaps.views import sitemap
 from django.views.generic import TemplateView
 from businesses.sitemaps import sitemaps
+from businesses.admin import admin_site
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin_site.urls),
     
-    # Main website (includes homepage and business registration)
-    path('', include('businesses.urls')),
+    # Travel guides (main feature)
+    path('', include('travel.urls')),
+    
+    # Business directory
+    path('directory/', include('businesses.urls')),
+    
+    # Listy AI Assistant
+    path('listy/', include('chatbot.urls')),
     
     # API endpoints
     path('api/', include('directory.urls')),
-    path('api/subscriptions/', include('subscriptions.urls')),
-    path('api/payments/', include('payments.urls')),
-    path('api/websites/', include('websites.urls')),
-    path('api/data-import/', include('data_import.urls')),
     
     # SEO URLs
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),

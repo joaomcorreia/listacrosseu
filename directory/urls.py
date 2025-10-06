@@ -11,8 +11,8 @@ urlpatterns = [
     path('business/<slug:slug>/', views.BusinessDetailView.as_view(), name='business_detail'),
     path('search/', views.SearchView.as_view(), name='search'),
     
-    # User website views (handled by middleware)
-    path('website/', views.WebsiteView.as_view(), name='user_website'),
+    # User website views - commented out (websites app moved to dev_archive)
+    # path('website/', views.WebsiteView.as_view(), name='user_website'),
     
     # API endpoints
     path('api/businesses/', views.BusinessListAPIView.as_view(), name='api_business_list'),

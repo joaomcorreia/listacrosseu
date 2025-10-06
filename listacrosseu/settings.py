@@ -58,11 +58,9 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     'accounts',
     'businesses',
-    'subscriptions',
-    'websites',
+    'chatbot',
     'directory',
-    'payments',
-    'data_import',
+    'travel.apps.TravelConfig',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -77,7 +75,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'websites.middleware.SubdomainMiddleware',
 ]
 
 ROOT_URLCONF = 'listacrosseu.urls'
@@ -138,10 +135,26 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Internationalization
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
+
+# Multi-language support for EU
+LANGUAGES = [
+    ('en', 'English'),
+    ('de', 'Deutsch'),
+    ('fr', 'Français'),
+    ('es', 'Español'),
+    ('it', 'Italiano'),
+    ('pt', 'Português'),
+    ('nl', 'Nederlands'),
+    ('pl', 'Polski'),
+]
+
+LOCALE_PATHS = [
+    BASE_DIR / 'locale',
+]
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
@@ -252,3 +265,12 @@ DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='ListAcross.eu <noreply@l
 # File upload settings
 FILE_UPLOAD_MAX_MEMORY_SIZE = 5 * 1024 * 1024  # 5MB
 DATA_UPLOAD_MAX_MEMORY_SIZE = 10 * 1024 * 1024  # 10MB
+
+# MagicAI Integration Settings
+MAGICAI_BASE_URL = env('MAGICAI_BASE_URL', default='https://tools.justcodeworks.net')
+MAGICAI_API_KEY = env('MAGICAI_API_KEY', default='')
+MAGICAI_ENABLED = env('MAGICAI_ENABLED', default=True)
+
+# Direct OpenAI Integration (Fallback)
+OPENAI_API_KEY = env('OPENAI_API_KEY', default='')
+OPENAI_ENABLED = env('OPENAI_ENABLED', default=True)

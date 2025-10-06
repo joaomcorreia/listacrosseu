@@ -1,0 +1,334 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ListAcross.eu - European Business Directory & Travel Guides</title>
+    <meta name="description" content="Discover businesses across the European Union and explore comprehensive travel guides for European destinations." />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .hero-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+        .service-card {
+            border: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+            padding: 30px;
+            border-radius: 15px;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .article-card {
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            height: 100%;
+            border-radius: 10px;
+        }
+        .article-card:hover {
+            transform: translateY(-5px);
+        }
+        .article-image {
+            height: 150px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            border-radius: 10px 10px 0 0;
+        }
+        .ai-badge {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .search-section {
+            background: #f8f9fa;
+            padding: 60px 0;
+        }
+        .flag {
+            width: 30px;
+            height: 20px;
+            object-fit: cover;
+            margin-right: 10px;
+            border-radius: 3px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .stats-section {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 60px 0;
+        }
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            display: block;
+        }
+        .navbar-custom {
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 15px 0;
+        }
+        .brand {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+        <div class="container">
+            <a class="navbar-brand brand" href="/">ListAcross<span style="color:#764ba2;">EU</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/directory/">Business Directory</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/guides/">Travel Guides</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/directory/add/">Add Business</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/">Admin</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="hero-title">Discover Europe</h1>
+            <p class="hero-subtitle">Your gateway to European businesses and travel destinations</p>
+            
+            <!-- European Flags -->
+            <div class="d-flex justify-content-center flex-wrap gap-2 mb-4">
+                <img src="{% static 'assets/flags/de.png' %}" alt="Germany" class="flag">
+                <img src="{% static 'assets/flags/fr.png' %}" alt="France" class="flag">
+                <img src="{% static 'assets/flags/it.png' %}" alt="Italy" class="flag">
+                <img src="{% static 'assets/flags/es.png' %}" alt="Spain" class="flag">
+                <img src="{% static 'assets/flags/nl.png' %}" alt="Netherlands" class="flag">
+                <img src="{% static 'assets/flags/pl.png' %}" alt="Poland" class="flag">
+                <img src="{% static 'assets/flags/at.png' %}" alt="Austria" class="flag">
+                <img src="{% static 'assets/flags/cz.png' %}" alt="Czech Republic" class="flag">
+            </div>
+
+            <!-- Quick Search -->
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <form class="d-flex gap-3">
+                        <input type="text" class="form-control form-control-lg" placeholder="Search businesses or destinations...">
+                        <button class="btn btn-light btn-lg px-4" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col">
+                    <h2 class="fw-bold mb-3">What We Offer</h2>
+                    <p class="text-muted">Explore businesses and destinations across the European Union</p>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="service-card text-center">
+                        <div class="service-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <h3 class="h4 mb-3">Business Directory</h3>
+                        <p class="text-muted mb-4">Find and discover businesses across all EU countries. From restaurants to services, we have it all.</p>
+                        <a href="/directory/" class="btn btn-primary btn-lg">Browse Businesses</a>
+                        <div class="mt-3">
+                            <small class="text-muted">
+                                <i class="fas fa-map-marker-alt"></i> 27 EU Countries
+                                <i class="fas fa-store ms-3"></i> 1000+ Listings
+                            </small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="service-card text-center">
+                        <div class="service-icon">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </div>
+                        <h3 class="h4 mb-3">Travel Guides</h3>
+                        <p class="text-muted mb-4">Comprehensive AI-powered travel guides for European destinations with local insights and tips.</p>
+                        <a href="/guides/" class="btn btn-primary btn-lg">Explore Guides</a>
+                        <div class="mt-3">
+                            <span class="ai-badge">
+                                <i class="fas fa-robot"></i> AI-Powered
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Travel Guides -->
+    {% if articles %}
+    <section class="search-section">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col">
+                    <h2 class="fw-bold">Featured Travel Guides</h2>
+                    <p class="text-muted">Discover amazing European destinations with our AI-powered guides</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                {% for article in articles|slice:":3" %}
+                <div class="col-md-4">
+                    <div class="card article-card">
+                        <div class="article-image">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ article.title }}</h5>
+                            <p class="card-text text-muted">{{ article.excerpt|truncatewords:15 }}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <a href="{% url 'travel:article_detail' article.slug %}" class="btn btn-primary">Read Guide</a>
+                                <span class="ai-badge">
+                                    <i class="fas fa-robot"></i> AI Generated
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <div class="text-center mt-4">
+                <a href="/guides/" class="btn btn-outline-primary btn-lg">View All Travel Guides</a>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-3">
+                    <span class="stat-number">27</span>
+                    <span>EU Countries</span>
+                </div>
+                <div class="col-md-3">
+                    <span class="stat-number">1000+</span>
+                    <span>Business Listings</span>
+                </div>
+                <div class="col-md-3">
+                    <span class="stat-number">{{ articles.count }}</span>
+                    <span>Travel Guides</span>
+                </div>
+                <div class="col-md-3">
+                    <span class="stat-number">50+</span>
+                    <span>Cities Covered</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5 class="brand">ListAcross<span style="color:#764ba2;">EU</span></h5>
+                    <p class="text-muted">Connecting Europe through business and travel</p>
+                </div>
+                <div class="col-md-3">
+                    <h6>Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="/directory/" class="text-muted">Business Directory</a></li>
+                        <li><a href="/guides/" class="text-muted">Travel Guides</a></li>
+                        <li><a href="/directory/add/" class="text-muted">Add Business</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h6>Support</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-muted">Contact</a></li>
+                        <li><a href="#" class="text-muted">Help</a></li>
+                        <li><a href="/admin/" class="text-muted">Admin</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-3">
+            <div class="text-center text-muted">
+                <p>&copy; 2024 ListAcross.eu - All rights reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Listy AI Assistant -->
+    <script src="{% static 'js/listy.js' %}"></script>
+    <script>
+        // Initialize Listy AI Assistant
+        document.addEventListener('DOMContentLoaded', function() {
+            const listy = new ListyAssistant({
+                baseUrl: window.location.origin,
+                context: 'homepage'
+            });
+            listy.init();
+        });
+    </script>
+</body>
+</html>

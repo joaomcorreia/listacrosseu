@@ -128,21 +128,22 @@ class SearchView(TemplateView):
         return context
 
 
-class WebsiteView(TemplateView):
-    """User website view (handled by middleware)"""
-    template_name = 'websites/user_website.html'
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        
-        if hasattr(self.request, 'website'):
-            website = self.request.website
-            context['website'] = website
-            context['businesses'] = Business.objects.filter(
-                owner=website.user, status='active'
-            )
-        
-        return context
+# Commented out - websites app moved to dev_archive
+# class WebsiteView(TemplateView):
+#     """User website view (handled by middleware)"""
+#     template_name = 'websites/user_website.html'
+#     
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         
+#         if hasattr(self.request, 'website'):
+#             website = self.request.website
+#             context['website'] = website
+#             context['businesses'] = Business.objects.filter(
+#                 owner=website.user, status='active'
+#             )
+#         
+#         return context
 
 
 # API Views (simplified versions without DRF)

@@ -2,8 +2,11 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.core.exceptions import ValidationError
 from django.utils import timezone
+from django.utils.text import slugify
 import uuid
+import re
 
 User = get_user_model()
 
@@ -192,10 +195,32 @@ class Business(models.Model):
         verbose_name = _('Business')
         verbose_name_plural = _('Businesses')
         ordering = ['-created_at']
+        constraints = [
+            # Prevent exact duplicates: same name and city
+            models.UniqueConstraint(
+                fields=['name', 'city'], 
+                name='unique_business_name_city'
+            ),
+            # Prevent same email in same city (common duplicate pattern)
+            models.UniqueConstraint(
+                fields=['email', 'city'],
+                name='unique_business_email_city',
+                condition=models.Q(email__isnull=False) & ~models.Q(email='')
+            ),
+            # Prevent same phone in same city
+            models.UniqueConstraint(
+                fields=['phone', 'city'],
+                name='unique_business_phone_city', 
+                condition=models.Q(phone__isnull=False) & ~models.Q(phone='')
+            ),
+        ]
         indexes = [
             models.Index(fields=['status', 'plan']),
             models.Index(fields=['city', 'category']),
             models.Index(fields=['featured', 'verified']),
+            models.Index(fields=['name', 'city']),  # For duplicate checking
+            models.Index(fields=['email', 'city']),  # For duplicate checking
+            models.Index(fields=['phone', 'city']),  # For duplicate checking
         ]
     
     def __str__(self):
@@ -218,9 +243,158 @@ class Business(models.Model):
         """Count approved reviews"""
         return self.reviews.filter(is_approved=True).count()
     
+    def clean(self):
+        """Validate business data to prevent duplicates"""
+        super().clean()
+        
+        # Normalize name for comparison
+        if self.name:
+            self.name = self.normalize_business_name(self.name)
+            
+        # Check for potential duplicates
+        self.check_for_duplicates()
+    
+    def normalize_business_name(self, name):
+        """Normalize business name for consistent comparison"""
+        if not name:
+            return name
+            
+        # Remove extra spaces and standardize
+        name = re.sub(r'\s+', ' ', name.strip())
+        
+        # Remove common business suffixes that might cause duplicates
+        suffixes = ['ltd', 'limited', 'inc', 'incorporated', 'llc', 'corp', 'corporation', 
+                   'gmbh', 'sa', 'srl', 'bv', 'oy', 'ab', 'as']
+        
+        for suffix in suffixes:
+            # Remove suffix with various separators
+            patterns = [
+                rf'\s+{re.escape(suffix)}\s*$',  # " ltd"
+                rf'[,.\s]+{re.escape(suffix)}\s*$',  # ", ltd" or ". ltd"
+                rf'\s*\({re.escape(suffix)}\)\s*$',  # " (ltd)"
+            ]
+            for pattern in patterns:
+                name = re.sub(pattern, '', name, flags=re.IGNORECASE)
+                
+        return name.strip()
+    
+    def check_for_duplicates(self):
+        """Check for potential duplicates and raise validation error"""
+        if not self.name or not self.city:
+            return
+            
+        # Get existing businesses to check against
+        existing_qs = Business.objects.filter(city=self.city)
+        if self.pk:
+            existing_qs = existing_qs.exclude(pk=self.pk)
+            
+        # Check for exact name match (case insensitive)
+        if existing_qs.filter(name__iexact=self.name).exists():
+            raise ValidationError({
+                'name': 'A business with this name already exists in this city.'
+            })
+            
+        # Check for similar names (fuzzy matching)
+        similar_names = self.find_similar_names(existing_qs)
+        if similar_names:
+            raise ValidationError({
+                'name': f'Similar business names found in this city: {", ".join(similar_names)}. '
+                       'Please use a more distinctive name or verify this is not a duplicate.'
+            })
+            
+        # Check for same email
+        if self.email and existing_qs.filter(email__iexact=self.email).exists():
+            raise ValidationError({
+                'email': 'A business with this email already exists in this city.'
+            })
+            
+        # Check for same phone
+        if self.phone and existing_qs.filter(phone=self.phone).exists():
+            raise ValidationError({
+                'phone': 'A business with this phone number already exists in this city.'
+            })
+    
+    def find_similar_names(self, queryset):
+        """Find businesses with similar names using fuzzy matching"""
+        similar_names = []
+        current_name = self.name.lower().strip()
+        
+        # Split into words for comparison
+        current_words = set(re.findall(r'\b\w+\b', current_name))
+        
+        for business in queryset.only('name'):
+            existing_name = business.name.lower().strip()
+            existing_words = set(re.findall(r'\b\w+\b', existing_name))
+            
+            # Calculate similarity
+            if current_words and existing_words:
+                intersection = current_words.intersection(existing_words)
+                union = current_words.union(existing_words)
+                similarity = len(intersection) / len(union)
+                
+                # If similarity > 80% and names share significant words
+                if (similarity > 0.8 and len(intersection) >= 2) or \
+                   (similarity > 0.9 and len(intersection) >= 1):
+                    similar_names.append(business.name)
+                    
+                # Also check if one name is contained in another
+                if (current_name in existing_name or existing_name in current_name) and \
+                   abs(len(current_name) - len(existing_name)) <= 5:
+                    similar_names.append(business.name)
+                    
+        return similar_names[:3]  # Limit to 3 examples
+    
+    @classmethod
+    def check_potential_duplicate(cls, name, city, email=None, phone=None, exclude_id=None):
+        """Class method to check for potential duplicates before creating"""
+        issues = []
+        
+        qs = cls.objects.filter(city=city)
+        if exclude_id:
+            qs = qs.exclude(pk=exclude_id)
+            
+        # Normalize the name
+        normalized_name = cls().normalize_business_name(name) if name else ''
+        
+        # Check name duplicates
+        if normalized_name:
+            if qs.filter(name__iexact=normalized_name).exists():
+                issues.append('Exact name match found')
+            else:
+                # Check for similar names
+                temp_business = cls(name=normalized_name, city=city)
+                similar = temp_business.find_similar_names(qs)
+                if similar:
+                    issues.append(f'Similar names found: {", ".join(similar)}')
+                    
+        # Check email duplicates
+        if email and qs.filter(email__iexact=email).exists():
+            issues.append('Email already exists in this city')
+            
+        # Check phone duplicates  
+        if phone and qs.filter(phone=phone).exists():
+            issues.append('Phone number already exists in this city')
+            
+        return issues
+    
     def save(self, *args, **kwargs):
+        # Generate slug if not provided
+        if not self.slug:
+            base_slug = slugify(self.name)
+            slug = base_slug
+            counter = 1
+            while Business.objects.filter(slug=slug).exclude(pk=self.pk).exists():
+                slug = f"{base_slug}-{counter}"
+                counter += 1
+            self.slug = slug
+            
+        # Run full validation before saving
+        self.full_clean()
+        
+        # Set published date for active businesses
         if self.status == 'active' and not self.published_at:
             self.published_at = timezone.now()
+            
         super().save(*args, **kwargs)
 
 
