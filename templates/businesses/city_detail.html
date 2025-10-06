@@ -3,8 +3,14 @@
 {% load map_tags %}
 
 {% block title %}{{ page_title }}{% endblock %}
+{% block meta_description %}{{ meta_description }}{% endblock %}
+{% block meta_keywords %}{{ city.name }}, {{ country.name }}, business directory, companies, restaurants, services, {{ city.name }} businesses{% endblock %}
 
-{% block description %}{{ meta_description }}{% endblock %}
+{% block og_title %}{{ page_title }}{% endblock %}
+{% block og_description %}{{ meta_description }}{% endblock %}
+{% block og_type %}website{% endblock %}
+
+{% block canonical %}{{ request.build_absolute_uri|slice:"-1" }}{% endblock %}
 
 {% block map_section %}
     {% dynamic_map location_type location_code %}

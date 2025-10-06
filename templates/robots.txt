@@ -1,0 +1,82 @@
+User-agent: *
+Allow: /
+
+# SEO Priority Pages - High crawl priority
+Allow: /portugal/
+Allow: /germany/
+Allow: /france/
+Allow: /italy/
+Allow: /spain/
+Allow: /restaurants/
+Allow: /technology/
+Allow: /retail/
+Allow: /services/
+Allow: /manufacturing/
+
+# SEO optimized category-location combinations (money pages)
+Allow: /restaurants/portugal/
+Allow: /restaurants/germany/
+Allow: /technology/portugal/
+Allow: /technology/germany/
+Allow: /portugal/restaurants/
+Allow: /portugal/technology/
+Allow: /germany/restaurants/
+Allow: /germany/technology/
+
+# High-value traditional pages
+Allow: /businesses/
+Allow: /cities/
+Allow: /*/*/
+Allow: /category/
+
+# Important SEO landing pages
+Allow: /european-business-directory/
+Allow: /top-restaurants-europe/
+Allow: /best-tech-companies-europe/
+
+# Block admin and private areas
+Disallow: /admin/
+Disallow: /media/private/
+Disallow: /api/internal/
+Disallow: /accounts/
+Disallow: /register/business/step/
+
+# Block search filters and parameters to avoid duplicate content
+Disallow: /*?sort=
+Disallow: /*?filter=
+Disallow: /*?search=
+Disallow: /*?q=
+Disallow: /*&sort=
+Disallow: /*&filter=
+Disallow: /*&search=
+Disallow: /*&q=
+
+# Prevent indexing of deep pagination (avoid thin content)
+Disallow: /*/page/1[0-9]/
+Disallow: /*/page/2*/
+Disallow: /*/page/3*/
+
+# Prevent duplicate trailing slash issues
+Disallow: /*//
+
+# Session and tracking parameters
+Disallow: /*?sessionid=*
+Disallow: /*&sessionid=*
+
+# Allow important resources
+Allow: /static/css/
+Allow: /static/js/
+Allow: /static/images/
+
+# Crawl delay (be respectful)
+Crawl-delay: 1
+
+# Sitemaps
+Sitemap: {{ request.scheme }}://{{ request.get_host }}/sitemap.xml
+
+# Social Media Bots
+User-agent: facebookexternalhit/*
+Allow: /
+
+User-agent: Twitterbot
+Allow: /

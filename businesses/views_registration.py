@@ -170,11 +170,11 @@ def homepage(request):
     page = request.GET.get('page')
     businesses_page = paginator.get_page(page)
     
-    # Stats for display
+    # Stats for display (real database numbers)
     stats = {
-        'total_businesses': Business.objects.filter(verified=True).count(),
-        'total_cities': City.objects.count(),
-        'total_categories': Category.objects.filter(parent__isnull=False).count(),
+        'total_businesses': Business.objects.count(),  # All businesses (2515)
+        'total_cities': City.objects.count(),          # All cities (196) 
+        'total_categories': Category.objects.count(),  # All categories (224)
     }
     
     # Featured categories

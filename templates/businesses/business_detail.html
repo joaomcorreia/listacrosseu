@@ -1,7 +1,50 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}{{ business.name }} - {{ business.city.name }}, {{ business.city.country.name }}{% endblock %}
+{% block title %}{{ business.name }} in {{ business.city.name }} | Contact & Reviews{% endblock %}
+{% block meta_description %}{{ business.name }} - {{ business.description|truncatewords:30 }} Located in {{ business.city.name }}, {{ business.city.country.name }}. Phone: {{ business.phone|default:"Contact via website" }}.{% endblock %}
+{% block meta_keywords %}{{ business.name }}, {{ business.city.name }}, {{ business.city.country.name }}, {{ business.category.name }}, business directory{% endblock %}
+
+{% block og_title %}{{ business.name }} - {{ business.category.name }} in {{ business.city.name }}{% endblock %}
+{% block og_description %}{{ business.description|truncatewords:30 }}{% endblock %}
+
+<!-- Structured Data for Business -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "{{ business.name }}",
+  "description": "{{ business.description }}",
+  "url": "{{ request.build_absolute_uri }}",
+  {% if business.phone %}"telephone": "{{ business.phone }}",{% endif %}
+  {% if business.email %}"email": "{{ business.email }}",{% endif %}
+  {% if business.website %}"url": "{{ business.website }}",{% endif %}
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "{{ business.address }}",
+    "addressLocality": "{{ business.city.name }}",
+    "addressCountry": "{{ business.city.country.code }}"
+  },
+  {% if business.latitude and business.longitude %}
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "{{ business.latitude }}",
+    "longitude": "{{ business.longitude }}"
+  },
+  {% endif %}
+  "priceRange": "$-$$$$",
+  "openingHoursSpecification": [
+    {% if business.monday_hours %}
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Monday",
+      "opens": "{{ business.monday_hours.open }}",
+      "closes": "{{ business.monday_hours.close }}"
+    }{% if business.tuesday_hours or business.wednesday_hours or business.thursday_hours or business.friday_hours or business.saturday_hours or business.sunday_hours %},{% endif %}
+    {% endif %}
+  ]
+}
+</script>
 
 {% block content %}
 <div class="container mx-auto px-4 py-8">

@@ -1,0 +1,225 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block meta_description %}
+<meta name="description" content="{{ meta_description }}">
+<meta name="keywords" content="{{ category.name }}, European {{ category.name }}, EU business directory, {{ category.name }} Europe">
+<link rel="canonical" href="{{ request.build_absolute_uri }}{{ canonical_url }}">
+<meta property="og:title" content="{{ page_title }}">
+<meta property="og:description" content="{{ meta_description }}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ request.build_absolute_uri }}{{ canonical_url }}">
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid px-0">
+    <!-- SEO-Rich Hero Section -->
+    <div class="bg-primary text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h1 class="display-4 fw-bold mb-3">
+                        <i class="fas fa-{{ category.icon|default:'building' }} me-3"></i>
+                        {{ category.name }} Businesses Across Europe
+                    </h1>
+                    <p class="lead mb-4">
+                        Discover {{ total_businesses }}+ verified {{ category.name.lower }} businesses across all 27 EU countries. 
+                        From startups to established companies, find the perfect {{ category.name.lower }} partner.
+                    </p>
+                    <div class="d-flex flex-wrap gap-2">
+                        <span class="badge bg-light text-dark fs-6">
+                            <i class="fas fa-building me-1"></i>{{ total_businesses }}+ Businesses
+                        </span>
+                        <span class="badge bg-light text-dark fs-6">
+                            <i class="fas fa-globe-europe me-1"></i>27 EU Countries
+                        </span>
+                        <span class="badge bg-light text-dark fs-6">
+                            <i class="fas fa-shield-check me-1"></i>Verified Listings
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-4 text-end">
+                    <div class="bg-white bg-opacity-10 p-4 rounded">
+                        <h3 class="h5 mb-3">Quick Search</h3>
+                        <form method="get" action="{% url 'business_search' %}">
+                            <div class="input-group mb-2">
+                                <input type="text" class="form-control" name="q" placeholder="Search {{ category.name }}...">
+                                <button class="btn btn-light" type="submit">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                            <input type="hidden" name="category" value="{{ category.slug }}">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Top Countries Section -->
+    <div class="container my-5">
+        <h2 class="text-center mb-4">
+            <i class="fas fa-map-marked-alt me-2 text-primary"></i>
+            Top Countries for {{ category.name }}
+        </h2>
+        <div class="row">
+            {% for country in top_countries %}
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+                <a href="/{{ category.slug }}/{{ country.city__country__slug }}/" class="text-decoration-none">
+                    <div class="card h-100 shadow-sm hover-shadow">
+                        <div class="card-body text-center">
+                            <img src="{% static 'assets/flags/' %}{{ country.city__country__slug }}.png" 
+                                 alt="{{ country.city__country__name }} flag" 
+                                 class="mb-2" style="width: 32px; height: auto;">
+                            <h5 class="card-title">{{ country.city__country__name }}</h5>
+                            <p class="text-muted mb-0">
+                                {{ country.business_count }} {{ category.name }}
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Top Cities Section -->
+    <div class="bg-light py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">
+                <i class="fas fa-city me-2 text-primary"></i>
+                Major Cities for {{ category.name }}
+            </h2>
+            <div class="row">
+                {% for city in top_cities %}
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-3">
+                    <a href="/{{ category.slug }}/{{ city.city__country__slug }}/{{ city.city__slug }}/" 
+                       class="text-decoration-none">
+                        <div class="card text-center hover-shadow">
+                            <div class="card-body py-3">
+                                <h6 class="card-title mb-1">{{ city.city__name }}</h6>
+                                <small class="text-muted">{{ city.city__country__name }}</small>
+                                <div class="badge bg-primary mt-1">
+                                    {{ city.business_count }}
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Listings -->
+    <div class="container my-5">
+        <h2 class="mb-4">
+            <i class="fas fa-clock me-2 text-primary"></i>
+            Recent {{ category.name }} Listings
+        </h2>
+        <div class="row">
+            {% for business in businesses %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="/{{ business.city.country.slug }}/{{ business.city.slug }}/{{ business.category.slug }}/{{ business.slug }}/" 
+                               class="text-decoration-none">
+                                {{ business.name }}
+                            </a>
+                        </h5>
+                        <p class="text-muted mb-2">
+                            <i class="fas fa-map-marker-alt me-1"></i>
+                            {{ business.city.name }}, {{ business.city.country.name }}
+                        </p>
+                        {% if business.description %}
+                        <p class="card-text">{{ business.description|truncatewords:20 }}</p>
+                        {% endif %}
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">
+                                <i class="fas fa-tag me-1"></i>{{ business.category.name }}
+                            </small>
+                            {% if business.phone %}
+                            <small class="text-success">
+                                <i class="fas fa-phone me-1"></i>Verified
+                            </small>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        {% if businesses.has_other_pages %}
+        <nav aria-label="Business listings pagination" class="mt-4">
+            <ul class="pagination justify-content-center">
+                {% if businesses.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ businesses.previous_page_number }}">Previous</a>
+                </li>
+                {% endif %}
+
+                {% for num in businesses.paginator.page_range %}
+                {% if businesses.number == num %}
+                <li class="page-item active">
+                    <span class="page-link">{{ num }}</span>
+                </li>
+                {% else %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                </li>
+                {% endif %}
+                {% endfor %}
+
+                {% if businesses.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ businesses.next_page_number }}">Next</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="bg-light py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="text-center mb-4">About {{ category.name }} in Europe</h2>
+                    <div class="text-muted">
+                        <p>
+                            Europe's {{ category.name.lower }} sector represents one of the most dynamic and diverse 
+                            business landscapes in the world. With {{ total_businesses }} verified {{ category.name.lower }} 
+                            businesses across all 27 European Union member states, ListAcross.eu provides the most 
+                            comprehensive directory for finding quality {{ category.name.lower }} services.
+                        </p>
+                        <p>
+                            From major metropolitan areas like Berlin, Paris, and Rome to smaller regional centers, 
+                            European {{ category.name.lower }} businesses serve millions of customers daily. Our platform 
+                            connects you directly with verified, local {{ category.name.lower }} providers who understand 
+                            your market and regulatory requirements.
+                        </p>
+                        <p>
+                            Whether you're looking for established {{ category.name.lower }} companies or innovative 
+                            startups, ListAcross.eu makes it easy to discover, compare, and connect with the right 
+                            business partners across Europe's integrated market.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.hover-shadow:hover {
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+    transition: box-shadow 0.3s ease;
+}
+</style>
+{% endblock %}

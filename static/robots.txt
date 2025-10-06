@@ -1,0 +1,42 @@
+User-agent: *
+Allow: /
+
+# High-value pages for crawling
+Allow: /businesses/
+Allow: /cities/
+Allow: /*/*/
+Allow: /category/
+
+# Block admin and private areas
+Disallow: /admin/
+Disallow: /media/private/
+Disallow: /api/internal/
+Disallow: /accounts/
+Disallow: /*?print=1
+Disallow: /*?ajax=1
+
+# Block search filters to avoid duplicate content
+Disallow: /*?sort=
+Disallow: /*?filter=
+Disallow: /*?page=
+
+# Allow important resources
+Allow: /static/css/
+Allow: /static/js/
+Allow: /static/images/
+
+# Crawl delay (be respectful)
+Crawl-delay: 1
+
+# Sitemaps
+Sitemap: https://listacross.eu/sitemap.xml
+Sitemap: https://listacross.eu/sitemap-countries.xml
+Sitemap: https://listacross.eu/sitemap-cities.xml
+Sitemap: https://listacross.eu/sitemap-businesses.xml
+
+# Social Media Bots
+User-agent: facebookexternalhit/*
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
