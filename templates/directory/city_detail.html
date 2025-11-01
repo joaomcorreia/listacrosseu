@@ -6,7 +6,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{{ city.name }}, {{ city.country.name }} - Business Directory | ListAcross EU</title>
-  <meta name="description" content="Find businesses in {{ city.name }}, {{ city.country.name }}. Local restaurants, shops, services and more in {{ city.name }}." />
+  <meta name="description"
+    content="Find businesses in {{ city.name }}, {{ city.country.name }}. Local restaurants, shops, services and more in {{ city.name }}." />
   <link rel="stylesheet" href="{% static 'css/style.css' %}" />
   <link rel="stylesheet" href="{% static 'css/city.css' %}" />
 </head>
@@ -28,8 +29,8 @@
 
   <div class="breadcrumb">
     <div class="container">
-      <a href="{% url 'home' %}">Home</a> > 
-      <a href="{% url 'country_detail' city.country.code %}">{{ city.country.name }}</a> > 
+      <a href="{% url 'home' %}">Home</a> >
+      <a href="{% url 'country_detail' city.country.code %}">{{ city.country.name }}</a> >
       <span>{{ city.name }}</span>
     </div>
   </div>
@@ -43,7 +44,8 @@
           <span class="city-stat">⭐ 4.5 Average Rating</span>
           <span class="city-stat">📍 {{ city.population|default:"N/A" }} Population</span>
         </div>
-        <p class="city-description">Discover local businesses and services in {{ city.name }}. From restaurants and shops to professional services - find everything you need in this vibrant {{ city.country.name }} city.</p>
+        <p class="city-description">Discover local businesses and services in {{ city.name }}. From restaurants and
+          shops to professional services - find everything you need in this vibrant {{ city.country.name }} city.</p>
       </div>
       <div class="city-actions">
         <button class="btn-secondary" onclick="showMap()">📍 View on Map</button>
@@ -70,7 +72,8 @@
       <div class="category-tabs">
         <button class="tab-btn active" data-category="all">All ({{ businesses.count }})</button>
         {% for category in categories_with_count %}
-        <button class="tab-btn" data-category="{{ category.slug }}">{{ category.name }} ({{ category.business_count }})</button>
+        <button class="tab-btn" data-category="{{ category.slug }}">{{ category.name }} ({{ category.business_count
+          }})</button>
         {% endfor %}
       </div>
 
@@ -97,10 +100,12 @@
             {% endif %}
           </div>
           <div class="business-description">
-            <p>{{ business.description|truncatewords:20|default:"Professional business services in "|add:city.name }}</p>
+            <p>{{ business.description|truncatewords:20|default:"Professional business services in "|add:city.name }}
+            </p>
           </div>
           <div class="business-actions">
-            <button class="btn-primary" onclick="window.location.href='{% url 'business_detail' business.slug %}'">View Details</button>
+            <button class="btn-primary" onclick="window.location.href='{% url 'business_detail' business.slug %}'">View
+              Details</button>
             {% if business.phone %}
             <button class="btn-secondary" onclick="window.open('tel:{{ business.phone }}')">Call Now</button>
             {% endif %}
@@ -124,4 +129,5 @@
   <script src="{% static 'js/app.js' %}"></script>
   <script src="{% static 'js/city.js' %}"></script>
 </body>
+
 </html>

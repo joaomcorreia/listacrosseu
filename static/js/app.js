@@ -26,8 +26,8 @@ function initializeEnhancedFlagSlider() {
   function loop() {
     if (!isPaused) {
       pos -= speed;
-      if (Math.abs(pos) >= track.scrollWidth / 2) { 
-        pos = 0; 
+      if (Math.abs(pos) >= track.scrollWidth / 2) {
+        pos = 0;
       }
       track.style.transform = `translateX(${pos}px)`;
     }
@@ -63,13 +63,13 @@ function initializeEnhancedFlagSlider() {
 }
 
 // Auto-initialize on DOM ready
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   // Check if we're using the new flag slider template
   if (document.querySelector('#flag-track')) {
     // New template will handle its own initialization
     return;
   }
-  
+
   // Initialize legacy flag slider if present
   const track = document.querySelector('.flags .track');
   if (track && !window.flagSliderInitialized) {
@@ -88,7 +88,7 @@ if (featuredTrack && featuredCards.length > 0) {
   let currentIndex = 0;
   const cardsToShow = 3; // Number of cards visible at once
   const totalSlides = Math.ceil(featuredCards.length / cardsToShow);
-  
+
   // Create dots
   for (let i = 0; i < totalSlides; i++) {
     const dot = document.createElement('div');
@@ -97,39 +97,39 @@ if (featuredTrack && featuredCards.length > 0) {
     dot.addEventListener('click', () => goToSlide(i));
     dotsContainer.appendChild(dot);
   }
-  
+
   const dots = document.querySelectorAll('.slider-dot');
-  
+
   function updateSlider() {
     const cardWidth = 320 + 24; // card width + gap
     const translateX = -(currentIndex * cardsToShow * cardWidth);
     featuredTrack.style.transform = `translateX(${translateX}px)`;
-    
+
     // Update dots
     dots.forEach((dot, index) => {
       dot.classList.toggle('active', index === currentIndex);
     });
   }
-  
+
   function goToSlide(index) {
     currentIndex = index;
     updateSlider();
   }
-  
+
   function nextSlide() {
     currentIndex = (currentIndex + 1) % totalSlides;
     updateSlider();
   }
-  
+
   function prevSlide() {
     currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
     updateSlider();
   }
-  
+
   // Button event listeners
   if (nextBtn) nextBtn.addEventListener('click', nextSlide);
   if (prevBtn) prevBtn.addEventListener('click', prevSlide);
-  
+
   // Card click handlers
   featuredCards.forEach(card => {
     card.addEventListener('click', () => {
@@ -144,10 +144,10 @@ if (featuredTrack && featuredCards.length > 0) {
       }
     });
   });
-  
+
   // Auto-slide every 5 seconds
   setInterval(nextSlide, 5000);
-  
+
   // Pause auto-slide on hover
   featuredTrack.addEventListener('mouseenter', () => clearInterval());
   featuredTrack.addEventListener('mouseleave', () => setInterval(nextSlide, 5000));
@@ -162,7 +162,7 @@ if (categoryCards.length > 0) {
     card.addEventListener('click', (e) => {
       // Don't trigger if clicking the "See All" button
       if (e.target.classList.contains('see-all-btn')) return;
-      
+
       const category = card.dataset.category;
       if (category) {
         // Navigate to category page or search results
@@ -178,7 +178,7 @@ if (seeAllButtons.length > 0) {
       e.stopPropagation(); // Prevent card click
       const card = button.closest('.category-card');
       const category = card.dataset.category;
-      
+
       if (category) {
         window.location.href = `/search/?category=${category}`;
       }
@@ -194,7 +194,7 @@ if (trendingCards.length > 0) {
   trendingCards.forEach(card => {
     card.addEventListener('click', () => {
       const destination = card.dataset.destination;
-      
+
       // For demo purposes, redirect to search with location
       if (destination) {
         // Extract city from destination format "city-country"
@@ -205,16 +205,16 @@ if (trendingCards.length > 0) {
         }
       }
     });
-    
+
     // Add parallax effect on mouse move
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
       const x = ((e.clientX - rect.left) / rect.width) * 100;
       const y = ((e.clientY - rect.top) / rect.height) * 100;
-      
+
       card.style.backgroundPosition = `${x}% ${y}%`;
     });
-    
+
     card.addEventListener('mouseleave', () => {
       card.style.backgroundPosition = 'center';
     });
@@ -490,44 +490,44 @@ function getCountrySlug(countryName) {
 }
 
 // Blog Posts Slider
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   const blogSlider = document.querySelector('.blog-slider');
   const blogPrevBtn = document.querySelector('.blog-prev');
   const blogNextBtn = document.querySelector('.blog-next');
-  
+
   if (blogSlider && blogPrevBtn && blogNextBtn) {
     const scrollAmount = 370; // Card width + gap
-    
+
     function updateNavButtons() {
       const scrollLeft = blogSlider.scrollLeft;
       const maxScroll = blogSlider.scrollWidth - blogSlider.clientWidth;
-      
+
       blogPrevBtn.disabled = scrollLeft <= 0;
       blogNextBtn.disabled = scrollLeft >= maxScroll - 1; // -1 for precision
     }
-    
+
     blogPrevBtn.addEventListener('click', () => {
       blogSlider.scrollBy({
         left: -scrollAmount,
         behavior: 'smooth'
       });
     });
-    
+
     blogNextBtn.addEventListener('click', () => {
       blogSlider.scrollBy({
         left: scrollAmount,
         behavior: 'smooth'
       });
     });
-    
+
     blogSlider.addEventListener('scroll', updateNavButtons);
-    
+
     // Initialize button states
     updateNavButtons();
-    
+
     // Auto-scroll functionality (optional)
     let autoScrollInterval;
-    
+
     function startAutoScroll() {
       autoScrollInterval = setInterval(() => {
         if (!blogNextBtn.disabled) {
@@ -544,15 +544,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       }, 5000); // Auto-scroll every 5 seconds
     }
-    
+
     function stopAutoScroll() {
       clearInterval(autoScrollInterval);
     }
-    
+
     // Pause auto-scroll on hover
     blogSlider.addEventListener('mouseenter', stopAutoScroll);
     blogSlider.addEventListener('mouseleave', startAutoScroll);
-    
+
     // Start auto-scroll initially
     startAutoScroll();
   }

@@ -133,11 +133,11 @@
     .magicai-controls {
         padding: 15px;
     }
-    
+
     .magicai-actions {
         flex-direction: column;
     }
-    
+
     .magicai-actions .button {
         width: 100%;
         justify-content: center;
@@ -146,9 +146,12 @@
 
 /* Animation for loading states */
 @keyframes pulse {
-    0%, 100% {
+
+    0%,
+    100% {
         opacity: 1;
     }
+
     50% {
         opacity: 0.7;
     }
@@ -160,7 +163,7 @@
 
 /* Integration with Django admin theme */
 .form-row .magicai-panel,
-.field-content + .magicai-panel {
+.field-content+.magicai-panel {
     margin-top: 0;
 }
 
@@ -169,7 +172,7 @@
     .magicai-panel {
         background: linear-gradient(135deg, #4c1d95 0%, #581c87 100%);
     }
-    
+
     .magicai-options select {
         background: rgba(0, 0, 0, 0.2);
         border-color: rgba(255, 255, 255, 0.2);

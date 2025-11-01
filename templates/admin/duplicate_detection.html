@@ -6,8 +6,9 @@
 {% block content %}
 <div class="dashboard">
     <h1>🔍 Duplicate Detection & Confirmation System</h1>
-    <p class="help">Review all potential duplicates and manually confirm which ones should be removed. This prevents accidental deletion of legitimate businesses with similar information.</p>
-    
+    <p class="help">Review all potential duplicates and manually confirm which ones should be removed. This prevents
+        accidental deletion of legitimate businesses with similar information.</p>
+
     <div class="module">
         <h2>Detection Summary</h2>
         <table class="dashboard-table">
@@ -20,40 +21,43 @@
             </tr>
             <tr class="{% if exact_count == 0 %}status-good{% else %}status-warning{% endif %}">
                 <td><strong>Exact Duplicates</strong></td>
-                <td><span class="count {% if exact_count == 0 %}good{% else %}warning{% endif %}">{{ exact_count }}</span></td>
+                <td><span class="count {% if exact_count == 0 %}good{% else %}warning{% endif %}">{{ exact_count
+                        }}</span></td>
                 <td><span class="count">{{ exact_groups }}</span></td>
                 <td>Businesses with identical name, city, and address</td>
                 <td>
                     {% if exact_count > 0 %}
-                        <a href="#exact-duplicates" class="button">Review {{ exact_groups }} Groups</a>
+                    <a href="#exact-duplicates" class="button">Review {{ exact_groups }} Groups</a>
                     {% else %}
-                        <span class="status-good">✅ Clean</span>
+                    <span class="status-good">✅ Clean</span>
                     {% endif %}
                 </td>
             </tr>
             <tr class="{% if name_count == 0 %}status-good{% else %}status-warning{% endif %}">
                 <td><strong>Name Duplicates</strong></td>
-                <td><span class="count {% if name_count == 0 %}good{% else %}warning{% endif %}">{{ name_count }}</span></td>
+                <td><span class="count {% if name_count == 0 %}good{% else %}warning{% endif %}">{{ name_count }}</span>
+                </td>
                 <td><span class="count">{{ name_groups }}</span></td>
                 <td>Businesses with same name in same city</td>
                 <td>
                     {% if name_count > 0 %}
-                        <a href="#name-duplicates" class="button">Review {{ name_groups }} Groups</a>
+                    <a href="#name-duplicates" class="button">Review {{ name_groups }} Groups</a>
                     {% else %}
-                        <span class="status-good">✅ Clean</span>
+                    <span class="status-good">✅ Clean</span>
                     {% endif %}
                 </td>
             </tr>
             <tr class="{% if address_count == 0 %}status-good{% else %}status-warning{% endif %}">
                 <td><strong>Suspicious Address Duplicates</strong></td>
-                <td><span class="count {% if address_count == 0 %}good{% else %}warning{% endif %}">{{ address_count }}</span></td>
+                <td><span class="count {% if address_count == 0 %}good{% else %}warning{% endif %}">{{ address_count
+                        }}</span></td>
                 <td><span class="count">{{ address_groups }}</span></td>
                 <td>Potentially duplicate businesses at same address (excludes legitimate multi-tenant locations)</td>
                 <td>
                     {% if address_count > 0 %}
-                        <a href="#address-duplicates" class="button">Review {{ address_groups }} Groups</a>
+                    <a href="#address-duplicates" class="button">Review {{ address_groups }} Groups</a>
                     {% else %}
-                        <span class="status-good">✅ Clean</span>
+                    <span class="status-good">✅ Clean</span>
                     {% endif %}
                 </td>
             </tr>
@@ -66,62 +70,66 @@
             <div class="filter-row">
                 <label for="show_type">View:</label>
                 <select name="show_type" id="show_type">
-                    <option value="summary" {% if show_type == 'summary' %}selected{% endif %}>Summary (All Types)</option>
-                    <option value="exact" {% if show_type == 'exact' %}selected{% endif %}>Exact Duplicates Only</option>
-                    <option value="name" {% if show_type == 'name' %}selected{% endif %}>Name Duplicates Only</option>
-                    <option value="address" {% if show_type == 'address' %}selected{% endif %}>Address Duplicates Only</option>
+                    <option value="summary" {% if show_type=='summary' %}selected{% endif %}>Summary (All Types)
+                    </option>
+                    <option value="exact" {% if show_type=='exact' %}selected{% endif %}>Exact Duplicates Only</option>
+                    <option value="name" {% if show_type=='name' %}selected{% endif %}>Name Duplicates Only</option>
+                    <option value="address" {% if show_type=='address' %}selected{% endif %}>Address Duplicates Only
+                    </option>
                 </select>
-                
+
                 <label for="country">Country:</label>
                 <select name="country" id="country">
                     <option value="">All Countries</option>
                     {% for country in countries %}
-                        <option value="{{ country.code }}" {% if country.code == current_country %}selected{% endif %}>
-                            {{ country.name }} ({{ country.code }})
-                        </option>
+                    <option value="{{ country.code }}" {% if country.code==current_country %}selected{% endif %}>
+                        {{ country.name }} ({{ country.code }})
+                    </option>
                     {% endfor %}
                 </select>
-                
+
                 <label for="city">City:</label>
-                <input type="text" name="city" id="city" value="{{ current_city }}" placeholder="City name (partial match)">
-                
+                <input type="text" name="city" id="city" value="{{ current_city }}"
+                    placeholder="City name (partial match)">
+
                 <label for="threshold">Min Count:</label>
                 <input type="number" name="threshold" id="threshold" value="{{ current_threshold }}" min="2" max="10">
-                
+
                 <button type="submit" class="default">Apply Filters</button>
             </div>
         </form>
     </div>
 
     {% if has_duplicates %}
-    
+
     <!-- Navigation Anchors -->
     {% if show_type == 'summary' %}
     <div class="module">
         <h2>Quick Navigation</h2>
         <div class="quick-nav">
             {% if exact_count > 0 %}
-                <a href="#exact-duplicates" class="nav-button exact">📍 {{ exact_groups }} Exact Groups</a>
+            <a href="#exact-duplicates" class="nav-button exact">📍 {{ exact_groups }} Exact Groups</a>
             {% endif %}
             {% if name_count > 0 %}
-                <a href="#name-duplicates" class="nav-button name">🏷️ {{ name_groups }} Name Groups</a>
+            <a href="#name-duplicates" class="nav-button name">🏷️ {{ name_groups }} Name Groups</a>
             {% endif %}
             {% if address_count > 0 %}
-                <a href="#address-duplicates" class="nav-button address">🏠 {{ address_groups }} Address Groups</a>
+            <a href="#address-duplicates" class="nav-button address">🏠 {{ address_groups }} Address Groups</a>
             {% endif %}
         </div>
     </div>
     {% endif %}
-    
+
     <form method="post" action="{% url 'admin:duplicate_cleanup' %}">
         {% csrf_token %}
         <input type="hidden" name="action" value="cleanup_selected">
-        
+
         <!-- Global Action Buttons -->
         <div class="module global-actions">
             <h2>Manual Confirmation Actions</h2>
-            <p class="help">Review each group carefully. Check the boxes next to businesses you want to REMOVE (keep unchecked to preserve).</p>
-            
+            <p class="help">Review each group carefully. Check the boxes next to businesses you want to REMOVE (keep
+                unchecked to preserve).</p>
+
             <div class="action-buttons">
                 <button type="submit" class="deletelink" onclick="return confirmDeletion()">
                     🗑️ Remove Selected Businesses
@@ -136,14 +144,17 @@
                     ❓ Help & Guidelines
                 </button>
             </div>
-            
+
             <!-- Help Section (Initially Hidden) -->
             <div id="help-section" class="help-section" style="display: none;">
                 <h4>Duplicate Detection Guidelines:</h4>
                 <ul>
-                    <li><strong>Exact Duplicates:</strong> Identical name, city, and address - usually safe to remove duplicates</li>
-                    <li><strong>Name Duplicates:</strong> Same name, different addresses - could be legitimate different locations (e.g., multiple McDonald's branches)</li>
-                    <li><strong>Address Duplicates:</strong> ⚠️ <em>Use extreme caution!</em> Different businesses at the same address are often legitimate:
+                    <li><strong>Exact Duplicates:</strong> Identical name, city, and address - usually safe to remove
+                        duplicates</li>
+                    <li><strong>Name Duplicates:</strong> Same name, different addresses - could be legitimate different
+                        locations (e.g., multiple McDonald's branches)</li>
+                    <li><strong>Address Duplicates:</strong> ⚠️ <em>Use extreme caution!</em> Different businesses at
+                        the same address are often legitimate:
                         <ul>
                             <li>Shopping malls with multiple stores</li>
                             <li>Office buildings with different companies</li>
@@ -154,11 +165,12 @@
                     </li>
                     <li><strong>Always verify</strong> before removing - when in doubt, keep both businesses</li>
                     <li><strong>Check business details</strong> by clicking the Business ID links</li>
-                    <li><strong>Look for patterns:</strong> All same owner, same creation date, identical categories might indicate import duplicates</li>
+                    <li><strong>Look for patterns:</strong> All same owner, same creation date, identical categories
+                        might indicate import duplicates</li>
                 </ul>
             </div>
         </div>
-        
+
         <!-- Duplicate Groups Display -->
         <div class="duplicate-groups-container">
             {% for group in detailed_groups %}
@@ -166,54 +178,59 @@
                 <div class="group-header">
                     <h3 class="group-title">
                         <span class="type-badge {{ group.type }}">
-                            {% if group.type == 'exact' %}📍 EXACT{% elif group.type == 'name' %}🏷️ NAME{% else %}🏠 ADDRESS{% endif %}
+                            {% if group.type == 'exact' %}📍 EXACT{% elif group.type == 'name' %}🏷️ NAME{% else %}🏠
+                            ADDRESS{% endif %}
                         </span>
                         {{ group.title }}
                     </h3>
                     <div class="group-info">
                         <span class="count-badge">{{ group.count }} businesses</span>
                         {% if group.needs_manual_review %}
-                            <span class="review-badge">⚠️ Manual Review Required</span>
+                        <span class="review-badge">⚠️ Manual Review Required</span>
                         {% else %}
-                            <span class="auto-badge">✓ Auto-suggested</span>
+                        <span class="auto-badge">✓ Auto-suggested</span>
                         {% endif %}
                     </div>
                 </div>
-                
+
                 <div class="group-description">
                     <p>{{ group.description }}</p>
                     {% if group.warning %}
-                        <div class="warning-message">
-                            <strong>⚠️ Important:</strong> {{ group.warning }}
-                        </div>
+                    <div class="warning-message">
+                        <strong>⚠️ Important:</strong> {{ group.warning }}
+                    </div>
                     {% endif %}
                     {% if group.addresses %}
-                        <p><strong>Addresses:</strong> {{ group.addresses|join:", " }}</p>
+                    <p><strong>Addresses:</strong> {{ group.addresses|join:", " }}</p>
                     {% endif %}
                     {% if group.business_names %}
-                        <p><strong>Business Names:</strong> {{ group.business_names|join:", " }}</p>
+                    <p><strong>Business Names:</strong> {{ group.business_names|join:", " }}</p>
                     {% endif %}
                     {% if group.type == 'address' %}
-                        <div class="info-message">
-                            <strong>ℹ️ Note:</strong> Different businesses at the same address are often legitimate (shopping malls, office buildings, food courts, etc.). Only remove if you're certain they are actual duplicates.
-                        </div>
+                    <div class="info-message">
+                        <strong>ℹ️ Note:</strong> Different businesses at the same address are often legitimate
+                        (shopping malls, office buildings, food courts, etc.). Only remove if you're certain they are
+                        actual duplicates.
+                    </div>
                     {% endif %}
                 </div>
-                
+
                 <div class="group-actions">
                     {% if not group.needs_manual_review %}
-                        <button type="button" class="select-suggested" onclick="selectSuggestedForGroup('group-{{ forloop.counter }}')">
-                            Select Suggested Removals
-                        </button>
+                    <button type="button" class="select-suggested"
+                        onclick="selectSuggestedForGroup('group-{{ forloop.counter }}')">
+                        Select Suggested Removals
+                    </button>
                     {% endif %}
-                    <button type="button" class="select-all-group" onclick="selectAllInGroup('group-{{ forloop.counter }}')">
+                    <button type="button" class="select-all-group"
+                        onclick="selectAllInGroup('group-{{ forloop.counter }}')">
                         Select All in Group
                     </button>
                     <button type="button" class="clear-group" onclick="clearGroup('group-{{ forloop.counter }}')">
                         Clear Group
                     </button>
                 </div>
-                
+
                 <table class="duplicate-businesses" id="group-{{ forloop.counter }}">
                     <thead>
                         <tr>
@@ -229,27 +246,27 @@
                     </thead>
                     <tbody>
                         {% for business in group.businesses %}
-                        <tr class="business-row {% if business == group.suggested_keep %}keep-business{% elif business in group.suggested_remove %}remove-business{% endif %}">
+                        <tr
+                            class="business-row {% if business == group.suggested_keep %}keep-business{% elif business in group.suggested_remove %}remove-business{% endif %}">
                             <td class="action-cell">
                                 {% if business == group.suggested_keep %}
-                                    <span class="keep-indicator">🟢 SUGGESTED KEEP</span>
+                                <span class="keep-indicator">🟢 SUGGESTED KEEP</span>
                                 {% else %}
-                                    <input type="checkbox" 
-                                           name="remove_ids" 
-                                           value="{{ business.id }}" 
-                                           class="remove-checkbox"
-                                           {% if business in group.suggested_remove %}checked{% endif %}>
-                                    <span class="remove-indicator">🔴 Select to Remove</span>
+                                <input type="checkbox" name="remove_ids" value="{{ business.id }}"
+                                    class="remove-checkbox" {% if business in group.suggested_remove %}checked{% endif
+                                    %}>
+                                <span class="remove-indicator">🔴 Select to Remove</span>
                                 {% endif %}
                             </td>
                             <td class="business-name">
                                 <strong>{{ business.name }}</strong>
                                 {% if business.verified %}
-                                    <span class="verified-badge">✓</span>
+                                <span class="verified-badge">✓</span>
                                 {% endif %}
                             </td>
                             <td class="business-id">
-                                <a href="{% url 'admin:businesses_business_change' business.id %}" target="_blank" class="business-link">
+                                <a href="{% url 'admin:businesses_business_change' business.id %}" target="_blank"
+                                    class="business-link">
                                     ●●●●●{{ business.id|slice:"-4:" }}
                                 </a>
                             </td>
@@ -258,7 +275,8 @@
                             <td class="status">
                                 <span class="status-badge {{ business.status }}">{{ business.status|title }}</span>
                             </td>
-                            <td class="category">{{ business.category.name|default:"Uncategorized"|truncatechars:15 }}</td>
+                            <td class="category">{{ business.category.name|default:"Uncategorized"|truncatechars:15 }}
+                            </td>
                             <td class="owner">●●●●●</td>
                         </tr>
                         {% endfor %}
@@ -272,7 +290,7 @@
             </div>
             {% endfor %}
         </div>
-        
+
         <!-- Bottom Action Buttons -->
         {% if detailed_groups %}
         <div class="module bottom-actions">
@@ -284,9 +302,9 @@
             </div>
         </div>
         {% endif %}
-        
+
     </form>
-    
+
     {% else %}
     <div class="module no-duplicates">
         <h2>🎉 No Duplicates Found</h2>
@@ -298,15 +316,16 @@
     <div class="module">
         <h2>Bulk Actions</h2>
         <p class="help">These actions will automatically process duplicates without manual selection.</p>
-        
+
         <form method="post" action="{% url 'admin:duplicate_cleanup' %}" style="display: inline;">
             {% csrf_token %}
             <input type="hidden" name="action" value="cleanup_all_exact">
-            <button type="submit" class="deletelink" onclick="return confirm('This will automatically remove ALL exact duplicates, keeping only the oldest business in each group. Are you sure?')">
+            <button type="submit" class="deletelink"
+                onclick="return confirm('This will automatically remove ALL exact duplicates, keeping only the oldest business in each group. Are you sure?')">
                 Auto-Cleanup All Exact Duplicates
             </button>
         </form>
-        
+
         <a href="{% url 'admin:duplicate_detection' %}" class="addlink">
             Refresh Detection
         </a>
@@ -314,542 +333,543 @@
 </div>
 
 <style>
-.dashboard {
-    max-width: 1200px;
-}
-
-.module {
-    margin-bottom: 20px;
-    padding: 15px;
-    background: #f8f9fa;
-    border-radius: 8px;
-}
-
-.dashboard-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.dashboard-table th,
-.dashboard-table td {
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-.count {
-    font-size: 18px;
-    font-weight: bold;
-    color: #dc3545;
-}
-
-.filter-row {
-    display: flex;
-    gap: 15px;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.filter-row label {
-    font-weight: bold;
-}
-
-.filter-row input,
-.filter-row select {
-    padding: 5px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-/* Enhanced Manual Confirmation Interface Styles */
-.quick-nav {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-}
-
-.nav-button {
-    padding: 12px 20px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: all 0.3s;
-    border: 2px solid transparent;
-}
-
-.nav-button.exact {
-    background: #fff3cd;
-    color: #856404;
-    border-color: #ffeaa7;
-}
-
-.nav-button.name {
-    background: #d1ecf1;
-    color: #0c5460;
-    border-color: #bee5eb;
-}
-
-.nav-button.address {
-    background: #f8d7da;
-    color: #721c24;
-    border-color: #f5c6cb;
-}
-
-.global-actions, .bottom-actions {
-    background: #f8f9fa;
-    border: 1px solid #dee2e6;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 20px;
-}
-
-.action-buttons {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-    align-items: center;
-}
-
-.action-buttons button {
-    padding: 12px 24px;
-    border-radius: 6px;
-    border: 2px solid transparent;
-    cursor: pointer;
-    font-weight: bold;
-    transition: all 0.3s;
-}
-
-.deletelink {
-    background: #dc3545;
-    color: white;
-    border-color: #dc3545;
-}
-
-.deletelink:hover {
-    background: #c82333;
-    transform: translateY(-1px);
-}
-
-.addlink {
-    background: #28a745;
-    color: white;
-    border-color: #28a745;
-}
-
-.addlink:hover {
-    background: #218838;
-    transform: translateY(-1px);
-}
-
-.help-button {
-    background: #17a2b8;
-    color: white;
-    border-color: #17a2b8;
-}
-
-.help-section {
-    background: white;
-    border: 1px solid #17a2b8;
-    border-radius: 6px;
-    padding: 15px;
-    margin-top: 15px;
-}
-
-.help-section ul {
-    margin: 10px 0;
-    padding-left: 20px;
-}
-
-.help-section li {
-    margin-bottom: 8px;
-}
-
-/* Duplicate Group Styles */
-.duplicate-groups-container {
-    margin-bottom: 30px;
-}
-
-.duplicate-group {
-    margin-bottom: 40px;
-    border: 2px solid #dee2e6;
-    border-radius: 12px;
-    overflow: hidden;
-    background: white;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.exact-group {
-    border-color: #ffc107;
-}
-
-.name-group {
-    border-color: #17a2b8;
-}
-
-.address-group {
-    border-color: #dc3545;
-}
-
-.group-header {
-    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-    padding: 20px;
-    border-bottom: 1px solid #dee2e6;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.group-title {
-    margin: 0;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 18px;
-}
-
-.type-badge {
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-.type-badge.exact {
-    background: #fff3cd;
-    color: #856404;
-}
-
-.type-badge.name {
-    background: #d1ecf1;
-    color: #0c5460;
-}
-
-.type-badge.address {
-    background: #f8d7da;
-    color: #721c24;
-}
-
-.group-info {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
-
-.count-badge {
-    background: #6c757d;
-    color: white;
-    padding: 4px 8px;
-    border-radius: 12px;
-    font-size: 12px;
-    font-weight: bold;
-}
-
-.review-badge {
-    background: #ffc107;
-    color: #856404;
-    padding: 4px 8px;
-    border-radius: 12px;
-    font-size: 12px;
-    font-weight: bold;
-}
-
-.auto-badge {
-    background: #28a745;
-    color: white;
-    padding: 4px 8px;
-    border-radius: 12px;
-    font-size: 12px;
-    font-weight: bold;
-}
-
-.group-description {
-    padding: 15px 20px;
-    background: #f8f9fa;
-    border-bottom: 1px solid #dee2e6;
-    font-size: 14px;
-}
-
-.warning-message {
-    background: #fff3cd;
-    border: 1px solid #ffeaa7;
-    border-radius: 6px;
-    padding: 10px;
-    margin: 10px 0;
-    color: #856404;
-}
-
-.info-message {
-    background: #d1ecf1;
-    border: 1px solid #bee5eb;
-    border-radius: 6px;
-    padding: 10px;
-    margin: 10px 0;
-    color: #0c5460;
-}
-
-.group-actions {
-    padding: 15px 20px;
-    background: #f1f3f4;
-    border-bottom: 1px solid #dee2e6;
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.group-actions button {
-    padding: 6px 12px;
-    border-radius: 4px;
-    border: 1px solid #6c757d;
-    background: white;
-    cursor: pointer;
-    font-size: 12px;
-    transition: all 0.2s;
-}
-
-.group-actions button:hover {
-    background: #6c757d;
-    color: white;
-}
-
-.duplicate-businesses {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.duplicate-businesses th,
-.duplicate-businesses td {
-    padding: 12px;
-    border-bottom: 1px solid #eee;
-    text-align: left;
-    vertical-align: top;
-}
-
-.duplicate-businesses th {
-    background: #f8f9fa;
-    font-weight: bold;
-    font-size: 13px;
-    color: #495057;
-}
-
-.business-row.keep-business {
-    background-color: #d4edda;
-}
-
-.business-row.remove-business {
-    background-color: #f8d7da;
-}
-
-.action-cell {
-    width: 120px;
-    text-align: center;
-}
-
-.keep-indicator {
-    color: #155724;
-    font-weight: bold;
-    font-size: 12px;
-}
-
-.remove-indicator {
-    color: #721c24;
-    font-weight: bold;
-    font-size: 12px;
-}
-
-.remove-checkbox {
-    margin-right: 5px;
-    transform: scale(1.2);
-}
-
-.business-link {
-    color: #007cba;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.business-link:hover {
-    text-decoration: underline;
-}
-
-.status-badge {
-    padding: 2px 6px;
-    border-radius: 10px;
-    font-size: 11px;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-.status-badge.active {
-    background: #d4edda;
-    color: #155724;
-}
-
-.status-badge.pending {
-    background: #fff3cd;
-    color: #856404;
-}
-
-.status-badge.inactive {
-    background: #f8d7da;
-    color: #721c24;
-}
-
-.verified-badge {
-    color: #28a745;
-    font-weight: bold;
-    margin-left: 5px;
-}
-
-.selected-count {
-    background: #e9ecef;
-    padding: 8px 12px;
-    border-radius: 4px;
-    font-weight: bold;
-    color: #495057;
-}
-
-.no-duplicates {
-    text-align: center;
-    padding: 40px;
-    background: #f8f9fa;
-    border-radius: 8px;
-    border: 2px dashed #dee2e6;
-}
-
-.no-duplicates h3 {
-    color: #28a745;
-    margin-bottom: 15px;
-}
-
-/* Legacy compatibility styles */
-.keep-business {
-    background-color: #d4edda;
-}
-
-.remove-business {
-    background-color: #f8d7da;
-}
-
-.keep-badge {
-    color: #155724;
-    font-weight: bold;
-}
-
-.remove-badge {
-    color: #721c24;
-    font-weight: bold;
-}
-
-.duplicate-actions {
-    margin: 20px 0;
-    padding: 15px;
-    background: #e9ecef;
-    border-radius: 5px;
-}
-
-.duplicate-actions button {
-    margin-right: 10px;
-}
+    .dashboard {
+        max-width: 1200px;
+    }
+
+    .module {
+        margin-bottom: 20px;
+        padding: 15px;
+        background: #f8f9fa;
+        border-radius: 8px;
+    }
+
+    .dashboard-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .dashboard-table th,
+    .dashboard-table td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .count {
+        font-size: 18px;
+        font-weight: bold;
+        color: #dc3545;
+    }
+
+    .filter-row {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .filter-row label {
+        font-weight: bold;
+    }
+
+    .filter-row input,
+    .filter-row select {
+        padding: 5px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+
+    /* Enhanced Manual Confirmation Interface Styles */
+    .quick-nav {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+    }
+
+    .nav-button {
+        padding: 12px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: all 0.3s;
+        border: 2px solid transparent;
+    }
+
+    .nav-button.exact {
+        background: #fff3cd;
+        color: #856404;
+        border-color: #ffeaa7;
+    }
+
+    .nav-button.name {
+        background: #d1ecf1;
+        color: #0c5460;
+        border-color: #bee5eb;
+    }
+
+    .nav-button.address {
+        background: #f8d7da;
+        color: #721c24;
+        border-color: #f5c6cb;
+    }
+
+    .global-actions,
+    .bottom-actions {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    .action-buttons {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .action-buttons button {
+        padding: 12px 24px;
+        border-radius: 6px;
+        border: 2px solid transparent;
+        cursor: pointer;
+        font-weight: bold;
+        transition: all 0.3s;
+    }
+
+    .deletelink {
+        background: #dc3545;
+        color: white;
+        border-color: #dc3545;
+    }
+
+    .deletelink:hover {
+        background: #c82333;
+        transform: translateY(-1px);
+    }
+
+    .addlink {
+        background: #28a745;
+        color: white;
+        border-color: #28a745;
+    }
+
+    .addlink:hover {
+        background: #218838;
+        transform: translateY(-1px);
+    }
+
+    .help-button {
+        background: #17a2b8;
+        color: white;
+        border-color: #17a2b8;
+    }
+
+    .help-section {
+        background: white;
+        border: 1px solid #17a2b8;
+        border-radius: 6px;
+        padding: 15px;
+        margin-top: 15px;
+    }
+
+    .help-section ul {
+        margin: 10px 0;
+        padding-left: 20px;
+    }
+
+    .help-section li {
+        margin-bottom: 8px;
+    }
+
+    /* Duplicate Group Styles */
+    .duplicate-groups-container {
+        margin-bottom: 30px;
+    }
+
+    .duplicate-group {
+        margin-bottom: 40px;
+        border: 2px solid #dee2e6;
+        border-radius: 12px;
+        overflow: hidden;
+        background: white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .exact-group {
+        border-color: #ffc107;
+    }
+
+    .name-group {
+        border-color: #17a2b8;
+    }
+
+    .address-group {
+        border-color: #dc3545;
+    }
+
+    .group-header {
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        padding: 20px;
+        border-bottom: 1px solid #dee2e6;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .group-title {
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 18px;
+    }
+
+    .type-badge {
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .type-badge.exact {
+        background: #fff3cd;
+        color: #856404;
+    }
+
+    .type-badge.name {
+        background: #d1ecf1;
+        color: #0c5460;
+    }
+
+    .type-badge.address {
+        background: #f8d7da;
+        color: #721c24;
+    }
+
+    .group-info {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .count-badge {
+        background: #6c757d;
+        color: white;
+        padding: 4px 8px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    .review-badge {
+        background: #ffc107;
+        color: #856404;
+        padding: 4px 8px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    .auto-badge {
+        background: #28a745;
+        color: white;
+        padding: 4px 8px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    .group-description {
+        padding: 15px 20px;
+        background: #f8f9fa;
+        border-bottom: 1px solid #dee2e6;
+        font-size: 14px;
+    }
+
+    .warning-message {
+        background: #fff3cd;
+        border: 1px solid #ffeaa7;
+        border-radius: 6px;
+        padding: 10px;
+        margin: 10px 0;
+        color: #856404;
+    }
+
+    .info-message {
+        background: #d1ecf1;
+        border: 1px solid #bee5eb;
+        border-radius: 6px;
+        padding: 10px;
+        margin: 10px 0;
+        color: #0c5460;
+    }
+
+    .group-actions {
+        padding: 15px 20px;
+        background: #f1f3f4;
+        border-bottom: 1px solid #dee2e6;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .group-actions button {
+        padding: 6px 12px;
+        border-radius: 4px;
+        border: 1px solid #6c757d;
+        background: white;
+        cursor: pointer;
+        font-size: 12px;
+        transition: all 0.2s;
+    }
+
+    .group-actions button:hover {
+        background: #6c757d;
+        color: white;
+    }
+
+    .duplicate-businesses {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .duplicate-businesses th,
+    .duplicate-businesses td {
+        padding: 12px;
+        border-bottom: 1px solid #eee;
+        text-align: left;
+        vertical-align: top;
+    }
+
+    .duplicate-businesses th {
+        background: #f8f9fa;
+        font-weight: bold;
+        font-size: 13px;
+        color: #495057;
+    }
+
+    .business-row.keep-business {
+        background-color: #d4edda;
+    }
+
+    .business-row.remove-business {
+        background-color: #f8d7da;
+    }
+
+    .action-cell {
+        width: 120px;
+        text-align: center;
+    }
+
+    .keep-indicator {
+        color: #155724;
+        font-weight: bold;
+        font-size: 12px;
+    }
+
+    .remove-indicator {
+        color: #721c24;
+        font-weight: bold;
+        font-size: 12px;
+    }
+
+    .remove-checkbox {
+        margin-right: 5px;
+        transform: scale(1.2);
+    }
+
+    .business-link {
+        color: #007cba;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .business-link:hover {
+        text-decoration: underline;
+    }
+
+    .status-badge {
+        padding: 2px 6px;
+        border-radius: 10px;
+        font-size: 11px;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .status-badge.active {
+        background: #d4edda;
+        color: #155724;
+    }
+
+    .status-badge.pending {
+        background: #fff3cd;
+        color: #856404;
+    }
+
+    .status-badge.inactive {
+        background: #f8d7da;
+        color: #721c24;
+    }
+
+    .verified-badge {
+        color: #28a745;
+        font-weight: bold;
+        margin-left: 5px;
+    }
+
+    .selected-count {
+        background: #e9ecef;
+        padding: 8px 12px;
+        border-radius: 4px;
+        font-weight: bold;
+        color: #495057;
+    }
+
+    .no-duplicates {
+        text-align: center;
+        padding: 40px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        border: 2px dashed #dee2e6;
+    }
+
+    .no-duplicates h3 {
+        color: #28a745;
+        margin-bottom: 15px;
+    }
+
+    /* Legacy compatibility styles */
+    .keep-business {
+        background-color: #d4edda;
+    }
+
+    .remove-business {
+        background-color: #f8d7da;
+    }
+
+    .keep-badge {
+        color: #155724;
+        font-weight: bold;
+    }
+
+    .remove-badge {
+        color: #721c24;
+        font-weight: bold;
+    }
+
+    .duplicate-actions {
+        margin: 20px 0;
+        padding: 15px;
+        background: #e9ecef;
+        border-radius: 5px;
+    }
+
+    .duplicate-actions button {
+        margin-right: 10px;
+    }
 </style>
 
 <script>
-// Enhanced JavaScript for manual confirmation interface
-function updateSelectedCount() {
-    const checkboxes = document.querySelectorAll('.remove-checkbox:checked');
-    const countElement = document.getElementById('selected-count');
-    if (countElement) {
-        countElement.textContent = `${checkboxes.length} businesses selected for removal`;
-    }
-}
-
-function selectAllSuggested() {
-    const checkboxes = document.querySelectorAll('.remove-checkbox');
-    checkboxes.forEach(checkbox => {
-        // Only select if it's already suggested (checked by default)
-        if (checkbox.classList.contains('suggested') || checkbox.closest('.remove-business')) {
-            checkbox.checked = true;
+    // Enhanced JavaScript for manual confirmation interface
+    function updateSelectedCount() {
+        const checkboxes = document.querySelectorAll('.remove-checkbox:checked');
+        const countElement = document.getElementById('selected-count');
+        if (countElement) {
+            countElement.textContent = `${checkboxes.length} businesses selected for removal`;
         }
-    });
-    updateSelectedCount();
-}
+    }
 
-function clearAllSelections() {
-    const checkboxes = document.querySelectorAll('.remove-checkbox');
-    checkboxes.forEach(checkbox => checkbox.checked = false);
-    updateSelectedCount();
-}
-
-function selectSuggestedForGroup(groupId) {
-    const group = document.getElementById(groupId);
-    if (group) {
-        const checkboxes = group.querySelectorAll('.remove-checkbox');
+    function selectAllSuggested() {
+        const checkboxes = document.querySelectorAll('.remove-checkbox');
         checkboxes.forEach(checkbox => {
-            if (checkbox.closest('.remove-business')) {
+            // Only select if it's already suggested (checked by default)
+            if (checkbox.classList.contains('suggested') || checkbox.closest('.remove-business')) {
                 checkbox.checked = true;
             }
         });
+        updateSelectedCount();
     }
-    updateSelectedCount();
-}
 
-function selectAllInGroup(groupId) {
-    const group = document.getElementById(groupId);
-    if (group) {
-        const checkboxes = group.querySelectorAll('.remove-checkbox');
-        checkboxes.forEach(checkbox => checkbox.checked = true);
-    }
-    updateSelectedCount();
-}
-
-function clearGroup(groupId) {
-    const group = document.getElementById(groupId);
-    if (group) {
-        const checkboxes = group.querySelectorAll('.remove-checkbox');
+    function clearAllSelections() {
+        const checkboxes = document.querySelectorAll('.remove-checkbox');
         checkboxes.forEach(checkbox => checkbox.checked = false);
+        updateSelectedCount();
     }
-    updateSelectedCount();
-}
 
-function toggleHelp() {
-    const helpSection = document.getElementById('help-section');
-    if (helpSection) {
-        helpSection.style.display = helpSection.style.display === 'none' ? 'block' : 'none';
+    function selectSuggestedForGroup(groupId) {
+        const group = document.getElementById(groupId);
+        if (group) {
+            const checkboxes = group.querySelectorAll('.remove-checkbox');
+            checkboxes.forEach(checkbox => {
+                if (checkbox.closest('.remove-business')) {
+                    checkbox.checked = true;
+                }
+            });
+        }
+        updateSelectedCount();
     }
-}
 
-function confirmDeletion() {
-    const checkboxes = document.querySelectorAll('.remove-checkbox:checked');
-    if (checkboxes.length === 0) {
-        alert('Please select at least one business to remove.');
-        return false;
+    function selectAllInGroup(groupId) {
+        const group = document.getElementById(groupId);
+        if (group) {
+            const checkboxes = group.querySelectorAll('.remove-checkbox');
+            checkboxes.forEach(checkbox => checkbox.checked = true);
+        }
+        updateSelectedCount();
     }
-    
-    const confirmMessage = `Are you sure you want to permanently remove ${checkboxes.length} business(es)?\n\nThis action cannot be undone. Please make sure you have reviewed each business carefully.`;
-    return confirm(confirmMessage);
-}
 
-// Legacy functions for compatibility
-function selectAllRemovable() {
-    selectAllSuggested();
-}
+    function clearGroup(groupId) {
+        const group = document.getElementById(groupId);
+        if (group) {
+            const checkboxes = group.querySelectorAll('.remove-checkbox');
+            checkboxes.forEach(checkbox => checkbox.checked = false);
+        }
+        updateSelectedCount();
+    }
 
-function clearSelection() {
-    clearAllSelections();
-}
+    function toggleHelp() {
+        const helpSection = document.getElementById('help-section');
+        if (helpSection) {
+            helpSection.style.display = helpSection.style.display === 'none' ? 'block' : 'none';
+        }
+    }
 
-// Initialize event listeners when page loads
-document.addEventListener('DOMContentLoaded', function() {
-    // Add change listeners to all checkboxes
-    const checkboxes = document.querySelectorAll('.remove-checkbox');
-    checkboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', updateSelectedCount);
+    function confirmDeletion() {
+        const checkboxes = document.querySelectorAll('.remove-checkbox:checked');
+        if (checkboxes.length === 0) {
+            alert('Please select at least one business to remove.');
+            return false;
+        }
+
+        const confirmMessage = `Are you sure you want to permanently remove ${checkboxes.length} business(es)?\n\nThis action cannot be undone. Please make sure you have reviewed each business carefully.`;
+        return confirm(confirmMessage);
+    }
+
+    // Legacy functions for compatibility
+    function selectAllRemovable() {
+        selectAllSuggested();
+    }
+
+    function clearSelection() {
+        clearAllSelections();
+    }
+
+    // Initialize event listeners when page loads
+    document.addEventListener('DOMContentLoaded', function () {
+        // Add change listeners to all checkboxes
+        const checkboxes = document.querySelectorAll('.remove-checkbox');
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', updateSelectedCount);
+        });
+
+        // Initial count update
+        updateSelectedCount();
     });
-    
-    // Initial count update
-    updateSelectedCount();
-});
 </script>
 {% endblock %}

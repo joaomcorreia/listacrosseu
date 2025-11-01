@@ -1,10 +1,7 @@
 <!-- templates/includes/dynamic_map.html -->
 <section class="map-wrap" data-location-type="{{ location_type }}" data-location-code="{{ location_code }}">
   <!-- Dynamic map that zooms based on location -->
-  <iframe class="map-embed" 
-    id="dynamic-map"
-    src="{{ map_url }}"
-    loading="lazy" 
+  <iframe class="map-embed" id="dynamic-map" src="{{ map_url }}" loading="lazy"
     referrerpolicy="no-referrer-when-downgrade">
   </iframe>
 
@@ -14,9 +11,9 @@
     <select id="location-filter">
       <option value="europe">Europe</option>
       {% if location_type == 'country' %}
-        <option value="{{ location_code }}" selected>{{ location_code }}</option>
+      <option value="{{ location_code }}" selected>{{ location_code }}</option>
       {% elif location_type == 'city' %}
-        <option value="{{ location_code }}" selected>{{ location_code|title }}</option>
+      <option value="{{ location_code }}" selected>{{ location_code|title }}</option>
       {% endif %}
     </select>
     <select id="category-filter">
@@ -27,10 +24,10 @@
 </section>
 
 <script>
-// Store map coordinates for JavaScript use
-window.mapConfig = {
-  coordinates: {{ coordinates|safe }},
+  // Store map coordinates for JavaScript use
+  window.mapConfig = {
+    coordinates: {{ coordinates | safe }},
   locationType: '{{ location_type }}',
-  locationCode: '{{ location_code }}'
+    locationCode: '{{ location_code }}'
 };
 </script>

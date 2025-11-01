@@ -1,0 +1,2550 @@
+[
+{
+  "model": "businesses.city",
+  "pk": 6,
+  "fields": {
+    "name": "Graz",
+    "slug": "graz",
+    "country": 1,
+    "latitude": "47.070700",
+    "longitude": "15.439500",
+    "population": 289440,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 5,
+  "fields": {
+    "name": "Innsbruck",
+    "slug": "innsbruck",
+    "country": 1,
+    "latitude": "47.269200",
+    "longitude": "11.404100",
+    "population": 132493,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 140,
+  "fields": {
+    "name": "Linz",
+    "slug": "linz",
+    "country": 1,
+    "latitude": "48.306900",
+    "longitude": "14.285800",
+    "population": 200000,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 2,
+  "fields": {
+    "name": "Salzburg",
+    "slug": "salzburg",
+    "country": 1,
+    "latitude": "47.809500",
+    "longitude": "13.055000",
+    "population": 155021,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 1,
+  "fields": {
+    "name": "Vienna",
+    "slug": "vienna",
+    "country": 1,
+    "latitude": "48.208200",
+    "longitude": "16.373800",
+    "population": 1911000,
+    "is_capital": true
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 17,
+  "fields": {
+    "name": "Antwerp",
+    "slug": "antwerp",
+    "country": 5,
+    "latitude": "51.219400",
+    "longitude": "4.402500",
+    "population": 523248,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 142,
+  "fields": {
+    "name": "Bruges",
+    "slug": "bruges",
+    "country": 5,
+    "latitude": "51.208500",
+    "longitude": "3.226400",
+    "population": 118000,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 16,
+  "fields": {
+    "name": "Brussels",
+    "slug": "brussels",
+    "country": 5,
+    "latitude": "50.850300",
+    "longitude": "4.351700",
+    "population": 1208542,
+    "is_capital": true
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 19,
+  "fields": {
+    "name": "Charleroi",
+    "slug": "charleroi",
+    "country": 5,
+    "latitude": "50.410800",
+    "longitude": "4.444600",
+    "population": 201816,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 18,
+  "fields": {
+    "name": "Ghent",
+    "slug": "ghent",
+    "country": 5,
+    "latitude": "51.050000",
+    "longitude": "3.730300",
+    "population": 262219,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 141,
+  "fields": {
+    "name": "Liège",
+    "slug": "liege",
+    "country": 5,
+    "latitude": "50.629200",
+    "longitude": "5.579700",
+    "population": 195000,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 23,
+  "fields": {
+    "name": "Burgas",
+    "slug": "burgas",
+    "country": 6,
+    "latitude": "42.504800",
+    "longitude": "27.462600",
+    "population": 202694,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 21,
+  "fields": {
+    "name": "Plovdiv",
+    "slug": "plovdiv",
+    "country": 6,
+    "latitude": "42.135400",
+    "longitude": "24.745300",
+    "population": 346893,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 143,
+  "fields": {
+    "name": "Ruse",
+    "slug": "ruse",
+    "country": 6,
+    "latitude": "43.856400",
+    "longitude": "25.970700",
+    "population": 144000,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 20,
+  "fields": {
+    "name": "Sofia",
+    "slug": "sofia",
+    "country": 6,
+    "latitude": "42.697700",
+    "longitude": "23.321900",
+    "population": 1400384,
+    "is_capital": true
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 187,
+  "fields": {
+    "name": "Stara Zagora",
+    "slug": "stara-zagora",
+    "country": 6,
+    "latitude": null,
+    "longitude": null,
+    "population": null,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 22,
+  "fields": {
+    "name": "Varna",
+    "slug": "varna",
+    "country": 6,
+    "latitude": "43.214100",
+    "longitude": "27.914700",
+    "population": 335177,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 63,
+  "fields": {
+    "name": "Osijek",
+    "slug": "osijek",
+    "country": 13,
+    "latitude": "45.555000",
+    "longitude": "18.695500",
+    "population": 96985,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 62,
+  "fields": {
+    "name": "Rijeka",
+    "slug": "rijeka",
+    "country": 13,
+    "latitude": "45.327100",
+    "longitude": "14.442200",
+    "population": 128624,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 61,
+  "fields": {
+    "name": "Split",
+    "slug": "split",
+    "country": 13,
+    "latitude": "43.508100",
+    "longitude": "16.440200",
+    "population": 178102,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 188,
+  "fields": {
+    "name": "Zadar",
+    "slug": "zadar",
+    "country": 13,
+    "latitude": null,
+    "longitude": null,
+    "population": null,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 60,
+  "fields": {
+    "name": "Zagreb",
+    "slug": "zagreb",
+    "country": 13,
+    "latitude": "45.815000",
+    "longitude": "15.981900",
+    "population": 790017,
+    "is_capital": true
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 189,
+  "fields": {
+    "name": "Famagusta",
+    "slug": "famagusta",
+    "country": 7,
+    "latitude": null,
+    "longitude": null,
+    "population": null,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 26,
+  "fields": {
+    "name": "Larnaca",
+    "slug": "larnaca",
+    "country": 7,
+    "latitude": "34.982300",
+    "longitude": "33.633900",
+    "population": 84591,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 25,
+  "fields": {
+    "name": "Limassol",
+    "slug": "limassol",
+    "country": 7,
+    "latitude": "34.682300",
+    "longitude": "33.046400",
+    "population": 239842,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 24,
+  "fields": {
+    "name": "Nicosia",
+    "slug": "nicosia",
+    "country": 7,
+    "latitude": "35.185600",
+    "longitude": "33.382300",
+    "population": 310355,
+    "is_capital": true
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 27,
+  "fields": {
+    "name": "Paphos",
+    "slug": "paphos",
+    "country": 7,
+    "latitude": "34.757200",
+    "longitude": "32.408800",
+    "population": 62237,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 28,
+  "fields": {
+    "name": "Brno",
+    "slug": "brno",
+    "country": 8,
+    "latitude": "49.195100",
+    "longitude": "16.606800",
+    "population": 380681,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 144,
+  "fields": {
+    "name": "Liberec",
+    "slug": "liberec",
+    "country": 8,
+    "latitude": "50.767100",
+    "longitude": "15.056100",
+    "population": 103000,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 29,
+  "fields": {
+    "name": "Ostrava",
+    "slug": "ostrava",
+    "country": 8,
+    "latitude": "49.820900",
+    "longitude": "18.262500",
+    "population": 280515,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 30,
+  "fields": {
+    "name": "Plzen",
+    "slug": "plzen",
+    "country": 8,
+    "latitude": "49.738400",
+    "longitude": "13.373600",
+    "population": 175219,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 13,
+  "fields": {
+    "name": "Prague",
+    "slug": "prague",
+    "country": 8,
+    "latitude": "50.075500",
+    "longitude": "14.437800",
+    "population": 1318982,
+    "is_capital": true
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 34,
+  "fields": {
+    "name": "Aalborg",
+    "slug": "aalborg",
+    "country": 9,
+    "latitude": "57.048800",
+    "longitude": "9.921700",
+    "population": 142561,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 32,
+  "fields": {
+    "name": "Aarhus",
+    "slug": "aarhus",
+    "country": 9,
+    "latitude": "56.162900",
+    "longitude": "10.203900",
+    "population": 285273,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 31,
+  "fields": {
+    "name": "Copenhagen",
+    "slug": "copenhagen",
+    "country": 9,
+    "latitude": "55.676100",
+    "longitude": "12.568300",
+    "population": 650000,
+    "is_capital": true
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 145,
+  "fields": {
+    "name": "Esbjerg",
+    "slug": "esbjerg",
+    "country": 9,
+    "latitude": "55.476700",
+    "longitude": "8.461100",
+    "population": 115000,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 33,
+  "fields": {
+    "name": "Odense",
+    "slug": "odense",
+    "country": 9,
+    "latitude": "55.403800",
+    "longitude": "10.402400",
+    "population": 180302,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 190,
+  "fields": {
+    "name": "Kohtla-Järve",
+    "slug": "kohtla-jarve",
+    "country": 10,
+    "latitude": null,
+    "longitude": null,
+    "population": null,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 37,
+  "fields": {
+    "name": "Narva",
+    "slug": "narva",
+    "country": 10,
+    "latitude": "59.377300",
+    "longitude": "28.190300",
+    "population": 55249,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 38,
+  "fields": {
+    "name": "Pärnu",
+    "slug": "parnu",
+    "country": 10,
+    "latitude": "58.385900",
+    "longitude": "24.497100",
+    "population": 40244,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 35,
+  "fields": {
+    "name": "Tallinn",
+    "slug": "tallinn",
+    "country": 10,
+    "latitude": "59.437000",
+    "longitude": "24.753600",
+    "population": 438341,
+    "is_capital": true
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 36,
+  "fields": {
+    "name": "Tartu",
+    "slug": "tartu",
+    "country": 10,
+    "latitude": "58.380600",
+    "longitude": "26.725100",
+    "population": 97124,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 40,
+  "fields": {
+    "name": "Espoo",
+    "slug": "espoo",
+    "country": 11,
+    "latitude": "60.205500",
+    "longitude": "24.655900",
+    "population": 292796,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 39,
+  "fields": {
+    "name": "Helsinki",
+    "slug": "helsinki",
+    "country": 11,
+    "latitude": "60.169900",
+    "longitude": "24.938400",
+    "population": 658457,
+    "is_capital": true
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 147,
+  "fields": {
+    "name": "Oulu",
+    "slug": "oulu",
+    "country": 11,
+    "latitude": "65.012100",
+    "longitude": "25.465100",
+    "population": 205000,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 41,
+  "fields": {
+    "name": "Tampere",
+    "slug": "tampere",
+    "country": 11,
+    "latitude": "61.499100",
+    "longitude": "23.787100",
+    "population": 238245,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 42,
+  "fields": {
+    "name": "Turku",
+    "slug": "turku",
+    "country": 11,
+    "latitude": "60.451800",
+    "longitude": "22.266600",
+    "population": 194244,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 146,
+  "fields": {
+    "name": "Vantaa",
+    "slug": "vantaa",
+    "country": 11,
+    "latitude": "60.293400",
+    "longitude": "25.037800",
+    "population": 230000,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 48,
+  "fields": {
+    "name": "Bordeaux",
+    "slug": "bordeaux",
+    "country": 3,
+    "latitude": "44.837800",
+    "longitude": "-0.579200",
+    "population": 257068,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 148,
+  "fields": {
+    "name": "Lille",
+    "slug": "lille",
+    "country": 3,
+    "latitude": "50.629200",
+    "longitude": "3.057300",
+    "population": 233000,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 8,
+  "fields": {
+    "name": "Lyon",
+    "slug": "lyon",
+    "country": 3,
+    "latitude": "45.764000",
+    "longitude": "4.835700",
+    "population": 537000,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 9,
+  "fields": {
+    "name": "Marseille",
+    "slug": "marseille",
+    "country": 3,
+    "latitude": "43.296500",
+    "longitude": "5.369800",
+    "population": 870731,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 46,
+  "fields": {
+    "name": "Montpellier",
+    "slug": "montpellier",
+    "country": 3,
+    "latitude": "43.611000",
+    "longitude": "3.876700",
+    "population": 295542,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 45,
+  "fields": {
+    "name": "Nantes",
+    "slug": "nantes",
+    "country": 3,
+    "latitude": "47.218400",
+    "longitude": "-1.553600",
+    "population": 320732,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 44,
+  "fields": {
+    "name": "Nice",
+    "slug": "nice",
+    "country": 3,
+    "latitude": "43.710200",
+    "longitude": "7.262000",
+    "population": 342637,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 7,
+  "fields": {
+    "name": "Paris",
+    "slug": "paris",
+    "country": 3,
+    "latitude": "48.856600",
+    "longitude": "2.352200",
+    "population": 2161000,
+    "is_capital": true
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 47,
+  "fields": {
+    "name": "Strasbourg",
+    "slug": "strasbourg",
+    "country": 3,
+    "latitude": "48.573400",
+    "longitude": "7.752100",
+    "population": 284677,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 43,
+  "fields": {
+    "name": "Toulouse",
+    "slug": "toulouse",
+    "country": 3,
+    "latitude": "43.604700",
+    "longitude": "1.444200",
+    "population": 479553,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 3,
+  "fields": {
+    "name": "Berlin",
+    "slug": "berlin",
+    "country": 2,
+    "latitude": "52.520000",
+    "longitude": "13.405000",
+    "population": 3669491,
+    "is_capital": true
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 50,
+  "fields": {
+    "name": "Cologne",
+    "slug": "cologne",
+    "country": 2,
+    "latitude": "50.937500",
+    "longitude": "6.960300",
+    "population": 1087863,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 55,
+  "fields": {
+    "name": "Dortmund",
+    "slug": "dortmund",
+    "country": 2,
+    "latitude": "51.513600",
+    "longitude": "7.465300",
+    "population": 588250,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 53,
+  "fields": {
+    "name": "Düsseldorf",
+    "slug": "dusseldorf",
+    "country": 2,
+    "latitude": "51.227700",
+    "longitude": "6.773500",
+    "population": 619294,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 149,
+  "fields": {
+    "name": "Essen",
+    "slug": "essen",
+    "country": 2,
+    "latitude": "51.455600",
+    "longitude": "7.011600",
+    "population": 583000,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 51,
+  "fields": {
+    "name": "Frankfurt",
+    "slug": "frankfurt",
+    "country": 2,
+    "latitude": "50.110900",
+    "longitude": "8.682100",
+    "population": 753056,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 49,
+  "fields": {
+    "name": "Hamburg",
+    "slug": "hamburg",
+    "country": 2,
+    "latitude": "53.551100",
+    "longitude": "9.993700",
+    "population": 1945532,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 54,
+  "fields": {
+    "name": "Leipzig",
+    "slug": "leipzig",
+    "country": 2,
+    "latitude": "51.339700",
+    "longitude": "12.373100",
+    "population": 597493,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 4,
+  "fields": {
+    "name": "Munich",
+    "slug": "munich",
+    "country": 2,
+    "latitude": "48.135100",
+    "longitude": "11.582000",
+    "population": 1484226,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 52,
+  "fields": {
+    "name": "Stuttgart",
+    "slug": "stuttgart",
+    "country": 2,
+    "latitude": "48.775800",
+    "longitude": "9.182900",
+    "population": 630305,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 56,
+  "fields": {
+    "name": "Athens",
+    "slug": "athens",
+    "country": 12,
+    "latitude": "37.975500",
+    "longitude": "23.734800",
+    "population": 3154152,
+    "is_capital": true
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 59,
+  "fields": {
+    "name": "Heraklion",
+    "slug": "heraklion",
+    "country": 12,
+    "latitude": "35.338700",
+    "longitude": "25.144200",
+    "population": 175343,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 151,
+  "fields": {
+    "name": "Larissa",
+    "slug": "larissa",
+    "country": 12,
+    "latitude": "39.639000",
+    "longitude": "22.418100",
+    "population": 145000,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 58,
+  "fields": {
+    "name": "Patras",
+    "slug": "patras",
+    "country": 12,
+    "latitude": "38.246600",
+    "longitude": "21.734600",
+    "population": 213984,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 150,
+  "fields": {
+    "name": "Piraeus",
+    "slug": "piraeus",
+    "country": 12,
+    "latitude": "37.947000",
+    "longitude": "23.634800",
+    "population": 163000,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 57,
+  "fields": {
+    "name": "Thessaloniki",
+    "slug": "thessaloniki",
+    "country": 12,
+    "latitude": "40.640100",
+    "longitude": "22.944400",
+    "population": 325182,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 64,
+  "fields": {
+    "name": "Budapest",
+    "slug": "budapest",
+    "country": 14,
+    "latitude": "47.497900",
+    "longitude": "19.040200",
+    "population": 1752286,
+    "is_capital": true
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 65,
+  "fields": {
+    "name": "Debrecen",
+    "slug": "debrecen",
+    "country": 14,
+    "latitude": "47.531600",
+    "longitude": "21.627300",
+    "population": 201981,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 67,
+  "fields": {
+    "name": "Miskolc",
+    "slug": "miskolc",
+    "country": 14,
+    "latitude": "48.103400",
+    "longitude": "20.778400",
+    "population": 157177,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 152,
+  "fields": {
+    "name": "Pécs",
+    "slug": "pecs",
+    "country": 14,
+    "latitude": "46.072700",
+    "longitude": "18.233700",
+    "population": 145000,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 66,
+  "fields": {
+    "name": "Szeged",
+    "slug": "szeged",
+    "country": 14,
+    "latitude": "46.253000",
+    "longitude": "20.141400",
+    "population": 161921,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 68,
+  "fields": {
+    "name": "Cork",
+    "slug": "cork",
+    "country": 15,
+    "latitude": "51.898500",
+    "longitude": "-8.475600",
+    "population": 222526,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 12,
+  "fields": {
+    "name": "Dublin",
+    "slug": "dublin",
+    "country": 15,
+    "latitude": "53.349800",
+    "longitude": "-6.260300",
+    "population": 1388000,
+    "is_capital": true
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 70,
+  "fields": {
+    "name": "Galway",
+    "slug": "galway",
+    "country": 15,
+    "latitude": "53.270700",
+    "longitude": "-9.056800",
+    "population": 85910,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 69,
+  "fields": {
+    "name": "Limerick",
+    "slug": "limerick",
+    "country": 15,
+    "latitude": "52.663800",
+    "longitude": "-8.626700",
+    "population": 102287,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 153,
+  "fields": {
+    "name": "Waterford",
+    "slug": "waterford",
+    "country": 15,
+    "latitude": "52.259300",
+    "longitude": "-7.110100",
+    "population": 53000,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 154,
+  "fields": {
+    "name": "Bari",
+    "slug": "bari",
+    "country": 16,
+    "latitude": "41.117100",
+    "longitude": "16.871900",
+    "population": 320000,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 77,
+  "fields": {
+    "name": "Bologna",
+    "slug": "bologna",
+    "country": 16,
+    "latitude": "44.494900",
+    "longitude": "11.342600",
+    "population": 394843,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 155,
+  "fields": {
+    "name": "Catania",
+    "slug": "catania",
+    "country": 16,
+    "latitude": "37.507900",
+    "longitude": "15.083000",
+    "population": 315000,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 78,
+  "fields": {
+    "name": "Florence",
+    "slug": "florence",
+    "country": 16,
+    "latitude": "43.769600",
+    "longitude": "11.255800",
+    "population": 382258,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 76,
+  "fields": {
+    "name": "Genoa",
+    "slug": "genoa",
+    "country": 16,
+    "latitude": "44.405600",
+    "longitude": "8.946300",
+    "population": 583601,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 72,
+  "fields": {
+    "name": "Milan",
+    "slug": "milan",
+    "country": 16,
+    "latitude": "45.464200",
+    "longitude": "9.190000",
+    "population": 1396059,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 73,
+  "fields": {
+    "name": "Naples",
+    "slug": "naples",
+    "country": 16,
+    "latitude": "40.851800",
+    "longitude": "14.268100",
+    "population": 967069,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 75,
+  "fields": {
+    "name": "Palermo",
+    "slug": "palermo",
+    "country": 16,
+    "latitude": "38.115700",
+    "longitude": "13.361500",
+    "population": 673735,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 71,
+  "fields": {
+    "name": "Rome",
+    "slug": "rome",
+    "country": 16,
+    "latitude": "41.902800",
+    "longitude": "12.496400",
+    "population": 2873000,
+    "is_capital": true
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 74,
+  "fields": {
+    "name": "Turin",
+    "slug": "turin",
+    "country": 16,
+    "latitude": "45.070300",
+    "longitude": "7.686900",
+    "population": 870952,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 80,
+  "fields": {
+    "name": "Daugavpils",
+    "slug": "daugavpils",
+    "country": 17,
+    "latitude": "55.874700",
+    "longitude": "26.536400",
+    "population": 82604,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 82,
+  "fields": {
+    "name": "Jelgava",
+    "slug": "jelgava",
+    "country": 17,
+    "latitude": "56.650000",
+    "longitude": "23.729400",
+    "population": 55972,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 191,
+  "fields": {
+    "name": "Jūrmala",
+    "slug": "jurmala",
+    "country": 17,
+    "latitude": null,
+    "longitude": null,
+    "population": null,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 81,
+  "fields": {
+    "name": "Liepāja",
+    "slug": "liepaja",
+    "country": 17,
+    "latitude": "56.505300",
+    "longitude": "21.009100",
+    "population": 68945,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 79,
+  "fields": {
+    "name": "Riga",
+    "slug": "riga",
+    "country": 17,
+    "latitude": "56.949600",
+    "longitude": "24.105200",
+    "population": 632614,
+    "is_capital": true
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 84,
+  "fields": {
+    "name": "Kaunas",
+    "slug": "kaunas",
+    "country": 18,
+    "latitude": "54.898500",
+    "longitude": "23.903600",
+    "population": 289380,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 85,
+  "fields": {
+    "name": "Klaipėda",
+    "slug": "klaipeda",
+    "country": 18,
+    "latitude": "55.703300",
+    "longitude": "21.144300",
+    "population": 149873,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 192,
+  "fields": {
+    "name": "Panevėžys",
+    "slug": "panevezys",
+    "country": 18,
+    "latitude": null,
+    "longitude": null,
+    "population": null,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 83,
+  "fields": {
+    "name": "Vilnius",
+    "slug": "vilnius",
+    "country": 18,
+    "latitude": "54.687200",
+    "longitude": "25.279700",
+    "population": 592389,
+    "is_capital": true
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 86,
+  "fields": {
+    "name": "Šiauliai",
+    "slug": "siauliai",
+    "country": 18,
+    "latitude": "55.933300",
+    "longitude": "23.313300",
+    "population": 103676,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 90,
+  "fields": {
+    "name": "Differdange",
+    "slug": "differdange",
+    "country": 19,
+    "latitude": "49.524400",
+    "longitude": "5.890600",
+    "population": 26894,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 89,
+  "fields": {
+    "name": "Dudelange",
+    "slug": "dudelange",
+    "country": 19,
+    "latitude": "49.481400",
+    "longitude": "6.087500",
+    "population": 21074,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 88,
+  "fields": {
+    "name": "Esch-sur-Alzette",
+    "slug": "esch-sur-alzette",
+    "country": 19,
+    "latitude": "49.495800",
+    "longitude": "5.980600",
+    "population": 36625,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 87,
+  "fields": {
+    "name": "Luxembourg",
+    "slug": "luxembourg",
+    "country": 19,
+    "latitude": "49.611700",
+    "longitude": "6.131900",
+    "population": 125000,
+    "is_capital": true
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 193,
+  "fields": {
+    "name": "Luxembourg City",
+    "slug": "luxembourg-city",
+    "country": 19,
+    "latitude": null,
+    "longitude": null,
+    "population": null,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 92,
+  "fields": {
+    "name": "Birkirkara",
+    "slug": "birkirkara",
+    "country": 20,
+    "latitude": "35.897200",
+    "longitude": "14.461100",
+    "population": 24356,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 93,
+  "fields": {
+    "name": "Mosta",
+    "slug": "mosta",
+    "country": 20,
+    "latitude": "35.909200",
+    "longitude": "14.425600",
+    "population": 20241,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 94,
+  "fields": {
+    "name": "Qormi",
+    "slug": "qormi",
+    "country": 20,
+    "latitude": "35.875600",
+    "longitude": "14.470000",
+    "population": 16324,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 91,
+  "fields": {
+    "name": "Valletta",
+    "slug": "valletta",
+    "country": 20,
+    "latitude": "35.898900",
+    "longitude": "14.514600",
+    "population": 6444,
+    "is_capital": true
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 194,
+  "fields": {
+    "name": "Żabbar",
+    "slug": "zabbar",
+    "country": 20,
+    "latitude": null,
+    "longitude": null,
+    "population": null,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 156,
+  "fields": {
+    "name": "Almere",
+    "slug": "almere",
+    "country": 21,
+    "latitude": "52.350800",
+    "longitude": "5.264700",
+    "population": 211000,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 10,
+  "fields": {
+    "name": "Amsterdam",
+    "slug": "amsterdam",
+    "country": 21,
+    "latitude": "52.367600",
+    "longitude": "4.904100",
+    "population": 872757,
+    "is_capital": true
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 98,
+  "fields": {
+    "name": "Eindhoven",
+    "slug": "eindhoven",
+    "country": 21,
+    "latitude": "51.441600",
+    "longitude": "5.469700",
+    "population": 234456,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 100,
+  "fields": {
+    "name": "Groningen",
+    "slug": "groningen",
+    "country": 21,
+    "latitude": "53.219400",
+    "longitude": "6.566500",
+    "population": 202810,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 95,
+  "fields": {
+    "name": "Rotterdam",
+    "slug": "rotterdam",
+    "country": 21,
+    "latitude": "51.924400",
+    "longitude": "4.477700",
+    "population": 651376,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 96,
+  "fields": {
+    "name": "The Hague",
+    "slug": "the-hague",
+    "country": 21,
+    "latitude": "52.070500",
+    "longitude": "4.300700",
+    "population": 547757,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 99,
+  "fields": {
+    "name": "Tilburg",
+    "slug": "tilburg",
+    "country": 21,
+    "latitude": "51.565600",
+    "longitude": "5.091300",
+    "population": 222601,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 97,
+  "fields": {
+    "name": "Utrecht",
+    "slug": "utrecht",
+    "country": 21,
+    "latitude": "52.090700",
+    "longitude": "5.121400",
+    "population": 361924,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 162,
+  "fields": {
+    "name": "Bydgoszcz",
+    "slug": "bydgoszcz",
+    "country": 22,
+    "latitude": "53.123500",
+    "longitude": "18.008400",
+    "population": 350000,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 161,
+  "fields": {
+    "name": "Gdansk",
+    "slug": "gdansk",
+    "country": 22,
+    "latitude": "54.352000",
+    "longitude": "18.646600",
+    "population": 470000,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 106,
+  "fields": {
+    "name": "Gdańsk",
+    "slug": "gdansk-1",
+    "country": 22,
+    "latitude": "54.352000",
+    "longitude": "18.646600",
+    "population": 470907,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 164,
+  "fields": {
+    "name": "Katowice",
+    "slug": "katowice",
+    "country": 22,
+    "latitude": "50.264900",
+    "longitude": "19.023800",
+    "population": 294000,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 157,
+  "fields": {
+    "name": "Krakow",
+    "slug": "krakow",
+    "country": 22,
+    "latitude": "50.064700",
+    "longitude": "19.945000",
+    "population": 771000,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 102,
+  "fields": {
+    "name": "Kraków",
+    "slug": "krakow-1",
+    "country": 22,
+    "latitude": "50.064700",
+    "longitude": "19.945000",
+    "population": 779115,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 158,
+  "fields": {
+    "name": "Lodz",
+    "slug": "lodz",
+    "country": 22,
+    "latitude": "51.759200",
+    "longitude": "19.456000",
+    "population": 687000,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 163,
+  "fields": {
+    "name": "Lublin",
+    "slug": "lublin",
+    "country": 22,
+    "latitude": "51.246500",
+    "longitude": "22.568400",
+    "population": 339000,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 160,
+  "fields": {
+    "name": "Poznan",
+    "slug": "poznan",
+    "country": 22,
+    "latitude": "52.406400",
+    "longitude": "16.925200",
+    "population": 538000,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 105,
+  "fields": {
+    "name": "Poznań",
+    "slug": "poznan-1",
+    "country": 22,
+    "latitude": "52.406400",
+    "longitude": "16.925200",
+    "population": 538633,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 107,
+  "fields": {
+    "name": "Szczecin",
+    "slug": "szczecin",
+    "country": 22,
+    "latitude": "53.428500",
+    "longitude": "14.552800",
+    "population": 401907,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 101,
+  "fields": {
+    "name": "Warsaw",
+    "slug": "warsaw",
+    "country": 22,
+    "latitude": "52.229700",
+    "longitude": "21.012200",
+    "population": 1790658,
+    "is_capital": true
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 159,
+  "fields": {
+    "name": "Wroclaw",
+    "slug": "wroclaw",
+    "country": 22,
+    "latitude": "51.107900",
+    "longitude": "17.038500",
+    "population": 643000,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 104,
+  "fields": {
+    "name": "Wrocław",
+    "slug": "wrocaw",
+    "country": 22,
+    "latitude": "51.107900",
+    "longitude": "17.038500",
+    "population": 643782,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 103,
+  "fields": {
+    "name": "Łódź",
+    "slug": "odz",
+    "country": 22,
+    "latitude": "51.759200",
+    "longitude": "19.456000",
+    "population": 679941,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 185,
+  "fields": {
+    "name": "Almada",
+    "slug": "almada",
+    "country": 23,
+    "latitude": null,
+    "longitude": null,
+    "population": null,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 110,
+  "fields": {
+    "name": "Amadora",
+    "slug": "amadora",
+    "country": 23,
+    "latitude": "38.753800",
+    "longitude": "-9.230800",
+    "population": 175872,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 172,
+  "fields": {
+    "name": "Aveiro",
+    "slug": "aveiro",
+    "country": 23,
+    "latitude": null,
+    "longitude": null,
+    "population": null,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 186,
+  "fields": {
+    "name": "Barreiro",
+    "slug": "barreiro",
+    "country": 23,
+    "latitude": null,
+    "longitude": null,
+    "population": null,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 111,
+  "fields": {
+    "name": "Braga",
+    "slug": "braga",
+    "country": 23,
+    "latitude": "41.551800",
+    "longitude": "-8.422900",
+    "population": 193333,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 182,
+  "fields": {
+    "name": "Caldas da Rainha",
+    "slug": "caldas-da-rainha",
+    "country": 23,
+    "latitude": null,
+    "longitude": null,
+    "population": null,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 183,
+  "fields": {
+    "name": "Cascais",
+    "slug": "cascais",
+    "country": 23,
+    "latitude": null,
+    "longitude": null,
+    "population": null,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 165,
+  "fields": {
+    "name": "Coimbra",
+    "slug": "coimbra",
+    "country": 23,
+    "latitude": "40.203300",
+    "longitude": "-8.410300",
+    "population": 143000,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 174,
+  "fields": {
+    "name": "Faro",
+    "slug": "faro",
+    "country": 23,
+    "latitude": null,
+    "longitude": null,
+    "population": null,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 112,
+  "fields": {
+    "name": "Funchal",
+    "slug": "funchal",
+    "country": 23,
+    "latitude": "32.666900",
+    "longitude": "-16.924100",
+    "population": 111541,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 175,
+  "fields": {
+    "name": "Guimarães",
+    "slug": "guimaraes",
+    "country": 23,
+    "latitude": null,
+    "longitude": null,
+    "population": null,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 176,
+  "fields": {
+    "name": "Leiria",
+    "slug": "leiria",
+    "country": 23,
+    "latitude": null,
+    "longitude": null,
+    "population": null,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 15,
+  "fields": {
+    "name": "Lisbon",
+    "slug": "lisbon",
+    "country": 23,
+    "latitude": "38.722300",
+    "longitude": "-9.139300",
+    "population": 545245,
+    "is_capital": true
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 177,
+  "fields": {
+    "name": "Portimão",
+    "slug": "portimao",
+    "country": 23,
+    "latitude": null,
+    "longitude": null,
+    "population": null,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 108,
+  "fields": {
+    "name": "Porto",
+    "slug": "porto",
+    "country": 23,
+    "latitude": "41.157900",
+    "longitude": "-8.629100",
+    "population": 237584,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 178,
+  "fields": {
+    "name": "Santarém",
+    "slug": "santarem",
+    "country": 23,
+    "latitude": null,
+    "longitude": null,
+    "population": null,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 166,
+  "fields": {
+    "name": "Setúbal",
+    "slug": "setubal",
+    "country": 23,
+    "latitude": "38.524400",
+    "longitude": "-8.888200",
+    "population": 117000,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 184,
+  "fields": {
+    "name": "Sintra",
+    "slug": "sintra",
+    "country": 23,
+    "latitude": null,
+    "longitude": null,
+    "population": null,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 181,
+  "fields": {
+    "name": "Torres Vedras",
+    "slug": "torres-vedras",
+    "country": 23,
+    "latitude": null,
+    "longitude": null,
+    "population": null,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 180,
+  "fields": {
+    "name": "Viana do Castelo",
+    "slug": "viana-do-castelo",
+    "country": 23,
+    "latitude": null,
+    "longitude": null,
+    "population": null,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 109,
+  "fields": {
+    "name": "Vila Nova de Gaia",
+    "slug": "vila-nova-de-gaia",
+    "country": 23,
+    "latitude": "41.123900",
+    "longitude": "-8.621100",
+    "population": 302295,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 179,
+  "fields": {
+    "name": "Viseu",
+    "slug": "viseu",
+    "country": 23,
+    "latitude": null,
+    "longitude": null,
+    "population": null,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 173,
+  "fields": {
+    "name": "Évora",
+    "slug": "evora",
+    "country": 23,
+    "latitude": null,
+    "longitude": null,
+    "population": null,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 167,
+  "fields": {
+    "name": "Brașov",
+    "slug": "brasov",
+    "country": 24,
+    "latitude": "45.642700",
+    "longitude": "25.588700",
+    "population": 253000,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 113,
+  "fields": {
+    "name": "Bucharest",
+    "slug": "bucharest",
+    "country": 24,
+    "latitude": "44.426800",
+    "longitude": "26.102500",
+    "population": 1883425,
+    "is_capital": true
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 114,
+  "fields": {
+    "name": "Cluj-Napoca",
+    "slug": "cluj-napoca",
+    "country": 24,
+    "latitude": "46.771200",
+    "longitude": "23.623600",
+    "population": 324576,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 117,
+  "fields": {
+    "name": "Constanța",
+    "slug": "constanta",
+    "country": 24,
+    "latitude": "44.159800",
+    "longitude": "28.634800",
+    "population": 283872,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 118,
+  "fields": {
+    "name": "Craiova",
+    "slug": "craiova",
+    "country": 24,
+    "latitude": "44.330200",
+    "longitude": "23.794900",
+    "population": 269506,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 168,
+  "fields": {
+    "name": "Galați",
+    "slug": "galati",
+    "country": 24,
+    "latitude": "45.435300",
+    "longitude": "28.008000",
+    "population": 249000,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 116,
+  "fields": {
+    "name": "Iași",
+    "slug": "iasi",
+    "country": 24,
+    "latitude": "47.158500",
+    "longitude": "27.601400",
+    "population": 290422,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 115,
+  "fields": {
+    "name": "Timișoara",
+    "slug": "timisoara",
+    "country": 24,
+    "latitude": "45.748900",
+    "longitude": "21.208700",
+    "population": 319279,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 195,
+  "fields": {
+    "name": "Banská Bystrica",
+    "slug": "banska-bystrica",
+    "country": 27,
+    "latitude": null,
+    "longitude": null,
+    "population": null,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 128,
+  "fields": {
+    "name": "Bratislava",
+    "slug": "bratislava",
+    "country": 27,
+    "latitude": "48.148600",
+    "longitude": "17.107700",
+    "population": 429564,
+    "is_capital": true
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 129,
+  "fields": {
+    "name": "Košice",
+    "slug": "kosice",
+    "country": 27,
+    "latitude": "48.716400",
+    "longitude": "21.261100",
+    "population": 238138,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 169,
+  "fields": {
+    "name": "Nitra",
+    "slug": "nitra",
+    "country": 27,
+    "latitude": "48.308100",
+    "longitude": "18.071100",
+    "population": 77000,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 130,
+  "fields": {
+    "name": "Prešov",
+    "slug": "presov",
+    "country": 27,
+    "latitude": "49.001400",
+    "longitude": "21.239300",
+    "population": 87886,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 131,
+  "fields": {
+    "name": "Žilina",
+    "slug": "zilina",
+    "country": 27,
+    "latitude": "49.223300",
+    "longitude": "18.740800",
+    "population": 80386,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 126,
+  "fields": {
+    "name": "Celje",
+    "slug": "celje",
+    "country": 26,
+    "latitude": "46.231100",
+    "longitude": "15.268300",
+    "population": 49473,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 127,
+  "fields": {
+    "name": "Kranj",
+    "slug": "kranj",
+    "country": 26,
+    "latitude": "46.239400",
+    "longitude": "14.355900",
+    "population": 37941,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 124,
+  "fields": {
+    "name": "Ljubljana",
+    "slug": "ljubljana",
+    "country": 26,
+    "latitude": "46.056900",
+    "longitude": "14.505800",
+    "population": 292988,
+    "is_capital": true
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 125,
+  "fields": {
+    "name": "Maribor",
+    "slug": "maribor",
+    "country": 26,
+    "latitude": "46.554700",
+    "longitude": "15.645900",
+    "population": 114349,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 196,
+  "fields": {
+    "name": "Velenje",
+    "slug": "velenje",
+    "country": 26,
+    "latitude": null,
+    "longitude": null,
+    "population": null,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 11,
+  "fields": {
+    "name": "Barcelona",
+    "slug": "barcelona",
+    "country": 4,
+    "latitude": "41.385100",
+    "longitude": "2.173400",
+    "population": 1620343,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 170,
+  "fields": {
+    "name": "Bilbao",
+    "slug": "bilbao",
+    "country": 4,
+    "latitude": "43.262700",
+    "longitude": "-2.925300",
+    "population": 345000,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 139,
+  "fields": {
+    "name": "Las Palmas",
+    "slug": "las-palmas",
+    "country": 4,
+    "latitude": "28.124800",
+    "longitude": "-15.430000",
+    "population": 379925,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 132,
+  "fields": {
+    "name": "Madrid",
+    "slug": "madrid",
+    "country": 4,
+    "latitude": "40.416800",
+    "longitude": "-3.703800",
+    "population": 3223000,
+    "is_capital": true
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 137,
+  "fields": {
+    "name": "Murcia",
+    "slug": "murcia",
+    "country": 4,
+    "latitude": "37.992200",
+    "longitude": "-1.130700",
+    "population": 453258,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 136,
+  "fields": {
+    "name": "Málaga",
+    "slug": "malaga",
+    "country": 4,
+    "latitude": "36.721300",
+    "longitude": "-4.421400",
+    "population": 574654,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 138,
+  "fields": {
+    "name": "Palma",
+    "slug": "palma",
+    "country": 4,
+    "latitude": "39.569600",
+    "longitude": "2.650200",
+    "population": 416065,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 134,
+  "fields": {
+    "name": "Seville",
+    "slug": "seville",
+    "country": 4,
+    "latitude": "37.389100",
+    "longitude": "-5.984500",
+    "population": 688711,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 133,
+  "fields": {
+    "name": "Valencia",
+    "slug": "valencia",
+    "country": 4,
+    "latitude": "39.469900",
+    "longitude": "-0.376300",
+    "population": 791413,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 135,
+  "fields": {
+    "name": "Zaragoza",
+    "slug": "zaragoza",
+    "country": 4,
+    "latitude": "41.648800",
+    "longitude": "-0.889100",
+    "population": 674997,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 119,
+  "fields": {
+    "name": "Gothenburg",
+    "slug": "gothenburg",
+    "country": 25,
+    "latitude": "57.708900",
+    "longitude": "11.974600",
+    "population": 579281,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 171,
+  "fields": {
+    "name": "Linköping",
+    "slug": "linkoping",
+    "country": 25,
+    "latitude": "58.410800",
+    "longitude": "15.621400",
+    "population": 165000,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 120,
+  "fields": {
+    "name": "Malmö",
+    "slug": "malmo",
+    "country": 25,
+    "latitude": "55.605900",
+    "longitude": "13.000700",
+    "population": 316588,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 14,
+  "fields": {
+    "name": "Stockholm",
+    "slug": "stockholm",
+    "country": 25,
+    "latitude": "59.329300",
+    "longitude": "18.068600",
+    "population": 975551,
+    "is_capital": true
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 121,
+  "fields": {
+    "name": "Uppsala",
+    "slug": "uppsala",
+    "country": 25,
+    "latitude": "59.858600",
+    "longitude": "17.638900",
+    "population": 230767,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 122,
+  "fields": {
+    "name": "Västerås",
+    "slug": "vasteras",
+    "country": 25,
+    "latitude": "59.609900",
+    "longitude": "16.544800",
+    "population": 154049,
+    "is_capital": false
+  }
+},
+{
+  "model": "businesses.city",
+  "pk": 123,
+  "fields": {
+    "name": "Örebro",
+    "slug": "orebro",
+    "country": 25,
+    "latitude": "59.274100",
+    "longitude": "15.206600",
+    "population": 156381,
+    "is_capital": false
+  }
+}
+]

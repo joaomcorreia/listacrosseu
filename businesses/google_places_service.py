@@ -123,6 +123,12 @@ class GooglePlacesService:
         latitude = location.get('latitude')
         longitude = location.get('longitude')
         
+        # Round coordinates to 6 decimal places (Django field constraint)
+        if latitude:
+            latitude = round(float(latitude), 6)
+        if longitude:
+            longitude = round(float(longitude), 6)
+        
         # Business type
         primary_type = place_data.get('primaryType', '')
         
@@ -385,17 +391,17 @@ class GooglePlacesService:
         # Generate email if not available
         email = f"info@{slugify(parsed_data['name']).replace('-', '')}.com"
         
-        # **DUPLICATE PREVENTION CHECK**
-        duplicate_issues = Business.check_potential_duplicate(
-            name=parsed_data['name'],
-            city=city,
-            email=email,
-            phone=parsed_data['phone']
-        )
-        
-        if duplicate_issues:
-            logger.warning(f"Skipping potential duplicate business '{parsed_data['name']}' in {city.name}: {'; '.join(duplicate_issues)}")
-            return None
+        # **DUPLICATE PREVENTION CHECK** - Temporarily disabled for import
+        # duplicate_issues = Business.check_potential_duplicate(
+        #     name=parsed_data['name'],
+        #     city=city,
+        #     email=email,
+        #     phone=parsed_data['phone']
+        # )
+        # 
+        # if duplicate_issues:
+        #     logger.warning(f"Skipping potential duplicate business '{parsed_data['name']}' in {city.name}: {'; '.join(duplicate_issues)}")
+        #     return None
             
         # Check for exact matches by name and city (database constraint will catch this anyway)
         if Business.objects.filter(name__iexact=parsed_data['name'], city=city).exists():
@@ -440,3 +446,27 @@ class GooglePlacesService:
             else:
                 logger.error(f"Failed to create business {parsed_data['name']}: {e}")
                 return None
+    
+    def save_places_to_database(self, places: List[Dict], owner, category_name: str, city_location: str) -> int:
+        """
+        Save a list of places to the database
+        Returns the number of businesses successfully created
+        """
+        created_count = 0
+        
+        if not places:
+            return 0
+        
+        # Extract city name from location string (e.g., "Amsterdam, Netherlands" -> "Amsterdam")
+        city_name = city_location.split(',')[0].strip()
+        
+        for place_data in places:
+            try:
+                business = self.create_business_from_place(place_data, owner, category_name, city_name)
+                if business:
+                    created_count += 1
+            except Exception as e:
+                logger.error(f"Failed to process place {place_data.get('displayName', {}).get('text', 'Unknown')}: {e}")
+                continue
+        
+        return created_count

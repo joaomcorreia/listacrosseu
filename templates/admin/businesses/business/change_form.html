@@ -4,64 +4,64 @@
 {% block extrahead %}
 {{ block.super }}
 <style>
-.duplicate-status {
-    display: block;
-    font-weight: bold;
-    margin-top: 5px;
-    padding: 5px 10px;
-    border-radius: 3px;
-    font-size: 12px;
-}
+    .duplicate-status {
+        display: block;
+        font-weight: bold;
+        margin-top: 5px;
+        padding: 5px 10px;
+        border-radius: 3px;
+        font-size: 12px;
+    }
 
-.duplicate-status.success {
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
-}
+    .duplicate-status.success {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+    }
 
-.duplicate-status.warning {
-    background-color: #fff3cd;
-    color: #856404;
-    border: 1px solid #ffeaa7;
-}
+    .duplicate-status.warning {
+        background-color: #fff3cd;
+        color: #856404;
+        border: 1px solid #ffeaa7;
+    }
 
-.duplicate-status.error {
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
-}
+    .duplicate-status.error {
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+    }
 
-.duplicate-status.checking {
-    background-color: #d1ecf1;
-    color: #0c5460;
-    border: 1px solid #bee5eb;
-}
+    .duplicate-status.checking {
+        background-color: #d1ecf1;
+        color: #0c5460;
+        border: 1px solid #bee5eb;
+    }
 
-.duplicate-check-field {
-    position: relative;
-}
+    .duplicate-check-field {
+        position: relative;
+    }
 
-.duplicate-indicator {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 16px;
-}
+    .duplicate-indicator {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 16px;
+    }
 
-.duplicate-prevention-warning {
-    background-color: #fff3cd;
-    border: 1px solid #ffeaa7;
-    color: #856404;
-    padding: 15px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-}
+    .duplicate-prevention-warning {
+        background-color: #fff3cd;
+        border: 1px solid #ffeaa7;
+        color: #856404;
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+    }
 
-.duplicate-prevention-warning h4 {
-    margin: 0 0 10px 0;
-    color: #856404;
-}
+    .duplicate-prevention-warning h4 {
+        margin: 0 0 10px 0;
+        color: #856404;
+    }
 </style>
 {% endblock %}
 
@@ -69,7 +69,8 @@
 <!-- Duplicate Prevention Notice -->
 <div class="duplicate-prevention-warning">
     <h4>🛡️ Duplicate Prevention Active</h4>
-    <p>This system automatically prevents duplicate businesses. Names, emails, and phone numbers are checked in real-time to ensure data quality.</p>
+    <p>This system automatically prevents duplicate businesses. Names, emails, and phone numbers are checked in
+        real-time to ensure data quality.</p>
 </div>
 
 {{ block.super }}
@@ -83,115 +84,115 @@ let duplicateCheckTimeout;
 let currentCity = null;
 
 function checkDuplicates(fieldChanged = null) {
-    clearTimeout(duplicateCheckTimeout);
-    
-    duplicateCheckTimeout = setTimeout(() => {
-        const name = document.querySelector('input[name="name"]')?.value;
-        const citySelect = document.querySelector('select[name="city"]');
-        const city = citySelect?.value;
-        const email = document.querySelector('input[name="email"]')?.value;
-        const phone = document.querySelector('input[name="phone"]')?.value;
-        const excludeId = document.querySelector('input[name="id"]')?.value || '';
-        
-        // Only check if we have essential data
-        if (!city || (!name && !email && !phone)) {
-            resetDuplicateStatus();
-            return;
-        }
-        
-        // Show checking status
-        showDuplicateStatus('checking', 'Checking for duplicates...');
-        
-        // Make AJAX request
-        fetch('{% url "admin:duplicate_check_ajax" %}', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
-            },
-            body: new URLSearchParams({
-                'name': name || '',
-                'city_id': city || '',
-                'email': email || '',
-                'phone': phone || '',
-                'exclude_id': excludeId || ''
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.error) {
-                showDuplicateStatus('error', data.error);
-            } else {
-                showDuplicateStatus(data.severity, data.message, data.issues);
-            }
-        })
-        .catch(error => {
-            console.error('Duplicate check failed:', error);
-            showDuplicateStatus('error', 'Failed to check for duplicates');
-        });
-    }, 500); // Wait 500ms after user stops typing
+clearTimeout(duplicateCheckTimeout);
+
+duplicateCheckTimeout = setTimeout(() => {
+const name = document.querySelector('input[name="name"]')?.value;
+const citySelect = document.querySelector('select[name="city"]');
+const city = citySelect?.value;
+const email = document.querySelector('input[name="email"]')?.value;
+const phone = document.querySelector('input[name="phone"]')?.value;
+const excludeId = document.querySelector('input[name="id"]')?.value || '';
+
+// Only check if we have essential data
+if (!city || (!name && !email && !phone)) {
+resetDuplicateStatus();
+return;
+}
+
+// Show checking status
+showDuplicateStatus('checking', 'Checking for duplicates...');
+
+// Make AJAX request
+fetch('{% url "admin:duplicate_check_ajax" %}', {
+method: 'POST',
+headers: {
+'Content-Type': 'application/x-www-form-urlencoded',
+'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+},
+body: new URLSearchParams({
+'name': name || '',
+'city_id': city || '',
+'email': email || '',
+'phone': phone || '',
+'exclude_id': excludeId || ''
+})
+})
+.then(response => response.json())
+.then(data => {
+if (data.error) {
+showDuplicateStatus('error', data.error);
+} else {
+showDuplicateStatus(data.severity, data.message, data.issues);
+}
+})
+.catch(error => {
+console.error('Duplicate check failed:', error);
+showDuplicateStatus('error', 'Failed to check for duplicates');
+});
+}, 500); // Wait 500ms after user stops typing
 }
 
 function showDuplicateStatus(severity, message, issues = null) {
-    const statusElements = document.querySelectorAll('.duplicate-status');
-    
-    statusElements.forEach(el => {
-        el.className = `duplicate-status ${severity}`;
-        
-        let fullMessage = message;
-        if (issues && issues.length > 0) {
-            fullMessage += '<br><small>' + issues.join('<br>') + '</small>';
-        }
-        
-        el.innerHTML = fullMessage;
-        el.style.display = 'block';
-    });
+const statusElements = document.querySelectorAll('.duplicate-status');
+
+statusElements.forEach(el => {
+el.className = `duplicate-status ${severity}`;
+
+let fullMessage = message;
+if (issues && issues.length > 0) {
+fullMessage += '<br><small>' + issues.join('<br>') + '</small>';
+}
+
+el.innerHTML = fullMessage;
+el.style.display = 'block';
+});
 }
 
 function resetDuplicateStatus() {
-    const statusElements = document.querySelectorAll('.duplicate-status');
-    statusElements.forEach(el => {
-        el.style.display = 'none';
-        el.innerHTML = '';
-    });
+const statusElements = document.querySelectorAll('.duplicate-status');
+statusElements.forEach(el => {
+el.style.display = 'none';
+el.innerHTML = '';
+});
 }
 
 // Attach event listeners
 document.addEventListener('DOMContentLoaded', function() {
-    // Get all duplicate check fields
-    const duplicateFields = document.querySelectorAll('.duplicate-check-field');
-    
-    duplicateFields.forEach(field => {
-        if (field.tagName === 'INPUT') {
-            field.addEventListener('input', () => checkDuplicates(field.getAttribute('data-field')));
-            field.addEventListener('blur', () => checkDuplicates(field.getAttribute('data-field')));
-        } else if (field.tagName === 'SELECT') {
-            field.addEventListener('change', () => checkDuplicates(field.getAttribute('data-field')));
-        }
-    });
-    
-    // Initial check if we're editing an existing business
-    const businessId = document.querySelector('input[name="id"]')?.value;
-    if (businessId) {
-        setTimeout(() => checkDuplicates(), 1000);
-    }
+// Get all duplicate check fields
+const duplicateFields = document.querySelectorAll('.duplicate-check-field');
+
+duplicateFields.forEach(field => {
+if (field.tagName === 'INPUT') {
+field.addEventListener('input', () => checkDuplicates(field.getAttribute('data-field')));
+field.addEventListener('blur', () => checkDuplicates(field.getAttribute('data-field')));
+} else if (field.tagName === 'SELECT') {
+field.addEventListener('change', () => checkDuplicates(field.getAttribute('data-field')));
+}
+});
+
+// Initial check if we're editing an existing business
+const businessId = document.querySelector('input[name="id"]')?.value;
+if (businessId) {
+setTimeout(() => checkDuplicates(), 1000);
+}
 });
 
 // Override form submission to handle validation errors gracefully
 document.querySelector('form').addEventListener('submit', function(e) {
-    const duplicateWarnings = document.querySelectorAll('.duplicate-status.warning, .duplicate-status.error');
-    
-    if (duplicateWarnings.length > 0) {
-        const proceed = confirm(
-            'Potential duplicates detected. Are you sure you want to continue?\n\n' +
-            'Click OK to proceed anyway, or Cancel to review the duplicates.'
-        );
-        
-        if (!proceed) {
-            e.preventDefault();
-            return false;
-        }
-    }
+const duplicateWarnings = document.querySelectorAll('.duplicate-status.warning, .duplicate-status.error');
+
+if (duplicateWarnings.length > 0) {
+const proceed = confirm(
+'Potential duplicates detected. Are you sure you want to continue?\n\n' +
+'Click OK to proceed anyway, or Cancel to review the duplicates.'
+);
+
+if (!proceed) {
+e.preventDefault();
+return false;
+}
+}
 });
 
 {% endblock %}

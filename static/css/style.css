@@ -11,7 +11,7 @@
 /* Enhanced Navigation Styles - Priority Override */
 header.main-header {
   background: white !important;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1) !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
   position: sticky !important;
   top: 0 !important;
   z-index: 1050 !important;
@@ -54,7 +54,7 @@ header.main-header {
     width: 40px !important;
     height: 40px !important;
   }
-  
+
   .main-header .brand-text h1 {
     font-size: 1.5rem !important;
   }
@@ -112,8 +112,8 @@ nav.main-nav {
   white-space: nowrap !important;
 }
 
-.main-nav .nav-link:hover, 
-.main-nav .nav-item:hover > .nav-link {
+.main-nav .nav-link:hover,
+.main-nav .nav-item:hover>.nav-link {
   background: var(--blue) !important;
   color: white !important;
   text-decoration: none !important;
@@ -131,7 +131,7 @@ nav.main-nav {
   left: 0 !important;
   background: white !important;
   min-width: 220px !important;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.15) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
   border-radius: 8px !important;
   padding: 10px 0 !important;
   z-index: 1051 !important;
@@ -360,11 +360,11 @@ a {
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
-  background: linear-gradient(90deg, 
-    rgba(255,255,255,0.8) 0%, 
-    transparent 10%, 
-    transparent 90%, 
-    rgba(255,255,255,0.8) 100%);
+  background: linear-gradient(90deg,
+      rgba(255, 255, 255, 0.8) 0%,
+      transparent 10%,
+      transparent 90%,
+      rgba(255, 255, 255, 0.8) 100%);
   user-select: none;
 }
 
@@ -390,7 +390,8 @@ a {
   opacity: 1;
 }
 
-.flag, .flag-item {
+.flag,
+.flag-item {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -404,18 +405,21 @@ a {
   position: relative;
 }
 
-.flag:hover, .flag-item:hover {
+.flag:hover,
+.flag-item:hover {
   transform: translateY(-4px) scale(1.05);
   background: rgba(255, 255, 255, 0.9);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   z-index: 10;
 }
 
-.flag:active, .flag-item:active {
+.flag:active,
+.flag-item:active {
   transform: translateY(-2px) scale(0.98);
 }
 
-.flag img, .flag-item img {
+.flag img,
+.flag-item img {
   width: 36px;
   height: 36px;
   border-radius: 50%;
@@ -424,12 +428,14 @@ a {
   transition: all 0.3s ease;
 }
 
-.flag:hover img, .flag-item:hover img {
+.flag:hover img,
+.flag-item:hover img {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   transform: scale(1.1);
 }
 
-.flag span, .flag-item span {
+.flag span,
+.flag-item span {
   margin-top: 8px;
   font-size: 11px;
   color: #404040;
@@ -1029,7 +1035,7 @@ footer {
   padding: 30px;
   color: white;
   width: 100%;
-  background: linear-gradient(transparent, rgba(0,0,0,0.8));
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
   backdrop-filter: blur(1px);
 }
 
@@ -1037,7 +1043,7 @@ footer {
   font-size: 28px;
   font-weight: 800;
   margin: 0 0 8px 0;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 .trending-card.medium .destination-name {
@@ -1143,99 +1149,99 @@ footer {
   .results-grid {
     grid-template-columns: 1fr
   }
-  
+
   /* Featured Cards Mobile */
   .featured-section {
     padding: 40px 0;
   }
-  
+
   .featured-title {
     font-size: 24px;
   }
-  
+
   .featured-slider {
     padding: 0 10px;
   }
-  
+
   .featured-card {
     min-width: 280px;
   }
-  
+
   .card-content {
     padding: 20px;
   }
-  
+
   .card-stats {
     flex-direction: column;
     gap: 8px;
   }
-  
+
   /* Categories Mobile */
   .categories-section {
     padding: 60px 0;
   }
-  
+
   .section-title {
     font-size: 24px;
   }
-  
+
   .categories-grid {
     grid-template-columns: 1fr;
     gap: 20px;
   }
-  
+
   .category-card {
     padding: 20px;
   }
-  
+
   /* Trending Mobile */
   .trending-section {
     padding: 60px 0;
   }
-  
+
   .trending-title {
     font-size: 28px;
   }
-  
+
   .trending-grid {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
     gap: 16px;
   }
-  
+
   .trending-card.large {
     grid-row: span 1;
     height: 250px;
   }
-  
+
   .medium-grid {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
     gap: 16px;
   }
-  
+
   .trending-card.wide {
     grid-column: span 1;
     height: 200px;
   }
-  
+
   .trending-card.medium {
     height: 200px;
   }
-  
+
   .card-overlay {
     padding: 20px;
   }
-  
+
   .destination-name {
     font-size: 22px;
   }
-  
+
   .trending-card.medium .destination-name {
     font-size: 20px;
   }
-  
+
   .sponsor-note {
     flex-direction: column;
     gap: 4px;
@@ -1350,10 +1356,13 @@ footer {
 
 
 @keyframes pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
     box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
   }
+
   50% {
     transform: scale(1.05);
     box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
@@ -1361,10 +1370,13 @@ footer {
 }
 
 @keyframes lineGlow {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.4;
     box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
   }
+
   50% {
     opacity: 1;
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
@@ -1375,6 +1387,7 @@ footer {
   0% {
     transform: translateY(0px);
   }
+
   100% {
     transform: translateY(-100px);
   }
@@ -1385,20 +1398,20 @@ footer {
   .how-it-works-section {
     padding: 60px 0;
   }
-  
+
   .how-it-works-section .section-title {
     font-size: 32px;
   }
-  
+
   .how-it-works-grid {
     grid-template-columns: 1fr;
     gap: 30px;
   }
-  
+
   .how-it-works-card {
     padding: 25px;
   }
-  
+
 
 }
 
@@ -1634,19 +1647,19 @@ footer {
   .blog-section {
     padding: 60px 0;
   }
-  
+
   .blog-section .section-title {
     font-size: 28px;
   }
-  
+
   .blog-card {
     flex: 0 0 300px;
   }
-  
+
   .blog-navigation {
     display: none;
   }
-  
+
   .blog-slider {
     gap: 20px;
     padding-bottom: 10px;
@@ -1867,32 +1880,32 @@ footer {
   .pricing-section {
     padding: 60px 0;
   }
-  
+
   .pricing-section .section-title {
     font-size: 28px;
   }
-  
+
   .pricing-grid {
     grid-template-columns: 1fr;
     gap: 20px;
   }
-  
+
   .pricing-card.featured {
     transform: none;
   }
-  
+
   .pricing-card.featured:hover {
     transform: translateY(-10px);
   }
-  
+
   .pricing-card {
     padding: 30px 25px;
   }
-  
+
   .plan-name {
     font-size: 20px;
   }
-  
+
   .amount {
     font-size: 40px;
   }
@@ -2019,18 +2032,18 @@ footer {
   .footer {
     padding: 40px 0 0 0;
   }
-  
+
   .footer-content {
     grid-template-columns: 1fr;
     gap: 30px;
   }
-  
+
   .footer-bottom-content {
     flex-direction: column;
     gap: 15px;
     text-align: center;
   }
-  
+
   .footer-badges {
     justify-content: center;
     flex-wrap: wrap;

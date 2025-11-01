@@ -7,14 +7,16 @@
 <div class="header-placeholder header-category">
     <div class="header-placeholder-content">
         <h1>{{ category.name }} Across Europe</h1>
-        <p>Discover {{ total_businesses }} {{ category.name.lower }} business{% if total_businesses != 1 %}es{% endif %} in {{ top_countries|length }} European countries</p>
+        <p>Discover {{ total_businesses }} {{ category.name.lower }} business{% if total_businesses != 1 %}es{% endif %}
+            in {{ top_countries|length }} European countries</p>
     </div>
 </div>
 {% endblock %}
 
 {% block meta_description %}
 <meta name="description" content="{{ meta_description }}">
-<meta name="keywords" content="{{ category.name }}, European {{ category.name }}, EU business directory, {{ category.name }} Europe">
+<meta name="keywords"
+    content="{{ category.name }}, European {{ category.name }}, EU business directory, {{ category.name }} Europe">
 <link rel="canonical" href="{{ request.build_absolute_uri }}{{ canonical_url }}">
 <meta property="og:title" content="{{ page_title }}">
 <meta property="og:description" content="{{ meta_description }}">
@@ -92,7 +94,8 @@
                         {{ category.name }} Businesses Across Europe
                     </h1>
                     <p class="lead mb-4">
-                        Discover {{ total_businesses }}+ verified {{ category.name.lower }} businesses across all 27 EU countries. 
+                        Discover {{ total_businesses }}+ verified {{ category.name.lower }} businesses across all 27 EU
+                        countries.
                         From startups to established companies, find the perfect {{ category.name.lower }} partner.
                     </p>
                     <div class="d-flex flex-wrap gap-2">
@@ -112,7 +115,8 @@
                         <h3 class="h5 mb-3">Quick Search</h3>
                         <form method="get" action="{% url 'business_search' %}">
                             <div class="input-group mb-2">
-                                <input type="text" class="form-control" name="q" placeholder="Search {{ category.name }}...">
+                                <input type="text" class="form-control" name="q"
+                                    placeholder="Search {{ category.name }}...">
                                 <button class="btn btn-light" type="submit">
                                     <i class="fas fa-search"></i>
                                 </button>
@@ -137,9 +141,9 @@
                 <a href="/{{ category.slug }}/{{ country.city__country__slug }}/" class="text-decoration-none">
                     <div class="card h-100 shadow-sm hover-shadow">
                         <div class="card-body text-center">
-                            <img src="{% static 'assets/flags/' %}{{ country.city__country__slug }}.png" 
-                                 alt="{{ country.city__country__name }} flag" 
-                                 class="mb-2" style="width: 32px; height: auto;">
+                            <img src="{% static 'assets/flags/' %}{{ country.city__country__slug }}.png"
+                                alt="{{ country.city__country__name }} flag" class="mb-2"
+                                style="width: 32px; height: auto;">
                             <h5 class="card-title">{{ country.city__country__name }}</h5>
                             <p class="text-muted mb-0">
                                 {{ country.business_count }} {{ category.name }}
@@ -162,8 +166,8 @@
             <div class="row">
                 {% for city in top_cities %}
                 <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-3">
-                    <a href="/{{ category.slug }}/{{ city.city__country__slug }}/{{ city.city__slug }}/" 
-                       class="text-decoration-none">
+                    <a href="/{{ category.slug }}/{{ city.city__country__slug }}/{{ city.city__slug }}/"
+                        class="text-decoration-none">
                         <div class="card text-center hover-shadow">
                             <div class="card-body py-3">
                                 <h6 class="card-title mb-1">{{ city.city__name }}</h6>
@@ -192,8 +196,8 @@
                 <div class="card h-100 shadow-sm">
                     <div class="card-body">
                         <h5 class="card-title">
-                            <a href="/{{ business.city.country.slug }}/{{ business.city.slug }}/{{ business.category.slug }}/{{ business.slug }}/" 
-                               class="text-decoration-none">
+                            <a href="/{{ business.city.country.slug }}/{{ business.city.slug }}/{{ business.category.slug }}/{{ business.slug }}/"
+                                class="text-decoration-none">
                                 {{ business.name }}
                             </a>
                         </h5>
@@ -260,20 +264,23 @@
                     <h2 class="text-center mb-4">About {{ category.name }} in Europe</h2>
                     <div class="text-muted">
                         <p>
-                            Europe's {{ category.name.lower }} sector represents one of the most dynamic and diverse 
-                            business landscapes in the world. With {{ total_businesses }} verified {{ category.name.lower }} 
-                            businesses across all 27 European Union member states, ListAcross.eu provides the most 
+                            Europe's {{ category.name.lower }} sector represents one of the most dynamic and diverse
+                            business landscapes in the world. With {{ total_businesses }} verified {{
+                            category.name.lower }}
+                            businesses across all 27 European Union member states, ListAcross.eu provides the most
                             comprehensive directory for finding quality {{ category.name.lower }} services.
                         </p>
                         <p>
-                            From major metropolitan areas like Berlin, Paris, and Rome to smaller regional centers, 
-                            European {{ category.name.lower }} businesses serve millions of customers daily. Our platform 
-                            connects you directly with verified, local {{ category.name.lower }} providers who understand 
+                            From major metropolitan areas like Berlin, Paris, and Rome to smaller regional centers,
+                            European {{ category.name.lower }} businesses serve millions of customers daily. Our
+                            platform
+                            connects you directly with verified, local {{ category.name.lower }} providers who
+                            understand
                             your market and regulatory requirements.
                         </p>
                         <p>
-                            Whether you're looking for established {{ category.name.lower }} companies or innovative 
-                            startups, ListAcross.eu makes it easy to discover, compare, and connect with the right 
+                            Whether you're looking for established {{ category.name.lower }} companies or innovative
+                            startups, ListAcross.eu makes it easy to discover, compare, and connect with the right
                             business partners across Europe's integrated market.
                         </p>
                     </div>
@@ -284,9 +291,9 @@
 </div>
 
 <style>
-.hover-shadow:hover {
-    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
-    transition: box-shadow 0.3s ease;
-}
+    .hover-shadow:hover {
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+        transition: box-shadow 0.3s ease;
+    }
 </style>
 {% endblock %}

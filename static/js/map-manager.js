@@ -12,11 +12,11 @@ class MapManager {
   init() {
     this.mapContainer = document.querySelector('.map-embed');
     this.searchInput = document.querySelector('#map-search');
-    
+
     if (this.mapContainer) {
       this.setupMapInteraction();
     }
-    
+
     if (this.searchInput) {
       this.setupSearch();
     }
@@ -34,11 +34,11 @@ class MapManager {
 
   setupSearch() {
     let searchTimeout;
-    
+
     this.searchInput.addEventListener('input', (e) => {
       clearTimeout(searchTimeout);
       const query = e.target.value.trim();
-      
+
       if (query.length >= 2) {
         searchTimeout = setTimeout(() => {
           this.performSearch(query);
@@ -52,7 +52,7 @@ class MapManager {
       // This would connect to your Django backend
       const response = await fetch(`/api/search/?q=${encodeURIComponent(query)}`);
       const results = await response.json();
-      
+
       this.displaySearchResults(results);
     } catch (error) {
       console.log('Search not available yet:', error);
@@ -62,20 +62,20 @@ class MapManager {
   displaySearchResults(results) {
     // Create or update search results dropdown
     let dropdown = document.querySelector('.search-dropdown');
-    
+
     if (!dropdown) {
       dropdown = document.createElement('div');
       dropdown.className = 'search-dropdown';
       this.searchInput.parentNode.appendChild(dropdown);
     }
-    
+
     dropdown.innerHTML = '';
-    
+
     if (results.length === 0) {
       dropdown.innerHTML = '<div class="no-results">No results found</div>';
       return;
     }
-    
+
     results.forEach(result => {
       const item = document.createElement('div');
       item.className = 'search-result-item';
@@ -93,13 +93,13 @@ class MapManager {
   // Update map for different locations
   updateMap(locationType, locationCode) {
     if (!this.mapContainer) return;
-    
+
     const coordinates = this.getCoordinates(locationType, locationCode);
     const newMapUrl = this.generateMapUrl(coordinates);
-    
+
     // Smooth transition between maps
     this.mapContainer.style.opacity = '0.7';
-    
+
     setTimeout(() => {
       this.mapContainer.src = newMapUrl;
       this.mapContainer.onload = () => {
@@ -113,7 +113,7 @@ class MapManager {
     if (window.mapConfig && window.mapConfig.coordinates) {
       return window.mapConfig.coordinates;
     }
-    
+
     // Fallback coordinates
     const defaultCoords = {
       europe: { lat: 54.5260, lng: 15.2551, zoom: 4 },
@@ -128,13 +128,13 @@ class MapManager {
         // Add more as needed
       }
     };
-    
+
     if (locationType === 'country') {
       return defaultCoords.countries[locationCode.toUpperCase()] || defaultCoords.europe;
     } else if (locationType === 'city') {
       return defaultCoords.cities[locationCode.toLowerCase()] || defaultCoords.europe;
     }
-    
+
     return defaultCoords.europe;
   }
 
@@ -150,33 +150,33 @@ function performMapSearch() {
   const searchInput = document.querySelector('#map-search');
   const locationFilter = document.querySelector('#location-filter');
   const categoryFilter = document.querySelector('#category-filter');
-  
+
   const query = searchInput?.value?.trim() || '';
   const location = locationFilter?.value || 'europe';
   const category = categoryFilter?.value || '';
-  
+
   // Build search URL
   let searchUrl = '/businesses/?';
   const params = new URLSearchParams();
-  
+
   if (query) params.append('q', query);
   if (location !== 'europe') params.append('location', location);
   if (category) params.append('category', category);
-  
+
   searchUrl += params.toString();
-  
+
   // Navigate to search results
   window.location.href = searchUrl;
 }
 
 // Initialize when DOM is ready
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   window.mapManager = new MapManager();
-  
+
   // Setup enter key for search
   const searchInput = document.querySelector('#map-search');
   if (searchInput) {
-    searchInput.addEventListener('keypress', function(e) {
+    searchInput.addEventListener('keypress', function (e) {
       if (e.key === 'Enter') {
         performMapSearch();
       }

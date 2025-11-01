@@ -1,19 +1,24 @@
 User-agent: *
-Allow: /
+Disallow: /
 
-# High-value pages for crawling
-Allow: /businesses/
-Allow: /cities/
-Allow: /*/*/
-Allow: /category/
+# DEVELOPMENT MODE - BLOCKING ALL SEARCH ENGINES
+# This robots.txt blocks all crawling during development
+# Update this when ready for production deployment
 
-# Block admin and private areas
-Disallow: /admin/
-Disallow: /media/private/
-Disallow: /api/internal/
-Disallow: /accounts/
-Disallow: /*?print=1
-Disallow: /*?ajax=1
+# PRODUCTION CONFIGURATION (COMMENTED OUT FOR DEV):
+# Allow: /
+# Allow: /businesses/
+# Allow: /cities/
+# Allow: /*/*/
+# Allow: /category/
+# 
+# Block admin and private areas:
+# Disallow: /admin/
+# Disallow: /media/private/
+# Disallow: /api/internal/
+# Disallow: /accounts/
+# Disallow: /*?print=1
+# Disallow: /*?ajax=1
 
 # Block search filters to avoid duplicate content
 Disallow: /*?sort=

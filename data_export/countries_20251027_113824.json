@@ -1,0 +1,326 @@
+[
+{
+  "model": "businesses.country",
+  "pk": 1,
+  "fields": {
+    "name": "Austria",
+    "code": "AT",
+    "slug": "austria",
+    "flag_image": "",
+    "is_eu_member": true,
+    "is_active": true
+  }
+},
+{
+  "model": "businesses.country",
+  "pk": 5,
+  "fields": {
+    "name": "Belgium",
+    "code": "BE",
+    "slug": "belgium",
+    "flag_image": "",
+    "is_eu_member": true,
+    "is_active": true
+  }
+},
+{
+  "model": "businesses.country",
+  "pk": 6,
+  "fields": {
+    "name": "Bulgaria",
+    "code": "BG",
+    "slug": "bulgaria",
+    "flag_image": "",
+    "is_eu_member": true,
+    "is_active": true
+  }
+},
+{
+  "model": "businesses.country",
+  "pk": 13,
+  "fields": {
+    "name": "Croatia",
+    "code": "HR",
+    "slug": "croatia",
+    "flag_image": "",
+    "is_eu_member": true,
+    "is_active": true
+  }
+},
+{
+  "model": "businesses.country",
+  "pk": 7,
+  "fields": {
+    "name": "Cyprus",
+    "code": "CY",
+    "slug": "cyprus",
+    "flag_image": "",
+    "is_eu_member": true,
+    "is_active": true
+  }
+},
+{
+  "model": "businesses.country",
+  "pk": 8,
+  "fields": {
+    "name": "Czech Republic",
+    "code": "CZ",
+    "slug": "czech-republic",
+    "flag_image": "",
+    "is_eu_member": true,
+    "is_active": true
+  }
+},
+{
+  "model": "businesses.country",
+  "pk": 9,
+  "fields": {
+    "name": "Denmark",
+    "code": "DK",
+    "slug": "denmark",
+    "flag_image": "",
+    "is_eu_member": true,
+    "is_active": true
+  }
+},
+{
+  "model": "businesses.country",
+  "pk": 10,
+  "fields": {
+    "name": "Estonia",
+    "code": "EE",
+    "slug": "estonia",
+    "flag_image": "",
+    "is_eu_member": true,
+    "is_active": true
+  }
+},
+{
+  "model": "businesses.country",
+  "pk": 11,
+  "fields": {
+    "name": "Finland",
+    "code": "FI",
+    "slug": "finland",
+    "flag_image": "",
+    "is_eu_member": true,
+    "is_active": true
+  }
+},
+{
+  "model": "businesses.country",
+  "pk": 3,
+  "fields": {
+    "name": "France",
+    "code": "FR",
+    "slug": "france",
+    "flag_image": "",
+    "is_eu_member": true,
+    "is_active": true
+  }
+},
+{
+  "model": "businesses.country",
+  "pk": 2,
+  "fields": {
+    "name": "Germany",
+    "code": "DE",
+    "slug": "germany",
+    "flag_image": "",
+    "is_eu_member": true,
+    "is_active": true
+  }
+},
+{
+  "model": "businesses.country",
+  "pk": 12,
+  "fields": {
+    "name": "Greece",
+    "code": "GR",
+    "slug": "greece",
+    "flag_image": "",
+    "is_eu_member": true,
+    "is_active": true
+  }
+},
+{
+  "model": "businesses.country",
+  "pk": 14,
+  "fields": {
+    "name": "Hungary",
+    "code": "HU",
+    "slug": "hungary",
+    "flag_image": "",
+    "is_eu_member": true,
+    "is_active": true
+  }
+},
+{
+  "model": "businesses.country",
+  "pk": 15,
+  "fields": {
+    "name": "Ireland",
+    "code": "IE",
+    "slug": "ireland",
+    "flag_image": "",
+    "is_eu_member": true,
+    "is_active": true
+  }
+},
+{
+  "model": "businesses.country",
+  "pk": 16,
+  "fields": {
+    "name": "Italy",
+    "code": "IT",
+    "slug": "italy",
+    "flag_image": "",
+    "is_eu_member": true,
+    "is_active": true
+  }
+},
+{
+  "model": "businesses.country",
+  "pk": 17,
+  "fields": {
+    "name": "Latvia",
+    "code": "LV",
+    "slug": "latvia",
+    "flag_image": "",
+    "is_eu_member": true,
+    "is_active": true
+  }
+},
+{
+  "model": "businesses.country",
+  "pk": 18,
+  "fields": {
+    "name": "Lithuania",
+    "code": "LT",
+    "slug": "lithuania",
+    "flag_image": "",
+    "is_eu_member": true,
+    "is_active": true
+  }
+},
+{
+  "model": "businesses.country",
+  "pk": 19,
+  "fields": {
+    "name": "Luxembourg",
+    "code": "LU",
+    "slug": "luxembourg",
+    "flag_image": "",
+    "is_eu_member": true,
+    "is_active": true
+  }
+},
+{
+  "model": "businesses.country",
+  "pk": 20,
+  "fields": {
+    "name": "Malta",
+    "code": "MT",
+    "slug": "malta",
+    "flag_image": "",
+    "is_eu_member": true,
+    "is_active": true
+  }
+},
+{
+  "model": "businesses.country",
+  "pk": 21,
+  "fields": {
+    "name": "Netherlands",
+    "code": "NL",
+    "slug": "netherlands",
+    "flag_image": "",
+    "is_eu_member": true,
+    "is_active": true
+  }
+},
+{
+  "model": "businesses.country",
+  "pk": 22,
+  "fields": {
+    "name": "Poland",
+    "code": "PL",
+    "slug": "poland",
+    "flag_image": "",
+    "is_eu_member": true,
+    "is_active": true
+  }
+},
+{
+  "model": "businesses.country",
+  "pk": 23,
+  "fields": {
+    "name": "Portugal",
+    "code": "PT",
+    "slug": "portugal",
+    "flag_image": "",
+    "is_eu_member": true,
+    "is_active": true
+  }
+},
+{
+  "model": "businesses.country",
+  "pk": 24,
+  "fields": {
+    "name": "Romania",
+    "code": "RO",
+    "slug": "romania",
+    "flag_image": "",
+    "is_eu_member": true,
+    "is_active": true
+  }
+},
+{
+  "model": "businesses.country",
+  "pk": 27,
+  "fields": {
+    "name": "Slovakia",
+    "code": "SK",
+    "slug": "slovakia",
+    "flag_image": "",
+    "is_eu_member": true,
+    "is_active": true
+  }
+},
+{
+  "model": "businesses.country",
+  "pk": 26,
+  "fields": {
+    "name": "Slovenia",
+    "code": "SI",
+    "slug": "slovenia",
+    "flag_image": "",
+    "is_eu_member": true,
+    "is_active": true
+  }
+},
+{
+  "model": "businesses.country",
+  "pk": 4,
+  "fields": {
+    "name": "Spain",
+    "code": "ES",
+    "slug": "spain",
+    "flag_image": "",
+    "is_eu_member": true,
+    "is_active": true
+  }
+},
+{
+  "model": "businesses.country",
+  "pk": 25,
+  "fields": {
+    "name": "Sweden",
+    "code": "SE",
+    "slug": "sweden",
+    "flag_image": "",
+    "is_eu_member": true,
+    "is_active": true
+  }
+}
+]

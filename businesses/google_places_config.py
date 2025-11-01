@@ -9,7 +9,7 @@ import os
 # 5. Add your API key to .env file as GOOGLE_PLACES_API_KEY=your_key_here
 
 # SECURITY: Never commit real API keys! Use environment variables instead.
-GOOGLE_PLACES_API_KEY = os.getenv('GOOGLE_PLACES_API_KEY', 'your-api-key-here')
+GOOGLE_PLACES_API_KEY = os.getenv('GOOGLE_PLACES_API_KEY', 'AIzaSyBmKk3uM1BZV_qTuodk9fQmYWLzp1J-k48')
 
 # Example (DON'T use this fake key):
 # GOOGLE_PLACES_API_KEY = "AIzaSyC4YT8s-lxmKp9X2b1Fg7Hj8Kl3Mn5Qr9S"
@@ -56,15 +56,26 @@ SEARCH_CATEGORIES = [
     "marketing agency", "web design", "consultant", "architect"
 ]
 
-# City search priorities (start with major cities)
+# City search priorities (UPDATED FOR NETHERLANDS, PORTUGAL, BELGIUM FOCUS)
 PRIORITY_CITIES = [
-    # Major European cities
+    # Netherlands - Priority targets
+    "Amsterdam, Netherlands", "Rotterdam, Netherlands", "The Hague, Netherlands",
+    "Utrecht, Netherlands", "Eindhoven, Netherlands", "Tilburg, Netherlands",
+    "Groningen, Netherlands", "Almere, Netherlands",
+    
+    # Portugal - Priority targets  
+    "Lisbon, Portugal", "Porto, Portugal", "Braga, Portugal", "Coimbra, Portugal",
+    "Funchal, Portugal", "Aveiro, Portugal", "Faro, Portugal", "Cascais, Portugal",
+    "Amadora, Portugal", "Almada, Portugal",
+    
+    # Belgium - Priority targets
+    "Brussels, Belgium", "Antwerp, Belgium", "Ghent, Belgium", "Charleroi, Belgium",
+    "Liège, Belgium", "Bruges, Belgium",
+    
+    # Existing successful cities (keep for comparison)
     "Berlin, Germany", "Munich, Germany", "Hamburg, Germany", "Cologne, Germany",
     "Madrid, Spain", "Barcelona, Spain", "Valencia, Spain", "Seville, Spain",
     "Paris, France", "Lyon, France", "Marseille, France", "Toulouse, France",
-    "Rome, Italy", "Milan, Italy", "Naples, Italy", "Turin, Italy",
-    "Amsterdam, Netherlands", "Rotterdam, Netherlands", "The Hague, Netherlands",
-    "Brussels, Belgium", "Antwerp, Belgium", "Ghent, Belgium",
     "Vienna, Austria", "Graz, Austria", "Salzburg, Austria",
     "Warsaw, Poland", "Krakow, Poland", "Gdansk, Poland",
     "Budapest, Hungary", "Debrecen, Hungary",

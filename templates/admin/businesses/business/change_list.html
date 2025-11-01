@@ -4,103 +4,103 @@
 {% block extrahead %}
 {{ block.super }}
 <style>
-.duplicate-warning {
-    background-color: #fff3cd;
-    border: 1px solid #ffeaa7;
-    color: #856404;
-    padding: 10px 15px;
-    border-radius: 5px;
-    margin-bottom: 15px;
-}
+    .duplicate-warning {
+        background-color: #fff3cd;
+        border: 1px solid #ffeaa7;
+        color: #856404;
+        padding: 10px 15px;
+        border-radius: 5px;
+        margin-bottom: 15px;
+    }
 
-.duplicate-warning .warning-icon {
-    margin-right: 8px;
-    font-size: 16px;
-}
+    .duplicate-warning .warning-icon {
+        margin-right: 8px;
+        font-size: 16px;
+    }
 
-.column-selector {
-    background: #f8f9fa;
-    border: 1px solid #dee2e6;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 15px;
-}
+    .column-selector {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 15px;
+    }
 
-.column-selector h4 {
-    margin: 0 0 10px 0;
-    color: #495057;
-    font-size: 14px;
-}
+    .column-selector h4 {
+        margin: 0 0 10px 0;
+        color: #495057;
+        font-size: 14px;
+    }
 
-.column-checkboxes {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 8px;
-}
+    .column-checkboxes {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 8px;
+    }
 
-.column-checkboxes label {
-    display: flex;
-    align-items: center;
-    font-size: 12px;
-    color: #495057;
-}
+    .column-checkboxes label {
+        display: flex;
+        align-items: center;
+        font-size: 12px;
+        color: #495057;
+    }
 
-.column-checkboxes input[type="checkbox"] {
-    margin-right: 6px;
-}
+    .column-checkboxes input[type="checkbox"] {
+        margin-right: 6px;
+    }
 
-.quick-actions {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
-    flex-wrap: wrap;
-}
+    .quick-actions {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 15px;
+        flex-wrap: wrap;
+    }
 
-.quick-action-btn {
-    background: #007bff;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 12px;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-}
+    .quick-action-btn {
+        background: #007bff;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 12px;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
 
-.quick-action-btn:hover {
-    background: #0056b3;
-    color: white;
-    text-decoration: none;
-}
+    .quick-action-btn:hover {
+        background: #0056b3;
+        color: white;
+        text-decoration: none;
+    }
 
-.quick-action-btn.warning {
-    background: #ffc107;
-    color: #212529;
-}
+    .quick-action-btn.warning {
+        background: #ffc107;
+        color: #212529;
+    }
 
-.quick-action-btn.warning:hover {
-    background: #e0a800;
-    color: #212529;
-}
+    .quick-action-btn.warning:hover {
+        background: #e0a800;
+        color: #212529;
+    }
 
-.quick-action-btn.success {
-    background: #28a745;
-}
+    .quick-action-btn.success {
+        background: #28a745;
+    }
 
-.quick-action-btn.success:hover {
-    background: #1e7e34;
-}
+    .quick-action-btn.success:hover {
+        background: #1e7e34;
+    }
 
-.toggle-columns {
-    background: #6c757d;
-}
+    .toggle-columns {
+        background: #6c757d;
+    }
 
-.toggle-columns:hover {
-    background: #545b62;
-}
+    .toggle-columns:hover {
+        background: #545b62;
+    }
 </style>
 {% endblock %}
 
@@ -120,19 +120,19 @@
     <button type="button" class="quick-action-btn" id="detect-duplicates-btn">
         🔍 Detect Duplicates
     </button>
-    
+
     <a href="{% url 'admin:duplicate_detection' %}" class="quick-action-btn warning">
         📋 Duplicate Manager
     </a>
-    
+
     <a href="{% url 'admin:business_stats' %}" class="quick-action-btn success">
         📊 Statistics
     </a>
-    
+
     <a href="{% url 'admin:export_data' %}" class="quick-action-btn">
         📤 Export Data
     </a>
-    
+
     <button type="button" class="quick-action-btn toggle-columns" id="toggle-columns-btn">
         👁️ Toggle Columns
     </button>
@@ -172,102 +172,102 @@
 {{ block.super }}
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Check for duplicates automatically
-    checkForDuplicates();
-    
-    // Toggle column selector
-    document.getElementById('toggle-columns-btn').addEventListener('click', function() {
-        const selector = document.getElementById('column-selector');
-        selector.style.display = selector.style.display === 'none' ? 'block' : 'none';
-    });
-    
-    // Column visibility toggle
-    document.querySelectorAll('#column-selector input[type="checkbox"]').forEach(function(checkbox) {
-        checkbox.addEventListener('change', function() {
-            const columnIndex = this.getAttribute('data-column');
-            const table = document.querySelector('#result_list');
-            if (!table) return;
-            
-            // Toggle header
-            const headers = table.querySelectorAll('thead th');
-            if (headers[columnIndex]) {
-                headers[columnIndex].style.display = this.checked ? '' : 'none';
-            }
-            
-            // Toggle cells
-            const rows = table.querySelectorAll('tbody tr');
-            rows.forEach(function(row) {
-                const cells = row.querySelectorAll('td');
-                if (cells[columnIndex]) {
-                    cells[columnIndex].style.display = checkbox.checked ? '' : 'none';
+    document.addEventListener('DOMContentLoaded', function () {
+        // Check for duplicates automatically
+        checkForDuplicates();
+
+        // Toggle column selector
+        document.getElementById('toggle-columns-btn').addEventListener('click', function () {
+            const selector = document.getElementById('column-selector');
+            selector.style.display = selector.style.display === 'none' ? 'block' : 'none';
+        });
+
+        // Column visibility toggle
+        document.querySelectorAll('#column-selector input[type="checkbox"]').forEach(function (checkbox) {
+            checkbox.addEventListener('change', function () {
+                const columnIndex = this.getAttribute('data-column');
+                const table = document.querySelector('#result_list');
+                if (!table) return;
+
+                // Toggle header
+                const headers = table.querySelectorAll('thead th');
+                if (headers[columnIndex]) {
+                    headers[columnIndex].style.display = this.checked ? '' : 'none';
                 }
+
+                // Toggle cells
+                const rows = table.querySelectorAll('tbody tr');
+                rows.forEach(function (row) {
+                    const cells = row.querySelectorAll('td');
+                    if (cells[columnIndex]) {
+                        cells[columnIndex].style.display = checkbox.checked ? '' : 'none';
+                    }
+                });
             });
         });
+
+        // Detect duplicates button
+        document.getElementById('detect-duplicates-btn').addEventListener('click', function () {
+            this.innerHTML = '⏳ Detecting...';
+            this.disabled = true;
+
+            // Make AJAX call to detect duplicates
+            fetch('/admin/duplicate-detection/?format=json')
+                .then(response => response.text())
+                .then(data => {
+                    // Simple check - look for duplicate counts in the response
+                    const duplicateAlert = document.getElementById('duplicate-alert');
+                    const duplicateMessage = document.getElementById('duplicate-message');
+
+                    if (data.includes('exact_count') && data.includes('"exact_count": 0') === false) {
+                        duplicateAlert.style.display = 'block';
+                        duplicateMessage.textContent = 'Potential duplicate businesses found in your database.';
+                    } else {
+                        duplicateAlert.style.display = 'block';
+                        duplicateAlert.className = 'duplicate-warning success';
+                        duplicateAlert.style.backgroundColor = '#d4edda';
+                        duplicateAlert.style.borderColor = '#c3e6cb';
+                        duplicateAlert.style.color = '#155724';
+                        duplicateMessage.textContent = 'No exact duplicates found in your database.';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error detecting duplicates:', error);
+                    const duplicateAlert = document.getElementById('duplicate-alert');
+                    duplicateAlert.style.display = 'block';
+                    document.getElementById('duplicate-message').textContent = 'Error checking for duplicates.';
+                })
+                .finally(() => {
+                    this.innerHTML = '🔍 Detect Duplicates';
+                    this.disabled = false;
+                });
+        });
     });
-    
-    // Detect duplicates button
-    document.getElementById('detect-duplicates-btn').addEventListener('click', function() {
-        this.innerHTML = '⏳ Detecting...';
-        this.disabled = true;
-        
-        // Make AJAX call to detect duplicates
-        fetch('/admin/duplicate-detection/?format=json')
+
+    function checkForDuplicates() {
+        // Auto-check for duplicates when page loads
+        fetch('/admin/duplicate-detection/?format=json&threshold=2')
             .then(response => response.text())
             .then(data => {
-                // Simple check - look for duplicate counts in the response
-                const duplicateAlert = document.getElementById('duplicate-alert');
-                const duplicateMessage = document.getElementById('duplicate-message');
-                
-                if (data.includes('exact_count') && data.includes('"exact_count": 0') === false) {
+                if (data.includes('"exact_count":') && !data.includes('"exact_count": 0')) {
+                    const duplicateAlert = document.getElementById('duplicate-alert');
+                    const duplicateMessage = document.getElementById('duplicate-message');
                     duplicateAlert.style.display = 'block';
-                    duplicateMessage.textContent = 'Potential duplicate businesses found in your database.';
-                } else {
-                    duplicateAlert.style.display = 'block';
-                    duplicateAlert.className = 'duplicate-warning success';
-                    duplicateAlert.style.backgroundColor = '#d4edda';
-                    duplicateAlert.style.borderColor = '#c3e6cb';
-                    duplicateAlert.style.color = '#155724';
-                    duplicateMessage.textContent = 'No exact duplicates found in your database.';
+
+                    // Try to parse count from response
+                    try {
+                        const parsed = JSON.parse(data);
+                        if (parsed.summary && parsed.summary.exact_count > 0) {
+                            duplicateMessage.textContent = `Found ${parsed.summary.exact_count} exact duplicate groups in your database.`;
+                        }
+                    } catch (e) {
+                        duplicateMessage.textContent = 'Potential duplicate businesses found in your database.';
+                    }
                 }
             })
             .catch(error => {
-                console.error('Error detecting duplicates:', error);
-                const duplicateAlert = document.getElementById('duplicate-alert');
-                duplicateAlert.style.display = 'block';
-                document.getElementById('duplicate-message').textContent = 'Error checking for duplicates.';
-            })
-            .finally(() => {
-                this.innerHTML = '🔍 Detect Duplicates';
-                this.disabled = false;
+                console.error('Auto-duplicate check failed:', error);
             });
-    });
-});
-
-function checkForDuplicates() {
-    // Auto-check for duplicates when page loads
-    fetch('/admin/duplicate-detection/?format=json&threshold=2')
-        .then(response => response.text())
-        .then(data => {
-            if (data.includes('"exact_count":') && !data.includes('"exact_count": 0')) {
-                const duplicateAlert = document.getElementById('duplicate-alert');
-                const duplicateMessage = document.getElementById('duplicate-message');
-                duplicateAlert.style.display = 'block';
-                
-                // Try to parse count from response
-                try {
-                    const parsed = JSON.parse(data);
-                    if (parsed.summary && parsed.summary.exact_count > 0) {
-                        duplicateMessage.textContent = `Found ${parsed.summary.exact_count} exact duplicate groups in your database.`;
-                    }
-                } catch (e) {
-                    duplicateMessage.textContent = 'Potential duplicate businesses found in your database.';
-                }
-            }
-        })
-        .catch(error => {
-            console.error('Auto-duplicate check failed:', error);
-        });
-}
+    }
 </script>
 {% endblock %}

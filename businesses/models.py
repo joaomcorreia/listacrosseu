@@ -185,6 +185,9 @@ class Business(models.Model):
     views_count = models.PositiveIntegerField(_('views count'), default=0)
     clicks_count = models.PositiveIntegerField(_('clicks count'), default=0)
     
+    # Multilingual Support (27 EU Languages)
+    translations = models.JSONField(_('translations'), default=dict, blank=True, help_text='Translations for 27 EU languages')
+    
     # Timestamps
     created_at = models.DateTimeField(_('created at'), auto_now_add=True)
     updated_at = models.DateTimeField(_('updated at'), auto_now=True)

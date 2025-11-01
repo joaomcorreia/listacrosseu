@@ -4,8 +4,8 @@
 {% block title %}{{ page_title }}{% endblock %}
 
 {% block header_section %}
-<div class="header-placeholder header-business header-{{ country.slug }}" 
-     style="background-image: url('{% static 'assets/headers/' %}{{ country.slug }}_header-1920x600.jpg');">
+<div class="header-placeholder header-business header-{{ country.slug }}"
+    style="background-image: url('{% static 'assets/headers/' %}{{ country.slug }}_header-1920x600.jpg');">
     <div class="header-placeholder-content">
         <h1>{{ business.name }}</h1>
         <p>{{ category.name }} in {{ city.name }}, {{ country.name }}</p>
@@ -15,7 +15,8 @@
 
 {% block meta_description %}
 <meta name="description" content="{{ meta_description }}">
-<meta name="keywords" content="{{ business.name }}, {{ category.name }} {{ city.name }}, {{ city.name }} {{ category.name }}, {{ country.name }} business directory">
+<meta name="keywords"
+    content="{{ business.name }}, {{ category.name }} {{ city.name }}, {{ city.name }} {{ category.name }}, {{ country.name }} business directory">
 <link rel="canonical" href="{{ request.build_absolute_uri }}{{ canonical_url }}">
 <meta property="og:title" content="{{ page_title }}">
 <meta property="og:description" content="{{ meta_description }}">
@@ -90,7 +91,7 @@
                 <!-- Contact Information -->
                 <div class="contact-info">
                     <h3>Contact Information</h3>
-                    
+
                     {% if business.address %}
                     <div class="info-item">
                         <i class="icon-location"></i>
@@ -158,13 +159,13 @@
                         <i class="icon-phone"></i> Call Now
                     </a>
                     {% endif %}
-                    
+
                     {% if business.website %}
                     <a href="{{ business.website }}" target="_blank" rel="noopener" class="btn btn-secondary">
                         <i class="icon-globe"></i> Visit Website
                     </a>
                     {% endif %}
-                    
+
                     {% if business.email %}
                     <a href="mailto:{{ business.email }}" class="btn btn-outline">
                         <i class="icon-email"></i> Send Email
@@ -217,7 +218,7 @@
             </div>
             {% endfor %}
         </div>
-        
+
         <div class="view-all">
             <a href="/{{ country.slug }}/{{ city.slug }}/{{ category.slug }}/" class="btn btn-outline">
                 View All {{ category.name }} in {{ city.name }}
@@ -228,239 +229,242 @@
 </div>
 
 <style>
-.business-detail {
-    margin: 20px 0;
-}
-
-.business-header {
-    border-bottom: 2px solid #e5e7eb;
-    padding-bottom: 20px;
-    margin-bottom: 30px;
-}
-
-.business-header h1 {
-    font-size: 2.5em;
-    color: #1f2937;
-    margin-bottom: 10px;
-}
-
-.business-meta {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-}
-
-.business-meta .category {
-    background: #2563eb;
-    color: white;
-    padding: 6px 12px;
-    border-radius: 15px;
-    font-size: 0.9em;
-}
-
-.business-meta .location {
-    color: #6b7280;
-    font-size: 1.1em;
-}
-
-.business-content {
-    display: grid;
-    grid-template-columns: 1fr 300px;
-    gap: 40px;
-}
-
-.business-info > div {
-    margin-bottom: 30px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #f3f4f6;
-}
-
-.business-info h3 {
-    color: #1f2937;
-    margin-bottom: 15px;
-    font-size: 1.3em;
-}
-
-.contact-info .info-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    margin: 15px 0;
-}
-
-.contact-info .info-item i {
-    color: #2563eb;
-    margin-top: 2px;
-}
-
-.contact-info a {
-    color: #2563eb;
-    text-decoration: none;
-}
-
-.contact-info a:hover {
-    text-decoration: underline;
-}
-
-.business-sidebar {
-    background: #f9fafb;
-    padding: 20px;
-    border-radius: 8px;
-    height: fit-content;
-}
-
-.business-sidebar > div {
-    margin-bottom: 25px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #e5e7eb;
-}
-
-.business-sidebar > div:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-}
-
-.quick-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 16px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 500;
-    text-align: center;
-    justify-content: center;
-    border: 1px solid transparent;
-    transition: all 0.2s;
-}
-
-.btn-primary {
-    background: #2563eb;
-    color: white;
-}
-
-.btn-primary:hover {
-    background: #1d4ed8;
-}
-
-.btn-secondary {
-    background: #16a34a;
-    color: white;
-}
-
-.btn-secondary:hover {
-    background: #15803d;
-}
-
-.btn-outline {
-    background: transparent;
-    color: #374151;
-    border-color: #d1d5db;
-}
-
-.btn-outline:hover {
-    background: #f3f4f6;
-}
-
-.category-info, .location-info {
-    text-align: left;
-}
-
-.category-info h4, .location-info h4 {
-    color: #1f2937;
-    margin-bottom: 10px;
-}
-
-.category-desc {
-    color: #6b7280;
-    font-size: 0.9em;
-}
-
-.location-link {
-    color: #2563eb;
-    text-decoration: none;
-    font-size: 0.9em;
-}
-
-.location-link:hover {
-    text-decoration: underline;
-}
-
-.related-businesses {
-    margin-top: 60px;
-    padding-top: 40px;
-    border-top: 2px solid #e5e7eb;
-}
-
-.related-businesses h2 {
-    color: #1f2937;
-    margin-bottom: 30px;
-    font-size: 1.8em;
-}
-
-.related-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    margin-bottom: 30px;
-}
-
-.related-card {
-    background: white;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    padding: 20px;
-}
-
-.related-card h3 {
-    margin-bottom: 10px;
-    font-size: 1.1em;
-}
-
-.related-card a {
-    color: #2563eb;
-    text-decoration: none;
-}
-
-.related-card a:hover {
-    text-decoration: underline;
-}
-
-.related-card .address, .related-card .phone {
-    color: #6b7280;
-    font-size: 0.9em;
-    margin: 5px 0;
-}
-
-.view-all {
-    text-align: center;
-}
-
-@media (max-width: 768px) {
-    .business-content {
-        grid-template-columns: 1fr;
-        gap: 30px;
+    .business-detail {
+        margin: 20px 0;
     }
-    
+
+    .business-header {
+        border-bottom: 2px solid #e5e7eb;
+        padding-bottom: 20px;
+        margin-bottom: 30px;
+    }
+
     .business-header h1 {
-        font-size: 2em;
+        font-size: 2.5em;
+        color: #1f2937;
+        margin-bottom: 10px;
     }
-    
+
     .business-meta {
-        flex-direction: column;
+        display: flex;
+        gap: 20px;
+        align-items: center;
+    }
+
+    .business-meta .category {
+        background: #2563eb;
+        color: white;
+        padding: 6px 12px;
+        border-radius: 15px;
+        font-size: 0.9em;
+    }
+
+    .business-meta .location {
+        color: #6b7280;
+        font-size: 1.1em;
+    }
+
+    .business-content {
+        display: grid;
+        grid-template-columns: 1fr 300px;
+        gap: 40px;
+    }
+
+    .business-info>div {
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #f3f4f6;
+    }
+
+    .business-info h3 {
+        color: #1f2937;
+        margin-bottom: 15px;
+        font-size: 1.3em;
+    }
+
+    .contact-info .info-item {
+        display: flex;
         align-items: flex-start;
+        gap: 12px;
+        margin: 15px 0;
+    }
+
+    .contact-info .info-item i {
+        color: #2563eb;
+        margin-top: 2px;
+    }
+
+    .contact-info a {
+        color: #2563eb;
+        text-decoration: none;
+    }
+
+    .contact-info a:hover {
+        text-decoration: underline;
+    }
+
+    .business-sidebar {
+        background: #f9fafb;
+        padding: 20px;
+        border-radius: 8px;
+        height: fit-content;
+    }
+
+    .business-sidebar>div {
+        margin-bottom: 25px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .business-sidebar>div:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+    }
+
+    .quick-actions {
+        display: flex;
+        flex-direction: column;
         gap: 10px;
     }
-    
-    .related-grid {
-        grid-template-columns: 1fr;
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 16px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 500;
+        text-align: center;
+        justify-content: center;
+        border: 1px solid transparent;
+        transition: all 0.2s;
     }
-}
+
+    .btn-primary {
+        background: #2563eb;
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background: #1d4ed8;
+    }
+
+    .btn-secondary {
+        background: #16a34a;
+        color: white;
+    }
+
+    .btn-secondary:hover {
+        background: #15803d;
+    }
+
+    .btn-outline {
+        background: transparent;
+        color: #374151;
+        border-color: #d1d5db;
+    }
+
+    .btn-outline:hover {
+        background: #f3f4f6;
+    }
+
+    .category-info,
+    .location-info {
+        text-align: left;
+    }
+
+    .category-info h4,
+    .location-info h4 {
+        color: #1f2937;
+        margin-bottom: 10px;
+    }
+
+    .category-desc {
+        color: #6b7280;
+        font-size: 0.9em;
+    }
+
+    .location-link {
+        color: #2563eb;
+        text-decoration: none;
+        font-size: 0.9em;
+    }
+
+    .location-link:hover {
+        text-decoration: underline;
+    }
+
+    .related-businesses {
+        margin-top: 60px;
+        padding-top: 40px;
+        border-top: 2px solid #e5e7eb;
+    }
+
+    .related-businesses h2 {
+        color: #1f2937;
+        margin-bottom: 30px;
+        font-size: 1.8em;
+    }
+
+    .related-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .related-card {
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 20px;
+    }
+
+    .related-card h3 {
+        margin-bottom: 10px;
+        font-size: 1.1em;
+    }
+
+    .related-card a {
+        color: #2563eb;
+        text-decoration: none;
+    }
+
+    .related-card a:hover {
+        text-decoration: underline;
+    }
+
+    .related-card .address,
+    .related-card .phone {
+        color: #6b7280;
+        font-size: 0.9em;
+        margin: 5px 0;
+    }
+
+    .view-all {
+        text-align: center;
+    }
+
+    @media (max-width: 768px) {
+        .business-content {
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .business-header h1 {
+            font-size: 2em;
+        }
+
+        .business-meta {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .related-grid {
+            grid-template-columns: 1fr;
+        }
+    }
 </style>
 {% endblock %}

@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 import os
 from pathlib import Path
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -52,7 +56,9 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     'rest_framework',
-    # 'corsheaders',  # Temporarily disabled
+    'rest_framework_simplejwt',
+    'corsheaders',
+    'django_filters',
 ]
 
 LOCAL_APPS = [
@@ -61,15 +67,25 @@ LOCAL_APPS = [
     'chatbot',
     'directory',
     'travel.apps.TravelConfig',
+    'cms',
+    'blog',
+    'assist',
+    'plans',
+    'seo',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
+# AI Configuration
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
+ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY", "")
+AI_PROVIDER = os.getenv("AI_PROVIDER", "openai" if OPENAI_API_KEY else ("anthropic" if ANTHROPIC_API_KEY else "local"))
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    # 'corsheaders.middleware.CorsMiddleware',  # Temporarily disabled
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -274,3 +290,73 @@ MAGICAI_ENABLED = env('MAGICAI_ENABLED', default=True)
 # Direct OpenAI Integration (Fallback)
 OPENAI_API_KEY = env('OPENAI_API_KEY', default='')
 OPENAI_ENABLED = env('OPENAI_ENABLED', default=True)
+
+# Django REST Framework Configuration
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 20,
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend',
+        'rest_framework.filters.SearchFilter',
+        'rest_framework.filters.OrderingFilter',
+    ],
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ],
+}
+
+# JWT Configuration
+from datetime import timedelta
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'ALGORITHM': 'HS256',
+    'SIGNING_KEY': SECRET_KEY,
+}
+
+# CORS Settings for Next.js frontend
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # Next.js development server
+    "http://127.0.0.1:3000",
+    "http://localhost:3001",  # Next.js development server on port 3001
+    "http://127.0.0.1:3001",
+    "https://listacross.eu",  # Production frontend
+]
+
+CORS_ALLOW_CREDENTIALS = True
+
+# CSRF Settings for Next.js frontend
+CSRF_TRUSTED_ORIGINS = [
+    "http://127.0.0.1:3001",
+    "http://localhost:3001",
+]
+
+# Additional CORS settings for development
+CORS_ALLOW_ALL_ORIGINS = DEBUG  # Only in development
+
+# EU Languages Support (27 languages)
+EU_LANGUAGES = [
+    ('bg', 'Bulgarian'), ('hr', 'Croatian'), ('cs', 'Czech'), ('da', 'Danish'),
+    ('nl', 'Dutch'), ('en', 'English'), ('et', 'Estonian'), ('fi', 'Finnish'),
+    ('fr', 'French'), ('de', 'German'), ('el', 'Greek'), ('hu', 'Hungarian'),
+    ('ga', 'Irish'), ('it', 'Italian'), ('lv', 'Latvian'), ('lt', 'Lithuanian'),
+    ('mt', 'Maltese'), ('pl', 'Polish'), ('pt', 'Portuguese'), ('ro', 'Romanian'),
+    ('sk', 'Slovak'), ('sl', 'Slovenian'), ('es', 'Spanish'), ('sv', 'Swedish'),
+    ('no', 'Norwegian'), ('is', 'Icelandic'), ('ch', 'Swiss German'),
+]
+
+# Internationalization
+LANGUAGE_CODE = 'en'
+TIME_ZONE = 'UTC'
+USE_I18N = True
+USE_TZ = True

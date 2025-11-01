@@ -4,8 +4,8 @@
 {% block title %}{{ business.name }} in {{ business.city.name }} | Contact & Reviews{% endblock %}
 
 {% block header_section %}
-<div class="header-placeholder header-business header-{{ business.city.country.slug }}" 
-     style="background-image: url('{% static 'assets/headers/' %}{{ business.city.country.slug }}_header-1920x600.jpg');">
+<div class="header-placeholder header-business header-{{ business.city.country.slug }}"
+    style="background-image: url('{% static 'assets/headers/' %}{{ business.city.country.slug }}_header-1920x600.jpg');">
     <div class="header-placeholder-content">
         <h1>{{ business.name }}</h1>
         <p>{{ business.category.name }} in {{ business.city.name }}, {{ business.city.country.name }}</p>
@@ -13,8 +13,11 @@
 </div>
 {% endblock %}
 
-{% block meta_description %}{{ business.name }} - {{ business.description|truncatewords:30 }} Located in {{ business.city.name }}, {{ business.city.country.name }}. Phone: {{ business.phone|default:"Contact via website" }}.{% endblock %}
-{% block meta_keywords %}{{ business.name }}, {{ business.city.name }}, {{ business.city.country.name }}, {{ business.category.name }}, business directory{% endblock %}
+{% block meta_description %}{{ business.name }} - {{ business.description|truncatewords:30 }} Located in {{
+business.city.name }}, {{ business.city.country.name }}. Phone: {{ business.phone|default:"Contact via website" }}.{%
+endblock %}
+{% block meta_keywords %}{{ business.name }}, {{ business.city.name }}, {{ business.city.country.name }}, {{
+business.category.name }}, business directory{% endblock %}
 
 {% block og_title %}{{ business.name }} - {{ business.category.name }} in {{ business.city.name }}{% endblock %}
 {% block og_description %}{{ business.description|truncatewords:30 }}{% endblock %}
@@ -108,7 +111,8 @@
             <li>›</li>
             <li><a href="{% url 'business_list' %}" class="hover:text-blue-600">Businesses</a></li>
             <li>›</li>
-            <li><a href="{% url 'businesses_by_city' business.city.slug %}" class="hover:text-blue-600">{{ business.city.name }}</a></li>
+            <li><a href="{% url 'businesses_by_city' business.city.slug %}" class="hover:text-blue-600">{{
+                    business.city.name }}</a></li>
             <li>›</li>
             <li class="text-gray-900">{{ business.name }}</li>
         </ol>
@@ -123,7 +127,7 @@
             <span class="text-white text-6xl font-bold">{{ business.name|first|upper }}</span>
         </div>
         {% endif %}
-        
+
         <div class="p-8">
             <div class="flex items-start justify-between mb-6">
                 <div class="flex-1">
@@ -136,14 +140,15 @@
                         🌍 {{ business.city.name }}, {{ business.city.country.name }}
                     </p>
                 </div>
-                
+
                 {% if business.logo %}
                 <div class="ml-6">
-                    <img src="{{ business.logo.url }}" alt="{{ business.name }} logo" class="w-24 h-24 object-cover rounded-lg shadow-md">
+                    <img src="{{ business.logo.url }}" alt="{{ business.name }} logo"
+                        class="w-24 h-24 object-cover rounded-lg shadow-md">
                 </div>
                 {% endif %}
             </div>
-            
+
             <!-- Contact Information -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                 {% if business.phone %}
@@ -155,7 +160,7 @@
                     </div>
                 </div>
                 {% endif %}
-                
+
                 {% if business.email %}
                 <div class="flex items-center space-x-3">
                     <span class="text-2xl">📧</span>
@@ -165,13 +170,14 @@
                     </div>
                 </div>
                 {% endif %}
-                
+
                 {% if business.website %}
                 <div class="flex items-center space-x-3">
                     <span class="text-2xl">🌐</span>
                     <div>
                         <p class="text-sm text-gray-600">Website</p>
-                        <a href="{{ business.website }}" target="_blank" class="font-medium text-blue-600 hover:text-blue-800">
+                        <a href="{{ business.website }}" target="_blank"
+                            class="font-medium text-blue-600 hover:text-blue-800">
                             Visit Website
                         </a>
                     </div>
@@ -192,9 +198,10 @@
                     {{ business.description|linebreaks }}
                 </div>
             </div>
-            
+
             <!-- Business Hours -->
-            {% if business.monday_hours or business.tuesday_hours or business.wednesday_hours or business.thursday_hours or business.friday_hours or business.saturday_hours or business.sunday_hours %}
+            {% if business.monday_hours or business.tuesday_hours or business.wednesday_hours or business.thursday_hours
+            or business.friday_hours or business.saturday_hours or business.sunday_hours %}
             <div class="bg-white rounded-lg shadow-md p-8">
                 <h3 class="text-xl font-semibold text-gray-900 mb-4">Opening Hours</h3>
                 <div class="space-y-2">
@@ -244,7 +251,7 @@
             </div>
             {% endif %}
         </div>
-        
+
         <!-- Sidebar -->
         <div class="lg:col-span-1">
             <!-- Quick Actions -->
@@ -252,29 +259,28 @@
                 <h3 class="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
                 <div class="space-y-3">
                     {% if business.phone %}
-                    <a href="tel:{{ business.phone }}" 
-                       class="w-full bg-green-600 text-white px-4 py-3 rounded-md hover:bg-green-700 transition duration-200 text-center block">
+                    <a href="tel:{{ business.phone }}"
+                        class="w-full bg-green-600 text-white px-4 py-3 rounded-md hover:bg-green-700 transition duration-200 text-center block">
                         📞 Call Now
                     </a>
                     {% endif %}
-                    
+
                     {% if business.website %}
-                    <a href="{{ business.website }}" 
-                       target="_blank"
-                       class="w-full bg-blue-600 text-white px-4 py-3 rounded-md hover:bg-blue-700 transition duration-200 text-center block">
+                    <a href="{{ business.website }}" target="_blank"
+                        class="w-full bg-blue-600 text-white px-4 py-3 rounded-md hover:bg-blue-700 transition duration-200 text-center block">
                         🌐 Visit Website
                     </a>
                     {% endif %}
-                    
+
                     {% if business.email %}
-                    <a href="mailto:{{ business.email }}" 
-                       class="w-full bg-gray-600 text-white px-4 py-3 rounded-md hover:bg-gray-700 transition duration-200 text-center block">
+                    <a href="mailto:{{ business.email }}"
+                        class="w-full bg-gray-600 text-white px-4 py-3 rounded-md hover:bg-gray-700 transition duration-200 text-center block">
                         📧 Send Email
                     </a>
                     {% endif %}
                 </div>
             </div>
-            
+
             <!-- Location Info -->
             <div class="bg-white rounded-lg shadow-md p-6">
                 <h3 class="text-lg font-semibold text-gray-900 mb-4">Location</h3>
@@ -285,17 +291,17 @@
                     {% endif %}
                     <p class="font-medium text-gray-900">{{ business.city.name }}, {{ business.city.country.name }}</p>
                 </div>
-                
+
                 <div class="mt-4">
-                    <a href="{% url 'businesses_by_city' business.city.slug %}" 
-                       class="text-blue-600 hover:text-blue-800 text-sm">
+                    <a href="{% url 'businesses_by_city' business.city.slug %}"
+                        class="text-blue-600 hover:text-blue-800 text-sm">
                         → More businesses in {{ business.city.name }}
                     </a>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <!-- Related Businesses -->
     {% if related_businesses %}
     <div class="bg-white rounded-lg shadow-md p-8">

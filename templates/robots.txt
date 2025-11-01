@@ -1,17 +1,21 @@
 User-agent: *
-Allow: /
+Disallow: /
 
-# SEO Priority Pages - High crawl priority
-Allow: /portugal/
-Allow: /germany/
-Allow: /france/
-Allow: /italy/
-Allow: /spain/
-Allow: /restaurants/
-Allow: /technology/
-Allow: /retail/
-Allow: /services/
-Allow: /manufacturing/
+# DEVELOPMENT MODE - BLOCKING ALL SEARCH ENGINES
+# This robots.txt file blocks all search engine crawling
+# Remove or modify this when ready for production deployment
+
+# SEO Priority Pages - HIGH CRAWL PRIORITY (FOR PRODUCTION)
+# Allow: /portugal/
+# Allow: /germany/
+# Allow: /france/
+# Allow: /italy/
+# Allow: /spain/
+# Allow: /restaurants/
+# Allow: /technology/
+# Allow: /retail/
+# Allow: /services/
+# Allow: /manufacturing/
 
 # SEO optimized category-location combinations (money pages)
 Allow: /restaurants/portugal/

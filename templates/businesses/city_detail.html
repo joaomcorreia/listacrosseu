@@ -5,8 +5,8 @@
 {% block title %}{{ page_title }}{% endblock %}
 
 {% block header_section %}
-<div class="header-placeholder header-city header-{{ country.slug }}" 
-     style="background-image: url('{% static 'assets/headers/' %}{{ country.slug }}_header-1920x600.jpg');">
+<div class="header-placeholder header-city header-{{ country.slug }}"
+    style="background-image: url('{% static 'assets/headers/' %}{{ country.slug }}_header-1920x600.jpg');">
     <div class="header-placeholder-content">
         <h1>{{ city.name }}, {{ country.name }}</h1>
         <p>Explore {{ total_businesses }} businesses and discover what {{ city.name }} has to offer</p>
@@ -15,7 +15,8 @@
 {% endblock %}
 
 {% block meta_description %}{{ meta_description }}{% endblock %}
-{% block meta_keywords %}{{ city.name }}, {{ country.name }}, business directory, companies, restaurants, services, {{ city.name }} businesses{% endblock %}
+{% block meta_keywords %}{{ city.name }}, {{ country.name }}, business directory, companies, restaurants, services, {{
+city.name }} businesses{% endblock %}
 
 {% block og_title %}{{ page_title }}{% endblock %}
 {% block og_description %}{{ meta_description }}{% endblock %}
@@ -94,11 +95,11 @@
 {% endblock %}
 
 {% block map_section %}
-    {% dynamic_map location_type location_code %}
+{% dynamic_map location_type location_code %}
 {% endblock %}
 
 {% block flag_section %}
-    {% flag_slider %}
+{% flag_slider %}
 {% endblock %}
 
 {% block extra_css %}
@@ -110,7 +111,7 @@
         text-align: center;
         margin-top: -20px;
     }
-    
+
     .breadcrumb-custom {
         background: white;
         border-radius: 8px;
@@ -118,7 +119,7 @@
         margin-bottom: 20px;
         box-shadow: var(--shadow);
     }
-    
+
     .city-stats {
         background: white;
         border-radius: 12px;
@@ -126,13 +127,13 @@
         box-shadow: var(--shadow);
         margin-bottom: 25px;
     }
-    
+
     .business-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 20px;
     }
-    
+
     .business-card {
         background: white;
         border-radius: 12px;
@@ -140,12 +141,12 @@
         box-shadow: var(--shadow);
         transition: all 0.3s ease;
     }
-    
+
     .business-card:hover {
         transform: translateY(-3px);
-        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     }
-    
+
     .filter-tabs {
         background: white;
         border-radius: 12px;
@@ -153,7 +154,7 @@
         box-shadow: var(--shadow);
         margin-bottom: 25px;
     }
-    
+
     .category-filter {
         display: inline-block;
         margin: 5px;
@@ -166,25 +167,26 @@
         transition: all 0.3s ease;
         font-size: 0.9em;
     }
-    
-    .category-filter:hover, .category-filter.active {
+
+    .category-filter:hover,
+    .category-filter.active {
         background: #007bff;
         color: white;
         border-color: #007bff;
         text-decoration: none;
     }
-    
+
     .back-to-country {
         color: #6c757d;
         text-decoration: none;
         font-size: 0.9em;
     }
-    
+
     .back-to-country:hover {
         color: #007bff;
         text-decoration: none;
     }
-    
+
     /* Main Categories Grid */
     .main-categories-section {
         background: white;
@@ -192,7 +194,7 @@
         padding: 20px 15px;
         box-shadow: var(--shadow);
     }
-    
+
     .category-card {
         background: white;
         border: 1px solid #e9ecef;
@@ -204,52 +206,52 @@
         display: flex;
         flex-direction: column;
         min-height: 260px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
-    
+
     .category-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
         border-color: #007bff;
     }
-    
+
     .card-header {
         background: #f8f9fa;
         border-bottom: 1px solid #e9ecef;
         padding: 15px;
     }
-    
+
     .category-icon {
         font-size: 1.2rem;
         color: #007bff;
         width: 52px;
         text-align: center;
     }
-    
+
     .category-name {
         font-weight: 600;
         color: #2c3e50;
         font-size: 1rem;
     }
-    
+
     .card-body {
         padding: 15px;
         flex: 1;
     }
-    
+
     .subcategories-list {
         display: flex;
         flex-direction: column;
         gap: 8px;
     }
-    
+
     .subcategory-item {
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 4px 0;
     }
-    
+
     .subcategory-name {
         color: #007bff;
         font-size: 0.85rem;
@@ -257,57 +259,60 @@
         cursor: pointer;
         transition: color 0.2s ease;
     }
-    
+
     .subcategory-name:hover {
         color: #0056b3;
         text-decoration: none;
     }
-    
+
     .subcategory-name-inactive {
         color: #6c757d;
         font-size: 0.85rem;
         cursor: default;
     }
-    
+
     .business-count {
         color: #6c757d;
         font-size: 0.85rem;
         font-weight: 500;
     }
-    
+
     .card-footer {
         background: transparent;
         border-top: 1px solid #e9ecef;
         padding: 15px;
     }
-    
+
     /* Responsive adjustments */
     @media (max-width: 768px) {
         .category-card {
             min-height: 250px;
         }
-        
-        .card-header, .card-body, .card-footer {
+
+        .card-header,
+        .card-body,
+        .card-footer {
             padding: 10px;
         }
-        
+
         .category-icon {
             font-size: 1rem;
         }
-        
+
         .category-name {
             font-size: 0.9rem;
         }
-        
-        .subcategory-name, .business-count {
+
+        .subcategory-name,
+        .business-count {
             font-size: 0.75rem;
         }
-        
+
         .main-categories-section {
             padding: 15px;
         }
     }
-    
+
     /* Ensure proper grid behavior and reduce spacing */
     .main-categories-section .row {
         display: flex;
@@ -315,7 +320,7 @@
         margin-left: -8px;
         margin-right: -8px;
     }
-    
+
     .main-categories-section .col-6,
     .main-categories-section .col-lg-4 {
         display: flex;
@@ -324,7 +329,7 @@
         margin-bottom: 16px;
         flex-direction: column-reverse;
     }
-    
+
     /* Custom spacing override for tighter layout */
     .main-categories-section .g-2 {
         --bs-gutter-x: 16px;
@@ -390,31 +395,31 @@
                         <div class="card-header d-flex align-items-center">
                             <div class="category-icon me-2">
                                 {% if item.category.name == "Restaurant" %}
-                                    <i class="fas fa-utensils"></i>
+                                <i class="fas fa-utensils"></i>
                                 {% elif item.category.name == "Technology" %}
-                                    <i class="fas fa-laptop-code"></i>
+                                <i class="fas fa-laptop-code"></i>
                                 {% elif item.category.name == "Tourism" %}
-                                    <i class="fas fa-map-marked-alt"></i>
+                                <i class="fas fa-map-marked-alt"></i>
                                 {% elif item.category.name == "Retail" %}
-                                    <i class="fas fa-shopping-bag"></i>
+                                <i class="fas fa-shopping-bag"></i>
                                 {% elif item.category.name == "Health" %}
-                                    <i class="fas fa-heartbeat"></i>
+                                <i class="fas fa-heartbeat"></i>
                                 {% elif item.category.name == "Education" %}
-                                    <i class="fas fa-graduation-cap"></i>
+                                <i class="fas fa-graduation-cap"></i>
                                 {% elif item.category.name == "Finance" %}
-                                    <i class="fas fa-coins"></i>
+                                <i class="fas fa-coins"></i>
                                 {% elif item.category.name == "Real Estate" %}
-                                    <i class="fas fa-home"></i>
+                                <i class="fas fa-home"></i>
                                 {% elif item.category.name == "Services" %}
-                                    <i class="fas fa-cogs"></i>
+                                <i class="fas fa-cogs"></i>
                                 {% elif item.category.name == "Manufacturing" %}
-                                    <i class="fas fa-industry"></i>
+                                <i class="fas fa-industry"></i>
                                 {% elif item.category.name == "Construction" %}
-                                    <i class="fas fa-hard-hat"></i>
+                                <i class="fas fa-hard-hat"></i>
                                 {% elif item.category.name == "Transportation" %}
-                                    <i class="fas fa-truck"></i>
+                                <i class="fas fa-truck"></i>
                                 {% else %}
-                                    <i class="fas fa-briefcase"></i>
+                                <i class="fas fa-briefcase"></i>
                                 {% endif %}
                             </div>
                             <h6 class="category-name mb-0">{{ item.category.name }}</h6>
@@ -424,9 +429,10 @@
                                 {% for subcategory in item.subcategories %}
                                 <div class="subcategory-item">
                                     {% if subcategory.business_count > 0 %}
-                                        <a href="?category={{ subcategory.slug }}" class="subcategory-name">{{ subcategory.name }}</a>
+                                    <a href="?category={{ subcategory.slug }}" class="subcategory-name">{{
+                                        subcategory.name }}</a>
                                     {% else %}
-                                        <span class="subcategory-name-inactive">{{ subcategory.name }}</span>
+                                    <span class="subcategory-name-inactive">{{ subcategory.name }}</span>
                                     {% endif %}
                                     <span class="business-count">({{ subcategory.business_count }})</span>
                                 </div>
@@ -435,13 +441,13 @@
                         </div>
                         <div class="card-footer">
                             {% if item.business_count > 0 %}
-                                <a href="?category={{ item.category.slug }}" class="btn btn-primary btn-sm w-100">
-                                    View All ({{ item.business_count }})
-                                </a>
+                            <a href="?category={{ item.category.slug }}" class="btn btn-primary btn-sm w-100">
+                                View All ({{ item.business_count }})
+                            </a>
                             {% else %}
-                                <button class="btn btn-outline-secondary btn-sm w-100" disabled>
-                                    No businesses yet
-                                </button>
+                            <button class="btn btn-outline-secondary btn-sm w-100" disabled>
+                                No businesses yet
+                            </button>
                             {% endif %}
                         </div>
                     </div>
@@ -453,17 +459,17 @@
         <!-- Category Filter (Quick access) -->
         <div class="filter-tabs mb-4">
             <h6 class="mb-3">Quick Filter:</h6>
-            <a href="/{{ country.slug }}/{{ city.slug }}/" 
-               class="category-filter {% if not selected_category %}active{% endif %}">
+            <a href="/{{ country.slug }}/{{ city.slug }}/"
+                class="category-filter {% if not selected_category %}active{% endif %}">
                 All Categories ({{ total_businesses }})
             </a>
             {% for item in categories %}
-                {% if item.business_count > 0 %}
-                <a href="?category={{ item.category.slug }}" 
-                   class="category-filter {% if selected_category.slug == item.category.slug %}active{% endif %}">
-                    {{ item.category.name }} ({{ item.business_count }})
-                </a>
-                {% endif %}
+            {% if item.business_count > 0 %}
+            <a href="?category={{ item.category.slug }}"
+                class="category-filter {% if selected_category.slug == item.category.slug %}active{% endif %}">
+                {{ item.category.name }} ({{ item.business_count }})
+            </a>
+            {% endif %}
             {% endfor %}
         </div>
 
@@ -471,14 +477,14 @@
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h2>
                 {% if selected_category %}
-                    {{ selected_category.name }} in {{ city.name }}
+                {{ selected_category.name }} in {{ city.name }}
                 {% else %}
-                    Businesses in {{ city.name }}
+                Businesses in {{ city.name }}
                 {% endif %}
             </h2>
             <span class="text-muted">{{ businesses.paginator.count }} results</span>
         </div>
-        
+
         {% if businesses %}
         <div class="business-grid">
             {% for business in businesses %}
@@ -538,27 +544,30 @@
             <ul class="pagination justify-content-center">
                 {% if businesses.has_previous %}
                 <li class="page-item">
-                    <a class="page-link" href="?page={{ businesses.previous_page_number }}{% if selected_category %}&category={{ selected_category.slug }}{% endif %}">Previous</a>
+                    <a class="page-link"
+                        href="?page={{ businesses.previous_page_number }}{% if selected_category %}&category={{ selected_category.slug }}{% endif %}">Previous</a>
                 </li>
                 {% endif %}
-                
+
                 {% for num in businesses.paginator.page_range %}
-                    {% if businesses.number == num %}
-                    <li class="page-item active">
-                        <span class="page-link">{{ num }}</span>
-                    </li>
-                    {% elif num > businesses.number|add:'-3' and num < businesses.number|add:'3' %}
-                    <li class="page-item">
-                        <a class="page-link" href="?page={{ num }}{% if selected_category %}&category={{ selected_category.slug }}{% endif %}">{{ num }}</a>
+                {% if businesses.number == num %}
+                <li class="page-item active">
+                    <span class="page-link">{{ num }}</span>
+                </li>
+                {% elif num > businesses.number|add:'-3' and num < businesses.number|add:'3' %} <li class="page-item">
+                    <a class="page-link"
+                        href="?page={{ num }}{% if selected_category %}&category={{ selected_category.slug }}{% endif %}">{{
+                        num }}</a>
                     </li>
                     {% endif %}
-                {% endfor %}
-                
-                {% if businesses.has_next %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ businesses.next_page_number }}{% if selected_category %}&category={{ selected_category.slug }}{% endif %}">Next</a>
-                </li>
-                {% endif %}
+                    {% endfor %}
+
+                    {% if businesses.has_next %}
+                    <li class="page-item">
+                        <a class="page-link"
+                            href="?page={{ businesses.next_page_number }}{% if selected_category %}&category={{ selected_category.slug }}{% endif %}">Next</a>
+                    </li>
+                    {% endif %}
             </ul>
         </nav>
         {% endif %}
@@ -568,9 +577,9 @@
             <i class="fas fa-building fa-4x text-muted mb-3"></i>
             <h4>
                 {% if selected_category %}
-                    No {{ selected_category.name }} businesses found in {{ city.name }}
+                No {{ selected_category.name }} businesses found in {{ city.name }}
                 {% else %}
-                    No businesses found in {{ city.name }}
+                No businesses found in {{ city.name }}
                 {% endif %}
             </h4>
             <p class="text-muted">Be the first to list your business here!</p>

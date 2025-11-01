@@ -10,8 +10,9 @@
         padding: 20px;
         margin: 20px 0;
         border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
+
     .export-button {
         display: inline-block;
         background: #417690;
@@ -23,23 +24,28 @@
         font-weight: 500;
         transition: background 0.3s;
     }
+
     .export-button:hover {
         background: #2e5568;
         color: white;
         text-decoration: none;
     }
+
     .export-button.primary {
         background: #0073aa;
     }
+
     .export-button.primary:hover {
         background: #005177;
     }
+
     .stats-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 16px;
         margin: 20px 0;
     }
+
     .stat-card {
         background: #f8f9fa;
         padding: 16px;
@@ -47,11 +53,13 @@
         text-align: center;
         border-left: 4px solid #0073aa;
     }
+
     .stat-number {
         font-size: 2em;
         font-weight: bold;
         color: #0073aa;
     }
+
     .stat-label {
         color: #666;
         font-size: 0.9em;
@@ -64,7 +72,7 @@
 <div class="export-section">
     <h1>📊 Export Business Data</h1>
     <p>Download comprehensive CSV files of your business directory data for analysis and review.</p>
-    
+
     <div class="stats-grid">
         <div class="stat-card">
             <div class="stat-number">{{ total_businesses|floatformat:0 }}</div>
@@ -84,14 +92,14 @@
 <div class="export-section">
     <h2>📋 Quick Export Options</h2>
     <p>Choose from pre-configured export formats:</p>
-    
+
     <a href="?type=summary" class="export-button primary">
         📈 Summary Statistics
     </a>
     <span style="margin-left: 10px; color: #666;">Overview with breakdowns by country, city, and category</span>
-    
+
     <br><br>
-    
+
     <a href="?type=all" class="export-button">
         📄 Complete Database
     </a>
@@ -101,7 +109,7 @@
 <div class="export-section">
     <h2>🌍 Export by Country</h2>
     <p>Download businesses for specific countries:</p>
-    
+
     {% for country in countries %}
     <a href="?type={{ country.slug }}" class="export-button">
         🏢 {{ country.name }}
@@ -146,9 +154,11 @@
         <li><strong>Spot Check</strong> - Sample some businesses for data quality</li>
         <li><strong>Ready for Travel Content</strong> - Once satisfied, proceed with Option A implementation</li>
     </ol>
-    
-    <p style="margin-top: 20px; padding: 12px; background: #e8f5e8; border-left: 4px solid #4caf50; border-radius: 4px;">
-        <strong>✅ Data Quality Note:</strong> After recent cleanup, all businesses should now be in their correct countries with Spanish businesses only in Spain, German businesses only in Germany, etc.
+
+    <p
+        style="margin-top: 20px; padding: 12px; background: #e8f5e8; border-left: 4px solid #4caf50; border-radius: 4px;">
+        <strong>✅ Data Quality Note:</strong> After recent cleanup, all businesses should now be in their correct
+        countries with Spanish businesses only in Spain, German businesses only in Germany, etc.
     </p>
 </div>
 

@@ -1,0 +1,26 @@
+ListAcross.eu Data Export Summary
+=====================================
+Export Date: 2025-10-27 11:38:37
+Export Format: CSV + JSON
+
+Records Exported:
+- Countries: 27
+- Cities: 196
+- Categories: 224
+- Businesses: 6331
+
+Key Data Fields Preserved:
+- Complete business information (name, contact, location)
+- Geographic data (coordinates, addresses)
+- Business categorization
+- SEO metadata (titles, descriptions, keywords)
+- Business hours and operational data
+- Statistics (views, clicks)
+- Timestamps for all records
+
+Files Generated:
+- businesses_20251027_113824.csv (main business data)
+- cities_20251027_113824.csv (location data) 
+- countries_20251027_113824.csv (country data)
+- categories_20251027_113824.csv (business categories)
+- JSON files for each entity type

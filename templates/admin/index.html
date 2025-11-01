@@ -10,46 +10,53 @@
         padding: 20px;
         border-radius: 8px;
         margin: 20px 0;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
+
     .stats-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
         gap: 15px;
         margin-top: 15px;
     }
+
     .stat-item {
         text-align: center;
-        background: rgba(255,255,255,0.1);
+        background: rgba(255, 255, 255, 0.1);
         padding: 15px;
         border-radius: 6px;
         backdrop-filter: blur(10px);
     }
+
     .stat-number {
         font-size: 2em;
         font-weight: bold;
         margin-bottom: 5px;
     }
+
     .stat-label {
         font-size: 0.9em;
         opacity: 0.9;
     }
+
     .dashboard-actions {
         margin-top: 20px;
     }
+
     .dashboard-btn {
-        background: rgba(255,255,255,0.2);
+        background: rgba(255, 255, 255, 0.2);
         color: white;
         padding: 10px 20px;
         border-radius: 5px;
         text-decoration: none;
         display: inline-block;
         margin-right: 10px;
-        border: 1px solid rgba(255,255,255,0.3);
+        border: 1px solid rgba(255, 255, 255, 0.3);
         transition: all 0.3s ease;
     }
+
     .dashboard-btn:hover {
-        background: rgba(255,255,255,0.3);
+        background: rgba(255, 255, 255, 0.3);
         color: white;
         text-decoration: none;
     }
@@ -60,7 +67,7 @@
 <div class="dashboard-stats">
     <h2 style="margin: 0 0 10px 0;">🚀 Business Directory Overview</h2>
     <p style="margin: 0 0 15px 0; opacity: 0.9;">Comprehensive statistics for your EU business directory</p>
-    
+
     <div class="stats-grid">
         <div class="stat-item">
             <div class="stat-number">{{ total_businesses|floatformat:0 }}</div>
@@ -79,7 +86,7 @@
             <div class="stat-label">Categories Filled</div>
         </div>
     </div>
-    
+
     <div class="dashboard-actions">
         <a href="{% url 'admin:business_stats' %}" class="dashboard-btn">
             📊 View Detailed Statistics

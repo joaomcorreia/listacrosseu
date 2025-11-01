@@ -1,38 +1,44 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Sources & Transparency - ListAcross.eu</title>
-    <meta name="description" content="Complete transparency about our data sources. Learn where ListAcross.eu gets business information and how we ensure legal compliance and data accuracy.">
-    
+    <meta name="description"
+        content="Complete transparency about our data sources. Learn where ListAcross.eu gets business information and how we ensure legal compliance and data accuracy.">
+
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    
+
     <style>
         .hero-section {
             background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
             color: white;
             padding: 80px 0;
         }
+
         .source-card {
             border: none;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
             height: 100%;
         }
+
         .source-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
+
         .license-badge {
             font-size: 0.8rem;
         }
     </style>
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -76,7 +82,7 @@
                         Data Sources & Transparency
                     </h1>
                     <p class="lead mb-4">
-                        Complete transparency about where our business data comes from. 
+                        Complete transparency about where our business data comes from.
                         We believe in openness, legal compliance, and data integrity.
                     </p>
                     <div class="row text-center mt-5">
@@ -118,7 +124,8 @@
                             <div class="d-flex justify-content-between align-items-start mb-3">
                                 <h5 class="card-title mb-0">
                                     {% if source.url %}
-                                    <a href="{{ source.url }}" target="_blank" rel="noopener" class="text-decoration-none">
+                                    <a href="{{ source.url }}" target="_blank" rel="noopener"
+                                        class="text-decoration-none">
                                         {{ source.name }}
                                         <i class="fas fa-external-link-alt ms-1 small"></i>
                                     </a>
@@ -143,7 +150,8 @@
                             <div class="mb-3">
                                 <strong class="text-success">License:</strong>
                                 {% if source.license_url %}
-                                <a href="{{ source.license_url }}" target="_blank" rel="noopener" class="text-decoration-none ms-1">
+                                <a href="{{ source.license_url }}" target="_blank" rel="noopener"
+                                    class="text-decoration-none ms-1">
                                     {{ source.license }}
                                     <i class="fas fa-external-link-alt ms-1 small"></i>
                                 </a>
@@ -182,7 +190,8 @@
                                 <div class="card-body text-center">
                                     <i class="fas fa-shield-alt fa-3x text-primary mb-3"></i>
                                     <h5>GDPR Compliance</h5>
-                                    <p class="text-muted">Full compliance with European data protection regulations. Business owners consent to their data being displayed.</p>
+                                    <p class="text-muted">Full compliance with European data protection regulations.
+                                        Business owners consent to their data being displayed.</p>
                                 </div>
                             </div>
                         </div>
@@ -191,7 +200,8 @@
                                 <div class="card-body text-center">
                                     <i class="fas fa-copyright fa-3x text-success mb-3"></i>
                                     <h5>Intellectual Property</h5>
-                                    <p class="text-muted">We respect all copyrights and licenses. All data usage follows the terms of service and licensing agreements.</p>
+                                    <p class="text-muted">We respect all copyrights and licenses. All data usage follows
+                                        the terms of service and licensing agreements.</p>
                                 </div>
                             </div>
                         </div>
@@ -200,7 +210,8 @@
                                 <div class="card-body text-center">
                                     <i class="fas fa-handshake fa-3x text-info mb-3"></i>
                                     <h5>Business Consent</h5>
-                                    <p class="text-muted">Business owners register themselves and explicitly consent to their information being listed on our platform.</p>
+                                    <p class="text-muted">Business owners register themselves and explicitly consent to
+                                        their information being listed on our platform.</p>
                                 </div>
                             </div>
                         </div>
@@ -209,7 +220,8 @@
                                 <div class="card-body text-center">
                                     <i class="fas fa-balance-scale fa-3x text-warning mb-3"></i>
                                     <h5>Fair Use</h5>
-                                    <p class="text-muted">All public data usage falls under fair use provisions and complies with terms of service of source platforms.</p>
+                                    <p class="text-muted">All public data usage falls under fair use provisions and
+                                        complies with terms of service of source platforms.</p>
                                 </div>
                             </div>
                         </div>
@@ -233,17 +245,20 @@
                         <div class="col-md-4 text-center mb-4">
                             <i class="fas fa-user-check fa-3x text-primary mb-3"></i>
                             <h5>Owner Verification</h5>
-                            <p class="text-muted">Business owners verify their email addresses and provide proof of ownership before listings go live.</p>
+                            <p class="text-muted">Business owners verify their email addresses and provide proof of
+                                ownership before listings go live.</p>
                         </div>
                         <div class="col-md-4 text-center mb-4">
                             <i class="fas fa-sync-alt fa-3x text-success mb-3"></i>
                             <h5>Regular Updates</h5>
-                            <p class="text-muted">Data is regularly updated from source APIs and business owner submissions to maintain accuracy.</p>
+                            <p class="text-muted">Data is regularly updated from source APIs and business owner
+                                submissions to maintain accuracy.</p>
                         </div>
                         <div class="col-md-4 text-center mb-4">
                             <i class="fas fa-eye fa-3x text-info mb-3"></i>
                             <h5>Manual Review</h5>
-                            <p class="text-muted">All business registrations are manually reviewed by our team before being published to ensure quality.</p>
+                            <p class="text-muted">All business registrations are manually reviewed by our team before
+                                being published to ensure quality.</p>
                         </div>
                     </div>
                 </div>
@@ -262,7 +277,7 @@
                             <i class="fas fa-info-circle me-2"></i>{{ transparency_note }}
                         </div>
                     </div>
-                    
+
                     <div class="row text-center">
                         <div class="col-md-3 col-6 mb-3">
                             <div class="h4 text-primary fw-bold">{{ platform_stats.businesses }}</div>
@@ -293,7 +308,7 @@
                 <div class="col-lg-8 mx-auto">
                     <h2 class="fw-bold mb-4">Questions About Our Data?</h2>
                     <p class="lead mb-4">
-                        We believe in complete transparency. If you have questions about our data sources, 
+                        We believe in complete transparency. If you have questions about our data sources,
                         usage, or want to report any issues, we're here to help.
                     </p>
                     <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
@@ -315,4 +330,5 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

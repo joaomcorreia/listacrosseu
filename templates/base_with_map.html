@@ -2,44 +2,50 @@
 {% load map_tags %}
 <!DOCTYPE html>
 <html lang="{% block lang %}en{% endblock %}">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
   <!-- SEO Meta Tags -->
   <title>{% block title %}ListAcross Europe - European Business Directory{% endblock %}</title>
-  <meta name="description" content="{% block meta_description %}Find businesses and services across Europe. Comprehensive directory of European companies, restaurants, services and more.{% endblock %}">
-  <meta name="keywords" content="{% block meta_keywords %}European business directory, EU companies, business listings, European services, restaurants Europe{% endblock %}">
+  <meta name="description"
+    content="{% block meta_description %}Find businesses and services across Europe. Comprehensive directory of European companies, restaurants, services and more.{% endblock %}">
+  <meta name="keywords"
+    content="{% block meta_keywords %}European business directory, EU companies, business listings, European services, restaurants Europe{% endblock %}">
   <meta name="robots" content="{% block robots %}index, follow{% endblock %}">
   <meta name="author" content="ListAcross EU">
-  
+
   <!-- Canonical URL -->
   <link rel="canonical" href="{% block canonical %}{{ request.build_absolute_uri|slice:'-1' }}{% endblock %}">
-  
+
   <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="{% block og_title %}ListAcross Europe - European Business Directory{% endblock %}">
-  <meta property="og:description" content="{% block og_description %}Find businesses and services across Europe. Comprehensive directory of European companies, restaurants, services and more.{% endblock %}">
+  <meta property="og:description"
+    content="{% block og_description %}Find businesses and services across Europe. Comprehensive directory of European companies, restaurants, services and more.{% endblock %}">
   <meta property="og:type" content="{% block og_type %}website{% endblock %}">
   <meta property="og:url" content="{% block og_url %}{{ request.build_absolute_uri }}{% endblock %}">
   <meta property="og:image" content="{% block og_image %}{% static 'images/og-default.jpg' %}{% endblock %}">
   <meta property="og:site_name" content="ListAcross EU">
   <meta property="og:locale" content="en_EU">
-  
+
   <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{% block twitter_title %}ListAcross Europe - European Business Directory{% endblock %}">
-  <meta name="twitter:description" content="{% block twitter_description %}Find businesses and services across Europe. Comprehensive directory of European companies, restaurants, services and more.{% endblock %}">
+  <meta name="twitter:title"
+    content="{% block twitter_title %}ListAcross Europe - European Business Directory{% endblock %}">
+  <meta name="twitter:description"
+    content="{% block twitter_description %}Find businesses and services across Europe. Comprehensive directory of European companies, restaurants, services and more.{% endblock %}">
   <meta name="twitter:image" content="{% block twitter_image %}{% static 'images/twitter-card.jpg' %}{% endblock %}">
-  
+
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
   <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}">
-  
+
   <!-- CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-  
+
   <style>
     /* Additional header and search styles */
     .main-header .header-actions {
@@ -47,42 +53,43 @@
       align-items: center !important;
       gap: 20px !important;
     }
-    
+
     /* Fix navigation height and mobile button visibility */
     .main-header {
       padding-top: 0 !important;
       margin-top: 0 !important;
     }
-    
+
     .header-top {
       padding-top: 5px !important;
       padding-bottom: 5px !important;
     }
-    
+
     /* Hide mobile menu button on desktop */
     .nav-mobile-toggle {
       display: none !important;
     }
-    
+
     @media (max-width: 768px) {
       .nav-mobile-toggle {
         display: block !important;
       }
     }
-    
+
     /* Fix flags slider - ensure flags load and auto-scroll works */
     .flags {
       overflow-x: hidden !important;
       overflow-y: hidden !important;
     }
-    
+
     /* Ensure flags are visible from start */
-    .flag-item, .flag {
+    .flag-item,
+    .flag {
       opacity: 1 !important;
       flex-shrink: 0 !important;
       display: flex !important;
     }
-    
+
     /* Auto-scroll animation that starts after flags load */
     .flags .track,
     #flag-track {
@@ -91,38 +98,40 @@
       will-change: transform !important;
       transform: translate3d(0, 0, 0) !important;
     }
-    
+
     @keyframes smoothSlide {
       0% {
         transform: translate3d(0%, 0, 0);
       }
+
       100% {
         transform: translate3d(-50%, 0, 0);
       }
     }
-    
+
     /* Ensure smooth transitions */
-    .flag-item, .flag {
+    .flag-item,
+    .flag {
       backface-visibility: hidden !important;
       perspective: 1000px !important;
     }
-    
+
     /* Pause animation on hover */
     .flags:hover .track,
     .flags:hover #flag-track {
       animation-play-state: paused !important;
     }
-    
+
     /* Hide any scrollbars */
     .flags::-webkit-scrollbar {
       display: none !important;
     }
-    
+
     .flags {
       -ms-overflow-style: none !important;
       scrollbar-width: none !important;
     }
-    
+
     /* Header Placeholder Styles */
     .header-placeholder {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -137,7 +146,7 @@
       overflow: hidden;
       margin-bottom: 0;
     }
-    
+
     .header-placeholder::before {
       content: '';
       position: absolute;
@@ -145,44 +154,44 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.4) 100%);
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0.4) 100%);
       pointer-events: none;
       z-index: 1;
     }
-    
+
     /* Country-specific overlay colors */
     .header-austria::before {
-      background: linear-gradient(135deg, rgba(220,53,69,0.6) 0%, rgba(253,126,20,0.4) 50%, rgba(220,53,69,0.6) 100%);
+      background: linear-gradient(135deg, rgba(220, 53, 69, 0.6) 0%, rgba(253, 126, 20, 0.4) 50%, rgba(220, 53, 69, 0.6) 100%);
     }
-    
+
     .header-belgium::before {
-      background: linear-gradient(135deg, rgba(40,40,40,0.7) 0%, rgba(255,215,0,0.3) 50%, rgba(220,20,60,0.7) 100%);
+      background: linear-gradient(135deg, rgba(40, 40, 40, 0.7) 0%, rgba(255, 215, 0, 0.3) 50%, rgba(220, 20, 60, 0.7) 100%);
     }
-    
+
     .header-france::before {
-      background: linear-gradient(135deg, rgba(0,85,164,0.7) 0%, rgba(255,255,255,0.2) 50%, rgba(239,65,53,0.7) 100%);
+      background: linear-gradient(135deg, rgba(0, 85, 164, 0.7) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(239, 65, 53, 0.7) 100%);
     }
-    
+
     .header-germany::before {
-      background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(221,0,0,0.4) 50%, rgba(255,206,84,0.5) 100%);
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(221, 0, 0, 0.4) 50%, rgba(255, 206, 84, 0.5) 100%);
     }
-    
+
     .header-spain::before {
-      background: linear-gradient(135deg, rgba(198,11,30,0.7) 0%, rgba(255,196,37,0.4) 50%, rgba(198,11,30,0.7) 100%);
+      background: linear-gradient(135deg, rgba(198, 11, 30, 0.7) 0%, rgba(255, 196, 37, 0.4) 50%, rgba(198, 11, 30, 0.7) 100%);
     }
-    
+
     .header-italy::before {
-      background: linear-gradient(135deg, rgba(0,146,70,0.7) 0%, rgba(255,255,255,0.2) 50%, rgba(206,43,55,0.7) 100%);
+      background: linear-gradient(135deg, rgba(0, 146, 70, 0.7) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(206, 43, 55, 0.7) 100%);
     }
-    
+
     .header-portugal::before {
-      background: linear-gradient(135deg, rgba(0,102,0,0.7) 0%, rgba(255,0,0,0.4) 50%, rgba(0,102,0,0.7) 100%);
+      background: linear-gradient(135deg, rgba(0, 102, 0, 0.7) 0%, rgba(255, 0, 0, 0.4) 50%, rgba(0, 102, 0, 0.7) 100%);
     }
-    
+
     .header-netherlands::before {
-      background: linear-gradient(135deg, rgba(174,28,40,0.7) 0%, rgba(255,255,255,0.2) 50%, rgba(33,70,139,0.7) 100%);
+      background: linear-gradient(135deg, rgba(174, 28, 40, 0.7) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(33, 70, 139, 0.7) 100%);
     }
-    
+
     .header-placeholder::after {
       content: '';
       position: absolute;
@@ -190,14 +199,14 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background-image: 
-        radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(255,255,255,0.1) 0%, transparent 50%);
+      background-image:
+        radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
       pointer-events: none;
       z-index: 1;
     }
-    
+
     .header-placeholder-content {
       text-align: center;
       position: relative;
@@ -205,133 +214,133 @@
       max-width: 800px;
       padding: 0 20px;
     }
-    
+
     .header-placeholder h1 {
       font-size: 3.5rem;
       font-weight: 700;
       margin-bottom: 1rem;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     }
-    
+
     .header-placeholder p {
       font-size: 1.25rem;
       margin-bottom: 0;
       opacity: 0.95;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
     }
-    
+
     /* Homepage Header - 1920x800 */
     .header-homepage {
       height: 800px;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     }
-    
+
     .header-homepage h1 {
       font-size: 4rem;
       margin-bottom: 1.5rem;
     }
-    
+
     .header-homepage p {
       font-size: 1.5rem;
     }
-    
+
     /* Category Pages Header - 1920x600 */
     .header-category {
       height: 600px;
       background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
     }
-    
+
     /* Country Pages Header - 1920x600 */
     .header-country {
       height: 600px;
       background: linear-gradient(135deg, #dc3545 0%, #fd7e14 100%);
     }
-    
+
     /* City Pages Header - 1920x600 */
     .header-city {
       height: 600px;
       background: linear-gradient(135deg, #6f42c1 0%, #e83e8c 100%);
     }
-    
+
     /* Business Pages Header - 1920x600 */
     .header-business {
       height: 600px;
       background: linear-gradient(135deg, #17a2b8 0%, #6610f2 100%);
     }
-    
+
     /* Responsive adjustments */
     @media (max-width: 768px) {
       .header-homepage {
         height: 500px;
       }
-      
+
       .header-category,
       .header-country,
       .header-city,
       .header-business {
         height: 400px;
       }
-      
+
       .header-placeholder h1 {
         font-size: 2.5rem;
       }
-      
+
       .header-homepage h1 {
         font-size: 3rem;
       }
-      
+
       .header-placeholder p {
         font-size: 1.1rem;
       }
-      
+
       .header-homepage p {
         font-size: 1.3rem;
       }
     }
-    
+
     @media (max-width: 480px) {
       .header-homepage {
         height: 400px;
       }
-      
+
       .header-category,
       .header-country,
       .header-city,
       .header-business {
         height: 300px;
       }
-      
+
       .header-placeholder h1 {
         font-size: 2rem;
       }
-      
+
       .header-homepage h1 {
         font-size: 2.5rem;
       }
-      
+
       .header-placeholder p {
         font-size: 1rem;
       }
-      
+
       .header-homepage p {
         font-size: 1.2rem;
       }
     }
-    
+
     .main-header .search-box {
       display: flex !important;
       border: 2px solid #e9ecef !important;
       border-radius: 25px !important;
       overflow: hidden !important;
     }
-    
+
     .main-header .search-input {
       border: none !important;
       padding: 10px 15px !important;
       width: 300px !important;
       outline: none !important;
     }
-    
+
     .main-header .search-btn {
       background: var(--blue) !important;
       color: white !important;
@@ -339,12 +348,12 @@
       padding: 10px 15px !important;
       cursor: pointer !important;
     }
-    
+
     .main-header .user-actions {
       display: flex !important;
       gap: 10px !important;
     }
-    
+
     .main-header .btn {
       padding: 8px 16px !important;
       border-radius: 20px !important;
@@ -353,28 +362,29 @@
       transition: all 0.3s ease !important;
       display: inline-block !important;
     }
-    
+
     .main-header .btn-primary {
       background: var(--blue) !important;
       color: white !important;
       border: 2px solid var(--blue) !important;
     }
-    
+
     .main-header .btn-outline {
       background: transparent !important;
       color: var(--blue) !important;
       border: 2px solid var(--blue) !important;
     }
-    
+
     .main-header .btn:hover {
       transform: translateY(-2px) !important;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
       text-decoration: none !important;
     }
   </style>
-  
+
   {% block extra_css %}{% endblock %}
 </head>
+
 <body>
   <header class="main-header">
     <div class="header-top">
@@ -404,7 +414,7 @@
         </div>
       </div>
     </div>
-    
+
     <nav class="main-nav">
       <div class="container-fluid">
         <div class="nav-mobile-toggle">
@@ -420,7 +430,7 @@
               <i class="fas fa-home"></i> Home
             </a>
           </li>
-          
+
           <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle">
               <i class="fas fa-flag"></i> Countries
@@ -439,7 +449,7 @@
               <a href="/austria/" class="dropdown-item">🇦🇹 Austria</a>
             </div>
           </li>
-          
+
           <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle">
               <i class="fas fa-city"></i> Cities
@@ -456,7 +466,7 @@
               <a href="/italy/rome/" class="dropdown-item">Rome</a>
             </div>
           </li>
-          
+
           <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle">
               <i class="fas fa-th-large"></i> Business Categories
@@ -487,13 +497,13 @@
               </div>
             </div>
           </li>
-          
+
           <li class="nav-item">
             <a href="/featured/" class="nav-link">
               <i class="fas fa-star"></i> Featured
             </a>
           </li>
-          
+
           <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle">
               <i class="fas fa-map-marked-alt"></i> Travel
@@ -505,7 +515,7 @@
               <a href="/travel/events/" class="dropdown-item">Local Events</a>
             </div>
           </li>
-          
+
           <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle">
               <i class="fas fa-briefcase"></i> Business
@@ -517,7 +527,7 @@
               <a href="/business/support/" class="dropdown-item">Business Support</a>
             </div>
           </li>
-          
+
           <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle">
               <i class="fas fa-ellipsis-h"></i> More
@@ -549,10 +559,10 @@
 
   <!-- Footer -->
   <footer class="text-center py-3 mt-5" style="background-color: #f8f9fa; border-top: 1px solid #dee2e6;">
-    © 2025 ListAcross Europe. All rights reserved. • 
-    <a href="/about/">About Us</a> • 
-    <a href="/privacy/">Privacy</a> • 
-    <a href="/terms/">Terms</a> • 
+    © 2025 ListAcross Europe. All rights reserved. •
+    <a href="/about/">About Us</a> •
+    <a href="/privacy/">Privacy</a> •
+    <a href="/terms/">Terms</a> •
     <a href="/contact/">Contact</a> •
     <a href="/data-sources/">Data Sources</a>
   </footer>
@@ -561,23 +571,23 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="{% static 'js/app.js' %}"></script>
   <script src="{% static 'js/map-manager.js' %}"></script>
-  
+
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       // Mobile menu toggle
       const mobileToggle = document.querySelector('.mobile-menu-btn');
       const navMenu = document.querySelector('.nav-menu');
-      
+
       if (mobileToggle && navMenu) {
-        mobileToggle.addEventListener('click', function() {
+        mobileToggle.addEventListener('click', function () {
           navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
         });
       }
-      
+
       // Search functionality
       const searchForm = document.querySelector('.search-form');
       if (searchForm) {
-        searchForm.addEventListener('submit', function(e) {
+        searchForm.addEventListener('submit', function (e) {
           e.preventDefault();
           const query = document.querySelector('.search-input').value.trim();
           if (query) {
@@ -588,43 +598,44 @@
           }
         });
       }
-      
+
       // Close mobile menu when clicking outside
-      document.addEventListener('click', function(e) {
+      document.addEventListener('click', function (e) {
         if (!e.target.closest('.main-nav') && navMenu) {
           if (window.innerWidth <= 768) {
             navMenu.style.display = 'none';
           }
         }
       });
-      
+
       // Handle window resize
-      window.addEventListener('resize', function() {
+      window.addEventListener('resize', function () {
         if (window.innerWidth > 768 && navMenu) {
           navMenu.style.display = '';
         }
       });
-      
+
       // Force dropdown functionality
       const dropdownItems = document.querySelectorAll('.nav-item.dropdown');
       dropdownItems.forEach(item => {
         const dropdownMenu = item.querySelector('.dropdown-menu');
         if (dropdownMenu) {
-          item.addEventListener('mouseenter', function() {
+          item.addEventListener('mouseenter', function () {
             dropdownMenu.style.display = 'block';
           });
-          
-          item.addEventListener('mouseleave', function() {
+
+          item.addEventListener('mouseleave', function () {
             dropdownMenu.style.display = 'none';
           });
         }
       });
-      
+
       // Add active class to navigation for better styling
       document.body.classList.add('enhanced-nav-loaded');
     });
   </script>
-  
+
   {% block extra_js %}{% endblock %}
 </body>
+
 </html>
