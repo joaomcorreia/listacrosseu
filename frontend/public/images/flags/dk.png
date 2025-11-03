@@ -1,0 +1,6 @@
+<!-- Denmark Flag -->
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <rect width="64" height="64" fill="#C60C30"/>
+  <rect width="64" height="8" y="28" fill="#FFFFFF"/>
+  <rect width="8" height="64" x="20" fill="#FFFFFF"/>
+</svg>

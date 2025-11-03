@@ -116,7 +116,7 @@ export default async function BusinessesPage({ params, searchParams }: Businesse
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="bg-gradient-to-br from-white via-blue-50/30 to-amber-50/30 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 py-8">
+        <div className="w-full px-6 py-8">
           <div className="flex justify-between items-start mb-6">
             <div className="flex-1">
               <h1 className="text-4xl font-bold bg-gradient-to-r from-slate-900 via-blue-800 to-slate-900 bg-clip-text text-transparent mb-2">
@@ -147,7 +147,7 @@ export default async function BusinessesPage({ params, searchParams }: Businesse
         </div>
       </header>
       
-      <main className="max-w-7xl mx-auto px-4 py-8">
+      <main className="w-full px-6 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Sidebar */}
           <div className="lg:col-span-1">

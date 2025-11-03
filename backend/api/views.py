@@ -297,12 +297,28 @@ def search(request):
 
 @api_view(['GET'])
 def countries_list(request):
-    """GET /api/countries - List all countries"""
-    countries = Country.objects.filter(is_active=True).order_by('code')
-    serializer = CountrySerializer(countries, many=True)
+    """GET /api/countries - List all countries with business counts"""
+    lang = request.GET.get('lang', 'en')
+    
+    # Get countries with business counts (sum across all categories)
+    countries_with_counts = []
+    
+    for country in Country.objects.filter(is_active=True).order_by('code'):
+        # Sum business counts across all categories for this country
+        total_businesses = CategoryCountry.objects.filter(
+            country=country,
+            business_count__gt=0
+        ).aggregate(total=Sum('business_count'))['total'] or 0
+        
+        countries_with_counts.append({
+            'code': country.code,
+            'name': country.get_name(lang),
+            'count': total_businesses
+        })
+    
     return Response({
-        'items': serializer.data,
-        'count': countries.count()
+        'items': countries_with_counts,
+        'count': len(countries_with_counts)
     })
 
 

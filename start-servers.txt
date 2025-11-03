@@ -1,0 +1,6 @@
+Server Django
+python manage.py runserver
+
+Start Next.js Server
+
+npm run dev

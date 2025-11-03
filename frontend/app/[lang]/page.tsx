@@ -1,11 +1,13 @@
 import Link from 'next/link';
-import { fetchCategories, fetchBusinesses } from '../../lib/api';
+import { fetchCategories, fetchBusinesses, fetchCountries } from '../../lib/api';
 import { translate, Language, getTranslatedPath, getCountryFromLanguage } from '../../lib/i18n';
 import LanguageSwitcher from '../../components/LanguageSwitcher';
 import CategoryCard from '../../components/CategoryCard';
 import BusinessCard from '../../components/BusinessCard';
 import BlogSlider from '../../components/BlogSlider';
 import HeroSlideshow from '../../components/HeroSlideshow';
+import FeaturedCountries from '../../components/FeaturedCountries';
+import FlagCarousel from '../../components/FlagCarousel';
 
 interface HomePageProps {
   params: Promise<{
@@ -139,13 +141,15 @@ export default async function HomePage({ params }: HomePageProps) {
   const country = getCountryFromLanguage(currentLang);
   
   // Fetch some sample data
-  const [categoriesData, businessesData] = await Promise.all([
+  const [categoriesData, businessesData, countriesData] = await Promise.all([
     fetchCategories(lang, country || undefined),
-    fetchBusinesses(country ? { country, page: 1, page_size: 6 } : { page: 1, page_size: 6 }) // Get first 6 businesses for homepage
+    fetchBusinesses(country ? { country, page: 1, page_size: 6 } : { page: 1, page_size: 6 }), // Get first 6 businesses for homepage
+    fetchCountries() // Fetch countries for featured countries section
   ]);
 
   const topCategories = categoriesData.items?.slice(0, 6) || [];
   const featuredBusinesses = businessesData.items || [];
+  const featuredCountriesData = countriesData || [];
 
   return (
     <div className="min-h-screen">
@@ -156,6 +160,9 @@ export default async function HomePage({ params }: HomePageProps) {
 
       {/* Hero Slideshow */}
       <HeroSlideshow lang={currentLang} />
+
+      {/* Flag Carousel */}
+      <FlagCarousel />
 
       {/* Categories Section */}
       <section className="py-20 bg-gradient-to-b from-white to-slate-50">
@@ -249,6 +256,9 @@ export default async function HomePage({ params }: HomePageProps) {
           </div>
         </div>
       </section>
+
+      {/* Featured Countries Section */}
+      <FeaturedCountries countries={featuredCountriesData} lang={currentLang} />
 
       {/* Blog Section */}
       <section className="py-20 bg-gradient-to-b from-white to-gray-50">

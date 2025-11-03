@@ -30,6 +30,12 @@ INSTALLED_APPS = [
     'geo',
     'counters',
     'api',
+    'blog',
+    'assistant_studio',
+    'site_settings',
+    'ckeditor',
+    'ckeditor_uploader',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -48,7 +54,7 @@ ROOT_URLCONF = 'listacrosseu.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -118,6 +124,57 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
 ]
+
+# Media files
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+# CKEditor Configuration
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_RESTRICT_BY_USER = True
+CKEDITOR_BROWSE_SHOW_DIRS = True
+CKEDITOR_ALLOW_NONIMAGE_FILES = False
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 400,
+        'width': '100%',
+        'extraPlugins': ','.join([
+            'uploadimage',
+            'div',
+            'autolink',
+            'autoembed',
+            'embedsemantic',
+            'autogrow',
+            'widget',
+            'lineutils',
+            'clipboard',
+            'dialog',
+            'dialogui',
+            'elementspath'
+        ]),
+        'removePlugins': ','.join([
+            'stylesheetparser',
+        ]),
+        'format_tags': 'p;h1;h2;h3;h4;h5;h6;pre;address;div',
+        'mathJaxLib': '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML',
+    },
+    'blog': {
+        'toolbar': [
+            ['Undo', 'Redo'],
+            ['Bold', 'Italic', 'Underline', 'Strike'],
+            ['NumberedList', 'BulletedList'],
+            ['Link', 'Unlink', 'Image'],
+            ['Format'],
+            ['RemoveFormat', 'Source']
+        ],
+        'format_tags': 'p;h1;h2;h3;h4;h5;h6',
+        'height': 300,
+        'width': '100%',
+        'removeDialogTabs': 'image:advanced;link:advanced',
+    }
+}
 
 # REST Framework
 REST_FRAMEWORK = {

@@ -1,0 +1,13 @@
+<!-- Greece Flag -->
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <rect width="64" height="64" fill="#0D5EAF"/>
+  <rect width="64" height="7.11" fill="#FFFFFF"/>
+  <rect width="64" height="7.11" y="14.22" fill="#FFFFFF"/>
+  <rect width="64" height="7.11" y="28.44" fill="#FFFFFF"/>
+  <rect width="64" height="7.11" y="42.67" fill="#FFFFFF"/>
+  <rect width="64" height="7.11" y="56.89" fill="#FFFFFF"/>
+  <!-- Cross -->
+  <rect width="28.44" height="28.44" fill="#0D5EAF"/>
+  <rect width="28.44" height="7.11" y="10.67" fill="#FFFFFF"/>
+  <rect width="7.11" height="28.44" x="10.67" fill="#FFFFFF"/>
+</svg>

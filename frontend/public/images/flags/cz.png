@@ -1,0 +1,6 @@
+<!-- Czech Republic Flag -->
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <rect width="64" height="32" fill="#FFFFFF"/>
+  <rect width="64" height="32" y="32" fill="#D7141A"/>
+  <polygon points="0,0 32,32 0,64" fill="#11457E"/>
+</svg>

@@ -1,4 +1,10 @@
+'use client';
+
+import { useSiteSettings } from '../hooks/useSiteSettings';
+
 export default function Navigation() {
+  const { settings } = useSiteSettings();
+
   return (
     <nav className="bg-white/95 backdrop-blur-sm shadow-lg border-b border-blue-100 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4">
@@ -6,20 +12,32 @@ export default function Navigation() {
           {/* Logo Section */}
           <div className="flex items-center">
             <a href="/" className="group flex items-center space-x-3">
-              {/* EU-themed Logo */}
+              {/* Logo - Use uploaded logo if available, otherwise fallback */}
               <div className="relative">
-                <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl flex items-center justify-center shadow-lg">
-                  <span className="text-white font-bold text-sm">EU</span>
-                </div>
-                <div className="absolute -top-1 -right-1 w-4 h-4 bg-gradient-to-br from-amber-400 to-amber-500 rounded-full flex items-center justify-center">
-                  <span className="text-white text-xs">★</span>
-                </div>
+                {settings?.logo_url ? (
+                  <img 
+                    src={settings.logo_url} 
+                    alt={settings.site_name}
+                    className="w-12 h-12 object-contain rounded-xl shadow-lg"
+                  />
+                ) : (
+                  <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl flex items-center justify-center shadow-lg">
+                    <span className="text-white font-bold text-sm">EU</span>
+                  </div>
+                )}
+                {!settings?.logo_url && (
+                  <div className="absolute -top-1 -right-1 w-4 h-4 bg-gradient-to-br from-amber-400 to-amber-500 rounded-full flex items-center justify-center">
+                    <span className="text-white text-xs">★</span>
+                  </div>
+                )}
               </div>
               <div className="flex flex-col">
                 <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
-                  ListAcrossEU
+                  {settings?.site_name || 'ListAcrossEU'}
                 </span>
-                <span className="text-xs text-slate-500 -mt-1">European Business Directory</span>
+                <span className="text-xs text-slate-500 -mt-1">
+                  {settings?.site_tagline || 'European Business Directory'}
+                </span>
               </div>
             </a>
           </div>
@@ -80,9 +98,6 @@ export default function Navigation() {
           </div>
         </div>
       </div>
-
-      {/* Gradient Border */}
-      <div className="h-1 bg-gradient-to-r from-blue-500 via-blue-600 to-amber-500"></div>
     </nav>
   );
 }

@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Reset default margins and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
 /* Import custom category card styles */
 @import '../styles/category-cards.css';
 
