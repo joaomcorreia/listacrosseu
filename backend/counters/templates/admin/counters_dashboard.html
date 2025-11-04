@@ -36,9 +36,9 @@
             <td>Last Rebuild</td>
             <td>
                 {% if last_rebuild %}
-                    {{ last_rebuild.rebuilt_at|date:"Y-m-d H:i:s" }} ({{ last_rebuild.rebuild_type }})
+                {{ last_rebuild.rebuilt_at|date:"Y-m-d H:i:s" }} ({{ last_rebuild.rebuild_type }})
                 {% else %}
-                    Never
+                Never
                 {% endif %}
             </td>
         </tr>
@@ -47,14 +47,15 @@
 
 <div class="module aligned">
     <h2>Rebuild Actions</h2>
-    
+
     <form method="post" style="margin-bottom: 20px;">
         {% csrf_token %}
         <input type="hidden" name="action" value="rebuild_all">
-        <input type="submit" value="Rebuild All Counters" class="default" onclick="return confirm('Are you sure? This will rebuild all counter tables.')">
+        <input type="submit" value="Rebuild All Counters" class="default"
+            onclick="return confirm('Are you sure? This will rebuild all counter tables.')">
         <p class="help">Rebuilds all counter tables from scratch. Use this after bulk imports or data corrections.</p>
     </form>
-    
+
     <form method="post">
         {% csrf_token %}
         <input type="hidden" name="action" value="rebuild_category">

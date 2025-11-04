@@ -126,6 +126,47 @@ Parameters:
 - lang: Language for localized category names
 ```
 
+## 🤖 AI Assistant Configuration
+
+### Environment Setup
+
+The AI Assistant feature requires proper endpoint configuration:
+
+#### Development Environment
+Create `frontend/.env.local`:
+```bash
+NEXT_PUBLIC_ASSISTANT_API=http://localhost:8000/assistant/api/ask/
+```
+
+#### Production Environment
+In production, remove or update the environment variable to use relative URLs:
+```bash
+# Production uses same-origin relative URLs
+NEXT_PUBLIC_ASSISTANT_API=/assistant/api/ask/
+```
+
+### API Endpoint
+```
+POST /assistant/api/ask/
+Content-Type: application/json
+Body: { "message": "Your question here" }
+Response: { "reply": "Assistant response", "status": "ok" }
+```
+
+### CORS Handling
+- **Development**: Cross-origin requests from `localhost:3000` to `localhost:8000`
+- **Production**: Same-origin requests (no CORS issues)
+- The backend is configured to handle CORS automatically for development
+- No CSRF tokens required for the assistant endpoint (temporarily csrf_exempt)
+
+### Chat Features
+- **Real-time messaging** with typing indicators
+- **Error handling** with retry functionality  
+- **Keyboard shortcuts**: Enter to send, Shift+Enter for new lines
+- **Accessibility** with proper ARIA labels and live regions
+- **Timeout protection** (20-second request timeout)
+- **Development logging** for debugging (no PII logged)
+
 ## 🎨 Design System
 
 ### Color Palette

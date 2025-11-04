@@ -9,6 +9,7 @@ from .views import (
     KnowledgeEmbedView,
     IntentsView,
     AssistantAskView,
+    AssistantSimpleAskView,
     CreateListingActionView,
     StartJCWBuildActionView,
     StartPrintOrderActionView,
@@ -24,6 +25,7 @@ urlpatterns = [
     path("api/assistant/kb/embed", KnowledgeEmbedView.as_view(), name="knowledge-embed"),
     path("api/assistant/intents", IntentsView.as_view(), name="assistant-intents"),
     path("api/assistant/ask", AssistantAskView.as_view(), name="assistant-ask"),
+    path("assistant/api/ask/", AssistantSimpleAskView.as_view(), name="assistant-simple-ask"),
     
     # Actions (CTAs)
     path("api/assistant/actions/create_listing", CreateListingActionView.as_view(), name="assistant-action-create-listing"),

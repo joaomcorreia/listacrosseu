@@ -19,6 +19,54 @@ class SiteSetting(models.Model):
     favicon = models.ImageField(upload_to='site/favicons/', null=True, blank=True,
                                help_text='Site favicon - ICO or PNG, 16x16 or 32x32px')
     
+    # Navigation settings
+    NAVIGATION_CHOICES = [
+        ('flags', 'Flags Only'),
+        ('names', 'Names Only'),
+        ('both', 'Flags and Names'),
+    ]
+    navigation_display_mode = models.CharField(
+        max_length=10, 
+        choices=NAVIGATION_CHOICES, 
+        default='both',
+        help_text='How to display language selector in navigation'
+    )
+    
+    # Animation settings
+    enable_nav_animation = models.BooleanField(
+        default=True,
+        help_text='Enable animated border under navigation'
+    )
+    nav_animation_colors = models.CharField(
+        max_length=200,
+        default='from-blue-500 via-purple-500 to-indigo-500',
+        help_text='Tailwind gradient colors for navigation border animation'
+    )
+    
+    ANIMATION_SPEED_CHOICES = [
+        ('slow', 'Slow'),
+        ('medium', 'Medium'), 
+        ('fast', 'Fast'),
+    ]
+    nav_animation_speed = models.CharField(
+        max_length=10,
+        choices=ANIMATION_SPEED_CHOICES,
+        default='medium',
+        help_text='Speed of navigation border animation'
+    )
+    
+    # Slideshow animation settings (for future use)
+    enable_slideshow_animation = models.BooleanField(
+        default=True,
+        help_text='Enable slideshow animations on homepage'
+    )
+    slideshow_animation_speed = models.CharField(
+        max_length=10,
+        choices=ANIMATION_SPEED_CHOICES,
+        default='medium',
+        help_text='Speed of slideshow animations'
+    )
+    
     # Meta
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assistant API Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 50px auto; padding: 20px; }
+        .chat-container { border: 1px solid #ccc; border-radius: 8px; padding: 20px; background: #f9f9f9; }
+        .messages { min-height: 200px; max-height: 400px; overflow-y: auto; border: 1px solid #ddd; background: white; padding: 10px; margin-bottom: 10px; border-radius: 4px; }
+        .message { margin-bottom: 10px; }
+        .user { text-align: right; }
+        .assistant { text-align: left; }
+        .message-content { display: inline-block; padding: 8px 12px; border-radius: 12px; max-width: 80%; }
+        .user .message-content { background: #007bff; color: white; }
+        .assistant .message-content { background: #e9ecef; color: #333; }
+        .error .message-content { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .input-container { display: flex; gap: 10px; }
+        #messageInput { flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 4px; }
+        #sendButton { padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        #sendButton:disabled { background: #6c757d; cursor: not-allowed; }
+        .typing { font-style: italic; color: #666; }
+        .status { margin-bottom: 10px; padding: 10px; border-radius: 4px; }
+        .status.success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .status.error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+    </style>
+</head>
+<body>
+    <h1>🤖 Assistant API Integration Test</h1>
+    
+    <div class="status success">
+        <strong>✓ Status:</strong> Both servers are running<br>
+        <strong>Backend:</strong> http://localhost:8000 <br>
+        <strong>Frontend:</strong> http://localhost:3001<br>
+        <strong>API Endpoint:</strong> http://localhost:8000/assistant/api/ask/
+    </div>
+    
+    <div class="chat-container">
+        <h3>Chat Interface Test</h3>
+        <div class="messages" id="messages">
+            <div class="message assistant">
+                <div class="message-content">Hello! I'm the ListAcross EU assistant. Ask me anything about European businesses!</div>
+            </div>
+        </div>
+        
+        <div class="input-container">
+            <input type="text" id="messageInput" placeholder="Type your message... (Enter to send)" />
+            <button id="sendButton">Send</button>
+        </div>
+        
+        <div style="margin-top: 10px; font-size: 12px; color: #666;">
+            <strong>Test scenarios:</strong><br>
+            • "Hello" - Basic greeting<br>
+            • "Tell me about ListAcross EU" - Business information<br>
+            • "What countries do you cover?" - Service details<br>
+            • Empty message - Should show error handling
+        </div>
+    </div>
+
+    <script>
+        // Use the same API helper logic as our React components
+        const API_URL = 'http://localhost:8000/assistant/api/ask/';
+        
+        const messagesContainer = document.getElementById('messages');
+        const messageInput = document.getElementById('messageInput');
+        const sendButton = document.getElementById('sendButton');
+        
+        let isLoading = false;
+        
+        async function sendMessage() {
+            const message = messageInput.value.trim();
+            if (!message || isLoading) return;
+            
+            // Add user message
+            addMessage('user', message);
+            messageInput.value = '';
+            setLoading(true);
+            
+            // Show typing indicator
+            const typingId = addTypingIndicator();
+            
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message })
+                });
+                
+                removeTypingIndicator(typingId);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                
+                if (data.status === 'ok') {
+                    addMessage('assistant', data.reply);
+                } else {
+                    addMessage('error', 'Sorry, I\'m having trouble answering right now.');
+                }
+                
+            } catch (error) {
+                removeTypingIndicator(typingId);
+                addMessage('error', `Error: ${error.message}`);
+                console.error('Assistant API error:', error);
+            } finally {
+                setLoading(false);
+            }
+        }
+        
+        function addMessage(role, content) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${role}`;
+            messageDiv.innerHTML = `<div class="message-content">${escapeHtml(content)}</div>`;
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            return messageDiv;
+        }
+        
+        function addTypingIndicator() {
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message assistant';
+            typingDiv.innerHTML = '<div class="message-content typing">Assistant is typing...</div>';
+            typingDiv.id = 'typing-' + Date.now();
+            messagesContainer.appendChild(typingDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            return typingDiv.id;
+        }
+        
+        function removeTypingIndicator(typingId) {
+            const typingDiv = document.getElementById(typingId);
+            if (typingDiv) {
+                typingDiv.remove();
+            }
+        }
+        
+        function setLoading(loading) {
+            isLoading = loading;
+            sendButton.disabled = loading;
+            sendButton.textContent = loading ? 'Sending...' : 'Send';
+            messageInput.disabled = loading;
+        }
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        // Event listeners
+        sendButton.addEventListener('click', sendMessage);
+        messageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+        
+        // Focus input on load
+        messageInput.focus();
+    </script>
+</body>
+</html>

@@ -13,6 +13,8 @@ class SiteSettingSerializer(serializers.ModelSerializer):
         fields = [
             'site_name', 'site_tagline', 'contact_email', 'support_email', 
             'phone', 'address', 'logo', 'favicon', 'logo_url', 'favicon_url',
+            'navigation_display_mode', 'enable_nav_animation', 'nav_animation_colors',
+            'nav_animation_speed', 'enable_slideshow_animation', 'slideshow_animation_speed',
             'updated_at'
         ]
     
@@ -42,7 +44,9 @@ class SiteSettingUpdateSerializer(serializers.ModelSerializer):
         model = SiteSetting
         fields = [
             'site_name', 'site_tagline', 'contact_email', 'support_email', 
-            'phone', 'address', 'logo', 'favicon'
+            'phone', 'address', 'logo', 'favicon', 'navigation_display_mode',
+            'enable_nav_animation', 'nav_animation_colors', 'nav_animation_speed',
+            'enable_slideshow_animation', 'slideshow_animation_speed'
         ]
     
     def validate_logo(self, value):

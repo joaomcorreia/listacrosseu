@@ -1,6 +1,45 @@
-Server Django
-python manage.py runserver
+# ListAcross.eu - Server Startup Commands
+# Multilingual SaaS with 27 EU languages + AI Assistant
 
-Start Next.js Server
+# === POWERSHELL COMMANDS ===
+# Copy these to PowerShell terminals (RECOMMENDED):
 
-npm run dev
+# Terminal 1 (Backend - PowerShell):
+Set-Location C:\projects\listacrosseu\backend; & "C:\projects\listacrosseu\.venv\Scripts\Activate.ps1"; python manage.py runserver 0.0.0.0:8000
+
+# Terminal 2 (Frontend - PowerShell):
+Push-Location C:\projects\listacrosseu\frontend; npm run dev
+
+# === COMMAND PROMPT (CMD) COMMANDS ===
+# Copy these to Command Prompt terminals (use if PowerShell unavailable):
+
+# Terminal 1 (Backend - CMD):
+cd /d C:\projects\listacrosseu\backend && C:\projects\listacrosseu\.venv\Scripts\activate.bat && python manage.py runserver 0.0.0.0:8000
+
+# Terminal 2 (Frontend - CMD):
+cd /d C:\projects\listacrosseu\frontend && npm run dev
+
+# IMPORTANT NOTE:
+# - PowerShell uses: Set-Location, semicolon (;) for command chaining
+# - CMD uses: cd /d, double ampersand (&&) for command chaining
+# - Do NOT mix PowerShell and CMD syntax in the same terminal!
+
+# URLs after startup:
+# Backend API: http://localhost:8000
+# Frontend: http://localhost:3000 or http://localhost:3001 (if 3000 is busy)
+# AI Assistant API: http://localhost:8000/assistant/api/ask/
+
+# Example multilingual URLs:
+# /en/countries/ - English countries page
+# /es/empresas/ - Spanish businesses page  
+# /fr/entreprises/ - French businesses page
+# /de/unternehmen/ - German businesses page
+# /nl/bedrijven/ - Dutch businesses page
+
+# AI Assistant Features:
+# - Real-time chat widget (bottom-right of every page)
+# - OpenAI GPT integration for business queries
+# - Multi-language support
+# - Error handling with retry functionality
+# - Typing indicators and smooth UI
+

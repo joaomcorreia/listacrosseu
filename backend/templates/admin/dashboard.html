@@ -11,48 +11,48 @@
         gap: 20px;
         margin: 20px 0;
     }
-    
+
     .stat-card {
         background: #fff;
         border: 1px solid #ddd;
         border-radius: 8px;
         padding: 20px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         transition: transform 0.2s;
     }
-    
+
     .stat-card:hover {
         transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     }
-    
+
     .stat-number {
         font-size: 2.5em;
         font-weight: bold;
         color: #417690;
         margin: 0;
     }
-    
+
     .stat-label {
         font-size: 1.1em;
         color: #666;
         margin: 5px 0 0 0;
     }
-    
+
     .recent-items {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 30px;
         margin-top: 30px;
     }
-    
+
     .recent-section {
         background: #fff;
         border: 1px solid #ddd;
         border-radius: 8px;
         overflow: hidden;
     }
-    
+
     .recent-header {
         background: #417690;
         color: white;
@@ -60,13 +60,13 @@
         font-weight: bold;
         font-size: 1.1em;
     }
-    
+
     .recent-list {
         list-style: none;
         padding: 0;
         margin: 0;
     }
-    
+
     .recent-item {
         padding: 12px 20px;
         border-bottom: 1px solid #eee;
@@ -74,31 +74,31 @@
         justify-content: space-between;
         align-items: center;
     }
-    
+
     .recent-item:last-child {
         border-bottom: none;
     }
-    
+
     .recent-item:hover {
         background-color: #f8f9fa;
     }
-    
+
     .item-name {
         font-weight: 500;
         color: #333;
     }
-    
+
     .item-meta {
         font-size: 0.9em;
         color: #666;
     }
-    
+
     .dashboard-actions {
         display: flex;
         gap: 15px;
         margin: 20px 0;
     }
-    
+
     .action-btn {
         background: #417690;
         color: white;
@@ -108,7 +108,7 @@
         font-weight: 500;
         transition: background-color 0.2s;
     }
-    
+
     .action-btn:hover {
         background: #2c5aa0;
         color: white;
@@ -120,46 +120,46 @@
 <div class="dashboard">
     <h1>Welcome to ListAcrossEU Administration</h1>
     <p>Manage your European business directory platform from this comprehensive admin dashboard.</p>
-    
+
     <div class="dashboard-actions">
         <a href="{% url 'admin:blog_blogpost_add' %}" class="action-btn">Add New Blog Post</a>
         <a href="{% url 'admin:blog_blogcategory_changelist' %}" class="action-btn">Manage Categories</a>
         <a href="{% url 'admin:blog_pricingplan_changelist' %}" class="action-btn">Pricing Plans</a>
         <a href="{% url 'admin:catalog_business_changelist' %}" class="action-btn">Manage Businesses</a>
     </div>
-    
+
     <div class="dashboard-stats">
         <div class="stat-card">
             <div class="stat-number">{{ stats.total_businesses|default:0 }}</div>
             <div class="stat-label">Total Businesses</div>
         </div>
-        
+
         <div class="stat-card">
             <div class="stat-number">{{ stats.published_posts|default:0 }}</div>
             <div class="stat-label">Published Blog Posts</div>
         </div>
-        
+
         <div class="stat-card">
             <div class="stat-number">{{ stats.total_categories|default:0 }}</div>
             <div class="stat-label">Business Categories</div>
         </div>
-        
+
         <div class="stat-card">
             <div class="stat-number">{{ stats.active_pricing_plans|default:0 }}</div>
             <div class="stat-label">Active Pricing Plans</div>
         </div>
-        
+
         <div class="stat-card">
             <div class="stat-number">{{ monthly_stats.new_businesses|default:0 }}</div>
             <div class="stat-label">New Businesses (30 days)</div>
         </div>
-        
+
         <div class="stat-card">
             <div class="stat-number">{{ monthly_stats.new_blog_posts|default:0 }}</div>
             <div class="stat-label">New Posts (30 days)</div>
         </div>
     </div>
-    
+
     <div class="recent-items">
         <div class="recent-section">
             <div class="recent-header">Recent Businesses</div>
@@ -179,7 +179,7 @@
                 {% endfor %}
             </ul>
         </div>
-        
+
         <div class="recent-section">
             <div class="recent-header">Recent Blog Posts</div>
             <ul class="recent-list">
@@ -187,7 +187,8 @@
                 <li class="recent-item">
                     <div>
                         <div class="item-name">{{ post.title }}</div>
-                        <div class="item-meta">{{ post.author.first_name|default:post.author.username }} • {{ post.language|upper }}</div>
+                        <div class="item-meta">{{ post.author.first_name|default:post.author.username }} • {{
+                            post.language|upper }}</div>
                     </div>
                     <div class="item-meta">{{ post.published_at|date:"M d, Y"|default:"Draft" }}</div>
                 </li>

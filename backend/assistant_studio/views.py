@@ -1,6 +1,9 @@
 import os
+import json
 from django.db import transaction
 from django.utils import timezone
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -342,4 +345,88 @@ class AssistantAskView(APIView):
             "tool_payload_template": payload_tmpl,
             "used_kb": [ {"slug": d.slug, "title": d.title, "lang": d.lang, "type": d.type} for d in kb_docs ]
         }, status=200)
+
+
+@method_decorator(csrf_exempt, name='dispatch')
+class AssistantSimpleAskView(APIView):
+    """
+    Simple assistant endpoint for Step 11 - handles POST requests and calls OpenAI
+    Endpoint: /assistant/api/ask/
+    Expected JSON: {"message": "hello there"}
+    Returns JSON: {"reply": "<assistant message>", "status": "ok"}
+    """
+    authentication_classes = []
+    permission_classes = []
+
+    def post(self, request):
+        import json
+        
+        # Log incoming request
+        print(f"[AssistantAPI] Incoming request: {request.data}")
+        
+        try:
+            # Get message from request body
+            message = request.data.get("message", "").strip()
+            
+            if not message:
+                print("[AssistantAPI] Empty message received")
+                return Response({
+                    "reply": "Empty message", 
+                    "status": "error"
+                }, status=400)
+            
+            # Check if OpenAI API key is available
+            openai_api_key = os.getenv("OPENAI_API_KEY")
+            if not openai_api_key:
+                print("[AssistantAPI] No OpenAI API key found")
+                return Response({
+                    "reply": "Sorry, I'm having trouble answering right now.",
+                    "status": "error"
+                }, status=500)
+            
+            # Try to call OpenAI
+            try:
+                from openai import OpenAI
+                client = OpenAI(api_key=openai_api_key)
+                
+                print(f"[AssistantAPI] Calling OpenAI with message: {message}")
+                
+                response = client.chat.completions.create(
+                    model="gpt-3.5-turbo",
+                    messages=[
+                        {
+                            "role": "system",
+                            "content": "You are a helpful assistant for ListAcrossEU, a European business directory. Keep responses concise and helpful."
+                        },
+                        {
+                            "role": "user", 
+                            "content": message
+                        }
+                    ],
+                    temperature=0.7,
+                    max_tokens=300
+                )
+                
+                reply = response.choices[0].message.content.strip()
+                
+                print(f"[AssistantAPI] OpenAI response: {reply}")
+                
+                return Response({
+                    "reply": reply,
+                    "status": "ok"
+                }, status=200)
+                
+            except Exception as openai_error:
+                print(f"[AssistantAPI] OpenAI error: {openai_error}")
+                return Response({
+                    "reply": "Sorry, I'm having trouble answering right now.",
+                    "status": "error"
+                }, status=500)
+                
+        except Exception as e:
+            print(f"[AssistantAPI] General error: {e}")
+            return Response({
+                "reply": "Sorry, I'm having trouble answering right now.",
+                "status": "error"
+            }, status=500)
 
