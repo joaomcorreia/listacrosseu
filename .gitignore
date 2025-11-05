@@ -1,0 +1,81 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Large plugins directory
+plugins/
+
+# Frontend dependencies and cache
+frontend/node_modules/
+frontend/.next/
+frontend/.turbo/
+
+# Build outputs
+.next/
+.turbo/
+dist/
+build/
+
+# Environment variables
+.env
+.env.local
+.env.production
+.env.staging
+
+# Database
+db.sqlite3
+*.db
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Django specific
+media/
+staticfiles/
+.coverage
+htmlcov/
+
+# Python virtual environment
+venv/
+env/
+ENV/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Cache
+.cache/
+.parcel-cache/
