@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: python manage.py runserver 0.0.0.0:8000
+    
+  # Add this when you want to create superuser
+  django-admin:
+    build: .
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: python manage.py createsuperuser
+    stdin_open: true
+    tty: true

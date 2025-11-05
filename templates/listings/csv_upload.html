@@ -1,0 +1,250 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}CSV Business Data Upload{% endblock %}
+
+{% block extra_css %}
+<style>
+    .upload-container {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 2rem;
+        background: #f8f9fa;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .upload-form {
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        margin-bottom: 2rem;
+    }
+    
+    .file-input-wrapper {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+    }
+    
+    .file-input {
+        width: 100%;
+        padding: 12px;
+        border: 2px dashed #ddd;
+        border-radius: 4px;
+        background: #fafafa;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .file-input:hover {
+        border-color: #007bff;
+        background: #f0f8ff;
+    }
+    
+    .upload-btn {
+        background: #28a745;
+        color: white;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 1rem;
+        width: 100%;
+        transition: background-color 0.3s ease;
+    }
+    
+    .upload-btn:hover {
+        background: #218838;
+    }
+    
+    .upload-btn:disabled {
+        background: #6c757d;
+        cursor: not-allowed;
+    }
+    
+    .csv-format-info {
+        background: #e9ecef;
+        padding: 1rem;
+        border-radius: 4px;
+        margin-bottom: 1rem;
+        font-size: 14px;
+    }
+    
+    .recent-uploads {
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+    }
+    
+    .status-badge {
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    
+    .status-pending { background: #ffc107; color: #000; }
+    .status-processing { background: #17a2b8; color: white; }
+    .status-completed { background: #28a745; color: white; }
+    .status-failed { background: #dc3545; color: white; }
+    
+    .upload-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1rem;
+    }
+    
+    .upload-table th,
+    .upload-table td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    
+    .upload-table th {
+        background: #f8f9fa;
+        font-weight: bold;
+    }
+    
+    .upload-table tr:hover {
+        background: #f5f5f5;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="upload-container">
+    <h1>CSV Business Data Upload</h1>
+    
+    <!-- Messages -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+    {% endif %}
+    
+    <!-- Upload Form -->
+    <div class="upload-form">
+        <h2>Upload New CSV File</h2>
+        
+        <!-- CSV Format Information -->
+        <div class="csv-format-info">
+            <h4>Expected CSV Format:</h4>
+            <p>Your CSV file should include the following columns (case-insensitive, spaces will be converted to underscores):</p>
+            <ul>
+                <li><strong>Required:</strong> name (or business_name)</li>
+                <li><strong>Optional:</strong> description, address, phone (or phone_number), email, website, category</li>
+                <li><strong>Optional:</strong> city, country, postal_code (or zip_code), latitude, longitude</li>
+                <li><strong>Optional Hours:</strong> monday_hours, tuesday_hours, wednesday_hours, thursday_hours, friday_hours, saturday_hours, sunday_hours</li>
+                <li><strong>Optional Flags:</strong> is_active, is_public, is_featured (true/false, 1/0, yes/no)</li>
+            </ul>
+            <p><em>Example: "Business Name", "123 Main St", "555-123-4567", "https://example.com", "Restaurant", "9:00 AM - 5:00 PM"</em></p>
+        </div>
+        
+        <form method="post" enctype="multipart/form-data" id="uploadForm">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="csv_file">Select CSV File:</label>
+                <div class="file-input-wrapper">
+                    <input type="file" name="csv_file" id="csv_file" accept=".csv" required class="file-input">
+                </div>
+            </div>
+            <button type="submit" class="upload-btn" id="uploadBtn">
+                <span id="uploadText">Upload and Process CSV</span>
+                <span id="uploadSpinner" style="display: none;">
+                    <i class="fa fa-spinner fa-spin"></i> Processing...
+                </span>
+            </button>
+        </form>
+    </div>
+    
+    <!-- Recent Uploads -->
+    <div class="recent-uploads">
+        <h2>Recent CSV Uploads</h2>
+        
+        {% if recent_uploads %}
+            <table class="upload-table">
+                <thead>
+                    <tr>
+                        <th>File</th>
+                        <th>Uploaded</th>
+                        <th>Status</th>
+                        <th>Rows</th>
+                        <th>Success/Failed</th>
+                        <th>Processed</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for upload in recent_uploads %}
+                        <tr>
+                            <td>{{ upload.file.name|slice:":50" }}{% if upload.file.name|length > 50 %}...{% endif %}</td>
+                            <td>{{ upload.uploaded_at|date:"M d, Y H:i" }}</td>
+                            <td>
+                                <span class="status-badge status-{{ upload.status }}">
+                                    {{ upload.get_status_display }}
+                                </span>
+                            </td>
+                            <td>{{ upload.total_rows|default:"-" }}</td>
+                            <td>
+                                {% if upload.status == 'completed' %}
+                                    <span style="color: #28a745;">{{ upload.successful_rows }}</span> / 
+                                    <span style="color: #dc3545;">{{ upload.failed_rows }}</span>
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if upload.processed_at %}
+                                    {{ upload.processed_at|date:"M d, Y H:i" }}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No CSV files uploaded yet.</p>
+        {% endif %}
+    </div>
+</div>
+
+<script>
+document.getElementById('uploadForm').addEventListener('submit', function(e) {
+    const uploadBtn = document.getElementById('uploadBtn');
+    const uploadText = document.getElementById('uploadText');
+    const uploadSpinner = document.getElementById('uploadSpinner');
+    const fileInput = document.getElementById('csv_file');
+    
+    if (!fileInput.files.length) {
+        alert('Please select a CSV file to upload.');
+        e.preventDefault();
+        return;
+    }
+    
+    // Show loading state
+    uploadBtn.disabled = true;
+    uploadText.style.display = 'none';
+    uploadSpinner.style.display = 'inline';
+});
+
+// File input styling
+document.getElementById('csv_file').addEventListener('change', function(e) {
+    const fileName = e.target.files[0]?.name || 'Choose CSV file...';
+    const label = document.querySelector('label[for="csv_file"]');
+    if (e.target.files.length > 0) {
+        label.textContent = `Selected: ${fileName}`;
+        label.style.color = '#28a745';
+    }
+});
+</script>
+{% endblock %}

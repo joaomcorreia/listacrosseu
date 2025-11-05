@@ -1,0 +1,3362 @@
+[
+{
+  "model": "businesses.category",
+  "pk": 202,
+  "fields": {
+    "name": "AI & Machine Learning",
+    "slug": "ai-machine-learning",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.168Z",
+    "updated_at": "2025-10-05T13:30:16.168Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 191,
+  "fields": {
+    "name": "ATMs",
+    "slug": "atms",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.114Z",
+    "updated_at": "2025-10-05T13:30:16.114Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 121,
+  "fields": {
+    "name": "Accounting Firms",
+    "slug": "accounting-firms",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.755Z",
+    "updated_at": "2025-10-05T13:30:15.755Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 119,
+  "fields": {
+    "name": "Alternative Medicine",
+    "slug": "alternative-medicine",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.745Z",
+    "updated_at": "2025-10-05T13:30:15.745Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 162,
+  "fields": {
+    "name": "Amusement Parks",
+    "slug": "amusement-parks",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.963Z",
+    "updated_at": "2025-10-05T13:30:15.963Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 109,
+  "fields": {
+    "name": "Antique Stores",
+    "slug": "antique-stores",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.694Z",
+    "updated_at": "2025-10-05T13:30:15.694Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 133,
+  "fields": {
+    "name": "Architects",
+    "slug": "architects",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.813Z",
+    "updated_at": "2025-10-05T13:30:15.813Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 155,
+  "fields": {
+    "name": "Art Schools",
+    "slug": "art-schools",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.927Z",
+    "updated_at": "2025-10-05T13:30:15.927Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 73,
+  "fields": {
+    "name": "Asian Restaurants",
+    "slug": "asian-restaurants",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.506Z",
+    "updated_at": "2025-10-05T13:30:15.506Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 149,
+  "fields": {
+    "name": "Auto Insurance",
+    "slug": "auto-insurance",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.896Z",
+    "updated_at": "2025-10-05T13:30:15.896Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 147,
+  "fields": {
+    "name": "Auto Parts Stores",
+    "slug": "auto-parts-stores",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.885Z",
+    "updated_at": "2025-10-05T13:30:15.885Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 144,
+  "fields": {
+    "name": "Auto Repair Shops",
+    "slug": "auto-repair-shops",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.868Z",
+    "updated_at": "2025-10-05T13:30:15.868Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 210,
+  "fields": {
+    "name": "Automotive Manufacturing",
+    "slug": "automotive-manufacturing",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.207Z",
+    "updated_at": "2025-10-05T13:30:16.207Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 135,
+  "fields": {
+    "name": "Barber Shops",
+    "slug": "barber-shops",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.825Z",
+    "updated_at": "2025-10-05T13:30:15.825Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 136,
+  "fields": {
+    "name": "Beauty Salons",
+    "slug": "beauty-salons",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.828Z",
+    "updated_at": "2025-10-05T13:30:15.828Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 90,
+  "fields": {
+    "name": "Bed & Breakfasts",
+    "slug": "bed-breakfasts",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.596Z",
+    "updated_at": "2025-10-05T13:30:15.596Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 83,
+  "fields": {
+    "name": "Beer Gardens",
+    "slug": "beer-gardens",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.560Z",
+    "updated_at": "2025-10-05T13:30:15.560Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 173,
+  "fields": {
+    "name": "Bike Rentals",
+    "slug": "bike-rentals",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.019Z",
+    "updated_at": "2025-10-05T13:30:16.019Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 203,
+  "fields": {
+    "name": "Blockchain Services",
+    "slug": "blockchain-services",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.173Z",
+    "updated_at": "2025-10-05T13:30:16.173Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 87,
+  "fields": {
+    "name": "Boutique Hotels",
+    "slug": "boutique-hotels",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.580Z",
+    "updated_at": "2025-10-05T13:30:15.580Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 163,
+  "fields": {
+    "name": "Bowling Alleys",
+    "slug": "bowling-alleys",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.967Z",
+    "updated_at": "2025-10-05T13:30:15.967Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 89,
+  "fields": {
+    "name": "Budget Hotels",
+    "slug": "budget-hotels",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.590Z",
+    "updated_at": "2025-10-05T13:30:15.590Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 171,
+  "fields": {
+    "name": "Bus Terminals",
+    "slug": "bus-terminals",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.009Z",
+    "updated_at": "2025-10-05T13:30:16.009Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 132,
+  "fields": {
+    "name": "Business Consultants",
+    "slug": "business-consultants",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.808Z",
+    "updated_at": "2025-10-05T13:30:15.808Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 88,
+  "fields": {
+    "name": "Business Hotels",
+    "slug": "business-hotels",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.584Z",
+    "updated_at": "2025-10-05T13:30:15.584Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 150,
+  "fields": {
+    "name": "Business Schools",
+    "slug": "business-schools",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.901Z",
+    "updated_at": "2025-10-05T13:30:15.901Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 93,
+  "fields": {
+    "name": "Camping Sites",
+    "slug": "camping-sites",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.610Z",
+    "updated_at": "2025-10-05T13:30:15.610Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 143,
+  "fields": {
+    "name": "Car Dealerships",
+    "slug": "car-dealerships",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.864Z",
+    "updated_at": "2025-10-05T13:30:15.864Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 211,
+  "fields": {
+    "name": "Chemical Manufacturing",
+    "slug": "chemical-manufacturing",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.212Z",
+    "updated_at": "2025-10-05T13:30:16.212Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 178,
+  "fields": {
+    "name": "Cleaning Services",
+    "slug": "cleaning-services",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.045Z",
+    "updated_at": "2025-10-05T13:30:16.045Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 97,
+  "fields": {
+    "name": "Clothing Stores",
+    "slug": "clothing-stores",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.630Z",
+    "updated_at": "2025-10-05T13:30:15.630Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 199,
+  "fields": {
+    "name": "Cloud Services",
+    "slug": "cloud-services",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.153Z",
+    "updated_at": "2025-10-05T13:30:16.153Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 84,
+  "fields": {
+    "name": "Cocktail Bars",
+    "slug": "cocktail-bars",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.563Z",
+    "updated_at": "2025-10-05T13:30:15.563Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 78,
+  "fields": {
+    "name": "Coffee Shops",
+    "slug": "coffee-shops",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.532Z",
+    "updated_at": "2025-10-05T13:30:15.532Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 103,
+  "fields": {
+    "name": "Computer Stores",
+    "slug": "computer-stores",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.660Z",
+    "updated_at": "2025-10-05T13:30:15.660Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 159,
+  "fields": {
+    "name": "Concert Halls",
+    "slug": "concert-halls",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.945Z",
+    "updated_at": "2025-10-05T13:30:15.945Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 224,
+  "fields": {
+    "name": "Construction",
+    "slug": "construction",
+    "description": "Building and Construction",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T17:36:42.947Z",
+    "updated_at": "2025-10-05T17:36:42.947Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 213,
+  "fields": {
+    "name": "Construction Materials",
+    "slug": "construction-materials",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.222Z",
+    "updated_at": "2025-10-05T13:30:16.222Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 152,
+  "fields": {
+    "name": "Cooking Schools",
+    "slug": "cooking-schools",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.912Z",
+    "updated_at": "2025-10-05T13:30:15.912Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 188,
+  "fields": {
+    "name": "Credit Unions",
+    "slug": "credit-unions",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.100Z",
+    "updated_at": "2025-10-05T13:30:16.100Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 176,
+  "fields": {
+    "name": "Cruise Lines",
+    "slug": "cruise-lines",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.034Z",
+    "updated_at": "2025-10-05T13:30:16.034Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 194,
+  "fields": {
+    "name": "Cryptocurrency Services",
+    "slug": "cryptocurrency-services",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.128Z",
+    "updated_at": "2025-10-05T13:30:16.128Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 190,
+  "fields": {
+    "name": "Currency Exchange",
+    "slug": "currency-exchange",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.110Z",
+    "updated_at": "2025-10-05T13:30:16.110Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 200,
+  "fields": {
+    "name": "Cybersecurity",
+    "slug": "cybersecurity",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.158Z",
+    "updated_at": "2025-10-05T13:30:16.158Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 153,
+  "fields": {
+    "name": "Dance Studios",
+    "slug": "dance-studios",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.916Z",
+    "updated_at": "2025-10-05T13:30:15.916Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 201,
+  "fields": {
+    "name": "Data Analytics",
+    "slug": "data-analytics",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.163Z",
+    "updated_at": "2025-10-05T13:30:16.163Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 81,
+  "fields": {
+    "name": "Delicatessens",
+    "slug": "delicatessens",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.548Z",
+    "updated_at": "2025-10-05T13:30:15.548Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 95,
+  "fields": {
+    "name": "Department Stores",
+    "slug": "department-stores",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.620Z",
+    "updated_at": "2025-10-05T13:30:15.620Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 151,
+  "fields": {
+    "name": "Driving Schools",
+    "slug": "driving-schools",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.907Z",
+    "updated_at": "2025-10-05T13:30:15.907Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 148,
+  "fields": {
+    "name": "Electric Vehicle Charging",
+    "slug": "ev-charging",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.891Z",
+    "updated_at": "2025-10-05T13:30:15.891Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 180,
+  "fields": {
+    "name": "Electrical Services",
+    "slug": "electrical-services",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.055Z",
+    "updated_at": "2025-10-05T13:30:16.055Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 209,
+  "fields": {
+    "name": "Electronics Manufacturing",
+    "slug": "electronics-manufacturing",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.202Z",
+    "updated_at": "2025-10-05T13:30:16.202Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 102,
+  "fields": {
+    "name": "Electronics Stores",
+    "slug": "electronics-stores",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.655Z",
+    "updated_at": "2025-10-05T13:30:15.655Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 134,
+  "fields": {
+    "name": "Engineers",
+    "slug": "engineers",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.818Z",
+    "updated_at": "2025-10-05T13:30:15.818Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 114,
+  "fields": {
+    "name": "Eye Care Centers",
+    "slug": "eye-care-centers",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.720Z",
+    "updated_at": "2025-10-05T13:30:15.720Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 96,
+  "fields": {
+    "name": "Fashion Boutiques",
+    "slug": "fashion-boutiques",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.625Z",
+    "updated_at": "2025-10-05T13:30:15.625Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 69,
+  "fields": {
+    "name": "Fast Food Restaurants",
+    "slug": "fast-food-restaurants",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.483Z",
+    "updated_at": "2025-10-05T13:30:15.483Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 175,
+  "fields": {
+    "name": "Ferry Services",
+    "slug": "ferry-services",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.028Z",
+    "updated_at": "2025-10-05T13:30:16.028Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 222,
+  "fields": {
+    "name": "Finance",
+    "slug": "finance",
+    "description": "Banking and Financial Services",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T17:36:42.934Z",
+    "updated_at": "2025-10-05T17:36:42.934Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 123,
+  "fields": {
+    "name": "Financial Advisors",
+    "slug": "financial-advisors",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.762Z",
+    "updated_at": "2025-10-05T13:30:15.762Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 192,
+  "fields": {
+    "name": "Financial Planning",
+    "slug": "financial-planning",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.118Z",
+    "updated_at": "2025-10-05T13:30:16.120Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 68,
+  "fields": {
+    "name": "Fine Dining Restaurants",
+    "slug": "fine-dining-restaurants",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.477Z",
+    "updated_at": "2025-10-05T13:30:15.477Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 207,
+  "fields": {
+    "name": "Food Processing",
+    "slug": "food-processing",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.193Z",
+    "updated_at": "2025-10-05T13:30:16.193Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 72,
+  "fields": {
+    "name": "French Restaurants",
+    "slug": "french-restaurants",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.500Z",
+    "updated_at": "2025-10-05T13:30:15.500Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 108,
+  "fields": {
+    "name": "Furniture Stores",
+    "slug": "furniture-stores",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.687Z",
+    "updated_at": "2025-10-05T13:30:15.687Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 164,
+  "fields": {
+    "name": "Gaming Centers",
+    "slug": "gaming-centers",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.973Z",
+    "updated_at": "2025-10-05T13:30:15.973Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 112,
+  "fields": {
+    "name": "General Hospitals",
+    "slug": "general-hospitals",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.709Z",
+    "updated_at": "2025-10-05T13:30:15.709Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 110,
+  "fields": {
+    "name": "Gift Shops",
+    "slug": "gift-shops",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.699Z",
+    "updated_at": "2025-10-05T13:30:15.699Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 166,
+  "fields": {
+    "name": "Golf Courses",
+    "slug": "golf-courses",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.982Z",
+    "updated_at": "2025-10-05T13:30:15.982Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 129,
+  "fields": {
+    "name": "Graphic Design",
+    "slug": "graphic-design",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.795Z",
+    "updated_at": "2025-10-05T13:30:15.795Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 181,
+  "fields": {
+    "name": "HVAC Services",
+    "slug": "hvac-services",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.061Z",
+    "updated_at": "2025-10-05T13:30:16.061Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 221,
+  "fields": {
+    "name": "Health",
+    "slug": "health",
+    "description": "Healthcare and Medical",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T17:36:42.926Z",
+    "updated_at": "2025-10-05T17:36:42.926Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 187,
+  "fields": {
+    "name": "Home Renovation",
+    "slug": "home-renovation",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.094Z",
+    "updated_at": "2025-10-05T13:30:16.094Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 185,
+  "fields": {
+    "name": "Home Security",
+    "slug": "home-security",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.083Z",
+    "updated_at": "2025-10-05T13:30:16.083Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 127,
+  "fields": {
+    "name": "IT Consultants",
+    "slug": "it-consultants",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.784Z",
+    "updated_at": "2025-10-05T13:30:15.784Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 80,
+  "fields": {
+    "name": "Ice Cream Shops",
+    "slug": "ice-cream-shops",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.544Z",
+    "updated_at": "2025-10-05T13:30:15.544Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 124,
+  "fields": {
+    "name": "Insurance Agencies",
+    "slug": "insurance-agencies",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.762Z",
+    "updated_at": "2025-10-05T13:30:15.762Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 186,
+  "fields": {
+    "name": "Interior Design",
+    "slug": "interior-design",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.089Z",
+    "updated_at": "2025-10-05T13:30:16.089Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 206,
+  "fields": {
+    "name": "Internet Providers",
+    "slug": "internet-providers",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.187Z",
+    "updated_at": "2025-10-05T13:30:16.187Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 189,
+  "fields": {
+    "name": "Investment Banks",
+    "slug": "investment-banks",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.104Z",
+    "updated_at": "2025-10-05T13:30:16.104Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 204,
+  "fields": {
+    "name": "IoT Solutions",
+    "slug": "iot-solutions",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.177Z",
+    "updated_at": "2025-10-05T13:30:16.177Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 71,
+  "fields": {
+    "name": "Italian Restaurants",
+    "slug": "italian-restaurants",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.495Z",
+    "updated_at": "2025-10-05T13:30:15.495Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 99,
+  "fields": {
+    "name": "Jewelry Stores",
+    "slug": "jewelry-stores",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.641Z",
+    "updated_at": "2025-10-05T13:30:15.641Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 182,
+  "fields": {
+    "name": "Landscaping",
+    "slug": "landscaping",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.067Z",
+    "updated_at": "2025-10-05T13:30:16.067Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 120,
+  "fields": {
+    "name": "Law Firms",
+    "slug": "law-firms",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.750Z",
+    "updated_at": "2025-10-05T13:30:15.750Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 177,
+  "fields": {
+    "name": "Logistics Companies",
+    "slug": "logistics-companies",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.040Z",
+    "updated_at": "2025-10-05T13:30:16.040Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 101,
+  "fields": {
+    "name": "Luxury Goods",
+    "slug": "luxury-goods",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.650Z",
+    "updated_at": "2025-10-05T13:30:15.650Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 86,
+  "fields": {
+    "name": "Luxury Hotels",
+    "slug": "luxury-hotels",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.576Z",
+    "updated_at": "2025-10-05T13:30:15.576Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 223,
+  "fields": {
+    "name": "Manufacturing",
+    "slug": "manufacturing",
+    "description": "Industry and Manufacturing",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T17:36:42.941Z",
+    "updated_at": "2025-10-05T17:36:42.941Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 126,
+  "fields": {
+    "name": "Marketing Agencies",
+    "slug": "marketing-agencies",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.779Z",
+    "updated_at": "2025-10-05T13:30:15.779Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 139,
+  "fields": {
+    "name": "Massage Centers",
+    "slug": "massage-centers",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.844Z",
+    "updated_at": "2025-10-05T13:30:15.844Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 115,
+  "fields": {
+    "name": "Medical Laboratories",
+    "slug": "medical-laboratories",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.726Z",
+    "updated_at": "2025-10-05T13:30:15.726Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 117,
+  "fields": {
+    "name": "Mental Health Services",
+    "slug": "mental-health-services",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.734Z",
+    "updated_at": "2025-10-05T13:30:15.734Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 74,
+  "fields": {
+    "name": "Mexican Restaurants",
+    "slug": "mexican-restaurants",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.511Z",
+    "updated_at": "2025-10-05T13:30:15.511Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 196,
+  "fields": {
+    "name": "Microfinance",
+    "slug": "microfinance",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.140Z",
+    "updated_at": "2025-10-05T13:30:16.140Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 198,
+  "fields": {
+    "name": "Mobile App Development",
+    "slug": "mobile-app-development",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.148Z",
+    "updated_at": "2025-10-05T13:30:16.148Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 104,
+  "fields": {
+    "name": "Mobile Phone Stores",
+    "slug": "mobile-phone-stores",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.665Z",
+    "updated_at": "2025-10-05T13:30:15.665Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 193,
+  "fields": {
+    "name": "Mortgage Brokers",
+    "slug": "mortgage-brokers",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.122Z",
+    "updated_at": "2025-10-05T13:30:16.122Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 146,
+  "fields": {
+    "name": "Motorcycle Dealers",
+    "slug": "motorcycle-dealers",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.880Z",
+    "updated_at": "2025-10-05T13:30:15.880Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 158,
+  "fields": {
+    "name": "Movie Theaters",
+    "slug": "movie-theaters",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.940Z",
+    "updated_at": "2025-10-05T13:30:15.940Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 184,
+  "fields": {
+    "name": "Moving Services",
+    "slug": "moving-services",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.077Z",
+    "updated_at": "2025-10-05T13:30:16.077Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 161,
+  "fields": {
+    "name": "Museums",
+    "slug": "museums",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.957Z",
+    "updated_at": "2025-10-05T13:30:15.957Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 154,
+  "fields": {
+    "name": "Music Schools",
+    "slug": "music-schools",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.922Z",
+    "updated_at": "2025-10-05T13:30:15.922Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 105,
+  "fields": {
+    "name": "Music Stores",
+    "slug": "music-stores",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.672Z",
+    "updated_at": "2025-10-05T13:30:15.672Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 137,
+  "fields": {
+    "name": "Nail Salons",
+    "slug": "nail-salons",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.833Z",
+    "updated_at": "2025-10-05T13:30:15.833Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 160,
+  "fields": {
+    "name": "Opera Houses",
+    "slug": "opera-houses",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.950Z",
+    "updated_at": "2025-10-05T13:30:15.950Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 107,
+  "fields": {
+    "name": "Outdoor Equipment",
+    "slug": "outdoor-equipment",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.681Z",
+    "updated_at": "2025-10-05T13:30:15.681Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 215,
+  "fields": {
+    "name": "Packaging Services",
+    "slug": "packaging-services",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.232Z",
+    "updated_at": "2025-10-05T13:30:16.232Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 79,
+  "fields": {
+    "name": "Pastry Shops",
+    "slug": "pastry-shops",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.539Z",
+    "updated_at": "2025-10-05T13:30:15.539Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 195,
+  "fields": {
+    "name": "Payment Processing",
+    "slug": "payment-processing",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.134Z",
+    "updated_at": "2025-10-05T13:30:16.134Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 142,
+  "fields": {
+    "name": "Personal Trainers",
+    "slug": "personal-trainers",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.860Z",
+    "updated_at": "2025-10-05T13:30:15.860Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 183,
+  "fields": {
+    "name": "Pest Control",
+    "slug": "pest-control",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.072Z",
+    "updated_at": "2025-10-05T13:30:16.072Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 212,
+  "fields": {
+    "name": "Pharmaceutical Manufacturing",
+    "slug": "pharmaceutical-manufacturing",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.217Z",
+    "updated_at": "2025-10-05T13:30:16.217Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 116,
+  "fields": {
+    "name": "Physiotherapy",
+    "slug": "physiotherapy",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.730Z",
+    "updated_at": "2025-10-05T13:30:15.730Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 141,
+  "fields": {
+    "name": "Pilates Studios",
+    "slug": "pilates-studios",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.854Z",
+    "updated_at": "2025-10-05T13:30:15.854Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 70,
+  "fields": {
+    "name": "Pizza Restaurants",
+    "slug": "pizza-restaurants",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.489Z",
+    "updated_at": "2025-10-05T13:30:15.489Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 179,
+  "fields": {
+    "name": "Plumbing Services",
+    "slug": "plumbing-services",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.050Z",
+    "updated_at": "2025-10-05T13:30:16.050Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 113,
+  "fields": {
+    "name": "Private Clinics",
+    "slug": "private-clinics",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.712Z",
+    "updated_at": "2025-10-05T13:30:15.712Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 157,
+  "fields": {
+    "name": "Professional Training",
+    "slug": "professional-training",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.935Z",
+    "updated_at": "2025-10-05T13:30:15.935Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 85,
+  "fields": {
+    "name": "Pubs",
+    "slug": "pubs",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.570Z",
+    "updated_at": "2025-10-05T13:30:15.570Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 216,
+  "fields": {
+    "name": "Quality Control",
+    "slug": "quality-control",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.237Z",
+    "updated_at": "2025-10-05T13:30:16.237Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 125,
+  "fields": {
+    "name": "Real Estate Agencies",
+    "slug": "real-estate-agencies",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.774Z",
+    "updated_at": "2025-10-05T13:30:15.774Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 131,
+  "fields": {
+    "name": "Recruitment Agencies",
+    "slug": "recruitment-agencies",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.804Z",
+    "updated_at": "2025-10-05T13:30:15.804Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 214,
+  "fields": {
+    "name": "Renewable Energy",
+    "slug": "renewable-energy",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.227Z",
+    "updated_at": "2025-10-05T13:30:16.227Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 94,
+  "fields": {
+    "name": "Resort Hotels",
+    "slug": "resort-hotels",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.612Z",
+    "updated_at": "2025-10-05T13:30:15.612Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 217,
+  "fields": {
+    "name": "Restaurant",
+    "slug": "restaurant",
+    "description": "Restaurants and Food Services",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T17:36:42.902Z",
+    "updated_at": "2025-10-05T17:36:42.902Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 220,
+  "fields": {
+    "name": "Retail",
+    "slug": "retail",
+    "description": "Shopping and Retail",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T17:36:42.921Z",
+    "updated_at": "2025-10-05T17:36:42.921Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 172,
+  "fields": {
+    "name": "Ride Sharing",
+    "slug": "ride-sharing",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.012Z",
+    "updated_at": "2025-10-05T13:30:16.012Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 174,
+  "fields": {
+    "name": "Scooter Rentals",
+    "slug": "scooter-rentals",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.024Z",
+    "updated_at": "2025-10-05T13:30:16.024Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 75,
+  "fields": {
+    "name": "Seafood Restaurants",
+    "slug": "seafood-restaurants",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.516Z",
+    "updated_at": "2025-10-05T13:30:15.516Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 92,
+  "fields": {
+    "name": "Serviced Apartments",
+    "slug": "serviced-apartments",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.607Z",
+    "updated_at": "2025-10-05T13:30:15.607Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 98,
+  "fields": {
+    "name": "Shoe Stores",
+    "slug": "shoe-stores",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.635Z",
+    "updated_at": "2025-10-05T13:30:15.635Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 169,
+  "fields": {
+    "name": "Ski Resorts",
+    "slug": "ski-resorts",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.996Z",
+    "updated_at": "2025-10-05T13:30:15.996Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 197,
+  "fields": {
+    "name": "Software Development",
+    "slug": "software-development",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.144Z",
+    "updated_at": "2025-10-05T13:30:16.144Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 111,
+  "fields": {
+    "name": "Souvenir Shops",
+    "slug": "souvenir-shops",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.704Z",
+    "updated_at": "2025-10-05T13:30:15.704Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 138,
+  "fields": {
+    "name": "Spas",
+    "slug": "spas",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.838Z",
+    "updated_at": "2025-10-05T13:30:15.838Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 106,
+  "fields": {
+    "name": "Sporting Goods",
+    "slug": "sporting-goods",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.677Z",
+    "updated_at": "2025-10-05T13:30:15.677Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 165,
+  "fields": {
+    "name": "Sports Venues",
+    "slug": "sports-venues",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.977Z",
+    "updated_at": "2025-10-05T13:30:15.977Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 168,
+  "fields": {
+    "name": "Swimming Pools",
+    "slug": "swimming-pools",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.992Z",
+    "updated_at": "2025-10-05T13:30:15.992Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 122,
+  "fields": {
+    "name": "Tax Consultants",
+    "slug": "tax-consultants",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.758Z",
+    "updated_at": "2025-10-05T13:30:15.760Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 218,
+  "fields": {
+    "name": "Technology",
+    "slug": "technology",
+    "description": "IT and Technology Services",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T17:36:42.907Z",
+    "updated_at": "2025-10-05T17:36:42.907Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 205,
+  "fields": {
+    "name": "Telecommunications",
+    "slug": "telecommunications",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.182Z",
+    "updated_at": "2025-10-05T13:30:16.182Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 167,
+  "fields": {
+    "name": "Tennis Courts",
+    "slug": "tennis-courts",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.987Z",
+    "updated_at": "2025-10-05T13:30:15.987Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 208,
+  "fields": {
+    "name": "Textile Manufacturing",
+    "slug": "textile-manufacturing",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.197Z",
+    "updated_at": "2025-10-05T13:30:16.197Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 145,
+  "fields": {
+    "name": "Tire Shops",
+    "slug": "tire-shops",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.875Z",
+    "updated_at": "2025-10-05T13:30:15.875Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 219,
+  "fields": {
+    "name": "Tourism",
+    "slug": "tourism",
+    "description": "Travel and Tourism",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T17:36:42.915Z",
+    "updated_at": "2025-10-05T17:36:42.915Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 170,
+  "fields": {
+    "name": "Train Stations",
+    "slug": "train-stations",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:16.003Z",
+    "updated_at": "2025-10-05T13:30:16.003Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 130,
+  "fields": {
+    "name": "Translation Services",
+    "slug": "translation-services",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.798Z",
+    "updated_at": "2025-10-05T13:30:15.798Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 156,
+  "fields": {
+    "name": "Tutoring Centers",
+    "slug": "tutoring-centers",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.931Z",
+    "updated_at": "2025-10-05T13:30:15.931Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 91,
+  "fields": {
+    "name": "Vacation Rentals",
+    "slug": "vacation-rentals",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.600Z",
+    "updated_at": "2025-10-05T13:30:15.600Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 77,
+  "fields": {
+    "name": "Vegan Restaurants",
+    "slug": "vegan-restaurants",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.526Z",
+    "updated_at": "2025-10-05T13:30:15.526Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 76,
+  "fields": {
+    "name": "Vegetarian Restaurants",
+    "slug": "vegetarian-restaurants",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.521Z",
+    "updated_at": "2025-10-05T13:30:15.521Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 118,
+  "fields": {
+    "name": "Veterinary Clinics",
+    "slug": "veterinary-clinics",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.740Z",
+    "updated_at": "2025-10-05T13:30:15.740Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 100,
+  "fields": {
+    "name": "Watch Stores",
+    "slug": "watch-stores",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.645Z",
+    "updated_at": "2025-10-05T13:30:15.645Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 128,
+  "fields": {
+    "name": "Web Development",
+    "slug": "web-development",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.790Z",
+    "updated_at": "2025-10-05T13:30:15.790Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 82,
+  "fields": {
+    "name": "Wine Bars",
+    "slug": "wine-bars",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.553Z",
+    "updated_at": "2025-10-05T13:30:15.553Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 140,
+  "fields": {
+    "name": "Yoga Studios",
+    "slug": "yoga-studios",
+    "description": "",
+    "icon": "",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 0,
+    "created_at": "2025-10-05T13:30:15.848Z",
+    "updated_at": "2025-10-05T13:30:15.848Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 36,
+  "fields": {
+    "name": "Banks",
+    "slug": "banks",
+    "description": "Banking and financial services",
+    "icon": "🏦",
+    "parent": 7,
+    "is_active": true,
+    "sort_order": 1,
+    "created_at": "2025-10-05T12:41:31.643Z",
+    "updated_at": "2025-10-05T12:41:31.643Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 55,
+  "fields": {
+    "name": "Car Dealers",
+    "slug": "car-dealers",
+    "description": "New and used car sales",
+    "icon": "🚗",
+    "parent": 10,
+    "is_active": true,
+    "sort_order": 1,
+    "created_at": "2025-10-05T12:41:31.644Z",
+    "updated_at": "2025-10-05T12:41:31.644Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 50,
+  "fields": {
+    "name": "Car Rental",
+    "slug": "car-rental",
+    "description": "Vehicle rental services",
+    "icon": "🚗",
+    "parent": 9,
+    "is_active": true,
+    "sort_order": 1,
+    "created_at": "2025-10-05T12:41:31.644Z",
+    "updated_at": "2025-10-05T12:41:31.644Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 44,
+  "fields": {
+    "name": "Cinemas",
+    "slug": "cinemas",
+    "description": "Movie theaters",
+    "icon": "🎬",
+    "parent": 8,
+    "is_active": true,
+    "sort_order": 1,
+    "created_at": "2025-10-05T12:41:31.644Z",
+    "updated_at": "2025-10-05T12:41:31.644Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 23,
+  "fields": {
+    "name": "Clothing & Fashion",
+    "slug": "clothing-fashion",
+    "description": "Fashion and apparel stores",
+    "icon": "👔",
+    "parent": 5,
+    "is_active": true,
+    "sort_order": 1,
+    "created_at": "2025-10-05T12:41:31.643Z",
+    "updated_at": "2025-10-05T12:41:31.643Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 3,
+  "fields": {
+    "name": "Food & Dining",
+    "slug": "food-dining",
+    "description": "Restaurants and food establishments",
+    "icon": "🍽️",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 1,
+    "created_at": "2025-10-05T12:40:52.321Z",
+    "updated_at": "2025-10-05T12:40:52.321Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 2,
+  "fields": {
+    "name": "Hotels",
+    "slug": "hotels",
+    "description": "Full-service hotels",
+    "icon": "🏨",
+    "parent": 4,
+    "is_active": true,
+    "sort_order": 1,
+    "created_at": "2025-10-02T16:03:55.209Z",
+    "updated_at": "2025-10-05T12:41:31.660Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 30,
+  "fields": {
+    "name": "Pharmacies",
+    "slug": "pharmacies",
+    "description": "Pharmacies and drugstores",
+    "icon": "💊",
+    "parent": 6,
+    "is_active": true,
+    "sort_order": 1,
+    "created_at": "2025-10-05T12:41:31.643Z",
+    "updated_at": "2025-10-05T12:41:31.643Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 1,
+  "fields": {
+    "name": "Restaurants",
+    "slug": "restaurants",
+    "description": "Full-service restaurants",
+    "icon": "🍽️",
+    "parent": 3,
+    "is_active": true,
+    "sort_order": 1,
+    "created_at": "2025-10-02T16:03:55.205Z",
+    "updated_at": "2025-10-05T12:41:31.651Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 64,
+  "fields": {
+    "name": "Travel Agencies",
+    "slug": "travel-agencies",
+    "description": "Travel booking and planning",
+    "icon": "✈️",
+    "parent": 12,
+    "is_active": true,
+    "sort_order": 1,
+    "created_at": "2025-10-05T12:41:31.644Z",
+    "updated_at": "2025-10-05T12:41:31.644Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 59,
+  "fields": {
+    "name": "Universities",
+    "slug": "universities",
+    "description": "Higher education institutions",
+    "icon": "🏛️",
+    "parent": 11,
+    "is_active": true,
+    "sort_order": 1,
+    "created_at": "2025-10-05T12:41:31.644Z",
+    "updated_at": "2025-10-05T12:41:31.644Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 56,
+  "fields": {
+    "name": "Auto Repair",
+    "slug": "auto-repair",
+    "description": "Vehicle maintenance and repair",
+    "icon": "🔧",
+    "parent": 10,
+    "is_active": true,
+    "sort_order": 2,
+    "created_at": "2025-10-05T12:41:31.644Z",
+    "updated_at": "2025-10-05T12:41:31.644Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 24,
+  "fields": {
+    "name": "Electronics",
+    "slug": "electronics",
+    "description": "Electronics and technology stores",
+    "icon": "📱",
+    "parent": 5,
+    "is_active": true,
+    "sort_order": 2,
+    "created_at": "2025-10-05T12:41:31.643Z",
+    "updated_at": "2025-10-05T12:41:31.643Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 13,
+  "fields": {
+    "name": "Fast Food",
+    "slug": "fast-food",
+    "description": "Quick service restaurants",
+    "icon": "🍔",
+    "parent": 3,
+    "is_active": true,
+    "sort_order": 2,
+    "created_at": "2025-10-05T12:41:31.642Z",
+    "updated_at": "2025-10-05T12:41:31.642Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 31,
+  "fields": {
+    "name": "Hair Salons",
+    "slug": "hair-salons",
+    "description": "Hair styling and beauty salons",
+    "icon": "✂️",
+    "parent": 6,
+    "is_active": true,
+    "sort_order": 2,
+    "created_at": "2025-10-05T12:41:31.643Z",
+    "updated_at": "2025-10-05T12:41:31.643Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 19,
+  "fields": {
+    "name": "Hostels",
+    "slug": "hostels",
+    "description": "Budget accommodation",
+    "icon": "🛏️",
+    "parent": 4,
+    "is_active": true,
+    "sort_order": 2,
+    "created_at": "2025-10-05T12:41:31.642Z",
+    "updated_at": "2025-10-05T12:41:31.642Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 4,
+  "fields": {
+    "name": "Hotels & Accommodation",
+    "slug": "hotels-accommodation",
+    "description": "Lodging and accommodation",
+    "icon": "🏨",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 2,
+    "created_at": "2025-10-05T12:40:52.321Z",
+    "updated_at": "2025-10-05T12:40:52.321Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 37,
+  "fields": {
+    "name": "Legal Services",
+    "slug": "legal-services",
+    "description": "Law firms and legal advice",
+    "icon": "⚖️",
+    "parent": 7,
+    "is_active": true,
+    "sort_order": 2,
+    "created_at": "2025-10-05T12:41:31.643Z",
+    "updated_at": "2025-10-05T12:41:31.643Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 60,
+  "fields": {
+    "name": "Schools",
+    "slug": "schools",
+    "description": "Primary and secondary schools",
+    "icon": "🏫",
+    "parent": 11,
+    "is_active": true,
+    "sort_order": 2,
+    "created_at": "2025-10-05T12:41:31.644Z",
+    "updated_at": "2025-10-05T12:41:31.644Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 51,
+  "fields": {
+    "name": "Taxi Services",
+    "slug": "taxi-services",
+    "description": "Taxi and ride services",
+    "icon": "🚕",
+    "parent": 9,
+    "is_active": true,
+    "sort_order": 2,
+    "created_at": "2025-10-05T12:41:31.644Z",
+    "updated_at": "2025-10-05T12:41:31.644Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 45,
+  "fields": {
+    "name": "Theaters",
+    "slug": "theaters",
+    "description": "Live performance venues",
+    "icon": "🎭",
+    "parent": 8,
+    "is_active": true,
+    "sort_order": 2,
+    "created_at": "2025-10-05T12:41:31.644Z",
+    "updated_at": "2025-10-05T12:41:31.644Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 65,
+  "fields": {
+    "name": "Tour Operators",
+    "slug": "tour-operators",
+    "description": "Guided tours and excursions",
+    "icon": "🎯",
+    "parent": 12,
+    "is_active": true,
+    "sort_order": 2,
+    "created_at": "2025-10-05T12:41:31.645Z",
+    "updated_at": "2025-10-05T12:41:31.645Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 20,
+  "fields": {
+    "name": "Bed & Breakfast",
+    "slug": "bed-breakfast",
+    "description": "B&B establishments",
+    "icon": "🏠",
+    "parent": 4,
+    "is_active": true,
+    "sort_order": 3,
+    "created_at": "2025-10-05T12:41:31.642Z",
+    "updated_at": "2025-10-05T12:41:31.642Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 14,
+  "fields": {
+    "name": "Cafés & Coffee",
+    "slug": "cafes-coffee",
+    "description": "Coffee shops and cafés",
+    "icon": "☕",
+    "parent": 3,
+    "is_active": true,
+    "sort_order": 3,
+    "created_at": "2025-10-05T12:41:31.642Z",
+    "updated_at": "2025-10-05T12:41:31.642Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 57,
+  "fields": {
+    "name": "Gas Stations",
+    "slug": "gas-stations",
+    "description": "Fuel and service stations",
+    "icon": "⛽",
+    "parent": 10,
+    "is_active": true,
+    "sort_order": 3,
+    "created_at": "2025-10-05T12:41:31.644Z",
+    "updated_at": "2025-10-05T12:41:31.644Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 61,
+  "fields": {
+    "name": "Language Schools",
+    "slug": "language-schools",
+    "description": "Language learning centers",
+    "icon": "🗣️",
+    "parent": 11,
+    "is_active": true,
+    "sort_order": 3,
+    "created_at": "2025-10-05T12:41:31.644Z",
+    "updated_at": "2025-10-05T12:41:31.644Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 46,
+  "fields": {
+    "name": "Nightclubs",
+    "slug": "nightclubs",
+    "description": "Dance clubs and nightlife",
+    "icon": "🕺",
+    "parent": 8,
+    "is_active": true,
+    "sort_order": 3,
+    "created_at": "2025-10-05T12:41:31.644Z",
+    "updated_at": "2025-10-05T12:41:31.644Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 52,
+  "fields": {
+    "name": "Public Transport",
+    "slug": "public-transport",
+    "description": "Bus and train services",
+    "icon": "🚌",
+    "parent": 9,
+    "is_active": true,
+    "sort_order": 3,
+    "created_at": "2025-10-05T12:41:31.644Z",
+    "updated_at": "2025-10-05T12:41:31.644Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 38,
+  "fields": {
+    "name": "Real Estate",
+    "slug": "real-estate",
+    "description": "Property and real estate services",
+    "icon": "🏠",
+    "parent": 7,
+    "is_active": true,
+    "sort_order": 3,
+    "created_at": "2025-10-05T12:41:31.643Z",
+    "updated_at": "2025-10-05T12:41:31.643Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 5,
+  "fields": {
+    "name": "Shopping",
+    "slug": "shopping",
+    "description": "Retail stores and shopping",
+    "icon": "🛍️",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 3,
+    "created_at": "2025-10-05T12:40:52.321Z",
+    "updated_at": "2025-10-05T12:40:52.321Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 32,
+  "fields": {
+    "name": "Spas & Wellness",
+    "slug": "spas-wellness",
+    "description": "Spas and wellness centers",
+    "icon": "🧘",
+    "parent": 6,
+    "is_active": true,
+    "sort_order": 3,
+    "created_at": "2025-10-05T12:41:31.643Z",
+    "updated_at": "2025-10-05T12:41:31.643Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 25,
+  "fields": {
+    "name": "Supermarkets",
+    "slug": "supermarkets",
+    "description": "Grocery and food stores",
+    "icon": "🛒",
+    "parent": 5,
+    "is_active": true,
+    "sort_order": 3,
+    "created_at": "2025-10-05T12:41:31.643Z",
+    "updated_at": "2025-10-05T12:41:31.643Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 66,
+  "fields": {
+    "name": "Tourist Attractions",
+    "slug": "tourist-attractions",
+    "description": "Museums and landmarks",
+    "icon": "🏛️",
+    "parent": 12,
+    "is_active": true,
+    "sort_order": 3,
+    "created_at": "2025-10-05T12:41:31.645Z",
+    "updated_at": "2025-10-05T12:41:31.645Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 53,
+  "fields": {
+    "name": "Airport Services",
+    "slug": "airport-services",
+    "description": "Airport-related services",
+    "icon": "✈️",
+    "parent": 9,
+    "is_active": true,
+    "sort_order": 4,
+    "created_at": "2025-10-05T12:41:31.644Z",
+    "updated_at": "2025-10-05T12:41:31.644Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 21,
+  "fields": {
+    "name": "Apartments",
+    "slug": "apartments",
+    "description": "Vacation rentals",
+    "icon": "🏢",
+    "parent": 4,
+    "is_active": true,
+    "sort_order": 4,
+    "created_at": "2025-10-05T12:41:31.642Z",
+    "updated_at": "2025-10-05T12:41:31.642Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 15,
+  "fields": {
+    "name": "Bars & Pubs",
+    "slug": "bars-pubs",
+    "description": "Bars and public houses",
+    "icon": "🍺",
+    "parent": 3,
+    "is_active": true,
+    "sort_order": 4,
+    "created_at": "2025-10-05T12:41:31.642Z",
+    "updated_at": "2025-10-05T12:41:31.642Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 26,
+  "fields": {
+    "name": "Bookstores",
+    "slug": "bookstores",
+    "description": "Books and stationery",
+    "icon": "📚",
+    "parent": 5,
+    "is_active": true,
+    "sort_order": 4,
+    "created_at": "2025-10-05T12:41:31.643Z",
+    "updated_at": "2025-10-05T12:41:31.643Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 58,
+  "fields": {
+    "name": "Car Wash",
+    "slug": "car-wash",
+    "description": "Vehicle cleaning services",
+    "icon": "🧽",
+    "parent": 10,
+    "is_active": true,
+    "sort_order": 4,
+    "created_at": "2025-10-05T12:41:31.644Z",
+    "updated_at": "2025-10-05T12:41:31.644Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 33,
+  "fields": {
+    "name": "Dental Clinics",
+    "slug": "dental-clinics",
+    "description": "Dental care services",
+    "icon": "🦷",
+    "parent": 6,
+    "is_active": true,
+    "sort_order": 4,
+    "created_at": "2025-10-05T12:41:31.643Z",
+    "updated_at": "2025-10-05T12:41:31.643Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 6,
+  "fields": {
+    "name": "Health & Beauty",
+    "slug": "health-beauty",
+    "description": "Health and beauty services",
+    "icon": "💄",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 4,
+    "created_at": "2025-10-05T12:40:52.321Z",
+    "updated_at": "2025-10-05T12:40:52.321Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 67,
+  "fields": {
+    "name": "Information Centers",
+    "slug": "information-centers",
+    "description": "Tourist information services",
+    "icon": "ℹ️",
+    "parent": 12,
+    "is_active": true,
+    "sort_order": 4,
+    "created_at": "2025-10-05T12:41:31.645Z",
+    "updated_at": "2025-10-05T12:41:31.645Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 39,
+  "fields": {
+    "name": "Insurance",
+    "slug": "insurance",
+    "description": "Insurance companies",
+    "icon": "🛡️",
+    "parent": 7,
+    "is_active": true,
+    "sort_order": 4,
+    "created_at": "2025-10-05T12:41:31.643Z",
+    "updated_at": "2025-10-05T12:41:31.643Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 47,
+  "fields": {
+    "name": "Music Venues",
+    "slug": "music-venues",
+    "description": "Live music and concert halls",
+    "icon": "🎵",
+    "parent": 8,
+    "is_active": true,
+    "sort_order": 4,
+    "created_at": "2025-10-05T12:41:31.644Z",
+    "updated_at": "2025-10-05T12:41:31.644Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 62,
+  "fields": {
+    "name": "Training Centers",
+    "slug": "training-centers",
+    "description": "Professional training",
+    "icon": "📚",
+    "parent": 11,
+    "is_active": true,
+    "sort_order": 4,
+    "created_at": "2025-10-05T12:41:31.644Z",
+    "updated_at": "2025-10-05T12:41:31.644Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 40,
+  "fields": {
+    "name": "Accounting",
+    "slug": "accounting",
+    "description": "Accounting and tax services",
+    "icon": "📊",
+    "parent": 7,
+    "is_active": true,
+    "sort_order": 5,
+    "created_at": "2025-10-05T12:41:31.643Z",
+    "updated_at": "2025-10-05T12:41:31.643Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 16,
+  "fields": {
+    "name": "Bakeries",
+    "slug": "bakeries",
+    "description": "Bakeries and patisseries",
+    "icon": "🥖",
+    "parent": 3,
+    "is_active": true,
+    "sort_order": 5,
+    "created_at": "2025-10-05T12:41:31.642Z",
+    "updated_at": "2025-10-05T12:41:31.642Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 48,
+  "fields": {
+    "name": "Casinos",
+    "slug": "casinos",
+    "description": "Gaming and casinos",
+    "icon": "🎰",
+    "parent": 8,
+    "is_active": true,
+    "sort_order": 5,
+    "created_at": "2025-10-05T12:41:31.644Z",
+    "updated_at": "2025-10-05T12:41:31.644Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 22,
+  "fields": {
+    "name": "Guesthouses",
+    "slug": "guesthouses",
+    "description": "Small accommodation providers",
+    "icon": "🏡",
+    "parent": 4,
+    "is_active": true,
+    "sort_order": 5,
+    "created_at": "2025-10-05T12:41:31.643Z",
+    "updated_at": "2025-10-05T12:41:31.643Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 27,
+  "fields": {
+    "name": "Jewelry",
+    "slug": "jewelry",
+    "description": "Jewelry and accessories",
+    "icon": "💍",
+    "parent": 5,
+    "is_active": true,
+    "sort_order": 5,
+    "created_at": "2025-10-05T12:41:31.643Z",
+    "updated_at": "2025-10-05T12:41:31.643Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 63,
+  "fields": {
+    "name": "Libraries",
+    "slug": "libraries",
+    "description": "Public and private libraries",
+    "icon": "📖",
+    "parent": 11,
+    "is_active": true,
+    "sort_order": 5,
+    "created_at": "2025-10-05T12:41:31.644Z",
+    "updated_at": "2025-10-05T12:41:31.644Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 34,
+  "fields": {
+    "name": "Medical Centers",
+    "slug": "medical-centers",
+    "description": "Healthcare facilities",
+    "icon": "🏥",
+    "parent": 6,
+    "is_active": true,
+    "sort_order": 5,
+    "created_at": "2025-10-05T12:41:31.643Z",
+    "updated_at": "2025-10-05T12:41:31.643Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 54,
+  "fields": {
+    "name": "Parking",
+    "slug": "parking",
+    "description": "Parking facilities",
+    "icon": "🅿️",
+    "parent": 9,
+    "is_active": true,
+    "sort_order": 5,
+    "created_at": "2025-10-05T12:41:31.644Z",
+    "updated_at": "2025-10-05T12:41:31.644Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 7,
+  "fields": {
+    "name": "Services",
+    "slug": "services",
+    "description": "Professional services",
+    "icon": "💼",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 5,
+    "created_at": "2025-10-05T12:40:52.321Z",
+    "updated_at": "2025-10-05T12:40:52.321Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 49,
+  "fields": {
+    "name": "Art Galleries",
+    "slug": "art-galleries",
+    "description": "Art galleries and museums",
+    "icon": "🖼️",
+    "parent": 8,
+    "is_active": true,
+    "sort_order": 6,
+    "created_at": "2025-10-05T12:41:31.644Z",
+    "updated_at": "2025-10-05T12:41:31.644Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 41,
+  "fields": {
+    "name": "Consulting",
+    "slug": "consulting",
+    "description": "Business consulting services",
+    "icon": "💼",
+    "parent": 7,
+    "is_active": true,
+    "sort_order": 6,
+    "created_at": "2025-10-05T12:41:31.643Z",
+    "updated_at": "2025-10-05T12:41:31.643Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 8,
+  "fields": {
+    "name": "Entertainment & Nightlife",
+    "slug": "entertainment-nightlife",
+    "description": "Entertainment venues",
+    "icon": "🎭",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 6,
+    "created_at": "2025-10-05T12:40:52.321Z",
+    "updated_at": "2025-10-05T12:40:52.321Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 35,
+  "fields": {
+    "name": "Fitness Centers",
+    "slug": "fitness-centers",
+    "description": "Gyms and fitness clubs",
+    "icon": "🏋️",
+    "parent": 6,
+    "is_active": true,
+    "sort_order": 6,
+    "created_at": "2025-10-05T12:41:31.643Z",
+    "updated_at": "2025-10-05T12:41:31.643Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 17,
+  "fields": {
+    "name": "Pizza Places",
+    "slug": "pizza",
+    "description": "Pizza restaurants",
+    "icon": "🍕",
+    "parent": 3,
+    "is_active": true,
+    "sort_order": 6,
+    "created_at": "2025-10-05T12:41:31.642Z",
+    "updated_at": "2025-10-05T12:41:31.642Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 28,
+  "fields": {
+    "name": "Sports & Outdoor",
+    "slug": "sports-outdoor",
+    "description": "Sports equipment and outdoor gear",
+    "icon": "⚽",
+    "parent": 5,
+    "is_active": true,
+    "sort_order": 6,
+    "created_at": "2025-10-05T12:41:31.643Z",
+    "updated_at": "2025-10-05T12:41:31.643Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 18,
+  "fields": {
+    "name": "Fine Dining",
+    "slug": "fine-dining",
+    "description": "Upscale dining establishments",
+    "icon": "🥂",
+    "parent": 3,
+    "is_active": true,
+    "sort_order": 7,
+    "created_at": "2025-10-05T12:41:31.642Z",
+    "updated_at": "2025-10-05T12:41:31.642Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 29,
+  "fields": {
+    "name": "Home & Garden",
+    "slug": "home-garden",
+    "description": "Furniture and home improvement",
+    "icon": "🏠",
+    "parent": 5,
+    "is_active": true,
+    "sort_order": 7,
+    "created_at": "2025-10-05T12:41:31.643Z",
+    "updated_at": "2025-10-05T12:41:31.643Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 42,
+  "fields": {
+    "name": "Translation",
+    "slug": "translation",
+    "description": "Translation and language services",
+    "icon": "🗣️",
+    "parent": 7,
+    "is_active": true,
+    "sort_order": 7,
+    "created_at": "2025-10-05T12:41:31.643Z",
+    "updated_at": "2025-10-05T12:41:31.643Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 9,
+  "fields": {
+    "name": "Transportation",
+    "slug": "transportation",
+    "description": "Transport and travel services",
+    "icon": "🚗",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 7,
+    "created_at": "2025-10-05T12:40:52.321Z",
+    "updated_at": "2025-10-05T12:40:52.321Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 10,
+  "fields": {
+    "name": "Automotive",
+    "slug": "automotive",
+    "description": "Car services and repairs",
+    "icon": "🔧",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 8,
+    "created_at": "2025-10-05T12:40:52.321Z",
+    "updated_at": "2025-10-05T12:40:52.321Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 43,
+  "fields": {
+    "name": "IT Services",
+    "slug": "it-services",
+    "description": "Information technology services",
+    "icon": "💻",
+    "parent": 7,
+    "is_active": true,
+    "sort_order": 8,
+    "created_at": "2025-10-05T12:41:31.644Z",
+    "updated_at": "2025-10-05T12:41:31.644Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 11,
+  "fields": {
+    "name": "Education",
+    "slug": "education",
+    "description": "Educational institutions",
+    "icon": "🎓",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 9,
+    "created_at": "2025-10-05T12:40:52.321Z",
+    "updated_at": "2025-10-05T12:40:52.321Z"
+  }
+},
+{
+  "model": "businesses.category",
+  "pk": 12,
+  "fields": {
+    "name": "Tourism & Travel",
+    "slug": "tourism-travel",
+    "description": "Travel and tourism services",
+    "icon": "🗺️",
+    "parent": null,
+    "is_active": true,
+    "sort_order": 10,
+    "created_at": "2025-10-05T12:40:52.321Z",
+    "updated_at": "2025-10-05T12:40:52.321Z"
+  }
+}
+]

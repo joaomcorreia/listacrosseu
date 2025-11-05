@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+<div class="content">
+    <h1>{{ title }}</h1>
+    <div class="about-content">
+        <p>{% trans "ListAcross EU is your comprehensive directory for finding the best businesses across Europe." %}</p>
+        <p>{% trans "Our platform connects customers with quality businesses in multiple languages, making it easy to discover services and products no matter where you are in Europe." %}</p>
+        
+        <h2>{% trans "Our Mission" %}</h2>
+        <p>{% trans "We aim to break down language barriers and connect communities across Europe by providing a multilingual platform that serves both businesses and customers." %}</p>
+        
+        <h2>{% trans "Supported Languages" %}</h2>
+        <ul>
+            <li>{% trans "English" %}</li>
+            <li>{% trans "French" %}</li>
+            <li>{% trans "Dutch" %}</li>
+            <li>{% trans "Portuguese" %}</li>
+            <li>{% trans "German" %}</li>
+            <li>{% trans "Spanish" %}</li>
+            <li>{% trans "Arabic" %}</li>
+        </ul>
+    </div>
+</div>
+
+<style>
+.content {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.about-content h2 {
+    color: #333;
+    margin: 2rem 0 1rem 0;
+}
+
+.about-content ul {
+    list-style-type: disc;
+    margin-left: 2rem;
+}
+
+.about-content li {
+    margin: 0.5rem 0;
+}
+</style>
+{% endblock %}

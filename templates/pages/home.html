@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+<div class="hero">
+    <h1>{{ title }}</h1>
+    <p>{{ description }}</p>
+    
+    <div class="search-form">
+        <h2>{% trans "Find Businesses" %}</h2>
+        <form id="business-search">
+            <input type="text" placeholder="{% trans 'Search for businesses...' %}" id="search-query">
+            <select id="category-filter">
+                <option value="">{% trans "All Categories" %}</option>
+            </select>
+            <select id="city-filter">
+                <option value="">{% trans "All Cities" %}</option>
+            </select>
+            <button type="submit">{% trans "Search" %}</button>
+        </form>
+    </div>
+</div>
+
+<div class="featured-businesses">
+    <h2>{% trans "Featured Businesses" %}</h2>
+    <div id="business-list">
+        <!-- Business listings will be loaded here via API -->
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    loadFeaturedBusinesses();
+});
+
+async function loadFeaturedBusinesses() {
+    try {
+        const lang = document.documentElement.lang;
+        const response = await fetch(`/api/v1/businesses/?is_featured=true&lang=${lang}`);
+        const data = await response.json();
+        
+        const businessList = document.getElementById('business-list');
+        businessList.innerHTML = '';
+        
+        data.results.forEach(business => {
+            const businessCard = document.createElement('div');
+            businessCard.className = 'business-card';
+            businessCard.innerHTML = `
+                <h3>${business.name}</h3>
+                <p>${business.localized_description}</p>
+                <p><strong>${business.city}, ${business.country}</strong></p>
+                <a href="/businesses/${business.slug}/">{% trans "View Details" %}</a>
+            `;
+            businessList.appendChild(businessCard);
+        });
+    } catch (error) {
+        console.error('Error loading businesses:', error);
+    }
+}
+</script>
+
+<style>
+.hero {
+    text-align: center;
+    padding: 2rem;
+    background: #f8f9fa;
+    margin-bottom: 2rem;
+}
+
+.search-form {
+    max-width: 600px;
+    margin: 2rem auto;
+}
+
+.search-form form {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.search-form input, .search-form select {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.search-form button {
+    padding: 0.5rem 1rem;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.business-card {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 4px;
+}
+
+.business-card h3 {
+    margin: 0 0 0.5rem 0;
+    color: #333;
+}
+
+.business-card a {
+    display: inline-block;
+    margin-top: 0.5rem;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.business-card a:hover {
+    text-decoration: underline;
+}
+</style>
+{% endblock %}

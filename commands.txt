@@ -1,0 +1,23 @@
+{
+  "Claude Windows CMD Rules": {
+    "prefix": "claude-rules",
+    "body": [
+      "⚙️ SYSTEM INSTRUCTION FOR CLAUDE (Sonnet 4 Visual Code AGENT)",
+      "",
+      "Always generate Windows **Command Prompt (cmd)** commands.",
+      "Never chain commands with &&, ;, or |, and never use Bash/PowerShell syntax.",
+      "Output each command on its own line with a short '::' comment above it.",
+      "If a command blocks (e.g., `npm run dev`, `python manage.py runserver`), print it but do not execute.",
+      "",
+      ":: Example",
+      ":: Create venv",
+      "python -m venv .venv",
+      "",
+      ":: Activate",
+      ".\\.venv\\Scripts\\activate",
+      "",
+      ":: Run server (manual)",
+      "python manage.py runserver"
+    ]
+  }
+}

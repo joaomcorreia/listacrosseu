@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base tweaks */
+html, body { height: 100%; }
+body { @apply bg-white text-gray-900 antialiased; }
+
+/* Card primitive */
+.card { @apply rounded-xl border border-gray-200 bg-white shadow-soft; }
+.card-header { @apply p-4 border-b border-gray-100 font-semibold; }
+.card-body { @apply p-4; }
+
+/* Button */
+.btn { @apply inline-flex items-center gap-2 rounded-lg border px-4 py-2; }
+.btn-primary { @apply bg-brand text-white border-transparent hover:bg-brand-dark; }
+.btn-ghost { @apply border-gray-300 hover:bg-gray-50; }
+
+/* Input */
+.input { @apply w-full rounded-lg border border-gray-300 px-4 py-2 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-brand; }
+
+/* RTL support utilities */
+.rtl {
+  direction: rtl;
+}
+
+.ltr {
+  direction: ltr;
+}
+
+/* Line clamp utility */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Custom animations */
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}

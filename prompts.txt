@@ -1,0 +1,741 @@
+Context
+
+Project root: C:\projects\listacrosseu (Windows). manage.py is at root.
+
+Django + DRF + CORS already installed. Next.js app router at frontend/src/app.
+
+Live pages exist for /[lang]/search. Countries link is 404 and must be fixed.
+
+We’ll add a Blog editable from Django Admin, API endpoints for posts, frontend blog pages + slider.
+
+Add per-page SEO controls (Yoast-style) at the top of each editable admin page with a live Google/Bing preview.
+
+Create nav pages: Countries, Cities, Categories, Free listings, Paid listings, plus a “Add more later” button placeholder.
+
+1) Django: Blog app + models + admin + API
+
+Create app
+
+python manage.py startapp blog
+
+
+blog/models.py
+
+from django.db import models
+from django.utils.text import slugify
+from django.urls import reverse
+from django.utils import timezone
+
+class SEOMeta(models.Model):
+    meta_title = models.CharField(max_length=70, blank=True)
+    meta_description = models.CharField(max_length=160, blank=True)
+    canonical_url = models.URLField(blank=True)
+    robots = models.CharField(max_length=50, blank=True, help_text="e.g. index,follow")
+    og_title = models.CharField(max_length=120, blank=True)
+    og_description = models.CharField(max_length=200, blank=True)
+    og_image = models.URLField(blank=True)
+
+    class Meta:
+        abstract = True
+
+class Category(SEOMeta):
+    name = models.CharField(max_length=120, unique=True)
+    slug = models.SlugField(max_length=140, unique=True, blank=True)
+    created_at = models.DateTimeField(default=timezone.now)
+
+    def save(self, *args, **kwargs):
+        if not self.slug: self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
+
+    def __str__(self): return self.name
+
+class Post(SEOMeta):
+    title = models.CharField(max_length=200)
+    slug = models.SlugField(max_length=220, unique=True, blank=True)
+    excerpt = models.TextField(blank=True)
+    content = models.TextField()
+    category = models.ForeignKey(Category, null=True, blank=True, on_delete=models.SET_NULL, related_name="posts")
+    cover_image = models.URLField(blank=True)
+    is_featured = models.BooleanField(default=False)
+    published = models.BooleanField(default=True)
+    published_at = models.DateTimeField(default=timezone.now)
+
+    def save(self, *args, **kwargs):
+        if not self.slug: self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
+
+    def __str__(self): return self.title
+
+
+blog/admin.py (SEO at top + live SERP preview)
+
+from django.contrib import admin
+from django import forms
+from django.utils.safestring import mark_safe
+from .models import Post, Category
+
+SERP_PREVIEW_HTML = """
+<div style="border:1px solid #e5e7eb;border-radius:8px;padding:12px;margin:8px 0;background:#fff">
+  <div style="color:#1a0dab;font-size:18px;line-height:1.2" id="serp-title"></div>
+  <div style="color:#006621;font-size:14px" id="serp-url">listacrosseu.example</div>
+  <div style="color:#4d5156;font-size:13px" id="serp-desc"></div>
+  <div style="margin-top:6px;color:#6b7280;font-size:12px">
+    <span>Title: <span id="serp-title-len">0</span>/70</span> ·
+    <span>Description: <span id="serp-desc-len">0</span>/160</span>
+  </div>
+</div>
+<script>
+function bindSerp(){
+  const t = document.querySelector('#id_meta_title') || document.querySelector('#id_title');
+  const d = document.querySelector('#id_meta_description') || document.querySelector('#id_excerpt');
+  const st = document.querySelector('#serp-title');
+  const sd = document.querySelector('#serp-desc');
+  const tl = document.querySelector('#serp-title-len');
+  const dl = document.querySelector('#serp-desc-len');
+  function upd(){
+    st.textContent = (t && t.value) || '';
+    sd.textContent = (d && d.value) || '';
+    tl.textContent = st.textContent.length;
+    dl.textContent = sd.textContent.length;
+  }
+  [t,d].forEach(el=> el && el.addEventListener('input', upd));
+  upd();
+}
+document.addEventListener('DOMContentLoaded', bindSerp);
+</script>
+"""
+
+class SEOFirstAdmin(admin.ModelAdmin):
+    fieldsets = (
+        ("SEO (top)", {
+            "fields": ("meta_title","meta_description","canonical_url","robots","og_title","og_description","og_image"),
+            "description": mark_safe(SERP_PREVIEW_HTML)
+        }),
+        (None, {"fields": ()}),
+    )
+
+@admin.register(Category)
+class CategoryAdmin(SEOFirstAdmin):
+    list_display = ("name","slug","created_at")
+    prepopulated_fields = {"slug": ("name",)}
+    fieldsets = SEOFirstAdmin.fieldsets + (
+        ("Category", {"fields": ("name","slug")}),
+    )
+
+@admin.register(Post)
+class PostAdmin(SEOFirstAdmin):
+    list_display = ("title","published","is_featured","published_at")
+    list_filter = ("published","is_featured","category")
+    search_fields = ("title","excerpt","content")
+    prepopulated_fields = {"slug": ("title",)}
+    fieldsets = SEOFirstAdmin.fieldsets + (
+        ("Post", {"fields": ("title","slug","excerpt","content","category","cover_image","is_featured","published","published_at")}),
+    )
+
+
+blog/serializers.py
+
+from rest_framework import serializers
+from .models import Post, Category
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ("name","slug")
+
+class PostListSerializer(serializers.ModelSerializer):
+    category = CategorySerializer()
+    class Meta:
+        model = Post
+        fields = ("title","slug","excerpt","cover_image","published_at","category","is_featured")
+
+class PostDetailSerializer(serializers.ModelSerializer):
+    category = CategorySerializer()
+    class Meta:
+        model = Post
+        fields = ("title","slug","excerpt","content","cover_image","published_at","category",
+                  "meta_title","meta_description","canonical_url","robots","og_title","og_description","og_image")
+
+
+blog/views.py (DRF)
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from django.shortcuts import get_object_or_404
+from .models import Post
+from .serializers import PostListSerializer, PostDetailSerializer
+
+class BlogPosts(APIView):
+    def get(self, request):
+        limit = int(request.GET.get("limit", 12))
+        qs = Post.objects.filter(published=True).order_by("-published_at")[:limit]
+        return Response({"results": PostListSerializer(qs, many=True).data})
+
+class BlogFeatured(APIView):
+    def get(self, request):
+        limit = int(request.GET.get("limit", 6))
+        qs = Post.objects.filter(published=True, is_featured=True).order_by("-published_at")[:limit]
+        return Response({"results": PostListSerializer(qs, many=True).data})
+
+class BlogPostDetail(APIView):
+    def get(self, request, slug):
+        post = get_object_or_404(Post, slug=slug, published=True)
+        return Response(PostDetailSerializer(post).data)
+
+
+core/settings.py
+
+Add: INSTALLED_APPS += ["blog"]
+
+Keep rest_framework, corsheaders already in place.
+
+core/urls.py (append)
+
+from django.urls import path
+from blog.views import BlogPosts, BlogPostDetail, BlogFeatured
+from listings.views import (
+    BusinessSearch, CountriesList, CitiesByCountry, CategoriesList, BusinessesFiltered
+)
+
+urlpatterns = [
+    # existing…
+    path("api/v1/search/businesses/", BusinessSearch.as_view()),
+    path("api/v1/countries/", CountriesList.as_view()),
+    path("api/v1/countries/<str:country>/cities/", CitiesByCountry.as_view()),
+    path("api/v1/categories/", CategoriesList.as_view()),
+    path("api/v1/businesses/", BusinessesFiltered.as_view()),
+
+    # blog
+    path("api/v1/blog/posts/", BlogPosts.as_view()),
+    path("api/v1/blog/posts/featured/", BlogFeatured.as_view()),
+    path("api/v1/blog/posts/<slug:slug>/", BlogPostDetail.as_view()),
+]
+
+
+Migrate & quick seed
+
+python manage.py makemigrations blog
+python manage.py migrate
+# Optional: create 2-3 posts via Django Admin to see slider/cards
+
+2) Next.js: Blog pages + slider, fix Countries 404, new nav pages
+
+Fix Countries 404
+
+Ensure file exists: frontend/src/app/[lang]/countries/page.tsx
+
+Ensure next.config.js includes i18n.locales with ['en','fr','nl','pt','de','es'].
+
+In the header nav (your [lang]/layout.tsx), the Countries link must be href=/{lang}/countries.
+
+Blog API helper frontend/src/lib/api.ts
+
+export const API = "http://127.0.0.1:8000/api/v1";
+export async function j(path: string, init?: RequestInit) {
+  const r = await fetch(`${API}${path}`, { cache: "no-store", ...(init||{}) });
+  if (!r.ok) return null;
+  return r.json();
+}
+
+
+Blog list page frontend/src/app/[lang]/blog/page.tsx
+
+import Link from "next/link";
+import { j } from "@/lib/api";
+
+export default async function Page({ params }: any) {
+  const { results } = (await j("/blog/posts/?limit=24")) || { results: [] };
+  return (
+    <div className="space-y-6">
+      <h1 className="text-2xl font-bold">Blog</h1>
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {results.map((p:any)=>(
+          <Link key={p.slug} href={`/${params.lang}/blog/${p.slug}`} className="card">
+            <div className="card-body">
+              {p.cover_image && <img src={p.cover_image} alt={p.title} className="mb-3 h-40 w-full object-cover rounded-lg" />}
+              <div className="font-semibold">{p.title}</div>
+              {p.category?.name && <div className="text-sm text-gray-600">{p.category.name}</div>}
+            </div>
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+
+Blog detail frontend/src/app/[lang]/blog/[slug]/page.tsx
+
+import { j } from "@/lib/api";
+
+export default async function Page({ params }: any) {
+  const p = await j(`/blog/posts/${params.slug}/`);
+  if (!p) return <div className="rounded-xl border p-8">Not found</div>;
+  return (
+    <article className="prose max-w-none">
+      {p.cover_image && <img src={p.cover_image} alt={p.title} className="mb-6 rounded-xl" />}
+      <h1>{p.title}</h1>
+      {p.category?.name && <p><em>{p.category.name}</em></p>}
+      <div dangerouslySetInnerHTML={{ __html: p.content }} />
+    </article>
+  );
+}
+
+
+Blog slider component frontend/src/components/BlogSlider.tsx
+
+"use client";
+import { useEffect, useState } from "react";
+import Link from "next/link";
+
+export default function BlogSlider({ lang }: { lang: string }) {
+  const [items, setItems] = useState<any[]>([]);
+  useEffect(() => {
+    (async () => {
+      const r = await fetch("http://127.0.0.1:8000/api/v1/blog/posts/featured/?limit=6", { cache: "no-store" });
+      const j = await r.json();
+      setItems(j.results || []);
+    })();
+  }, []);
+  if (!items.length) return null;
+  return (
+    <section className="mt-10">
+      <h2 className="mb-3 text-lg font-semibold">Latest from the blog</h2>
+      <div className="grid gap-4 md:grid-cols-3">
+        {items.map((p:any)=>(
+          <Link key={p.slug} href={`/${lang}/blog/${p.slug}`} className="card">
+            <div className="card-body">
+              {p.cover_image && <img src={p.cover_image} alt={p.title} className="mb-3 h-32 w-full object-cover rounded-lg" />}
+              <div className="font-semibold">{p.title}</div>
+              {p.category?.name && <div className="text-sm text-gray-600">{p.category.name}</div>}
+            </div>
+          </Link>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+
+Drop slider at bottom of key pages
+At the end of frontend/src/app/[lang]/search/page.tsx, countries pages, etc.:
+
+import dynamic from "next/dynamic";
+const BlogSlider = dynamic(() => import("@/components/BlogSlider"), { ssr: false });
+/* ...inside component JSX... */
+<BlogSlider lang={lang} />
+
+
+New simple nav pages (stubs)
+Create:
+
+src/app/[lang]/listings/free/page.tsx
+src/app/[lang]/listings/paid/page.tsx
+
+
+Each can just be:
+
+export default function Page() {
+  return (
+    <div className="space-y-4">
+      <h1 className="text-2xl font-bold">Free Listings</h1>
+      <p>Submit your business for a free basic listing.</p>
+      <button className="btn btn-primary">Add more later</button>
+    </div>
+  );
+}
+
+
+Repeat for /paid with appropriate text.
+
+Header nav update in [lang]/layout.tsx:
+
+Add links to /{lang}/countries, /{lang}/categories, /{lang}/listings/free, /{lang}/listings/paid.
+
+3) Per-page SEO in Next.js (consuming Django SEO)
+
+On each page that fetches a Post or Page, set <title> and meta from the API data (fallback to sensible defaults). Example in blog detail:
+
+frontend/src/app/[lang]/blog/[slug]/head.tsx
+
+import { API } from "@/lib/api";
+export default async function Head({ params }: any) {
+  const r = await fetch(`${API}/blog/posts/${params.slug}/`, { cache: "no-store" });
+  if (!r.ok) return <title>Blog | ListAcross EU</title>;
+  const p = await r.json();
+  return (
+    <>
+      <title>{p.meta_title || p.title}</title>
+      {p.meta_description && <meta name="description" content={p.meta_description} />}
+      {p.canonical_url && <link rel="canonical" href={p.canonical_url} />}
+      {p.robots && <meta name="robots" content={p.robots} />}
+      {p.og_title && <meta property="og:title" content={p.og_title} />}
+      {p.og_description && <meta property="og:description" content={p.og_description} />}
+      {p.og_image && <meta property="og:image" content={p.og_image} />}
+    </>
+  );
+}
+
+4) Countries 404 — enforce routes
+
+Ensure these files exist (exact paths):
+
+frontend/src/app/[lang]/countries/page.tsx
+
+frontend/src/app/[lang]/countries/[country]/page.tsx
+
+frontend/src/app/[lang]/categories/page.tsx
+
+frontend/src/app/[lang]/categories/[category]/page.tsx
+
+Restart npm run dev after creating them.
+
+5) Run checklist
+
+Django:
+
+python manage.py makemigrations
+python manage.py migrate
+python manage.py runserver 0.0.0.0:8000
+
+
+Admin: create 2 categories + 3 posts (mark 1–2 as featured).
+
+Next.js:
+
+cd frontend && npm run dev
+
+
+Verify:
+
+/{lang}/countries loads (no 404)
+
+/{lang}/blog lists posts
+
+Blog slider shows at bottom of /[lang]/search (after you added component)
+
+Admin forms show SEO at the top with SERP preview counters
+
+Deliverables
+
+Django blog app (models, admin, API).
+
+Per-page SEO fields in admin first (SEO on top) with Google-style preview.
+
+Next.js blog list, detail, and slider cards.
+
+Fixed Countries 404 + new nav pages (Cities, Categories, Free, Paid).
+
+“Add more later” button present on listings pages.
+
+
+===============================================================================
+
+add an EU flag that switches language to EN and shows featured businesses EU-wide, while country flags keep showing country-scoped featured.
+
+Here’s the clean way to ship it today.
+
+What changes
+
+Header flag bar: add an EU flag item that routes to /{lang}?scope=EU (we’ll default lang=en when EU is clicked).
+
+Backend: add is_featured to Business (if not there) and an endpoint to fetch featured by scope:
+
+country=PT → featured in Portugal
+
+scope=EU → featured across the EU (ignores country)
+
+Frontend: homepage (and any featured widget) reads scope/country from URL and calls the featured endpoint accordingly.
+
+Minimal backend addition (Django)
+1) Model field (if you don’t have it)
+
+listings/models.py
+
+class Business(models.Model):
+    name = models.CharField(max_length=255)
+    category = models.CharField(max_length=120, blank=True)
+    address = models.CharField(max_length=255, blank=True)
+    city = models.CharField(max_length=120, blank=True)
+    country = models.CharField(max_length=2, blank=True)  # 'PT','FR',...
+    description = models.TextField(blank=True)
+    is_featured = models.BooleanField(default=False)  # NEW
+
+
+Migrate:
+
+python manage.py makemigrations listings
+python manage.py migrate
+
+2) Featured endpoint
+
+listings/views.py
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from django.db.models import Q
+from .models import Business
+from .serializers import BusinessSerializer
+
+class FeaturedBusinesses(APIView):
+    def get(self, request):
+        country = (request.GET.get("country") or "").strip()
+        scope = (request.GET.get("scope") or "").strip().upper()
+        limit = int(request.GET.get("limit", 12))
+        qs = Business.objects.filter(is_featured=True)
+
+        if scope == "EU":
+            pass  # EU-wide = no country filter
+        elif country:
+            qs = qs.filter(country__iexact=country)
+
+        items = qs.order_by("name")[:limit]
+        return Response({"results": BusinessSerializer(items, many=True).data})
+
+
+core/urls.py
+
+from listings.views import FeaturedBusinesses
+urlpatterns += [
+    path("api/v1/featured/", FeaturedBusinesses.as_view(), name="featured"),
+]
+
+Frontend (Next.js)
+1) Add EU flag in header
+
+In src/app/[lang]/layout.tsx where you render flags/language pills, add EU that always routes to EN and sets scope=EU.
+
+<div className="flex items-center gap-2">
+  {/* existing language pills */}
+  {["en","fr","nl","pt","de","es"].map(code => (
+    <Link key={code} href={`/${code}`} className={`px-2 py-1 rounded ${code===lang ? "bg-brand text-white" : "hover:bg-gray-100"}`}>
+      {code.toUpperCase()}
+    </Link>
+  ))}
+  {/* EU pill (forces English + scope=EU) */}
+  <Link
+    href={`/en?scope=EU`}
+    className="px-2 py-1 rounded hover:bg-gray-100"
+    title="EU-wide featured"
+  >
+    🇪🇺 EU
+  </Link>
+</div>
+
+2) Featured widget that respects country/EU
+
+Create a tiny component you can drop on the homepage (or countries page footer).
+
+src/components/FeaturedBusinesses.tsx
+
+"use client";
+import { useEffect, useState } from "react";
+import Link from "next/link";
+
+export default function FeaturedBusinesses({ lang, country, scope }: { lang: string, country?: string, scope?: string }) {
+  const [items, setItems] = useState<any[]>([]);
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (scope?.toUpperCase() === "EU") params.set("scope","EU");
+    else if (country) params.set("country", country);
+    params.set("limit","12");
+    fetch(`http://127.0.0.1:8000/api/v1/featured/?${params.toString()}`, { cache: "no-store" })
+      .then(r => r.json()).then(j => setItems(j.results || [])).catch(()=>{});
+  }, [country, scope]);
+
+  if (!items.length) return null;
+
+  return (
+    <section className="mt-10">
+      <h2 className="mb-3 text-lg font-semibold">
+        {scope?.toUpperCase()==="EU" ? "Featured across the EU" : `Featured in ${country}`}
+      </h2>
+      <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-4">
+        {items.map((b:any) => (
+          <article key={`${b.id}-${b.name}`} className="card">
+            <div className="card-body">
+              <div className="font-semibold">{b.name}</div>
+              <div className="text-sm text-gray-600">{b.category} · {b.city}, {b.country}</div>
+              {b.address && <div className="text-sm mt-1">{b.address}</div>}
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+3) Use it on the homepage (and countries page)
+
+Homepage src/app/[lang]/page.tsx (or wherever your home is):
+
+import FeaturedBusinesses from "@/components/FeaturedBusinesses";
+
+export default async function Home({ params, searchParams }: any) {
+  const lang = params.lang ?? "en";
+  const scope = searchParams?.scope; // EU or undefined
+  // you can also read country from a selector
+  return (
+    <div className="space-y-8">
+      {/* hero, search, etc. */}
+      {/* EU if ?scope=EU, else pass a default country if you have it */}
+      <FeaturedBusinesses lang={lang} scope={scope} />
+    </div>
+  );
+}
+
+
+On a country landing page (e.g., /[lang]/countries/[country]):
+
+import FeaturedBusinesses from "@/components/FeaturedBusinesses";
+export default async function Page({ params }: any) {
+  const { lang, country } = params;
+  return (
+    <div className="space-y-8">
+      <h1 className="text-2xl font-bold">Cities in {country}</h1>
+      {/* cities grid here */}
+      <FeaturedBusinesses lang={lang} country={country} />
+    </div>
+  );
+}
+
+{/* OLD (forced EN) */}
+// <Link href={`/en?scope=EU`} className="px-2 py-1 rounded hover:bg-gray-100" title="EU-wide featured">🇪🇺 EU</Link>
+
+{/* NEW (keep current language) */}
+<Link
+  href={`/${params.lang}?scope=EU`}
+  className="px-2 py-1 rounded hover:bg-gray-100"
+  title="EU-wide featured"
+>
+  🇪🇺 EU
+</Link>
+
+
+=================================================================================================
+
+Objective: Soft-launch ListAcross EU with Free Listing + Claim Business forms, no pricing yet. Add feature flags so backend changes stay invisible. Fix routes if needed.
+
+Backend (Django/DRF)
+
+Feature flags
+
+Add SiteConfig model (singleton) with: show_pricing:boolean=False, claims_enabled:boolean=True, free_submissions_enabled:boolean=True.
+
+Add GET /api/v1/config returning those flags.
+
+Models
+
+# listings/models.py
+class PendingBusiness(models.Model):
+    name = models.CharField(max_length=255)
+    category = models.CharField(max_length=120, blank=True)
+    address = models.CharField(max_length=255, blank=True)
+    city = models.CharField(max_length=120, blank=True)
+    country = models.CharField(max_length=2)
+    description = models.TextField(blank=True)
+    website = models.URLField(blank=True)
+    email = models.EmailField(blank=True)
+    phone = models.CharField(max_length=40, blank=True)
+    lang = models.CharField(max_length=5, default="en")
+    status = models.CharField(max_length=10, default="pending")  # pending|approved|rejected
+    created_at = models.DateTimeField(auto_now_add=True)
+
+class BusinessClaim(models.Model):
+    business = models.ForeignKey(Business, on_delete=models.CASCADE, related_name="claims")
+    claimant_name = models.CharField(max_length=120)
+    claimant_email = models.EmailField()
+    proof_url = models.URLField(blank=True)
+    message = models.TextField(blank=True)
+    status = models.CharField(max_length=10, default="pending")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+# Business additions:
+# - owner_email: EmailField(blank=True)
+# - owner_verified_at: DateTimeField(null=True, blank=True)
+
+
+Serializers + Views
+
+POST /api/v1/listings/submit → create PendingBusiness (validate minimal fields).
+
+POST /api/v1/listings/claim → create BusinessClaim, send verification email (stub ok).
+
+GET /api/v1/listings/claim/status?id=... → returns status.
+
+POST /api/v1/moderation/pending/<id>/approve → moves to Business (admin-only).
+
+Keep all existing endpoints unchanged.
+
+Admin
+
+Register PendingBusiness, BusinessClaim with list filters (status, country, city).
+
+Approve action: converts PendingBusiness → Business with slug; sets status=approved.
+
+Migrations
+
+Create migrations for new models + Business fields (is_featured already exists if you added it).
+
+Frontend (Next.js App Router)
+
+Config fetch
+
+On layout load, call /api/v1/config. Hide pricing links if show_pricing=false.
+
+Pages
+
+/[lang]/listings/free → submission form (name, category, address, city, country, email/phone, description).
+
+POST to /api/v1/listings/submit.
+
+Show success state + moderation message.
+
+Add <meta name="robots" content="noindex,follow">.
+
+/[lang]/listings/claim/[id] → claim form.
+
+POST to /api/v1/listings/claim.
+
+Show “check your email to verify ownership” message.
+
+noindex.
+
+Ensure header nav includes Countries, Categories, Free listings, Paid listings (but hide Paid when show_pricing=false).
+
+Routes fix
+
+Verify the files exist:
+
+src/app/[lang]/countries/page.tsx
+
+src/app/[lang]/countries/[country]/page.tsx
+
+src/app/[lang]/categories/page.tsx
+
+src/app/[lang]/categories/[category]/page.tsx
+
+Restart dev server after creating.
+
+UI
+
+Use existing Tailwind classes.
+
+Add small success banners on form submit.
+
+Keep “Add more later” button as a placeholder.
+
+Acceptance
+
+Import script can run any time; front pages keep working.
+
+Free/Claim forms submit and return 200 with JSON.
+
+Config flags control visibility of pricing.
+
+Countries link no longer 404.
+
+Forms have noindex.
+
+====================================================================================================
+

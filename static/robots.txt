@@ -1,0 +1,47 @@
+User-agent: *
+Disallow: /
+
+# DEVELOPMENT MODE - BLOCKING ALL SEARCH ENGINES
+# This robots.txt blocks all crawling during development
+# Update this when ready for production deployment
+
+# PRODUCTION CONFIGURATION (COMMENTED OUT FOR DEV):
+# Allow: /
+# Allow: /businesses/
+# Allow: /cities/
+# Allow: /*/*/
+# Allow: /category/
+# 
+# Block admin and private areas:
+# Disallow: /admin/
+# Disallow: /media/private/
+# Disallow: /api/internal/
+# Disallow: /accounts/
+# Disallow: /*?print=1
+# Disallow: /*?ajax=1
+
+# Block search filters to avoid duplicate content
+Disallow: /*?sort=
+Disallow: /*?filter=
+Disallow: /*?page=
+
+# Allow important resources
+Allow: /static/css/
+Allow: /static/js/
+Allow: /static/images/
+
+# Crawl delay (be respectful)
+Crawl-delay: 1
+
+# Sitemaps
+Sitemap: https://listacross.eu/sitemap.xml
+Sitemap: https://listacross.eu/sitemap-countries.xml
+Sitemap: https://listacross.eu/sitemap-cities.xml
+Sitemap: https://listacross.eu/sitemap-businesses.xml
+
+# Social Media Bots
+User-agent: facebookexternalhit/*
+Allow: /
+
+User-agent: Twitterbot
+Allow: /

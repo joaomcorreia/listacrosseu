@@ -1,0 +1,101 @@
+# French translation file for ListAcross EU
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: fr\n"
+
+msgid "Welcome to ListAcross EU"
+msgstr "Bienvenue sur ListAcross EU"
+
+msgid "Find the best businesses across Europe"
+msgstr "Trouvez les meilleures entreprises à travers l'Europe"
+
+msgid "Home"
+msgstr "Accueil"
+
+msgid "About"
+msgstr "À propos"
+
+msgid "Contact"
+msgstr "Contact"
+
+msgid "All rights reserved."
+msgstr "Tous droits réservés."
+
+msgid "Find Businesses"
+msgstr "Trouver des entreprises"
+
+msgid "Search for businesses..."
+msgstr "Rechercher des entreprises..."
+
+msgid "All Categories"
+msgstr "Toutes les catégories"
+
+msgid "All Cities"
+msgstr "Toutes les villes"
+
+msgid "Search"
+msgstr "Rechercher"
+
+msgid "Featured Businesses"
+msgstr "Entreprises en vedette"
+
+msgid "View Details"
+msgstr "Voir les détails"
+
+msgid "Hello! How can I assist you with finding businesses in Europe today?"
+msgstr "Bonjour! Comment puis-je vous aider à trouver des entreprises en Europe aujourd'hui?"
+
+msgid "I can help you find businesses, search by category, or provide information about our services. What would you like to know?"
+msgstr "Je peux vous aider à trouver des entreprises, rechercher par catégorie, ou fournir des informations sur nos services. Que souhaitez-vous savoir?"
+
+msgid "Thank you for your message. I'm here to help you navigate ListAcross EU and find the best businesses across Europe. Could you please be more specific about what you're looking for?"
+msgstr "Merci pour votre message. Je suis là pour vous aider à naviguer sur ListAcross EU et trouver les meilleures entreprises à travers l'Europe. Pourriez-vous être plus précis sur ce que vous recherchez?"
+
+msgid "English"
+msgstr "Anglais"
+
+msgid "French"
+msgstr "Français"
+
+msgid "Dutch"
+msgstr "Néerlandais"
+
+msgid "Portuguese"
+msgstr "Portugais"
+
+msgid "German"
+msgstr "Allemand"
+
+msgid "Spanish"
+msgstr "Espagnol"
+
+msgid "Arabic"
+msgstr "Arabe"
+
+msgid "Name"
+msgstr "Nom"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Subject"
+msgstr "Sujet"
+
+msgid "Message"
+msgstr "Message"
+
+msgid "Send Message"
+msgstr "Envoyer le message"
+
+msgid "Our Mission"
+msgstr "Notre Mission"
+
+msgid "Supported Languages"
+msgstr "Langues Supportées"
+
+msgid "ListAcross EU is your comprehensive directory for finding the best businesses across Europe."
+msgstr "ListAcross EU est votre répertoire complet pour trouver les meilleures entreprises à travers l'Europe."
+
+msgid "Our platform connects customers with quality businesses in multiple languages, making it easy to discover services and products no matter where you are in Europe."
+msgstr "Notre plateforme connecte les clients avec des entreprises de qualité dans plusieurs langues, facilitant la découverte de services et produits où que vous soyez en Europe."

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    
+    <!-- Homepage in all languages -->
+    <url>
+        <loc>{{ protocol }}://{{ domain }}/</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="{{ protocol }}://{{ domain }}/en/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="{{ protocol }}://{{ domain }}/fr/"/>
+        <xhtml:link rel="alternate" hreflang="nl" href="{{ protocol }}://{{ domain }}/nl/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="{{ protocol }}://{{ domain }}/pt/"/>
+        <xhtml:link rel="alternate" hreflang="de" href="{{ protocol }}://{{ domain }}/de/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="{{ protocol }}://{{ domain }}/es/"/>
+        <xhtml:link rel="alternate" hreflang="ar" href="{{ protocol }}://{{ domain }}/ar/"/>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+    
+    <!-- Business listings -->
+    {% for business in businesses %}
+    <url>
+        <loc>{{ protocol }}://{{ domain }}/en/businesses/{{ business.slug }}/</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="{{ protocol }}://{{ domain }}/en/businesses/{{ business.slug }}/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="{{ protocol }}://{{ domain }}/fr/businesses/{{ business.slug }}/"/>
+        <xhtml:link rel="alternate" hreflang="nl" href="{{ protocol }}://{{ domain }}/nl/businesses/{{ business.slug }}/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="{{ protocol }}://{{ domain }}/pt/businesses/{{ business.slug }}/"/>
+        <xhtml:link rel="alternate" hreflang="de" href="{{ protocol }}://{{ domain }}/de/businesses/{{ business.slug }}/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="{{ protocol }}://{{ domain }}/es/businesses/{{ business.slug }}/"/>
+        <xhtml:link rel="alternate" hreflang="ar" href="{{ protocol }}://{{ domain }}/ar/businesses/{{ business.slug }}/"/>
+        <lastmod>{{ business.updated_at|date:"c" }}</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    {% endfor %}
+    
+</urlset>

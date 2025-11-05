@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    {# SEO Meta Tags #}
+    <title>{{ object.get_meta_title|default:site_title }}</title>
+    <meta name="description" content="{{ object.get_meta_description|default:site_description }}">
+    
+    {# Canonical URL #}
+    {% if object.canonical_url %}
+        <link rel="canonical" href="{{ object.canonical_url }}">
+    {% else %}
+        <link rel="canonical" href="{{ request.build_absolute_uri }}">
+    {% endif %}
+    
+    {# Robots #}
+    <meta name="robots" content="{{ object.robots|default:'index,follow' }}">
+    
+    {# Open Graph Tags #}
+    <meta property="og:title" content="{{ object.get_og_title|default:object.get_meta_title|default:site_title }}">
+    <meta property="og:description" content="{{ object.get_og_description|default:object.get_meta_description|default:site_description }}">
+    <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    {% if object.og_image %}
+        <meta property="og:image" content="{{ object.og_image }}">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="630">
+    {% endif %}
+    <meta property="og:site_name" content="ListAcross EU">
+    
+    {# Twitter Cards #}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ object.get_og_title|default:object.get_meta_title|default:site_title }}">
+    <meta name="twitter:description" content="{{ object.get_og_description|default:object.get_meta_description|default:site_description }}">
+    {% if object.og_image %}
+        <meta name="twitter:image" content="{{ object.og_image }}">
+    {% endif %}
+    
+    {# Additional Meta Tags #}
+    <meta name="author" content="ListAcross EU">
+    <meta name="language" content="{{ LANGUAGE_CODE }}">
+    
+    {# Structured Data - Business Schema #}
+    {% if object|typename == 'Business' %}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "{{ object.name }}",
+        "description": "{{ object.get_meta_description }}",
+        {% if object.website %}"url": "{{ object.website }}",{% endif %}
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "{{ object.address }}",
+            "addressLocality": "{{ object.city }}",
+            "addressCountry": "{{ object.country }}",
+            "postalCode": "{{ object.postal_code }}"
+        },
+        {% if object.phone %}"telephone": "{{ object.phone }}",{% endif %}
+        {% if object.email %}"email": "{{ object.email }}",{% endif %}
+        "sameAs": "{{ request.build_absolute_uri }}"
+    }
+    </script>
+    {% endif %}
+    
+    {# Blog Post Schema #}
+    {% if object|typename == 'BlogPost' %}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "{{ object.title }}",
+        "description": "{{ object.get_meta_description }}",
+        "author": {
+            "@type": "Person",
+            "name": "{{ object.author.get_full_name|default:object.author.username }}"
+        },
+        "datePublished": "{{ object.published_at|date:'c' }}",
+        "dateModified": "{{ object.updated_at|date:'c' }}",
+        {% if object.cover_image %}"image": "{{ object.cover_image }}",{% endif %}
+        "publisher": {
+            "@type": "Organization",
+            "name": "ListAcross EU"
+        }
+    }
+    </script>
+    {% endif %}
+    
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+    {% block content %}
+    <!-- Page content goes here -->
+    {% endblock %}
+    
+    {# SEO-friendly footer with schema #}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "ListAcross EU",
+        "url": "{{ request.scheme }}://{{ request.get_host }}",
+        "description": "Find businesses across Europe - comprehensive directory of European companies",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "{{ request.scheme }}://{{ request.get_host }}/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+</body>
+</html>
