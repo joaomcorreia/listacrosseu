@@ -553,6 +553,139 @@ export default function AdminPagesList() {
       <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden">
         <div className="p-4 border-b border-gray-100">
           <h2 className="text-lg font-semibold text-gray-800">Website Preview</h2>
+          
+          {/* Complete SEO Settings for Current Page */}
+          <div className="mt-4 mb-4 p-4 bg-gray-50 rounded-lg border">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold text-gray-800">SEO Settings for Current Page</h3>
+              <span className="text-xs text-gray-500 px-2 py-1 bg-white rounded border">
+                /eu (default)
+              </span>
+            </div>
+            
+            {/* Tab Navigation */}
+            <div className="border-b border-gray-200 mb-4">
+              <nav className="-mb-px flex space-x-6">
+                <button className="py-2 px-1 border-b-2 border-blue-500 text-blue-600 font-medium text-sm">
+                  📝 Basic SEO
+                </button>
+                <button className="py-2 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-700 font-medium text-sm">
+                  📱 Social Media
+                </button>
+                <button className="py-2 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-700 font-medium text-sm">
+                  📊 Analysis
+                </button>
+              </nav>
+            </div>
+
+            {/* Basic SEO Tab Content */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Meta Title</label>
+                  <input
+                    type="text"
+                    placeholder="Page title for search engines"
+                    className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    defaultValue="Find trusted services across the EU"
+                    maxLength={60}
+                  />
+                  <div className="flex justify-between text-xs text-gray-500 mt-1">
+                    <span>37/60 characters</span>
+                    <span className="px-2 py-1 rounded text-green-600 bg-green-100">GOOD</span>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Meta Description</label>
+                  <textarea
+                    rows={3}
+                    placeholder="Brief description that appears in search results"
+                    className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    defaultValue="Discover featured businesses from all EU countries. Compare categories, explore hubs, and advertise EU-wide."
+                    maxLength={155}
+                  />
+                  <div className="flex justify-between text-xs text-gray-500 mt-1">
+                    <span>109/155 characters</span>
+                    <span className="px-2 py-1 rounded text-green-600 bg-green-100">GOOD</span>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Canonical URL</label>
+                  <input
+                    type="url"
+                    placeholder="https://listacross.eu/page"
+                    className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    defaultValue="https://listacross.eu/eu"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Focus Keywords</label>
+                  <input
+                    type="text"
+                    placeholder="business directory, european companies, eu marketplace"
+                    className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    defaultValue="eu business directory, european services, eu companies"
+                  />
+                  <p className="text-xs text-gray-500 mt-1">Separate keywords with commas</p>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Social Title (Open Graph)</label>
+                  <input
+                    type="text"
+                    placeholder="Title when shared on social media"
+                    className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    defaultValue="Find trusted services across the EU - ListAcross"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Social Description</label>
+                  <textarea
+                    rows={2}
+                    placeholder="Description when shared on social media"
+                    className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    defaultValue="One directory. 27 countries. 6 languages. EU-wide exposure for your business."
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Social Image URL</label>
+                  <input
+                    type="url"
+                    placeholder="https://listacross.eu/images/social-share.jpg"
+                    className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    defaultValue="https://listacross.eu/images/eu-social.jpg"
+                  />
+                  <p className="text-xs text-gray-500 mt-1">Recommended size: 1200x630px</p>
+                </div>
+
+                {/* Quick Actions */}
+                <div className="pt-3 border-t border-gray-200">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-3 text-xs text-gray-600">
+                      <span className="flex items-center"><span className="w-2 h-2 bg-green-500 rounded-full mr-1"></span> SEO Score: 87%</span>
+                      <span>Last saved: 2 min ago</span>
+                    </div>
+                    <div className="flex space-x-2">
+                      <button className="px-3 py-1 text-xs bg-gray-100 text-gray-700 rounded hover:bg-gray-200 transition-colors">
+                        Preview
+                      </button>
+                      <button className="px-3 py-1 text-xs bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors">
+                        Save SEO
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
           <p className="text-sm text-gray-600 mt-1">Live preview of the main website</p>
         </div>
         <div className="relative">

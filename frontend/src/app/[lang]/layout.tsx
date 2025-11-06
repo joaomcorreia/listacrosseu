@@ -24,16 +24,14 @@ export default function LangLayout({
   const t = UI[lang];
 
   return (
-    <html lang={lang}>
-      <body className="min-h-screen">
-        <ScrollNavbar lang={lang} t={t} />
-        
-        {children}
+    <div className="min-h-screen">
+      <ScrollNavbar lang={lang} t={t} />
+      
+      <main>{children}</main>
 
-        <BlogPostsFooter lang={lang} limit={3} />
+      <BlogPostsFooter lang={lang} limit={3} />
 
-        <Footer lang={lang} />
-      </body>
-    </html>
+      <Footer lang={lang} />
+    </div>
   );
 }

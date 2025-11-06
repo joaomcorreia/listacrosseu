@@ -2,6 +2,17 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  // Optimize for stability
+  webpack: (config, { dev }) => {
+    if (dev) {
+      // Reduce memory usage in development
+      config.watchOptions = {
+        poll: 1000,
+        aggregateTimeout: 300,
+      }
+    }
+    return config
+  },
   // No experimental.turbo or Turbopack here
   async rewrites() {
     return [
@@ -27,6 +38,12 @@ const nextConfig = {
         source: '/api/v1/blog/posts',
         destination: 'http://127.0.0.1:8000/api/v1/blog/posts/',
       },
+      // Add specific search endpoint rewrite
+      {
+        source: '/api/v1/search/businesses/:path*',
+        destination: 'http://127.0.0.1:8000/api/v1/search/businesses/:path*',
+      },
+      // General API catch-all (must be last)
       {
         source: '/api/v1/:path*',
         destination: 'http://127.0.0.1:8000/api/v1/:path*',

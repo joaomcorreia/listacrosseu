@@ -18,7 +18,10 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls.i18n import i18n_patterns
-from blog.views import BlogPosts, BlogPostDetail, BlogFeatured, BlogPostsAdmin
+from blog.views import (BlogPosts, BlogPostDetail, BlogFeatured, BlogPostsAdmin, CategoryList,
+                       ai_generate_outline, ai_generate_draft, ai_generate_seo, ai_translate_article,
+                       admin_ai_generate_outline, admin_ai_generate_draft, admin_ai_generate_seo, 
+                       admin_create_post_from_ai, admin_publish_post)
 from listings.views import FeaturedBusinesses
 from .admin_api_views import dashboard_stats, csrf_token, admin_health_check
 
@@ -31,6 +34,7 @@ urlpatterns = [
     path('seo/', include('seo.urls')),
     
     # Blog API endpoints
+    path("api/v1/blog/categories/", CategoryList.as_view(), name="blog_categories"),
     path("api/v1/blog/posts/", BlogPosts.as_view(), name="blog_posts"),
     path("api/v1/blog/posts/featured/", BlogFeatured.as_view(), name="blog_featured"),
     path("api/v1/blog/posts/<slug:slug>/", BlogPostDetail.as_view(), name="blog_post_detail"),
@@ -39,6 +43,22 @@ urlpatterns = [
     path("api/v1/admin/blog/posts/", BlogPostsAdmin.as_view(), name="admin_blog_posts"),
     path("api/v1/admin/blog/posts/<int:post_id>/", BlogPostsAdmin.as_view(), name="admin_blog_post_detail"),
     
+    # Blog AI Generation endpoints (legacy paths for compatibility)
+    path("api/v1/blog/ai/outline/", ai_generate_outline, name="blog_ai_outline"),
+    path("api/v1/blog/ai/draft/", ai_generate_draft, name="blog_ai_draft"),
+    path("api/v1/blog/ai/seo/", ai_generate_seo, name="blog_ai_seo"),
+    path("api/v1/blog/ai/translate/", ai_translate_article, name="blog_ai_translate"),
+    
+    # Admin AI Generation Flow (complete post creation workflow)
+    path("api/v1/ai/generate/outline/", admin_ai_generate_outline, name="admin_ai_generate_outline"),
+    path("api/v1/ai/generate/draft/", admin_ai_generate_draft, name="admin_ai_generate_draft"),
+    path("api/v1/ai/generate/seo/", admin_ai_generate_seo, name="admin_ai_generate_seo"),
+    path("api/v1/posts/", admin_create_post_from_ai, name="admin_create_post_from_ai"),
+    path("api/v1/posts/<int:post_id>/publish/", admin_publish_post, name="admin_publish_post"),
+    
+    # Blog AI API endpoints (new service)
+    path("api/v1/blog/ai/", include('blog_ai.urls')),
+    
     # Featured businesses endpoint
     path("api/v1/featured/", FeaturedBusinesses.as_view(), name="featured_businesses"),
     
@@ -46,6 +66,9 @@ urlpatterns = [
     path("api/v1/dashboard/stats/", dashboard_stats, name="dashboard_stats"),
     path("api/v1/csrf-token/", csrf_token, name="csrf_token"),
     path("api/v1/admin/health/", admin_health_check, name="admin_health_check"),
+    
+    # Core settings API
+    path("api/v1/core/", include("core.urls")),
 ]
 
 # Add i18n patterns for internationalized URLs

@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { fetchSeoPage } from '../../../lib/seoApi';
+import { fetchSeoPage } from '@/lib/seoApi';
 import Breadcrumbs from '../../../components/seo/Breadcrumbs';
 
 interface CountryPageProps {

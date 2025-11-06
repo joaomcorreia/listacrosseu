@@ -349,14 +349,4 @@ export default async function Page({ params }: { params: { lang?: string } }) {
   );
 }
 
-// -------------------------
-// Lightweight test hooks (won't run in production)
-// -------------------------
-export function __test_normalizeLang(v?: string) { return normalizeLang(v); }
-export function __test_tFor(v?: string) { return tFor(v); }
-
-if (process.env.NODE_ENV === 'test') {
-  console.assert(__test_normalizeLang('EN') === 'en', 'normalizeLang should lowercase and accept EN→en');
-  console.assert(__test_normalizeLang('xx') === 'en', 'normalizeLang should fallback to en for unsupported');
-  console.assert(__test_tFor('xx')?.seo?.title?.length > 0, 'tFor should fallback to EN dict');
-}
+// Test functions removed to fix Next.js build compatibility

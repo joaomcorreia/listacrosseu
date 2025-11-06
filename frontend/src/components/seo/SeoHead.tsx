@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { SeoPage, buildMetaTags, getStructuredData } from '../../lib/seoApi';
+import { SeoPage, buildMetaTags, getStructuredData } from '@/lib/seoApi';
 
 interface SeoHeadProps {
   seoPage: SeoPage;

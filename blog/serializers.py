@@ -8,7 +8,7 @@ class BlogCategorySerializer(serializers.ModelSerializer):
     
     class Meta:
         model = BlogCategory
-        fields = ['name', 'slug', 'description']
+        fields = ['id', 'name', 'slug', 'description']
     
     def get_name(self, obj):
         """Get category name in requested language"""

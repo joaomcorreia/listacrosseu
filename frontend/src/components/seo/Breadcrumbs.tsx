@@ -1,4 +1,6 @@
-import { SeoPage } from '../../lib/seoApi';
+'use client';
+
+import { SeoPage } from '@/lib/seoApi';
 
 interface BreadcrumbsProps {
   seoPage: SeoPage;

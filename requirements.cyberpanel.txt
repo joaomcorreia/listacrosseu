@@ -1,0 +1,30 @@
+# CyberPanel requirements for ListAcross EU
+Django==5.2.7
+djangorestframework==3.15.2
+django-cors-headers==4.5.0
+
+# Database - MySQL/MariaDB for CyberPanel
+mysqlclient==2.2.4
+
+# Cache
+redis==5.1.1
+django-redis==5.4.0
+
+# Static files
+whitenoise==6.8.2
+
+# Environment variables
+python-decouple==3.8
+python-dotenv==1.0.1
+
+# Security
+cryptography==43.0.3
+
+# Google Places API
+requests==2.32.3
+
+# WSGI Server for CyberPanel
+gunicorn==23.0.0
+
+# Image processing
+Pillow==11.0.0

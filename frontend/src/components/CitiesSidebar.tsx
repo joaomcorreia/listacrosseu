@@ -112,7 +112,7 @@ export default function CitiesSidebar({ selectedCountry, lang, onCitySelect }: C
   const fetchCities = async (country: string) => {
     setLoading(true);
     try {
-      const response = await fetch(`http://127.0.0.1:8000/api/v1/countries/${country}/cities/`, {
+      const response = await fetch(`/api/v1/countries/${country}/cities/`, {
         cache: 'no-store'
       });
       if (response.ok) {

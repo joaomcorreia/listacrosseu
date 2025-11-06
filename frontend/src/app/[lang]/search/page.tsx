@@ -2,7 +2,11 @@ import SearchBoxNew from "@/components/SearchBoxNew";
 
 async function fetchResults(q: string) {
   if (!q) return { total: 0, results: [] as any[] };
-  const url = `http://127.0.0.1:8000/api/v1/search/businesses/?q=${encodeURIComponent(q)}&limit=50`;
+  // Use direct Django API for server-side rendering, proxy for client-side
+  const isDev = process.env.NODE_ENV === 'development';
+  const baseUrl = isDev ? 'http://127.0.0.1:8000' : process.env.NEXT_PUBLIC_API_URL || '';
+  const url = `${baseUrl}/api/v1/search/businesses/?q=${encodeURIComponent(q)}&limit=50`;
+  
   try {
     const r = await fetch(url, { cache: "no-store" });
     if (!r.ok) return { total: 0, results: [] as any[] };

@@ -1,6 +1,14 @@
-export const API_BASE = process.env.NODE_ENV === 'production' 
-  ? 'https://your-domain.com/api/v1'
-  : 'http://127.0.0.1:8000/api/v1';
+// Use direct Django API for server-side rendering, proxy for client-side
+const getApiBase = () => {
+  const isDev = process.env.NODE_ENV === 'development';
+  if (typeof window === 'undefined') {
+    // Server-side rendering - use direct Django API
+    return isDev ? 'http://127.0.0.1:8000/api/v1' : 'https://your-domain.com/api/v1';
+  } else {
+    // Client-side - use Next.js proxy
+    return '/api/v1';
+  }
+};
 
 /**
  * Simple fetch wrapper for API calls
@@ -10,7 +18,8 @@ export const API_BASE = process.env.NODE_ENV === 'production'
  */
 export async function apiCall(path: string, init?: RequestInit) {
   try {
-    const response = await fetch(`${API_BASE}${path}`, { 
+    const apiBase = getApiBase();
+    const response = await fetch(`${apiBase}${path}`, { 
       cache: "no-store", 
       ...init 
     });

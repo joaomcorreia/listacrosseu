@@ -13,9 +13,13 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 from django.utils.translation import gettext_lazy as _
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Load environment variables from .env file
+load_dotenv(BASE_DIR / '.env')
 
 
 # Quick-start development settings - unsuitable for production
@@ -27,7 +31,7 @@ SECRET_KEY = 'django-insecure-your-secret-key-here'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'testserver']
 
 
 # Application definition
@@ -49,9 +53,11 @@ INSTALLED_APPS = [
     'pages',
     'listings',
     'blog',
+    'blog_ai',
     'seo',
     'billing',
     'assistant',
+    'core',
 ]
 
 MIDDLEWARE = [
@@ -61,6 +67,7 @@ MIDDLEWARE = [
     'django.middleware.locale.LocaleMiddleware',
     'middleware.language.UserLanguageMiddleware',
     'middleware.language.AssistantLanguageMiddleware',
+    'middleware.maintenance.MaintenanceModeMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -248,4 +255,11 @@ CACHES = {
 GOOGLE_PLACES_API_KEY = os.environ.get('GOOGLE_PLACES_API_KEY', '')
 GOOGLE_PLACES_MAX_RESULTS = 20  # Max results per search request
 GOOGLE_PLACES_RADIUS = 5000  # Search radius in meters (5km)
+
+# AI Configuration
+AI_PROVIDER = os.environ.get('AI_PROVIDER', 'mock')  # 'openai', 'anthropic', or 'mock'
+OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY', '')
+OPENAI_MODEL = os.environ.get('OPENAI_MODEL', 'gpt-4o-mini')
+ANTHROPIC_API_KEY = os.environ.get('ANTHROPIC_API_KEY', '')
+ANTHROPIC_MODEL = os.environ.get('ANTHROPIC_MODEL', 'claude-3-haiku-20240307')
 GOOGLE_PLACES_RATE_LIMIT = 0.1  # Seconds to wait between API calls

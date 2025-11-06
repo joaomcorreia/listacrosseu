@@ -31,10 +31,12 @@ export default function BlogPostsFooter({ lang, limit = 3 }: BlogPostsFooterProp
   const [isAutoScrolling, setIsAutoScrolling] = useState(true);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
+  const [isMounted, setIsMounted] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const autoScrollIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
+    setIsMounted(true);
     fetchPosts();
   }, [lang, limit]);
 
@@ -228,6 +230,11 @@ export default function BlogPostsFooter({ lang, limit = 3 }: BlogPostsFooterProp
         };
     }
   };
+
+  // Prevent hydration mismatch by not rendering anything until mounted
+  if (!isMounted) {
+    return null;
+  }
 
   if (loading) {
     return (

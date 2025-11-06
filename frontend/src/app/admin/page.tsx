@@ -154,7 +154,7 @@ export default function AdminDashboard() {
             </Link>
 
             <Link 
-              href="/admin/seo"
+              href="/admin/pages"
               className="flex items-center p-4 bg-purple-50 rounded-lg hover:bg-purple-100 transition-colors"
             >
               <svg className="w-8 h-8 text-purple-600 mr-3" fill="currentColor" viewBox="0 0 20 20">
@@ -162,7 +162,7 @@ export default function AdminDashboard() {
               </svg>
               <div>
                 <h4 className="font-medium text-gray-900">Manage SEO</h4>
-                <p className="text-sm text-gray-600">Optimize your content</p>
+                <p className="text-sm text-gray-600">SEO settings in Website Preview</p>
               </div>
             </Link>
           </div>

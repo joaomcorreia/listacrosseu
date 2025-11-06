@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface SiteSettings {
   siteName: string;
@@ -11,6 +11,7 @@ interface SiteSettings {
   enableRegistration: boolean;
   enableComments: boolean;
   maintenanceMode: boolean;
+  enableStarAnimation: boolean;
   analyticsCode: string;
   branding: {
     logo: string;
@@ -42,6 +43,7 @@ export default function SettingsPage() {
     enableRegistration: true,
     enableComments: true,
     maintenanceMode: false,
+    enableStarAnimation: true,
     analyticsCode: '',
     branding: {
       logo: '',
@@ -88,13 +90,72 @@ export default function SettingsPage() {
     }
   };
 
+  // Load settings on component mount
+  useEffect(() => {
+    loadSettings();
+  }, []);
+
+  const getCsrfToken = async () => {
+    try {
+      const response = await fetch('/api/v1/csrf-token/');
+      const data = await response.json();
+      return data.csrf_token;
+    } catch (error) {
+      console.error('Error getting CSRF token:', error);
+      return null;
+    }
+  };
+
+  const loadSettings = async () => {
+    try {
+      const response = await fetch('/api/v1/core/settings/', {
+        credentials: 'include'
+      });
+      if (response.ok) {
+        const data = await response.json();
+        if (data.ok) {
+          setSettings(data.settings);
+        }
+      } else if (response.status === 401 || response.status === 403) {
+        // User is not authenticated, redirect to Django admin login
+        window.location.href = '/django-admin/login/?next=/admin/settings';
+      }
+    } catch (error) {
+      console.error('Error loading settings:', error);
+    }
+  };
+
   const handleSave = async () => {
     setIsSaving(true);
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      alert('Settings saved successfully!');
+      const csrfToken = await getCsrfToken();
+      const response = await fetch('/api/v1/core/settings/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': csrfToken || '',
+        },
+        credentials: 'include',
+        body: JSON.stringify(settings),
+      });
+      
+      if (response.status === 401 || response.status === 403) {
+        // User is not authenticated, redirect to Django admin login
+        window.location.href = '/django-admin/login/?next=/admin/settings';
+        return;
+      }
+      
+      const data = await response.json();
+      
+      if (data.ok) {
+        alert('Settings saved successfully!');
+        // Optionally reload settings to get any server-side updates
+        await loadSettings();
+      } else {
+        alert('Error saving settings: ' + (data.error || 'Unknown error'));
+      }
     } catch (error) {
+      console.error('Error saving settings:', error);
       alert('Error saving settings');
     } finally {
       setIsSaving(false);
@@ -459,6 +520,19 @@ export default function SettingsPage() {
                 />
                 <label htmlFor="maintenanceMode" className="ml-2 block text-sm text-gray-900">
                   Maintenance mode (hide site from public)
+                </label>
+              </div>
+              
+              <div className="flex items-center">
+                <input
+                  type="checkbox"
+                  id="enableStarAnimation"
+                  checked={settings.enableStarAnimation}
+                  onChange={(e) => handleInputChange('enableStarAnimation', e.target.checked)}
+                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                />
+                <label htmlFor="enableStarAnimation" className="ml-2 block text-sm text-gray-900">
+                  Enable star animation on homepage hero section
                 </label>
               </div>
             </div>

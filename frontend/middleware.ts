@@ -15,7 +15,24 @@ function getLocale(request: NextRequest) {
   return pathnameIsMissingLocale ? defaultLocale : null;
 }
 
-export function middleware(request: NextRequest) {
+async function checkMaintenanceMode(request: NextRequest) {
+  try {
+    // Always check the Django backend for maintenance status
+    const backendUrl = 'http://127.0.0.1:8000';
+    const response = await fetch(`${backendUrl}/api/v1/core/maintenance-status/`);
+    if (response.ok) {
+      const data = await response.json();
+      return data.maintenance_mode === true;
+    }
+  } catch (error) {
+    // If we can't check maintenance status, assume operational
+    console.error('Error checking maintenance mode:', error);
+    return false;
+  }
+  return false;
+}
+
+export async function middleware(request: NextRequest) {
   // Check if there is any supported locale in the pathname
   const pathname = request.nextUrl.pathname;
   
@@ -27,6 +44,17 @@ export function middleware(request: NextRequest) {
     pathname === '/favicon.ico'
   ) {
     return NextResponse.next();
+  }
+
+  // Skip maintenance check for admin routes and maintenance page itself
+  if (pathname.startsWith('/admin') || pathname === '/maintenance') {
+    // Continue with locale handling for admin routes
+  } else {
+    // Check maintenance mode for public routes
+    const isMaintenanceMode = await checkMaintenanceMode(request);
+    if (isMaintenanceMode) {
+      return NextResponse.redirect(new URL('/maintenance', request.url));
+    }
   }
 
   // Check if the pathname is missing a locale

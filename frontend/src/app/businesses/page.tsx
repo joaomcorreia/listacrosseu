@@ -178,7 +178,7 @@ export default function BusinessesPage() {
     };
 
     const availableCities = selectedCountry
-        ? [...new Set(businesses.filter(b => b.country === selectedCountry).map(b => b.city))]
+        ? Array.from(new Set(businesses.filter(b => b.country === selectedCountry).map(b => b.city)))
         : [];
 
     const paginatedBusinesses = filteredBusinesses.slice(

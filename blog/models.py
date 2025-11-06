@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
 from core.models.seo import SEOMixin
+import uuid
 
 
 class BlogCategory(SEOMixin, models.Model):
@@ -69,6 +70,7 @@ class BlogCategory(SEOMixin, models.Model):
 class BlogPost(SEOMixin, models.Model):
     STATUS_CHOICES = [
         ('draft', _('Draft')),
+        ('review', _('Under Review')),
         ('published', _('Published')),
         ('archived', _('Archived')),
     ]
@@ -165,3 +167,28 @@ class BlogPost(SEOMixin, models.Model):
     @property
     def is_published(self):
         return self.status == 'published' and self.published_at
+
+
+class AIGeneration(models.Model):
+    """Track AI content generation activities"""
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    stage = models.CharField(max_length=20, choices=[
+        ('outline', 'Outline Generation'),
+        ('draft', 'Draft Generation'),
+        ('seo', 'SEO Generation'),
+        ('translate', 'Translation')
+    ])
+    language = models.CharField(max_length=10, default='en')
+    input_payload = models.JSONField()
+    output_payload = models.JSONField()
+    sources = models.JSONField(default=list, blank=True)  # List of source URLs
+    quality_score = models.FloatField(default=0.0)
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        verbose_name = 'AI Generation Log'
+        verbose_name_plural = 'AI Generation Logs'
+        ordering = ['-created_at']
+    
+    def __str__(self):
+        return f"{self.stage} - {self.language} ({self.created_at.strftime('%Y-%m-%d %H:%M')})"

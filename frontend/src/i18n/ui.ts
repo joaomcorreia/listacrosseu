@@ -21,7 +21,60 @@ export const UI = {
     address: "Address",
     website: "Website",
     phone: "Phone",
-    email: "Email"
+    email: "Email",
+    // Homepage content
+    homepage: {
+      hero: {
+        headline: "Find Businesses Across Europe",
+        subheadline: "One directory, 27 countries, all industries. Connect with trusted European companies instantly.",
+        ctaExplore: "Explore Businesses",
+        ctaAdvertise: "Advertise for Free",
+        trustBadge: "Trusted by 50,000+ European businesses"
+      },
+      howItWorks: {
+        title: "How It Works",
+        subtitle: "Connect with European businesses in three simple steps",
+        searchTitle: "Search",
+        searchDesc: "Find businesses by country, city, or category across all EU nations",
+        connectTitle: "Connect", 
+        connectDesc: "Contact or visit them directly with verified contact information",
+        growTitle: "Grow",
+        growDesc: "List your business and expand your reach across Europe"
+      },
+      forBusiness: {
+        title: "Grow Your Business Across the EU",
+        subtitle: "Start free, get visibility, and upgrade for premium features like SEO optimization and professional website tools.",
+        ctaButton: "List Your Business Free"
+      },
+      countries: {
+        title: "Explore Businesses by Country",
+        subtitle: "Discover local companies and services across European nations"
+      },
+      whyChoose: {
+        title: "Why Choose ListAcross",
+        subtitle: "The most comprehensive European business directory platform",
+        multilingual: "Multilingual Listings",
+        multilingualDesc: "Search and browse in your preferred European language",
+        exposure: "Local & EU-wide Exposure", 
+        exposureDesc: "Reach customers in your city and across all EU countries",
+        verified: "Verified Business Information",
+        verifiedDesc: "Accurate, up-to-date company details and contact information",
+        aiReady: "AI-Ready Platform",
+        aiReadyDesc: "Future-ready technology for intelligent business matching"
+      },
+      finalCTA: {
+        title: "Join the network of trusted European businesses",
+        ctaList: "List Your Business Free",
+        ctaExplore: "Explore Listings"
+      }
+    },
+    seo: {
+      homepage: {
+        title: "Find and Promote Businesses Across Europe – ListAcross EU",
+        description: "Discover companies and services in 27 EU countries. List your business for free and reach new customers across Europe.",
+        keywords: "European business directory, find companies, advertise business, EU listings, local services"
+      }
+    }
   },
   en: {
     searchPlaceholder: "Search businesses, e.g. 'florist in Porto'",
@@ -42,7 +95,60 @@ export const UI = {
     address: "Address",
     website: "Website",
     phone: "Phone",
-    email: "Email"
+    email: "Email",
+    // Homepage content
+    homepage: {
+      hero: {
+        headline: "Find Businesses Across Europe",
+        subheadline: "One directory, 27 countries, all industries. Connect with trusted European companies instantly.",
+        ctaExplore: "Explore Businesses",
+        ctaAdvertise: "Advertise for Free",
+        trustBadge: "Trusted by 50,000+ European businesses"
+      },
+      howItWorks: {
+        title: "How It Works",
+        subtitle: "Connect with European businesses in three simple steps",
+        searchTitle: "Search",
+        searchDesc: "Find businesses by country, city, or category across all EU nations",
+        connectTitle: "Connect", 
+        connectDesc: "Contact or visit them directly with verified contact information",
+        growTitle: "Grow",
+        growDesc: "List your business and expand your reach across Europe"
+      },
+      forBusiness: {
+        title: "Grow Your Business Across the EU",
+        subtitle: "Start free, get visibility, and upgrade for premium features like SEO optimization and professional website tools.",
+        ctaButton: "List Your Business Free"
+      },
+      countries: {
+        title: "Explore Businesses by Country",
+        subtitle: "Discover local companies and services across European nations"
+      },
+      whyChoose: {
+        title: "Why Choose ListAcross",
+        subtitle: "The most comprehensive European business directory platform",
+        multilingual: "Multilingual Listings",
+        multilingualDesc: "Search and browse in your preferred European language",
+        exposure: "Local & EU-wide Exposure", 
+        exposureDesc: "Reach customers in your city and across all EU countries",
+        verified: "Verified Business Information",
+        verifiedDesc: "Accurate, up-to-date company details and contact information",
+        aiReady: "AI-Ready Platform",
+        aiReadyDesc: "Future-ready technology for intelligent business matching"
+      },
+      finalCTA: {
+        title: "Join the network of trusted European businesses",
+        ctaList: "List Your Business Free",
+        ctaExplore: "Explore Listings"
+      }
+    },
+    seo: {
+      homepage: {
+        title: "Find and Promote Businesses Across Europe – ListAcross EU",
+        description: "Discover companies and services in 27 EU countries. List your business for free and reach new customers across Europe.",
+        keywords: "European business directory, find companies, advertise business, EU listings, local services"
+      }
+    }
   },
   fr: {
     searchPlaceholder: "Rechercher des entreprises, ex. 'fleuriste à Porto'",
@@ -63,7 +169,59 @@ export const UI = {
     address: "Adresse",
     website: "Site web",
     phone: "Téléphone",
-    email: "E-mail"
+    email: "E-mail",
+    homepage: {
+      hero: {
+        headline: "Trouvez des Entreprises à Travers l'Europe",
+        subheadline: "Un répertoire, 27 pays, toutes les industries. Connectez-vous instantanément avec des entreprises européennes de confiance.",
+        ctaExplore: "Explorer les Entreprises",
+        ctaAdvertise: "Publicité Gratuite",
+        trustBadge: "Approuvé par 50 000+ entreprises européennes"
+      },
+      howItWorks: {
+        title: "Comment Ça Marche",
+        subtitle: "Connectez-vous avec les entreprises européennes en trois étapes simples",
+        searchTitle: "Rechercher",
+        searchDesc: "Trouvez des entreprises par pays, ville ou catégorie dans toutes les nations de l'UE",
+        connectTitle: "Se Connecter", 
+        connectDesc: "Contactez-les directement avec des informations de contact vérifiées",
+        growTitle: "Grandir",
+        growDesc: "Inscrivez votre entreprise et étendez votre portée à travers l'Europe"
+      },
+      forBusiness: {
+        title: "Développez Votre Entreprise dans l'UE",
+        subtitle: "Commencez gratuitement, obtenez de la visibilité et passez aux fonctionnalités premium comme l'optimisation SEO et les outils de site web professionnel.",
+        ctaButton: "Inscrire Votre Entreprise Gratuitement"
+      },
+      countries: {
+        title: "Explorer les Entreprises par Pays",
+        subtitle: "Découvrez les entreprises et services locaux à travers les nations européennes"
+      },
+      whyChoose: {
+        title: "Pourquoi Choisir ListAcross",
+        subtitle: "La plateforme d'annuaire d'entreprises européenne la plus complète",
+        multilingual: "Annonces Multilingues",
+        multilingualDesc: "Recherchez et naviguez dans votre langue européenne préférée",
+        exposure: "Exposition Locale et dans l'UE", 
+        exposureDesc: "Atteignez les clients de votre ville et dans tous les pays de l'UE",
+        verified: "Informations d'Entreprise Vérifiées",
+        verifiedDesc: "Détails d'entreprise précis et à jour et informations de contact",
+        aiReady: "Plateforme Prête pour l'IA",
+        aiReadyDesc: "Technologie prête pour l'avenir pour la correspondance intelligente d'entreprises"
+      },
+      finalCTA: {
+        title: "Rejoignez le réseau d'entreprises européennes de confiance",
+        ctaList: "Inscrire Votre Entreprise Gratuitement",
+        ctaExplore: "Explorer les Annonces"
+      }
+    },
+    seo: {
+      homepage: {
+        title: "Trouvez et Promouvez des Entreprises à Travers l'Europe – ListAcross EU",
+        description: "Découvrez des entreprises et services dans 27 pays de l'UE. Inscrivez votre entreprise gratuitement et atteignez de nouveaux clients à travers l'Europe.",
+        keywords: "annuaire d'entreprises européennes, trouver des entreprises, publicité d'entreprise, annonces UE, services locaux"
+      }
+    }
   },
   nl: {
     searchPlaceholder: "Zoek bedrijven, bv. 'bloemist in Porto'",
@@ -176,13 +334,21 @@ export const UI = {
 export type SupportedLanguage = keyof typeof UI;
 
 // Helper function to get UI text safely
-export function getUIText(lang: string, key: keyof typeof UI.en): string {
-  const normalizedLang = lang as SupportedLanguage;
-  if (UI[normalizedLang] && UI[normalizedLang][key]) {
-    return UI[normalizedLang][key];
+export function getUIText(lang: string, key?: string): any {
+  const normalizedLang = (UI.hasOwnProperty(lang) ? lang : 'en') as SupportedLanguage;
+  
+  // If no key provided, return entire UI object for the language
+  if (!key) {
+    return UI[normalizedLang];
+  }
+  
+  const langObj = UI[normalizedLang] as any;
+  if (langObj && langObj.hasOwnProperty(key)) {
+    return langObj[key];
   }
   // Fallback to English
-  return UI.en[key];
+  const enObj = UI.en as any;
+  return enObj[key];
 }
 
 // Language configuration

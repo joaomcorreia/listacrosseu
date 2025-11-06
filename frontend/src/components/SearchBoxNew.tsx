@@ -49,7 +49,7 @@ export default function SearchBox({ lang }: { lang: string }) {
     const t = setTimeout(async () => {
       if (!q.trim()) { setSug([]); return; }
       try {
-        const url = `http://127.0.0.1:8000/api/v1/search/businesses/?q=${encodeURIComponent(q)}&limit=5`;
+        const url = `/api/v1/search/businesses/?q=${encodeURIComponent(q)}&limit=5`;
         const r = await fetch(url); 
         const j = await r.json();
         setSug((j.results ?? []).map((x: any) => x.name));
