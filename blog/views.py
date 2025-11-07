@@ -9,7 +9,7 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 from django.utils.text import slugify
 from .models import BlogPost, BlogCategory, AIGeneration
-from .serializers import BlogPostListSerializer, BlogPostDetailSerializer, BlogCategorySerializer
+from .serializers import BlogPostListSerializer, BlogPostDetailSerializer, BlogPostAdminSerializer, BlogCategorySerializer
 
 
 class CategoryList(APIView):
@@ -116,8 +116,18 @@ class BlogPostsAdmin(APIView):
     """Admin API for blog posts with pagination, search, and CRUD operations"""
     permission_classes = [AllowAny]
     
-    def get(self, request):
-        """List all blog posts with pagination and filtering"""
+    def get(self, request, post_id=None):
+        """List all blog posts with pagination and filtering, or get a specific post"""
+        if post_id:
+            # Get specific post
+            try:
+                post = BlogPost.objects.get(id=post_id)
+                serializer = BlogPostAdminSerializer(post)
+                return Response(serializer.data)
+            except BlogPost.DoesNotExist:
+                return Response({'error': 'Post not found'}, status=status.HTTP_404_NOT_FOUND)
+        
+        # List all posts with pagination and filtering
         page = int(request.GET.get('page', 1))
         search = request.GET.get('search', '')
         status_filter = request.GET.get('status', 'all')
@@ -163,6 +173,36 @@ class BlogPostsAdmin(APIView):
             'results': serializer.data
         })
     
+    def post(self, request):
+        """Create a new blog post"""
+        serializer = BlogPostAdminSerializer(data=request.data)
+        if serializer.is_valid():
+            # Set author to the current user if authenticated, otherwise use a default
+            if request.user.is_authenticated:
+                serializer.save(author=request.user)
+            else:
+                # For demo purposes, use the first user
+                from django.contrib.auth.models import User
+                author = User.objects.first()
+                serializer.save(author=author)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    def put(self, request, post_id=None):
+        """Update a blog post"""
+        if not post_id:
+            return Response({'error': 'Post ID is required'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        try:
+            post = BlogPost.objects.get(id=post_id)
+            serializer = BlogPostAdminSerializer(post, data=request.data, partial=True)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        except BlogPost.DoesNotExist:
+            return Response({'error': 'Post not found'}, status=status.HTTP_404_NOT_FOUND)
+
     def delete(self, request, post_id=None):
         """Delete a blog post"""
         if not post_id:

@@ -25,9 +25,12 @@ export default function ScrollNavbar({ lang, t }: ScrollNavbarProps) {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 10);
     };
 
+    // Set initial state
+    handleScroll();
+    
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -71,17 +74,17 @@ export default function ScrollNavbar({ lang, t }: ScrollNavbarProps) {
 
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${
         isScrolled 
-          ? "bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm" 
+          ? "bg-white/95 backdrop-blur-lg border-b border-gray-200/20 shadow-lg" 
           : "bg-transparent"
       }`}
     >
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <Link 
           href={`/${lang}`} 
-          className={`flex items-center gap-3 font-bold text-xl transition-colors duration-300 ${
-            isScrolled ? "text-gray-900" : "text-white"
+          className={`flex items-center gap-3 font-bold text-xl transition-all duration-500 ease-in-out ${
+            isScrolled ? "text-gray-900" : "text-gray-900 drop-shadow-xl"
           }`}
         >
           {settings.logo && (
@@ -97,64 +100,64 @@ export default function ScrollNavbar({ lang, t }: ScrollNavbarProps) {
         <nav className="flex items-center gap-6 text-sm">
           <Link 
             href={`/${lang}/search`} 
-            className={`hover:underline transition-colors duration-300 ${
-              isScrolled ? "text-gray-700 hover:text-gray-900" : "text-white/90 hover:text-white"
+            className={`hover:underline transition-all duration-500 ease-in-out ${
+              isScrolled ? "text-gray-700 hover:text-gray-900" : "text-gray-800 hover:text-gray-900 drop-shadow-md"
             }`}
           >
             {text.search}
           </Link>
           <Link 
             href={`/${lang}/countries`} 
-            className={`hover:underline transition-colors duration-300 ${
-              isScrolled ? "text-gray-700 hover:text-gray-900" : "text-white/90 hover:text-white"
+            className={`hover:underline transition-all duration-500 ease-in-out ${
+              isScrolled ? "text-gray-700 hover:text-gray-900" : "text-gray-800 hover:text-gray-900 drop-shadow-md"
             }`}
           >
             {text.countries}
           </Link>
           <Link 
             href={`/${lang}/categories`} 
-            className={`hover:underline transition-colors duration-300 ${
-              isScrolled ? "text-gray-700 hover:text-gray-900" : "text-white/90 hover:text-white"
+            className={`hover:underline transition-all duration-500 ease-in-out ${
+              isScrolled ? "text-gray-700 hover:text-gray-900" : "text-gray-800 hover:text-gray-900 drop-shadow-md"
             }`}
           >
             {text.categories}
           </Link>
           <Link 
             href={`/${lang}/pricing`} 
-            className={`hover:underline transition-colors duration-300 ${
-              isScrolled ? "text-gray-700 hover:text-gray-900" : "text-white/90 hover:text-white"
+            className={`hover:underline transition-all duration-500 ease-in-out ${
+              isScrolled ? "text-gray-700 hover:text-gray-900" : "text-gray-800 hover:text-gray-900 drop-shadow-md"
             }`}
           >
             {text.pricing}
           </Link>
           <Link 
             href={`/${lang}/ai-design`} 
-            className={`hover:underline transition-colors duration-300 ${
-              isScrolled ? "text-gray-700 hover:text-gray-900" : "text-white/90 hover:text-white"
+            className={`hover:underline transition-all duration-500 ease-in-out ${
+              isScrolled ? "text-gray-700 hover:text-gray-900" : "text-gray-800 hover:text-gray-900 drop-shadow-md"
             }`}
           >
             {text.aiDesign}
           </Link>
           <Link 
             href={`/${lang}/${HOW_SLUGS[lang.toUpperCase() as keyof typeof HOW_SLUGS] || 'how-it-works'}`} 
-            className={`hover:underline transition-colors duration-300 ${
-              isScrolled ? "text-gray-700 hover:text-gray-900" : "text-white/90 hover:text-white"
+            className={`hover:underline transition-all duration-500 ease-in-out ${
+              isScrolled ? "text-gray-700 hover:text-gray-900" : "text-gray-800 hover:text-gray-900 drop-shadow-md"
             }`}
           >
             {text.howItWorks}
           </Link>
           <Link 
             href={`/${lang}/${FORMS_SLUG[langUppercase] || FORMS_SLUG.EN}`} 
-            className={`hover:underline transition-colors duration-300 ${
-              isScrolled ? "text-gray-700 hover:text-gray-900" : "text-white/90 hover:text-white"
+            className={`hover:underline transition-all duration-500 ease-in-out ${
+              isScrolled ? "text-gray-700 hover:text-gray-900" : "text-gray-800 hover:text-gray-900 drop-shadow-md"
             }`}
           >
             {formsLabel}
           </Link>
           <Link 
             href="/admin" 
-            className={`hover:underline transition-colors duration-300 ${
-              isScrolled ? "text-gray-700 hover:text-gray-900" : "text-white/90 hover:text-white"
+            className={`hover:underline transition-all duration-500 ease-in-out ${
+              isScrolled ? "text-gray-700 hover:text-gray-900" : "text-gray-800 hover:text-gray-900 drop-shadow-md"
             }`}
           >
             {text.admin}
@@ -164,10 +167,10 @@ export default function ScrollNavbar({ lang, t }: ScrollNavbarProps) {
         <div className="relative" ref={dropdownRef}>
           <button
             onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
-            className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
+            className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-500 ease-in-out ${
               isScrolled
-                ? "hover:bg-gray-100 text-gray-700 border border-gray-200"
-                : "hover:bg-white/10 text-white border border-white/30"
+                ? "hover:bg-gray-100 text-gray-700 border border-gray-200 shadow-sm"
+                : "hover:bg-gray-100/20 text-gray-800 border border-gray-300/50 drop-shadow-md"
             }`}
           >
             <span className="text-lg">{languages[lang as keyof typeof languages]?.flag || "🌐"}</span>
